@@ -281,14 +281,14 @@ public class OrderController {
             servletOutputStream = response.getOutputStream();
             writer.flush(servletOutputStream);
             servletOutputStream.flush();
-        } catch (IORuntimeException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IORuntimeException | IOException e) {
             e.printStackTrace();
         } finally {
             writer.close();
             try {
-                servletOutputStream.close();
+                if (servletOutputStream != null) {
+                    servletOutputStream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

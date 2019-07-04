@@ -10,21 +10,34 @@
 
 package com.yami.shop.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.yami.shop.bean.app.dto.ProductItemDto;
 import com.yami.shop.bean.enums.TransportChargeType;
-import com.yami.shop.bean.model.*;
-import com.yami.shop.common.util.Arith;
 import com.yami.shop.common.util.Json;
-import com.yami.shop.service.ProductService;
-import com.yami.shop.service.SkuService;
-import com.yami.shop.service.TransportManagerService;
-import com.yami.shop.service.TransportService;
+import com.yami.shop.service.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import com.yami.shop.bean.app.dto.OrderItemDto;
+import com.yami.shop.bean.model.Area;
+import com.yami.shop.bean.model.Product;
+import com.yami.shop.bean.model.Sku;
+import com.yami.shop.bean.model.Transfee;
+import com.yami.shop.bean.model.TransfeeFree;
+import com.yami.shop.bean.model.Transport;
+import com.yami.shop.bean.model.UserAddr;
+import com.yami.shop.common.util.Arith;
+
+import cn.hutool.core.collection.CollectionUtil;
 
 @Service
 public class TransportManagerServiceImpl implements TransportManagerService {
@@ -117,6 +130,11 @@ public class TransportManagerServiceImpl implements TransportManagerService {
             if (transfee != null && CollectionUtil.isNotEmpty(transfee.getCityList())) {
                 break;
             }
+        }
+
+        // 如果无法获取到任何运费相关信息，则返回0运费
+        if (transfee == null) {
+            return 0.0;
         }
 
         // 产品的运费

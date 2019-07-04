@@ -36,7 +36,7 @@ public class PayNoticeController {
 
 
     @RequestMapping("/order")
-    public ResponseEntity<?> submit(@RequestBody String xmlData) throws WxPayException {
+    public ResponseEntity<Void> submit(@RequestBody String xmlData) throws WxPayException {
         WxPayOrderNotifyResult parseOrderNotifyResult = wxMiniPayService.parseOrderNotifyResult(xmlData);
 
         String payNo = parseOrderNotifyResult.getOutTradeNo();
