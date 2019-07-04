@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.CategoryPropMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.CategoryProp">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="category_id" jdbcType="BIGINT" property="categoryId" />
+    <result column="prop_id" jdbcType="BIGINT" property="propId" />
+  </resultMap>
+  
+  <insert id="insertCategoryProp">
+  	insert into tz_category_prop (category_id,prop_id) values
+  	<foreach collection="propIds" item="propId" separator=",">
+  		(#{categoryId},#{propId})
+  	</foreach>
+  </insert>
+  
+  <delete id="deleteByCategoryId">
+  	delete from tz_category_prop where category_id = #{categoryId}
+  </delete>
+  
+  <delete id="deleteByPropId">
+  	delete from tz_category_prop where prop_id = #{propId}
+  </delete>
+</mapper>

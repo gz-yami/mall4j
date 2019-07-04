@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.UserAddrMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.UserAddr">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="addr_id" jdbcType="BIGINT" property="addrId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="common_addr" jdbcType="INTEGER" property="commonAddr" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <update id="removeDefaultUserAddr">
+    update tz_user_addr set common_addr = 0 where user_id = #{userId}
+  </update>
+  <select id="getDefaultUserAddr" resultType="com.yami.shop.bean.model.UserAddr">
+    select addr_id,user_id,receiver,province,city,area,province_id,city_id,area_id,addr,mobile,common_addr
+    from tz_user_addr where user_id = #{userId} and common_addr = 1
+  </select>
+
+  <update id="setDefaultUserAddr">
+    update tz_user_addr set common_addr = 1 where user_id = #{userId} and addr_id = #{addrId}
+  </update>
+
+  <select id="getUserAddrByUserIdAndAddrId" resultType="com.yami.shop.bean.model.UserAddr">
+    select addr_id,user_id,receiver,province,city,area,province_id,city_id,area_id,addr,mobile,common_addr
+    from tz_user_addr where user_id = #{userId} and addr_id = #{addrId}
+  </select>
+</mapper>

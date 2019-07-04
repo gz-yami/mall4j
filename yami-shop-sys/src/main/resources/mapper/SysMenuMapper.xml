@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yami.shop.sys.dao.SysMenuMapper">
+
+	<select id="listMenuIdByRoleId" resultType="Long">
+		select menu_id from tz_sys_role_menu where role_id = #{roleId}
+	</select>
+	
+	<!-- 查询用户的所有菜单 --> 
+	<select id="listMenuByUserId" resultType="com.yami.shop.sys.model.SysMenu">
+		SELECT DISTINCT m.menu_id AS menu_id,m.parent_id,m.name,url,m.type,m.icon,m.order_num FROM tz_sys_user_role ur 
+			LEFT JOIN tz_sys_role_menu rm ON ur.role_id = rm.role_id LEFT JOIN tz_sys_menu m ON m.`menu_id` = rm.`menu_id`
+		WHERE  ur.user_id = #{userId} and m.type != 2 order by order_num
+	</select>
+	<!-- 查询所有菜单 --> 
+	<select id="listMenu" resultType="com.yami.shop.sys.model.SysMenu">
+		select * from tz_sys_menu where `type` != 2 order by order_num
+	</select>
+	
+	<select id="listSimpleMenuNoButton" resultType="com.yami.shop.sys.model.SysMenu">
+		select menu_id ,parent_id ,`name` from tz_sys_menu where `type` != 2 order by order_num 
+	</select>
+	
+	<select id="listRootMenu" resultType="com.yami.shop.sys.model.SysMenu">
+		select menu_id,`name` from tz_sys_menu where `type` = 0
+	</select>
+	
+	<select id="listChildrenMenuByParentId" resultType="com.yami.shop.sys.model.SysMenu">
+		select menu_id,`name` from tz_sys_menu where parent_id = #{parentId}
+	</select>
+	
+	<select id="listMenuAndBtn" resultType="com.yami.shop.sys.model.SysMenu">
+	   select * from tz_sys_menu order by order_num
+	</select>
+</mapper>

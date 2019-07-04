@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.BasketMapper">
+    <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Basket">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="basket_id" jdbcType="BIGINT" property="basketId"/>
+        <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
+        <result column="prod_id" jdbcType="BIGINT" property="prodId"/>
+        <result column="sku_id" jdbcType="BIGINT" property="skuId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="basket_count" jdbcType="INTEGER" property="basketCount"/>
+        <result column="basket_date" jdbcType="TIMESTAMP" property="basketDate"/>
+        <result column="discount_id" jdbcType="BIGINT" property="discountId"/>
+        <result column="distribution_card_no" jdbcType="VARCHAR" property="distributionCardNo"/>
+    </resultMap>
+
+    <select id="getShopCartItems" resultType="com.yami.shop.bean.app.dto.ShopCartItemDto">
+        SELECT tb.*,tb.basket_count as prod_count,tsd.shop_name,IFNULL(ts.pic,tp.pic)AS pic,ts.price,ts.ori_price,tp.brief,ts.properties,ts.prod_name,ts.sku_name
+        FROM tz_basket tb
+        LEFT JOIN tz_shop_detail tsd ON tb.shop_id = tsd.shop_id
+        LEFT JOIN tz_prod tp ON tb.prod_id = tp.prod_id
+        LEFT JOIN tz_sku ts ON tb.sku_id = ts.sku_id
+        WHERE tp.status = 1 AND ts.status =1 AND tb.user_id = #{userId}
+        ORDER BY tb.`basket_id` DESC
+  </select>
+
+
+    <delete id="deleteShopCartItemsByBasketIds">
+        delete from tz_basket where user_id = #{userId} and basket_id in
+        <foreach collection="basketIds" item="basketId" open="(" separator="," close=")">
+            #{basketId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAllShopCartItems">
+    delete from tz_basket where user_id = #{userId}
+  </delete>
+
+    <select id="getShopCartExpiryItems" resultType="com.yami.shop.bean.app.dto.ShopCartItemDto">
+        SELECT tb.*,tb.basket_count AS prod_count,tsd.shop_name,tp.pic,tp.price,tp.ori_price,tp.brief,ts.properties,ts.prod_name,ts.sku_name
+        FROM tz_basket tb
+        LEFT JOIN tz_shop_detail tsd ON tb.shop_id = tsd.shop_id
+        LEFT JOIN tz_prod tp ON tb.prod_id = tp.prod_id
+        LEFT JOIN tz_sku ts ON tb.sku_id = ts.sku_id
+        WHERE tp.status = 0 OR ts.status =0 AND tb.user_id = #{userId}
+  </select>
+    <delete id="cleanExpiryProdList">
+        DELETE FROM tz_basket
+        WHERE basket_id IN(
+        SELECT basket_id FROM (
+        SELECT tb.basket_id basket_id
+        FROM tz_basket tb
+        LEFT JOIN tz_shop_detail tsd
+        ON tb.shop_id = tsd.shop_id
+        LEFT JOIN tz_prod tp
+        ON tb.prod_id = tp.prod_id
+        LEFT JOIN tz_sku ts
+        ON tb.sku_id = ts.sku_id
+        WHERE tp.status = 0 OR ts.status = 0 AND tb.user_id = 1) AS temp)
+  </delete>
+
+    <select id="shopCartItemDtoList" resultType="com.yami.shop.bean.app.dto.ShopCartItemDto">
+        SELECT tb.*,tb.basket_count AS prod_count,tsd.shop_name,tp.pic,tp.price,tp.ori_price,tp.brief,ts.properties,ts.prod_name
+        FROM tz_basket tb
+        LEFT JOIN tz_shop_detail tsd ON tb.shop_id = tsd.shop_id
+        LEFT JOIN tz_prod tp ON tb.prod_id = tp.prod_id
+        LEFT JOIN tz_sku ts ON tb.sku_id = ts.sku_id
+        WHERE tp.status = 1 AND ts.status =1 AND basket_id IN
+        <foreach collection="basketIdList" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <update id="updateDiscountItemId">
+        <foreach collection="basketIdShopCartParamMap" index="key" item="shopCartParam" separator=";">
+            UPDATE tz_basket SET discount_id = #{shopCartParam.discountId} where basket_id = #{key} and user_id = #{userId}
+        </foreach>
+    </update>
+    <select id="listUserIdByProdId" resultType="java.lang.String">
+      select user_id from tz_basket where prod_id = #{prodId}
+    </select>
+
+</mapper>

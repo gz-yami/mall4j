@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.PointsMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Points">
+    <id column="points_id" jdbcType="BIGINT" property="pointsId" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="modifier" jdbcType="BIGINT" property="modifier" />
+  </resultMap>
+
+  <resultMap id="Points_SysUser" type="com.yami.shop.bean.model.Points">
+    <id column="points_id" jdbcType="BIGINT" property="pointsId" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="modifier" jdbcType="BIGINT" property="modifier" />
+    <association property="sysUser" javaType="com.yami.shop.bean.vo.SysUserVO">
+      <id column="user_id" jdbcType="BIGINT" property="userId" />
+      <result column="username" jdbcType="VARCHAR" property="username" />
+    </association>
+  </resultMap>
+
+  <select id="getPointsAndSysUserPage" resultMap="Points_SysUser">
+      select
+      p.*,
+      su.username,su.user_id
+      from
+      tz_points p
+      left join tz_sys_user su on su.user_id=p.modifier
+      where p.shop_id = #{points.shopId}
+      <if test="points.name!=null and points.name!=''">
+        and name =#{points.name}
+      </if>
+  </select>
+
+    <select id="getNameAndId" resultMap="BaseResultMap" >
+        select points_id,name from tz_points
+        <where>
+            <if test="points.shopId != null ">
+                and shop_id = #{points.shopId}
+            </if>
+            <if test="points.state != null ">
+                and state = #{points.state}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByIds">
+        delete from tz_points where points_id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

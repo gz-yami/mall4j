@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.security.dao.AppConnectMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.security.model.AppConnect">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="app_id" jdbcType="TINYINT" property="appId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="biz_user_id" jdbcType="VARCHAR" property="bizUserId" />
+    <result column="biz_unionid" jdbcType="VARCHAR" property="bizUnionid" />
+  </resultMap>
+  
+  <select id="getByBizUserId" resultType="com.yami.shop.security.model.AppConnect">
+  	select * from tz_app_connect where biz_user_id = #{bizUserId} and app_id = #{appId}
+  </select>
+  
+  <select id="getByUserId" resultType="com.yami.shop.security.model.AppConnect">
+  	select * from tz_app_connect where user_id = #{userId} and app_id = #{appId}
+  </select>
+    <select id="getUserIdByUnionId" resultType="java.lang.String">
+      SELECT user_id from tz_app_connect where biz_unionid = #{bizUnionId} limit 1
+    </select>
+</mapper>

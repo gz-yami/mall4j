@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.OrderItem">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_item_id" jdbcType="BIGINT" property="orderItemId" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="prod_id" jdbcType="BIGINT" property="prodId" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="prod_count" jdbcType="INTEGER" property="prodCount" />
+    <result column="prod_name" jdbcType="VARCHAR" property="prodName" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="product_total_amount" jdbcType="DECIMAL" property="productTotalAmount" />
+    <result column="rec_time" jdbcType="TIMESTAMP" property="recTime" />
+    <result column="comm_sts" jdbcType="INTEGER" property="commSts" />
+  </resultMap>
+
+
+  <insert id="insertBatch">
+  	INSERT INTO `tz_order_item` (shop_id,order_number,prod_id,sku_id,sku_name,
+  		prod_count,prod_name,pic,price,user_id,product_total_amount,rec_time,comm_sts,
+  	                             distribution_card_no,basket_date) VALUES
+  	<foreach collection="list" item="orderItem" separator=",">
+  		(#{orderItem.shopId},#{orderItem.orderNumber},#{orderItem.prodId},#{orderItem.skuId},#{orderItem.skuName},
+  		#{orderItem.prodCount},#{orderItem.prodName},#{orderItem.pic},#{orderItem.price},#{orderItem.userId},#{orderItem.productTotalAmount},#{orderItem.recTime},#{orderItem.commSts},
+        #{orderItem.distributionCardNo},#{orderItem.basketDate})
+  	</foreach>
+  </insert>
+
+  <select id="listByOrderNumber" resultType="com.yami.shop.bean.model.OrderItem">
+  	select * from tz_order_item where order_number = #{orderNumber}
+  </select>
+</mapper>

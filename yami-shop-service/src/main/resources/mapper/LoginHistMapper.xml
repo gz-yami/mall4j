@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.LoginHistMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.LoginHist">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+  </resultMap>
+</mapper>

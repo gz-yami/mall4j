@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.HotSearchMapper">
+
+  <select id="getHotSearchDtoByShopId" resultType="com.yami.shop.bean.dto.HotSearchDto">
+    SELECT
+    hot_search_id,
+    content,
+    title
+    FROM
+        tz_hot_search
+    WHERE
+        shop_id = #{shopId}
+        AND `status` = 1
+    ORDER BY
+	seq
+  </select>
+
+
+</mapper>
