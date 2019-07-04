@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.TranscityFreeMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.TranscityFree">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="transcity_free_id" jdbcType="BIGINT" property="transcityFreeId" />
+    <result column="transfee_free_id" jdbcType="BIGINT" property="transfeeFreeId" />
+    <result column="free_city_id" jdbcType="BIGINT" property="freeCityId" />
+  </resultMap>
+</mapper>

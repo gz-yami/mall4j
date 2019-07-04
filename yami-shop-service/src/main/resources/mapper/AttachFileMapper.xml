@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.AttachFileMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.AttachFile">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="file_id" jdbcType="BIGINT" property="fileId" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_size" jdbcType="INTEGER" property="fileSize" />
+    <result column="file_join_id" jdbcType="BIGINT" property="fileJoinId" />
+    <result column="file_join_type" jdbcType="INTEGER" property="fileJoinType" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+  </resultMap>
+  
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.ProdImgMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.ProdImg">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="img_id" jdbcType="BIGINT" property="imgId" />
+    <result column="prod_id" jdbcType="BIGINT" property="prodId" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+  </resultMap>
+</mapper>

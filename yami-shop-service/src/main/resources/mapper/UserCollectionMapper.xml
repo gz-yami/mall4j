@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yami.shop.dao.UserCollectionMapper">
+
+  <resultMap id="userCollectionMap" type="com.yami.shop.bean.model.UserCollection">
+        <id property="id" column="id"/>
+        <result property="prodId" column="prod_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="createTime" column="create_time"/>
+  </resultMap>
+
+    <resultMap id="userCollectionDto" type="com.yami.shop.bean.app.dto.UserCollectionDto">
+        <id property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="prodName" column="prod_name"/>
+    </resultMap>
+
+    <select id="getUserCollectionDtoPageByUserId" resultMap="userCollectionDto">
+        select
+        uc.id,
+        uc.create_time,
+        p.prod_name
+        from
+        tz_user_collection  uc
+        left join tz_prod p on uc.prod_id=p.prod_id
+    </select>
+</mapper>

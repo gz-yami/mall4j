@@ -1,0 +1,34 @@
+/*
+ * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ *
+ * https://www.gz-yami.com/
+ *
+ * 未经允许，不可做商业用途！
+ *
+ * 版权所有，侵权必究！
+ */
+
+package com.yami.shop.common.util;
+
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class HttpContextUtils {
+
+	public static HttpServletRequest getHttpServletRequest() {
+		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+	}
+
+	public static String getDomain(){
+		HttpServletRequest request = getHttpServletRequest();
+		StringBuffer url = request.getRequestURL();
+		return url.delete(url.length() - request.getRequestURI().length(), url.length()).toString();
+	}
+
+	public static String getOrigin(){
+		HttpServletRequest request = getHttpServletRequest();
+		return request.getHeader("Origin");
+	}
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Brand">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="brand_id" jdbcType="BIGINT" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="brand_pic" jdbcType="VARCHAR" property="brandPic" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="brief" jdbcType="VARCHAR" property="brief" />
+    <result column="rec_time" jdbcType="TIMESTAMP" property="recTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="first_char" jdbcType="VARCHAR" property="firstChar" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  
+  <select id="getByBrandName" resultMap="BaseResultMap">
+  	select * from tz_brand where brand_name = #{brandName}
+  </select>
+  
+  <select id="listByCategoryId" resultMap="BaseResultMap">
+  	select b.brand_name,b.brand_id from tz_brand b 
+  	left join tz_category_brand cb on cb.brand_id = b.brand_id
+  	where cb.category_id = #{categoryId}
+  </select>
+</mapper>

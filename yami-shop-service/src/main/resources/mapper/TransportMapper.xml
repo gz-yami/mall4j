@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.TransportMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Transport">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="transport_id" jdbcType="BIGINT" property="transportId" />
+    <result column="trans_name" jdbcType="VARCHAR" property="transName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="charge_type" jdbcType="INTEGER" property="chargeType" />
+    <result column="is_free_fee" jdbcType="INTEGER" property="isFreeFee" />
+    <result column="has_free_condition" jdbcType="INTEGER" property="hasFreeCondition" />
+  </resultMap>
+  
+ <resultMap id="TransportAndTransfeeAndTranscityMap" type="com.yami.shop.bean.model.Transport">
+    <id column="transport_id" jdbcType="BIGINT" property="transportId" />
+    <result column="trans_name" jdbcType="VARCHAR" property="transName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="charge_type" jdbcType="TINYINT" property="chargeType" />
+    <result column="is_free_fee" jdbcType="TINYINT" property="isFreeFee" />
+    <result column="has_free_condition" jdbcType="INTEGER" property="hasFreeCondition" />
+    <collection property="transfees" ofType="com.yami.shop.bean.model.Transfee">
+        <result column="transfee_id" jdbcType="BIGINT" property="transfeeId" />
+	    <result column="transport_id" jdbcType="BIGINT" property="transportId" />
+	    <result column="continuous_piece" jdbcType="DECIMAL" property="continuousPiece" />
+	    <result column="first_piece" jdbcType="DECIMAL" property="firstPiece" />
+	    <result column="continuous_fee" jdbcType="DECIMAL" property="continuousFee" />
+	    <result column="first_fee" jdbcType="DECIMAL" property="firstFee" />
+	    <collection property="cityList" ofType="com.yami.shop.bean.model.Area" >
+	        <id column="area_id" jdbcType="BIGINT" property="areaId" />
+		    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+		    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+		    <result column="level" jdbcType="INTEGER" property="level" />
+	    </collection>
+    </collection>
+  </resultMap>
+  
+  <resultMap id="TransfeeFreeAndTranscityFreeMap" type="com.yami.shop.bean.model.TransfeeFree">
+      <id column="transfee_free_id" jdbcType="BIGINT" property="transfeeFreeId" />
+      <result column="transport_id" jdbcType="BIGINT" property="transportId" />
+      <result column="free_type" jdbcType="TINYINT" property="freeType" />
+      <result column="amount" jdbcType="DECIMAL" property="amount" />
+      <result column="piece" jdbcType="DECIMAL" property="piece" />
+      <collection property="freeCityList" ofType="com.yami.shop.bean.model.Area">
+          <id column="area_id" jdbcType="BIGINT" property="areaId" />
+          <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+          <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+          <result column="level" jdbcType="INTEGER" property="level" />
+      </collection>
+  </resultMap>
+  
+  <select id="getTransportAndTransfeeAndTranscity" resultMap="TransportAndTransfeeAndTranscityMap">
+    select port.*,fee.*,city.*,ta.* from tz_transport port
+    left join tz_transfee fee on port.transport_id = fee.transport_id
+    left join tz_transcity city on fee.transfee_id = city.transfee_id
+    left join tz_area ta on city.city_id = ta.area_id
+    where port.transport_id = #{id} order by fee.transfee_id
+  </select>
+  
+  <select id="getTransfeeFreeAndTranscityFreeByTransportId" resultMap="TransfeeFreeAndTranscityFreeMap">
+    select feefree.*,cityfree.*,ta.* from tz_transfee_free feefree 
+    left join tz_transcity_free cityfree on feefree.transfee_free_id = cityfree.transfee_free_id
+    left join tz_area ta on cityfree.free_city_id = ta.area_id
+    where feefree.transport_id = #{transportId} order by feefree.transfee_free_id
+  </select>
+  
+  <delete id="deleteTransports">
+    delete from tz_transport where transport_id in 
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+    #{id}
+    </foreach>
+  </delete>
+</mapper>

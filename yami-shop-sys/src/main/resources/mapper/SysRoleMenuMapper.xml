@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yami.shop.sys.dao.SysRoleMenuMapper">
+	<delete id="deleteBatch">
+		delete from tz_sys_role_menu where role_id in
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+	<delete id="deleteByMenuId">
+		delete from tz_sys_role_menu where menu_id = #{menuId}
+	</delete>
+	
+	<insert id="insertRoleAndRoleMenu">
+		insert into tz_sys_role_menu (role_id,menu_id) values
+	  	<foreach collection="menuIdList" item="menuId" separator=",">
+	  		(#{roleId},#{menuId})
+	  	</foreach>
+	</insert>
+	
+</mapper>

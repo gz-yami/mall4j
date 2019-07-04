@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.TranscityMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Transcity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="transcity_id" jdbcType="BIGINT" property="transcityId" />
+    <result column="transfee_id" jdbcType="BIGINT" property="transfeeId" />
+    <result column="city_id" jdbcType="BIGINT" property="cityId" />
+  </resultMap>
+
+    <insert id="insertTranscities">
+        insert into tz_transcity (transfee_id,city_id) values
+        <foreach collection="transcities" item="transcity" separator=",">
+        (#{transcity.transfeeId},#{transcity.cityId})     
+        </foreach>
+    </insert>
+    
+    <insert id="insertTranscityFrees">
+        insert into tz_transcity_free (transfee_free_id,free_city_id) values
+        <foreach collection="transcityFrees" item="transcityFree" separator=",">
+        (#{transcityFree.transfeeFreeId},#{transcityFree.freeCityId})     
+        </foreach>
+    </insert>
+    
+    <delete id="deleteBatchByTransfeeIds">
+        delete from tz_transcity where transfee_id in
+	        <foreach collection="transfeeIds" item="transfeeId" open="(" close=")" separator=",">
+	           #{transfeeId} 
+	        </foreach>
+    </delete>
+    
+    <delete id="deleteBatchByTransfeeFreeIds">
+        delete from tz_transcity_free where transfee_free_id in
+	        <foreach collection="transfeeFreeIds" item="transfeeFreeId" open="(" close=")" separator=",">
+	           #{transfeeFreeId}
+	        </foreach>
+    </delete>
+</mapper>

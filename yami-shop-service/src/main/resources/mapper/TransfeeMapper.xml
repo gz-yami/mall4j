@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.TransfeeMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Transfee">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="transfee_id" jdbcType="BIGINT" property="transfeeId" />
+    <result column="transport_id" jdbcType="BIGINT" property="transportId" />
+    <result column="continuous_piece" jdbcType="DECIMAL" property="continuousPiece" />
+    <result column="first_piece" jdbcType="DECIMAL" property="firstPiece" />
+    <result column="continuous_fee" jdbcType="DECIMAL" property="continuousFee" />
+    <result column="first_fee" jdbcType="DECIMAL" property="firstFee" />
+  </resultMap>
+  
+  <insert id="insertTransfees" useGeneratedKeys="true" keyProperty="transfeeId">
+    insert into tz_transfee (transport_id,continuous_piece,first_piece,continuous_fee,first_fee) values
+    <foreach collection="list" item="transfee" separator=",">
+    (#{transfee.transportId},#{transfee.continuousPiece},#{transfee.firstPiece},#{transfee.continuousFee},#{transfee.firstFee})
+    </foreach>
+  </insert>
+  
+  <insert id="insertTransfeeFrees" useGeneratedKeys="true" keyProperty="transfeeFreeId">
+    insert into tz_transfee_free (free_type,amount,piece,transport_id) values
+    <foreach collection="list" item="transfeeFree" separator=",">
+    (#{transfeeFree.freeType},#{transfeeFree.amount},#{transfeeFree.piece},#{transfeeFree.transportId})
+    </foreach>
+  </insert>
+  
+  <delete id="deleteByTransportId">
+    delete from tz_transfee where transport_id = #{transportId}
+  </delete>
+  
+  <delete id="deleteTransfeeFreesByTransportId">
+    delete from tz_transfee_free where transport_id = #{transportId}
+  </delete>
+  
+  
+  
+</mapper>
