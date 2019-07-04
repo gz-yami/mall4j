@@ -14,6 +14,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yami.shop.bean.model.Brand;
+import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,10 +66,10 @@ public class BrandController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin:brand:save')")
-    public ResponseEntity<?> save(@Valid Brand brand) {
+    public ResponseEntity<Void> save(@Valid Brand brand) {
         Brand dbBrand = brandService.getByBrandName(brand.getBrandName());
         if (dbBrand != null) {
-            return ResponseEntity.badRequest().body("该品牌名称已存在");
+            throw new YamiShopBindException("该品牌名称已存在");
         }
         brandService.save(brand);
         return ResponseEntity.ok().build();
@@ -79,10 +80,10 @@ public class BrandController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:brand:update')")
-    public ResponseEntity<?> update(@Valid Brand brand) {
+    public ResponseEntity<Void> update(@Valid Brand brand) {
         Brand dbBrand = brandService.getByBrandName(brand.getBrandName());
         if (dbBrand != null && !Objects.equals(dbBrand.getBrandId(), brand.getBrandId())) {
-            return ResponseEntity.badRequest().body("该品牌名称已存在");
+            throw new YamiShopBindException("该品牌名称已存在");
         }
         brandService.updateById(brand);
         return ResponseEntity.ok().build();
