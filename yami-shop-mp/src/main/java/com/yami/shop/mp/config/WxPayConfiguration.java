@@ -68,18 +68,18 @@ public class WxPayConfiguration {
 
         WxPayService wxPayService = new WxPayServiceImpl();
 
-
-        if (Objects.equals(profile, "dev")) {
-            String sandboxSignKey = null;
-            try {
-                wxPayService.setConfig(payConfig);
-                sandboxSignKey = wxPayService.getSandboxSignKey();
-            } catch (WxPayException e) {
-                e.printStackTrace();
-            }
-            payConfig.setUseSandboxEnv(true);
-            payConfig.setMchKey(sandboxSignKey);
-        }
+//      打开下面的代码，开启沙箱模式
+//        if (Objects.equals(profile, "dev")) {
+//            String sandboxSignKey = null;
+//            try {
+//                wxPayService.setConfig(payConfig);
+//                sandboxSignKey = wxPayService.getSandboxSignKey();
+//            } catch (WxPayException e) {
+//                e.printStackTrace();
+//            }
+//            payConfig.setUseSandboxEnv(true);
+//            payConfig.setMchKey(sandboxSignKey);
+//        }
 
         wxPayService.setConfig(payConfig);
         return wxPayService;
