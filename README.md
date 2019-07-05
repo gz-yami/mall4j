@@ -103,15 +103,9 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 ### 2. 小程序截图
 
-![首页](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/index.jpg)
+![miniInfo](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniInfo.png)
 
-![商品详情](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/prodInfo.jpg)
 
-![购物车](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/shopCart.jpg)
-
-![sku](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/sku.jpg)
-
-![我的](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/my.jpg)
 
 ## 提交反馈
 
