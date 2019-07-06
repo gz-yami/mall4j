@@ -103,7 +103,7 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 ### 2. 小程序截图
 
-![miniInfo](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniInfo.png)
+![小程序截图](https://images.gitee.com/uploads/images/2019/0706/084515_79a73579_5094767.png "小程序截图")
 
 
 
