@@ -117,5 +117,5 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 - 商务邮箱：yamitech@163.com
 
-## 小哥哥，点赞是对我们最大的鼓励和鞭策，后续我们会完善和更新更多内容
+## 小哥哥，给人家一个赞赞呀~
 ![点赞是对我们最好的鼓励](https://images.gitee.com/uploads/images/2019/0705/204701_e468ed0f_5094767.png "屏幕截图.png")
