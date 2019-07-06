@@ -107,15 +107,12 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 ## 提交反馈
 
-提问之前，请先阅读[提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)：
-
 - QQ群：722835385
 
   ![QQ群](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/qqGroup.png)
 
 - 论坛：<http://bbs.gz-yami.com>
 
-- 商务邮箱：yamitech@163.com
 
-## 小哥哥，给人家一个赞赞呀~
+## 需要小哥哥的赞赞鼓励~
 ![点赞是对我们最好的鼓励](https://images.gitee.com/uploads/images/2019/0705/204701_e468ed0f_5094767.png "屏幕截图.png")
