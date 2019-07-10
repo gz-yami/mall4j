@@ -113,3 +113,4 @@ vue后台：https://gitee.com/gz-yami/mall4v
 ## 后续会加入微服务框架、分布式版本
 
 ## 你的点赞鼓励，是我们前进的动力~
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0710/161903_69e125fe_5137341.png "屏幕截图.png")
