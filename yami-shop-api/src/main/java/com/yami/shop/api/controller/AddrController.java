@@ -64,9 +64,6 @@ public class AddrController {
         return ResponseEntity.ok(mapperFacade.mapAsList(userAddrs, UserAddrDto.class));
     }
 
-    /**
-     * 新增用户订单配送地址
-     */
     @PostMapping("/addAddr")
     @ApiOperation(value = "新增用户地址", notes = "新增用户地址")
     public ResponseEntity<String> addAddr(@Valid @RequestBody AddrParam addrParam) {
@@ -80,8 +77,6 @@ public class AddrController {
 
         if (addrCount == 0) {
             userAddr.setCommonAddr(1);
-            // 清除默认地址缓存
-            userAddrService.removeUserAddrByUserId(0L, userId);
         } else {
             userAddr.setCommonAddr(0);
         }
@@ -90,6 +85,10 @@ public class AddrController {
         userAddr.setCreateTime(new Date());
         userAddr.setUpdateTime(new Date());
         userAddrService.save(userAddr);
+        if (userAddr.getCommonAddr() == 1) {
+            // 清除默认地址缓存
+            userAddrService.removeUserAddrByUserId(0L, userId);
+        }
         return ResponseEntity.ok("添加地址成功");
     }
 
