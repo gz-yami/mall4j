@@ -1,6 +1,5 @@
 
-一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、拥有完整sku和下单流程的完全开源商城
-
+一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的完全开源商城
 
 该项目仅供学习参考、可供个人学习使用、如需商用联系作者进行授权，否则必将追究法律责任
 
