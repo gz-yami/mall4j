@@ -1,4 +1,4 @@
-一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、拥有完整sku和下单流程的完全开源商城
+一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁、为生产环境多实例完全准备、数据库为b2b2c设计、拥有完整sku和下单流程的完全开源商城
 
 
 
@@ -14,11 +14,11 @@
 
 ## 项目链接
 
-java后台：https://gitee.com/gz-yami/mall4j
+java后台：https://github.com/gz-yami/mall4j
 
-vue后台：https://gitee.com/gz-yami/mall4v
+vue后台：https://github.com/gz-yami/mall4v
 
-小程序：https://gitee.com/gz-yami/mall4m
+小程序：https://github.com/gz-yami/mall4m
 
 
 
@@ -103,7 +103,7 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 ### 2. 小程序截图
 
-![miniInfo](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniInfo.png)
+![小程序截图](https://images.gitee.com/uploads/images/2019/0706/085234_4eb7509b_5094767.jpeg "小程序截图")
 
 
 
