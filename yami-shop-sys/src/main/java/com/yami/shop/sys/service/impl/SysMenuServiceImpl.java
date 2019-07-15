@@ -11,32 +11,32 @@
 package com.yami.shop.sys.service.impl;
 
 
+import cn.hutool.core.collection.CollectionUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yami.shop.sys.constant.Constant;
+import com.yami.shop.sys.dao.SysMenuMapper;
+import com.yami.shop.sys.dao.SysRoleMenuMapper;
+import com.yami.shop.sys.model.SysMenu;
+import com.yami.shop.sys.service.SysMenuService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import cn.hutool.core.collection.CollectionUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.yami.shop.sys.service.SysMenuService;
-import com.yami.shop.sys.dao.SysMenuMapper;
-import com.yami.shop.sys.dao.SysRoleMenuMapper;
-import com.yami.shop.sys.model.SysMenu;
-import com.yami.shop.sys.constant.Constant;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
 /**
  * @author lgh
  */
 @Service("sysMenuService")
+@AllArgsConstructor
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
-	@Autowired
-	private SysRoleMenuMapper sysRoleMenuMapper;
-	@Autowired
-	private SysMenuMapper sysMenuMapper;
+
+	private final SysRoleMenuMapper sysRoleMenuMapper;
+
+	private final SysMenuMapper sysMenuMapper;
 
 	@Override
 	public List<SysMenu> listMenuByUserId(Long userId) {

@@ -10,22 +10,21 @@
 
 package com.yami.shop.sys.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.yami.shop.sys.service.SysConfigService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yami.shop.sys.dao.SysConfigMapper;
 import com.yami.shop.sys.model.SysConfig;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yami.shop.sys.service.SysConfigService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 /**
  * @author lgh
  */
 @Service("sysConfigService")
+@AllArgsConstructor
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements SysConfigService {
 
-	@Autowired
-	private SysConfigMapper sysConfigMapper;
+	private final SysConfigMapper sysConfigMapper;
 	
 	@Override
 	public void updateValueByKey(String key, String value) {

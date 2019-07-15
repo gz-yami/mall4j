@@ -10,20 +10,19 @@
 
 package com.yami.shop.sys.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.yami.shop.sys.service.SysLogService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yami.shop.sys.dao.SysLogMapper;
 import com.yami.shop.sys.model.SysLog;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yami.shop.sys.service.SysLogService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 /**
  * @author lgh
  */
 @Service("sysLogService")
+@AllArgsConstructor
 public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> implements SysLogService {
 
-	@Autowired
-	private SysLogMapper sysLogMapper;
+	private final SysLogMapper sysLogMapper;
 }
