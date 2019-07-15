@@ -78,7 +78,5 @@ public class SysJobListener {
 		}finally {
 			scheduleJobLogService.save(jobLog);
 		}
-		scheduleJobLogService.save(jobLog);
-
 	}
 }
