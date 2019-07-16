@@ -14,7 +14,7 @@ Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作
 
 java后台：https://gitee.com/gz-yami/mall4j
 
-vue后台：https://gitee.com/gz-yami/mall4v
+vue中后台：https://gitee.com/gz-yami/mall4v
 
 小程序：https://gitee.com/gz-yami/mall4m
 
