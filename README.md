@@ -59,6 +59,9 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
 ### 1.开发环境
 
+以下版本是最低要求的！！！ 提问问题前请注意开发环境！！
+
+
 | 工具  | 版本 |
 | ----- | ---- |
 | jdk   | 1.8+ |
@@ -68,7 +71,8 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 ### 2.启动
 
 - 推荐使用idea，安装lombok插件后，使用idea导入maven项目
-- 将shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
+- 将yami_shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
+- 将mysql配置为不区分表名大小写(定时任务需要)
 - 通过修改`ma.properties` 修改微信小程序信息
 - 通过修改`mp.properties` 修改微信公众号信息
 - 通过修改`pay.properties` 修改微信支付信息
