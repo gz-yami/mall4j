@@ -1,3 +1,4 @@
+![输入图片说明](https://gitee.com/vip_title.png "在这里输入图片标题")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0711/174845_6db7724e_5094767.png "屏幕截图.png")
 一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的完全开源商城
 
@@ -14,7 +15,7 @@ Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作
 
 java后台：https://gitee.com/gz-yami/mall4j
 
-vue中后台：https://gitee.com/gz-yami/mall4v
+vue后台前端：https://gitee.com/gz-yami/mall4v
 
 小程序：https://gitee.com/gz-yami/mall4m
 
@@ -111,10 +112,11 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
 - QQ群：722835385
 
-  ![QQ群](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/qqGroup.png)
+  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0723/094927_e686539d_5094767.jpeg "微信图片_20190723091006.jpg")
 
 
 ## 后续会加入微服务框架、分布式版本
 
 ## 你的点赞鼓励，是我们前进的动力~
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0710/161903_69e125fe_5137341.png "屏幕截图.png")
+## 你的点赞鼓励，是我们前进的动力~
+## 你的点赞鼓励，是我们前进的动力~
