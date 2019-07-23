@@ -83,7 +83,9 @@ vue后台前端：https://gitee.com/gz-yami/mall4v
 - 通过`WebApplication`启动项目后台接口，`ApiApplication` 启动项目前端接口
 
 
+关于如何启动可以参考视频： https://www.bilibili.com/video/av60447070
 
+关于授权流程可以参考视频：https://www.bilibili.com/video/av60453722
 
 
 ## 相关截图
