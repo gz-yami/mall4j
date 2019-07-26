@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.PointsWalletMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.PointsWallet">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="points_wallet_id" jdbcType="BIGINT" property="pointsWalletId" />
+    <result column="points_id" jdbcType="BIGINT" property="pointsId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="unsettled" jdbcType="DOUBLE" property="unsettled" />
+    <result column="settled" jdbcType="DOUBLE" property="settled" />
+    <result column="addup" jdbcType="DOUBLE" property="addup" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+</mapper>

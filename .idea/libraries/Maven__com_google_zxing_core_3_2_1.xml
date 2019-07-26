@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.google.zxing:core:3.2.1">
+    <CLASSES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/google/zxing/core/3.2.1/core-3.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/google/zxing/core/3.2.1/core-3.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/google/zxing/core/3.2.1/core-3.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

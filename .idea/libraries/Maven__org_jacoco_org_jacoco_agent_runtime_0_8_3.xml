@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jacoco:org.jacoco.agent:runtime:0.8.3">
+    <CLASSES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-runtime.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/org/jacoco/org.jacoco.agent/0.8.3/org.jacoco.agent-0.8.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

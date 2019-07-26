@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.WxOrderMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.WxOrder">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="wx_sn" jdbcType="VARCHAR" property="wxSn" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="extend_info" jdbcType="VARCHAR" property="extendInfo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <update id="updateStatusByFlowTradeNo">
+  	update tz_wx_order set status = 1 where sn = #{outTradeNo}
+  </update>
+</mapper>

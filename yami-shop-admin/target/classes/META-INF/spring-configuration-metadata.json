@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "admin",
+      "type": "com.yami.shop.admin.config.AdminConfig",
+      "sourceType": "com.yami.shop.admin.config.AdminConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "admin.datacenter-id",
+      "type": "java.lang.Integer",
+      "description": "数据中心ID",
+      "sourceType": "com.yami.shop.admin.config.AdminConfig"
+    },
+    {
+      "name": "admin.worker-id",
+      "type": "java.lang.Integer",
+      "description": "终端ID",
+      "sourceType": "com.yami.shop.admin.config.AdminConfig"
+    }
+  ],
+  "hints": []
+}

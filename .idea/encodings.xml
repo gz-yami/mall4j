@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-bean" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-mp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-quartz" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-security" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yami-shop-sys" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

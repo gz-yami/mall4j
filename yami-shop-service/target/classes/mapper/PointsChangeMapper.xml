@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.PointsChangeMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.PointsChange">
+    <id column="points_change_id" jdbcType="BIGINT" property="pointsChangeId" />
+    <result column="points_wallet_id" jdbcType="BIGINT" property="pointsWalletId" />
+    <result column="add_or_reduce" jdbcType="TINYINT" property="addOrReduce" />
+    <result column="reason" jdbcType="TINYINT" property="reason" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="points_number" jdbcType="DOUBLE" property="pointsNumber" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="merchant_order_id" jdbcType="BIGINT" property="merchantOrderId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.SkuMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.Sku">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="prod_id" jdbcType="BIGINT" property="prodId" />
+    <result column="properties" jdbcType="VARCHAR" property="properties" />
+    <result column="ori_price" jdbcType="DECIMAL" property="oriPrice" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="stocks" jdbcType="INTEGER" property="stocks" />
+    <result column="actual_stocks" jdbcType="INTEGER" property="actualStocks" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="rec_time" jdbcType="TIMESTAMP" property="recTime" />
+    <result column="party_code" jdbcType="VARCHAR" property="partyCode" />
+    <result column="model_id" jdbcType="VARCHAR" property="modelId" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="skuName" jdbcType="VARCHAR" property="skuName" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+  </resultMap>
+
+    <insert id="insertBatch">
+	  	INSERT INTO `tz_sku` (
+		  `prod_id`,`properties`,`ori_price`,`price`,`stocks`,`actual_stocks`,
+		  `update_time`,`rec_time`,`party_code`,`model_id`, `pic`,
+		  `sku_name`,`prod_name`,`version`,`weight`,`volume`, `status`, `is_delete`
+		)
+		VALUES
+		<foreach collection="skuList" item="sku" separator=",">
+        (
+            #{prodId},#{sku.properties},#{sku.oriPrice},#{sku.price},#{sku.stocks},
+		    #{sku.actualStocks}, NOW(),NOW(),#{sku.partyCode},#{sku.modelId}, #{sku.pic},
+		    #{sku.skuName},#{sku.prodName},0,#{sku.weight},#{sku.volume}, #{sku.status},0
+		 )
+		 </foreach>
+    </insert>
+
+	<select id="listByProdId" resultType="com.yami.shop.bean.model.Sku">
+		select * from tz_sku where prod_id = #{prodId} and is_delete = 0
+	</select>
+
+	<update id="updateStocks" parameterType="com.yami.shop.bean.model.Sku">
+		update tz_sku set stocks = stocks - #{sku.stocks}, version = version + 1,update_time = NOW() where sku_id = #{sku.skuId} and #{sku.stocks} &lt;= stocks
+	</update>
+
+	<update id="deleteByProdId">
+	   update tz_sku set is_delete = 1 where prod_id = #{prodId}
+	</update>
+
+	<update id="returnStock">
+       <foreach collection="skuCollect" item="changeStocks" index="skuId" separator=";">
+       update tz_sku set stocks = stocks + #{changeStocks} where sku_id = #{skuId}
+       </foreach>
+    </update>
+</mapper>

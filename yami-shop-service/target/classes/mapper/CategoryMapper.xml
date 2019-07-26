@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.CategoryMapper">
+
+  <resultMap id="categoryProdMap" type="com.yami.shop.bean.model.Category">
+    <id column="category_id" jdbcType="BIGINT" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <collection property="products" column="prod_id" ofType="com.yami.shop.bean.model.Product">
+		<!--修改-->
+        <!--<result column="prod_id" jdbcType="BIGINT" property="prodId" />-->
+	    <!--<result column="prod_name" jdbcType="VARCHAR" property="prodName" />-->
+	    <!--<result column="price" jdbcType="DECIMAL" property="price" />-->
+	    <!--<result column="brief" jdbcType="VARCHAR" property="brief" />-->
+	    <!--<result column="imgs" jdbcType="VARCHAR" property="imgs" />-->
+	    <!--<result column="prod_category_id" jdbcType="BIGINT" property="categoryId" />-->
+	    <!--<result column="buys" jdbcType="INTEGER" property="buys" />-->
+	    <!--<result column="stocks" jdbcType="INTEGER" property="stocks" />-->
+	    <!--<result column="has_prop" jdbcType="INTEGER" property="hasProp" />-->
+	    <!--<result column="spec_list_str" jdbcType="VARCHAR" property="specListStr" />-->
+
+		<id property="prodId" column="prod_id"/>
+		<result property="prodName" column="prod_name"/>
+		<result property="shopId" column="shop_id"/>
+		<result property="oriPrice" column="ori_price"/>
+		<result property="price" column="price"/>
+		<result property="brief" column="brief"/>
+		<result property="content" column="content"/>
+		<result property="imgs" column="imgs"/>
+		<result property="status" column="status"/>
+		<result property="categoryId" column="category_id"/>
+		<result property="soldNum" column="sold_num"/>
+		<result property="totalStocks" column="total_stocks"/>
+		<result property="transportMode" column="transport_mode"/>
+		<result property="transportId" column="transport_id"/>
+		<result property="createTime" column="create_time"/>
+		<result property="updateTime" column="update_time"/>
+
+	    <!--<collection property="skuList" column="sku_id" ofType="com.yami.shop.model.model.Sku">-->
+	        <!--<result column="sku_id" jdbcType="BIGINT" property="skuId" />-->
+		    <!--<result column="sPrice" jdbcType="DECIMAL" property="price" />-->
+		    <!--<result column="sStocks" jdbcType="INTEGER" property="stocks" />-->
+		    <!--<result column="sName" jdbcType="VARCHAR" property="name" />-->
+	    <!--</collection>-->
+    </collection>
+  </resultMap>
+
+
+  <select id="listByParentId" resultType="com.yami.shop.bean.model.Category">
+  	select category_id,category_name,`seq`,`status`,pic from tz_category where parent_id = #{parentId} order by seq
+  </select>
+
+  <select id="tableCategory" resultType="com.yami.shop.bean.model.Category">
+  	select category_id ,parent_id ,category_name,pic,seq from tz_category where shop_id = #{shopId} order by seq
+  </select>
+
+  <select id="listCategoryAndProdByShopId" resultMap="categoryProdMap">
+  	select c.category_id,c.category_name,
+  	p.prod_id,p.price,p.pic as prod_pic,p.stocks ,p.has_prop,p.brief,p.prod_name,p.category_id as prod_category_id,p.spec_list_str,
+  	s.sku_id, s.price as sPrice,s.stocks as sStocks,s.name as sName
+  	from tz_category c
+  	left join tz_prod p on p.category_id = c.category_id AND p.status = 1
+  	left join tz_sku s on s.prod_id = p.prod_id
+  	where c.shop_id = #{shopId} and c.status = 1
+  	order by c.seq
+  </select>
+</mapper>

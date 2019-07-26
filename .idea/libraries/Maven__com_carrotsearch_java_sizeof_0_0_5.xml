@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.carrotsearch:java-sizeof:0.0.5">
+    <CLASSES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/carrotsearch/java-sizeof/0.0.5/java-sizeof-0.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/carrotsearch/java-sizeof/0.0.5/java-sizeof-0.0.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/carrotsearch/java-sizeof/0.0.5/java-sizeof-0.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.IndexImgMapper">
+    <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.IndexImg">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="img_id" jdbcType="BIGINT" property="imgId"/>
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+        <result column="des" jdbcType="VARCHAR" property="des"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="link" jdbcType="VARCHAR" property="link"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="seq" jdbcType="INTEGER" property="seq"/>
+        <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime"/>
+        <result column="relation" jdbcType="BIGINT" property="relation"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+    </resultMap>
+
+    <delete id="deleteIndexImgsByIds">
+        delete from tz_index_img where img_id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="listIndexImgs" resultType="com.yami.shop.bean.model.IndexImg">
+        SELECT *
+        FROM tz_index_img
+        ORDER BY seq DESC
+        LIMIT 3
+  </select>
+</mapper>

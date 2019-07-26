@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.squareup.okio:okio:1.14.0">
+    <CLASSES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Program Files/maven-3.5.4/repository/com/squareup/okio/okio/1.14.0/okio-1.14.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

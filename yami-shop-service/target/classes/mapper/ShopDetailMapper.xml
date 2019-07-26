@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.ShopDetailMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.ShopDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="shop_type" jdbcType="TINYINT" property="shopType" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
+    <result column="shop_notice" jdbcType="VARCHAR" property="shopNotice" />
+    <result column="shop_industry" jdbcType="TINYINT" property="shopIndustry" />
+    <result column="shop_owner" jdbcType="VARCHAR" property="shopOwner" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="shop_lat" jdbcType="VARCHAR" property="shopLat" />
+    <result column="shop_lng" jdbcType="VARCHAR" property="shopLng" />
+    <result column="shop_address" jdbcType="VARCHAR" property="shopAddress" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="shop_logo" jdbcType="VARCHAR" property="shopLogo" />
+    <result column="shop_photos" jdbcType="VARCHAR" property="shopPhotos" />
+    <result column="open_time" jdbcType="VARCHAR" property="openTime" />
+    <result column="shop_status" jdbcType="TINYINT" property="shopStatus" />
+    <result column="transport_type" jdbcType="TINYINT" property="transportType" />
+    <result column="fixed_freight" jdbcType="DECIMAL" property="fixedFreight" />
+    <result column="full_free_shipping" jdbcType="DECIMAL" property="fullFreeShipping" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_distribution" jdbcType="TINYINT" property="isDistribution" />
+  </resultMap>
+</mapper>

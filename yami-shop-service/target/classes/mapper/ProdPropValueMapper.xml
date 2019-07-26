@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yami.shop.dao.ProdPropValueMapper">
+  <resultMap id="BaseResultMap" type="com.yami.shop.bean.model.ProdPropValue">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="value_id" jdbcType="BIGINT" property="valueId" />
+    <result column="prop_value" jdbcType="VARCHAR" property="propValue" />
+    <result column="prop_id" jdbcType="BIGINT" property="propId" />
+  </resultMap>
+  
+  
+  <insert id="insertPropValues">
+	  	insert into tz_prod_prop_value (prop_id,prop_value) values
+	  	<foreach collection="prodPropValues" item="prodPropValue" separator=",">
+	  		(#{propId},#{prodPropValue.propValue})
+	  	</foreach>
+  </insert>
+  
+  <delete id="deleteByPropId">
+    delete from tz_prod_prop_value where prop_id = #{propId}
+  </delete>
+</mapper>

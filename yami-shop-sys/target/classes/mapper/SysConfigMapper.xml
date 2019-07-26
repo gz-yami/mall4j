@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.yami.shop.sys.dao.SysConfigMapper">
+
+	<!-- 根据key，更新value -->
+	<update id="updateValueByKey" parameterType="map">
+		update tz_sys_config set param_value = #{value} where param_key = #{key}
+	</update>
+
+	<!-- 根据key，查询value -->
+	<select id="queryByKey" parameterType="string" resultType="com.yami.shop.sys.model.SysConfig">
+		select * from tz_sys_config where param_key = #{key}
+	</select>
+	
+	<delete id="deleteBatch"  parameterType="Long">
+		delete from tz_sys_config where id in 
+  		<foreach collection="ids" item="id" index="no" open="("  
+            separator="," close=")">  
+            #{id}  
+        </foreach>
+	</delete>
+</mapper>

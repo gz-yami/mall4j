@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yami-shop-admin" />
+        <module name="yami-shop-api" />
+        <module name="yami-shop-bean" />
+        <module name="yami-shop-common" />
+        <module name="yami-shop-mp" />
+        <module name="yami-shop-quartz" />
+        <module name="yami-shop-security" />
+        <module name="yami-shop-service" />
+        <module name="yami-shop-sys" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="yami-shop" target="1.8" />
+      <module name="yami-shop-admin" target="1.8" />
+      <module name="yami-shop-api" target="1.8" />
+      <module name="yami-shop-bean" target="1.8" />
+      <module name="yami-shop-common" target="1.8" />
+      <module name="yami-shop-mp" target="1.8" />
+      <module name="yami-shop-quartz" target="1.8" />
+      <module name="yami-shop-security" target="1.8" />
+      <module name="yami-shop-service" target="1.8" />
+      <module name="yami-shop-sys" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

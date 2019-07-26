@@ -1,0 +1,82 @@
+{
+  "groups": [
+    {
+      "name": "ma",
+      "type": "com.yami.shop.mp.config.bean.WxMiniApp",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMiniApp"
+    },
+    {
+      "name": "mp",
+      "type": "com.yami.shop.mp.config.bean.WxMp",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMp"
+    },
+    {
+      "name": "pay",
+      "type": "com.yami.shop.mp.config.bean.WxPay",
+      "sourceType": "com.yami.shop.mp.config.bean.WxPay"
+    }
+  ],
+  "properties": [
+    {
+      "name": "ma.appid",
+      "type": "java.lang.String",
+      "description": "设置微信小程序的appid",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMiniApp"
+    },
+    {
+      "name": "ma.secret",
+      "type": "java.lang.String",
+      "description": "设置微信小程序的Secret",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMiniApp"
+    },
+    {
+      "name": "mp.aes-key",
+      "type": "java.lang.String",
+      "description": "微信公众号消息加解密aesKey",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMp"
+    },
+    {
+      "name": "mp.appid",
+      "type": "java.lang.String",
+      "description": "设置微信公众号的appid",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMp"
+    },
+    {
+      "name": "mp.secret",
+      "type": "java.lang.String",
+      "description": "设置微信公众号的Secret",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMp"
+    },
+    {
+      "name": "mp.token",
+      "type": "java.lang.String",
+      "description": "微信公众号消息加解密token",
+      "sourceType": "com.yami.shop.mp.config.bean.WxMp"
+    },
+    {
+      "name": "pay.key-path",
+      "type": "java.lang.String",
+      "description": "支付证书路径",
+      "sourceType": "com.yami.shop.mp.config.bean.WxPay"
+    },
+    {
+      "name": "pay.mch-id",
+      "type": "java.lang.String",
+      "description": "微信支付mchId",
+      "sourceType": "com.yami.shop.mp.config.bean.WxPay"
+    },
+    {
+      "name": "pay.mch-key",
+      "type": "java.lang.String",
+      "description": "微信支付mchKey",
+      "sourceType": "com.yami.shop.mp.config.bean.WxPay"
+    },
+    {
+      "name": "pay.sign-type",
+      "type": "java.lang.String",
+      "description": "签名类型",
+      "sourceType": "com.yami.shop.mp.config.bean.WxPay"
+    }
+  ],
+  "hints": []
+}

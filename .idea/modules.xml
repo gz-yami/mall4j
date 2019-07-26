@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yami-shop.iml" filepath="$PROJECT_DIR$/yami-shop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-admin/yami-shop-admin.iml" filepath="$PROJECT_DIR$/yami-shop-admin/yami-shop-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-api/yami-shop-api.iml" filepath="$PROJECT_DIR$/yami-shop-api/yami-shop-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-bean/yami-shop-bean.iml" filepath="$PROJECT_DIR$/yami-shop-bean/yami-shop-bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-common/yami-shop-common.iml" filepath="$PROJECT_DIR$/yami-shop-common/yami-shop-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-mp/yami-shop-mp.iml" filepath="$PROJECT_DIR$/yami-shop-mp/yami-shop-mp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-quartz/yami-shop-quartz.iml" filepath="$PROJECT_DIR$/yami-shop-quartz/yami-shop-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-security/yami-shop-security.iml" filepath="$PROJECT_DIR$/yami-shop-security/yami-shop-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-service/yami-shop-service.iml" filepath="$PROJECT_DIR$/yami-shop-service/yami-shop-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yami-shop-sys/yami-shop-sys.iml" filepath="$PROJECT_DIR$/yami-shop-sys/yami-shop-sys.iml" />
+    </modules>
+  </component>
+</project>
