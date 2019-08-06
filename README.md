@@ -1,24 +1,23 @@
-一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、拥有完整sku和下单流程的完全开源商城
-
-
-
-该项目仅供学习参考、可供个人学习使用、如需商用联系作者进行授权，否则必将追究法律责任
-
+![输入图片说明](https://gitee.com/vip_title.png "在这里输入图片标题")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0711/174845_6db7724e_5094767.png "屏幕截图.png")
+一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的完全开源商城
 
 
 ## 前言
 
-`亚米商城`项目致力于为中小企业打造一个完整、易于维护的开源的电商系统，采用现阶段流行技术实现。后台管理系统包含商品管理、订单管理、运费模板、规格管理、会员管理、运营管理、内容管理、统计报表、权限管理、设置等模块。
+`Mall4j`项目致力于为中小企业打造一个完整、易于维护的开源的电商系统，采用现阶段流行技术实现。后台管理系统包含商品管理、订单管理、运费模板、规格管理、会员管理、运营管理、内容管理、统计报表、权限管理、设置等模块。
 
 
+## 授权
+Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权
 
 ## 项目链接
 
-java后台：https://gitee.com/gz-yami/mall4j
+java后台：https://github.com/gz-yami/mall4j
 
-vue后台：https://gitee.com/gz-yami/mall4v
+vue后台前端：https://github.com/gz-yami/mall4v
 
-小程序：https://gitee.com/gz-yami/mall4m
+小程序：https://github.com/gz-yami/mall4m
 
 
 
@@ -61,6 +60,9 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 ### 1.开发环境
 
+以下版本是最低要求的！！！ 提问问题前请注意开发环境！！
+
+
 | 工具  | 版本 |
 | ----- | ---- |
 | jdk   | 1.8+ |
@@ -70,7 +72,8 @@ vue后台：https://gitee.com/gz-yami/mall4v
 ### 2.启动
 
 - 推荐使用idea，安装lombok插件后，使用idea导入maven项目
-- 将shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
+- 将yami_shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
+- 将mysql配置为不区分表名大小写(定时任务需要)
 - 通过修改`ma.properties` 修改微信小程序信息
 - 通过修改`mp.properties` 修改微信公众号信息
 - 通过修改`pay.properties` 修改微信支付信息
@@ -80,7 +83,9 @@ vue后台：https://gitee.com/gz-yami/mall4v
 - 通过`WebApplication`启动项目后台接口，`ApiApplication` 启动项目前端接口
 
 
+关于如何启动可以参考视频： https://www.bilibili.com/video/av60447070
 
+关于授权流程可以参考视频：https://www.bilibili.com/video/av60453722
 
 
 ## 相关截图
@@ -103,18 +108,17 @@ vue后台：https://gitee.com/gz-yami/mall4v
 
 ### 2. 小程序截图
 
-![miniInfo](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniInfo.png)
-
-
+![小程序截图](https://images.gitee.com/uploads/images/2019/0706/085234_4eb7509b_5094767.jpeg "小程序截图")
 
 ## 提交反馈
 
-提问之前，请先阅读[提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)：
-
 - QQ群：722835385
 
-  ![QQ群](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/qqGroup.png)
+  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0723/094927_e686539d_5094767.jpeg "微信图片_20190723091006.jpg")
 
-- 论坛：<http://bbs.gz-yami.com>
 
-- 商务邮箱：yamitech@163.com
+## 后续会加入微服务框架、分布式版本
+
+## 你的点赞鼓励，是我们前进的动力~
+## 你的点赞鼓励，是我们前进的动力~
+## 你的点赞鼓励，是我们前进的动力~

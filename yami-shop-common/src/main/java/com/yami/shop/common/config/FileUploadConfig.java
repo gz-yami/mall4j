@@ -32,7 +32,7 @@ public class FileUploadConfig {
 	private Qiniu qiniu;
 	
     /**
-     * 华东机房
+     * 华南机房
      */
     @Bean
     public com.qiniu.storage.Configuration qiniuConfig() {

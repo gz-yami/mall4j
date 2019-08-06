@@ -31,7 +31,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * 自定义登陆filter，新增登陆方式：验证码、二维码扫码、账号密码；
  * 小程序登陆：此时principal为code
  *       post:http://127.0.0.1:8086/login?grant_type=mini_app
  *       {principal:code}

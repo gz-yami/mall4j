@@ -3,6 +3,9 @@ SQLyog Ultimate v12.5.1 (64 bit)
 MySQL - 5.7.23 : Database - mall4j
 *********************************************************************
 */
+create database `yami_shops` default character set utf8 collate utf8_general_ci;
+
+USE yami_shops;
 
 /*!40101 SET NAMES utf8 */;
 
@@ -13,6 +16,65 @@ MySQL - 5.7.23 : Database - mall4j
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 /*Table structure for table `qrtz_blob_triggers` */
+
+
+/*Table structure for table `qrtz_job_details` */
+
+DROP TABLE IF EXISTS `qrtz_job_details`;
+
+CREATE TABLE `qrtz_job_details` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `JOB_NAME` varchar(200) NOT NULL,
+  `JOB_GROUP` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `JOB_CLASS_NAME` varchar(250) NOT NULL,
+  `IS_DURABLE` varchar(1) NOT NULL,
+  `IS_NONCONCURRENT` varchar(1) NOT NULL,
+  `IS_UPDATE_DATA` varchar(1) NOT NULL,
+  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_J_REQ_RECOVERY` (`SCHED_NAME`,`REQUESTS_RECOVERY`),
+  KEY `IDX_QRTZ_J_GRP` (`SCHED_NAME`,`JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `qrtz_triggers` */
+
+DROP TABLE IF EXISTS `qrtz_triggers`;
+
+CREATE TABLE `qrtz_triggers` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `JOB_NAME` varchar(200) NOT NULL,
+  `JOB_GROUP` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
+  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
+  `PRIORITY` int(11) DEFAULT NULL,
+  `TRIGGER_STATE` varchar(16) NOT NULL,
+  `TRIGGER_TYPE` varchar(8) NOT NULL,
+  `START_TIME` bigint(13) NOT NULL,
+  `END_TIME` bigint(13) DEFAULT NULL,
+  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
+  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  KEY `IDX_QRTZ_T_J` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_T_JG` (`SCHED_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_T_C` (`SCHED_NAME`,`CALENDAR_NAME`),
+  KEY `IDX_QRTZ_T_G` (`SCHED_NAME`,`TRIGGER_GROUP`),
+  KEY `IDX_QRTZ_T_STATE` (`SCHED_NAME`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_N_STATE` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_N_G_STATE` (`SCHED_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_NEXT_FIRE_TIME` (`SCHED_NAME`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_ST` (`SCHED_NAME`,`TRIGGER_STATE`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `qrtz_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 DROP TABLE IF EXISTS `qrtz_blob_triggers`;
 
@@ -92,33 +154,13 @@ CREATE TABLE `qrtz_fired_triggers` (
 
 /*Data for the table `qrtz_fired_triggers` */
 
-/*Table structure for table `qrtz_job_details` */
-
-DROP TABLE IF EXISTS `qrtz_job_details`;
-
-CREATE TABLE `qrtz_job_details` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `JOB_CLASS_NAME` varchar(250) NOT NULL,
-  `IS_DURABLE` varchar(1) NOT NULL,
-  `IS_NONCONCURRENT` varchar(1) NOT NULL,
-  `IS_UPDATE_DATA` varchar(1) NOT NULL,
-  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_J_REQ_RECOVERY` (`SCHED_NAME`,`REQUESTS_RECOVERY`),
-  KEY `IDX_QRTZ_J_GRP` (`SCHED_NAME`,`JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 /*Data for the table `qrtz_job_details` */
 
 insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`JOB_CLASS_NAME`,`IS_DURABLE`,`IS_NONCONCURRENT`,`IS_UPDATE_DATA`,`REQUESTS_RECOVERY`,`JOB_DATA`) values 
-('clusteredScheduler','TASK_10','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','¨Ì\0sr\0org.quartz.JobDataMapü∞ÉËø©∞À\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÇË√˚≈](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÊ.≠(v\nŒ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap⁄¡√`—\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~˚dÍÇë´\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÅKYt\0\0xpw\0\0kds◊sxt\0\r0 0 0/0 * * ?sr\0java.lang.Long;ã‰êÃè#ﬂ\0J\0valuexr\0java.lang.NumberÜ¨ïî‡ã\0\0xp\0\0\0\0\0\0\0\nt\0changeCoupont\0\0q\0~\0sr\0java.lang.Integer‚†§˜Åá8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_11','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','¨Ì\0sr\0org.quartz.JobDataMapü∞ÉËø©∞À\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÇË√˚≈](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÊ.≠(v\nŒ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap⁄¡√`—\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~˚dÍÇë´\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÅKYt\0\0xpw\0\0kdu0Sxt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ã‰êÃè#ﬂ\0J\0valuexr\0java.lang.NumberÜ¨ïî‡ã\0\0xp\0\0\0\0\0\0\0t\0deleteCouponUsert\0\0t\0)Âà†Èô§Áî®Êà∑Â§±Êïà30Â§©‰ª•‰∏äÁöÑ‰ºòÊÉ†Âà∏sr\0java.lang.Integer‚†§˜Åá8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_12','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','¨Ì\0sr\0org.quartz.JobDataMapü∞ÉËø©∞À\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÇË√˚≈](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÊ.≠(v\nŒ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap⁄¡√`—\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~˚dÍÇë´\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÅKYt\0\0xpw\0\0kdu∂¸xt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ã‰êÃè#ﬂ\0J\0valuexr\0java.lang.NumberÜ¨ïî‡ã\0\0xp\0\0\0\0\0\0\0t\0changeCouponUsert\0\0t\02ÊîπÂèòÁî®Êà∑‰ºòÊÉ†Âà∏ÁöÑÁä∂ÊÄÅ(ËÆæ‰∏∫Â§±ÊïàÁä∂ÊÄÅ)sr\0java.lang.Integer‚†§˜Åá8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_13','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','¨Ì\0sr\0org.quartz.JobDataMapü∞ÉËø©∞À\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÇË√˚≈](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÊ.≠(v\nŒ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap⁄¡√`—\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~˚dÍÇë´\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÅKYt\0\0xpw\0\0kdv\n◊xt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ã‰êÃè#ﬂ\0J\0valuexr\0java.lang.NumberÜ¨ïî‡ã\0\0xp\0\0\0\0\0\0\0\rt\0putOnCoupont\0\0t\0ÊäïÊîæ‰ºòÊÉ†Âà∏sr\0java.lang.Integer‚†§˜Åá8\0I\0valuexq\0~\0\0\0\0\0x\0');
+('clusteredScheduler','TASK_10','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','ÔøΩÔøΩ\0sr\0org.quartz.JobDataMapÔøΩÔøΩÔøΩËø©ÔøΩÔøΩ\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÔøΩÔøΩÔøΩÔøΩÔøΩ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÔøΩ.ÔøΩ(v\nÔøΩ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÔøΩÔøΩÔøΩ`ÔøΩ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~ÔøΩdÍÇëÔøΩ\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÔøΩKYt\0\0xpw\0\0kdsÔøΩsxt\0\r0 0 0/0 * * ?sr\0java.lang.Long;ÔøΩÔøΩÃè#ÔøΩ\0J\0valuexr\0java.lang.NumberÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ\0\0xp\0\0\0\0\0\0\0\nt\0changeCoupont\0\0q\0~\0sr\0java.lang.Integer‚†§ÔøΩÔøΩÔøΩ8\0I\0valuexq\0~\0\0\0\0\0x\0'),
+('clusteredScheduler','TASK_11','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','ÔøΩÔøΩ\0sr\0org.quartz.JobDataMapÔøΩÔøΩÔøΩËø©ÔøΩÔøΩ\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÔøΩÔøΩÔøΩÔøΩÔøΩ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÔøΩ.ÔøΩ(v\nÔøΩ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÔøΩÔøΩÔøΩ`ÔøΩ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~ÔøΩdÍÇëÔøΩ\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÔøΩKYt\0\0xpw\0\0kdu0Sxt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ÔøΩÔøΩÃè#ÔøΩ\0J\0valuexr\0java.lang.NumberÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ\0\0xp\0\0\0\0\0\0\0t\0deleteCouponUsert\0\0t\0)Âà†Èô§Áî®Êà∑Â§±Êïà30Â§©‰ª•‰∏äÁöÑ‰ºòÊÉ†Âà∏sr\0java.lang.Integer‚†§ÔøΩÔøΩÔøΩ8\0I\0valuexq\0~\0\0\0\0\0x\0'),
+('clusteredScheduler','TASK_12','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','ÔøΩÔøΩ\0sr\0org.quartz.JobDataMapÔøΩÔøΩÔøΩËø©ÔøΩÔøΩ\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÔøΩÔøΩÔøΩÔøΩÔøΩ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÔøΩ.ÔøΩ(v\nÔøΩ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÔøΩÔøΩÔøΩ`ÔøΩ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~ÔøΩdÍÇëÔøΩ\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÔøΩKYt\0\0xpw\0\0kduÔøΩÔøΩxt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ÔøΩÔøΩÃè#ÔøΩ\0J\0valuexr\0java.lang.NumberÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ\0\0xp\0\0\0\0\0\0\0t\0changeCouponUsert\0\0t\02ÊîπÂèòÁî®Êà∑‰ºòÊÉ†Âà∏ÁöÑÁä∂ÊÄÅ(ËÆæ‰∏∫Â§±ÊïàÁä∂ÊÄÅ)sr\0java.lang.Integer‚†§ÔøΩÔøΩÔøΩ8\0I\0valuexq\0~\0\0\0\0\0x\0'),
+('clusteredScheduler','TASK_13','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','ÔøΩÔøΩ\0sr\0org.quartz.JobDataMapÔøΩÔøΩÔøΩËø©ÔøΩÔøΩ\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÔøΩÔøΩÔøΩÔøΩÔøΩ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÔøΩ.ÔøΩ(v\nÔøΩ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÔøΩÔøΩÔøΩ`ÔøΩ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~ÔøΩdÍÇëÔøΩ\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.DatehjÔøΩKYt\0\0xpw\0\0kdv\nÔøΩxt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ÔøΩÔøΩÃè#ÔøΩ\0J\0valuexr\0java.lang.NumberÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ\0\0xp\0\0\0\0\0\0\0\rt\0putOnCoupont\0\0t\0ÊäïÊîæ‰ºòÊÉ†Âà∏sr\0java.lang.Integer‚†§ÔøΩÔøΩÔøΩ8\0I\0valuexq\0~\0\0\0\0\0x\0');
 
 /*Table structure for table `qrtz_locks` */
 
@@ -207,47 +249,10 @@ CREATE TABLE `qrtz_simprop_triggers` (
 
 /*Data for the table `qrtz_simprop_triggers` */
 
-/*Table structure for table `qrtz_triggers` */
-
-DROP TABLE IF EXISTS `qrtz_triggers`;
-
-CREATE TABLE `qrtz_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PRIORITY` int(11) DEFAULT NULL,
-  `TRIGGER_STATE` varchar(16) NOT NULL,
-  `TRIGGER_TYPE` varchar(8) NOT NULL,
-  `START_TIME` bigint(13) NOT NULL,
-  `END_TIME` bigint(13) DEFAULT NULL,
-  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
-  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_T_J` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_T_JG` (`SCHED_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_T_C` (`SCHED_NAME`,`CALENDAR_NAME`),
-  KEY `IDX_QRTZ_T_G` (`SCHED_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_T_STATE` (`SCHED_NAME`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_N_STATE` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_N_G_STATE` (`SCHED_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_NEXT_FIRE_TIME` (`SCHED_NAME`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_ST` (`SCHED_NAME`,`TRIGGER_STATE`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `qrtz_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 /*Data for the table `qrtz_triggers` */
 
 insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`NEXT_FIRE_TIME`,`PREV_FIRE_TIME`,`PRIORITY`,`TRIGGER_STATE`,`TRIGGER_TYPE`,`START_TIME`,`END_TIME`,`CALENDAR_NAME`,`MISFIRE_INSTR`,`JOB_DATA`) values 
-('clusteredScheduler','TASK_10','DEFAULT','TASK_10','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758441000,0,NULL,1,'¨Ì\0sr\0org.quartz.JobDataMapü∞ÉËø©∞À\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÇË√˚≈](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÊ.≠(v\nŒ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap⁄¡√`—\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~˚dÍÇë´\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTaskpt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ã‰êÃè#ﬂ\0J\0valuexr\0java.lang.NumberÜ¨ïî‡ã\0\0xp\0\0\0\0\0\0\0\nt\0changeCoupont\0\0q\0~\0sr\0java.lang.Integer‚†§˜Åá8\0I\0valuexq\0~\0\0\0\0\0x\0'),
+('clusteredScheduler','TASK_10','DEFAULT','TASK_10','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758441000,0,NULL,1,'ÔøΩÔøΩ\0sr\0org.quartz.JobDataMapÔøΩÔøΩÔøΩËø©ÔøΩÔøΩ\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMapÔøΩÔøΩÔøΩÔøΩÔøΩ](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMapÔøΩ.ÔøΩ(v\nÔøΩ\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMapÔøΩÔøΩÔøΩ`ÔøΩ\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~ÔøΩdÍÇëÔøΩ\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTaskpt\0\r0 0 0/1 * * ?sr\0java.lang.Long;ÔøΩÔøΩÃè#ÔøΩ\0J\0valuexr\0java.lang.NumberÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ\0\0xp\0\0\0\0\0\0\0\nt\0changeCoupont\0\0q\0~\0sr\0java.lang.Integer‚†§ÔøΩÔøΩÔøΩ8\0I\0valuexq\0~\0\0\0\0\0x\0'),
 ('clusteredScheduler','TASK_11','DEFAULT','TASK_11','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758530000,0,NULL,1,''),
 ('clusteredScheduler','TASK_12','DEFAULT','TASK_12','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758564000,0,NULL,1,''),
 ('clusteredScheduler','TASK_13','DEFAULT','TASK_13','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758586000,0,NULL,1,'');

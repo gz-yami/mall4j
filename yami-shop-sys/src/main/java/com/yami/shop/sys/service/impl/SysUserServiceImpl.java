@@ -11,21 +11,19 @@
 package com.yami.shop.sys.service.impl;
 
 
-import java.util.Date;
-
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yami.shop.sys.dao.SysUserMapper;
+import com.yami.shop.sys.dao.SysUserRoleMapper;
+import com.yami.shop.sys.model.SysUser;
+import com.yami.shop.sys.service.SysUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yami.shop.sys.service.SysUserService;
-import com.yami.shop.sys.dao.SysUserMapper;
-import com.yami.shop.sys.dao.SysUserRoleMapper;
-import com.yami.shop.sys.model.SysUser;
-
-import cn.hutool.core.collection.CollUtil;
+import java.util.Date;
 
 
 /**
@@ -33,11 +31,11 @@ import cn.hutool.core.collection.CollUtil;
  * @author lgh
  */
 @Service("sysUserService")
+@AllArgsConstructor
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-	@Autowired
+
 	private SysUserRoleMapper sysUserRoleMapper;
 	
-	@Autowired
 	private SysUserMapper sysUserMapper;
 
 	@Override

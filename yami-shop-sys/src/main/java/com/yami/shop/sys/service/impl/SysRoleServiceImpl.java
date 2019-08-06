@@ -10,20 +10,19 @@
 
 package com.yami.shop.sys.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.yami.shop.sys.service.SysRoleService;
 import com.yami.shop.sys.dao.SysRoleMapper;
 import com.yami.shop.sys.dao.SysRoleMenuMapper;
 import com.yami.shop.sys.dao.SysUserRoleMapper;
 import com.yami.shop.sys.model.SysRole;
+import com.yami.shop.sys.service.SysRoleService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -31,25 +30,22 @@ import com.yami.shop.sys.model.SysRole;
  * @author lgh
  */
 @Service("sysRoleService")
+@AllArgsConstructor
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
-	@Autowired
-	private SysRoleMenuMapper sysRoleMenuMapper;
-	@Autowired
-	private SysUserRoleMapper sysUserRoleMapper;
-	
-	@Autowired
-	private SysRoleMapper sysRoleMapper;
+	private final SysRoleMenuMapper sysRoleMenuMapper;
+	private final SysUserRoleMapper sysUserRoleMapper;
+	private final SysRoleMapper sysRoleMapper;
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void saveRoleAndRoleMenu(SysRole role) {
 		role.setCreateTime(new Date());
 		this.save(role);
-		if (CollectionUtils.isEmpty(role.getMenuIdList())) {
+		if (CollectionUtil.isEmpty(role.getMenuIdList())) {
 			return;
 		}
-		
-		
+
+
 		//保存角色与菜单关系
 		sysRoleMenuMapper.insertRoleAndRoleMenu(role.getRoleId(), role.getMenuIdList());
 	}
@@ -61,7 +57,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 		sysRoleMapper.updateById(role);
 		//先删除角色与菜单关系
 		sysRoleMenuMapper.deleteBatch(new Long[]{role.getRoleId()});
-		if (CollectionUtils.isEmpty(role.getMenuIdList())) {
+		if (CollectionUtil.isEmpty(role.getMenuIdList())) {
 			return;
 		}
 		//保存角色与菜单关系
