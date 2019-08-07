@@ -1,9 +1,9 @@
 /*
 SQLyog Ultimate v12.5.1 (64 bit)
-MySQL - 5.7.23 : Database - mall4j
+MySQL - 5.7.23 : Database - yami_shops
 *********************************************************************
 */
-create database `yami_shops` default character set utf8 collate utf8_general_ci;
+create database IF NOT EXISTS `yami_shops` default character set utf8 collate utf8_general_ci;
 
 USE yami_shops;
 
@@ -16,65 +16,6 @@ USE yami_shops;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 /*Table structure for table `qrtz_blob_triggers` */
-
-
-/*Table structure for table `qrtz_job_details` */
-
-DROP TABLE IF EXISTS `qrtz_job_details`;
-
-CREATE TABLE `qrtz_job_details` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `JOB_CLASS_NAME` varchar(250) NOT NULL,
-  `IS_DURABLE` varchar(1) NOT NULL,
-  `IS_NONCONCURRENT` varchar(1) NOT NULL,
-  `IS_UPDATE_DATA` varchar(1) NOT NULL,
-  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_J_REQ_RECOVERY` (`SCHED_NAME`,`REQUESTS_RECOVERY`),
-  KEY `IDX_QRTZ_J_GRP` (`SCHED_NAME`,`JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `qrtz_triggers` */
-
-DROP TABLE IF EXISTS `qrtz_triggers`;
-
-CREATE TABLE `qrtz_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PRIORITY` int(11) DEFAULT NULL,
-  `TRIGGER_STATE` varchar(16) NOT NULL,
-  `TRIGGER_TYPE` varchar(8) NOT NULL,
-  `START_TIME` bigint(13) NOT NULL,
-  `END_TIME` bigint(13) DEFAULT NULL,
-  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
-  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_T_J` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_T_JG` (`SCHED_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_T_C` (`SCHED_NAME`,`CALENDAR_NAME`),
-  KEY `IDX_QRTZ_T_G` (`SCHED_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_T_STATE` (`SCHED_NAME`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_N_STATE` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_N_G_STATE` (`SCHED_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_NEXT_FIRE_TIME` (`SCHED_NAME`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_ST` (`SCHED_NAME`,`TRIGGER_STATE`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `qrtz_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS `qrtz_blob_triggers`;
 
@@ -120,10 +61,8 @@ CREATE TABLE `qrtz_cron_triggers` (
 /*Data for the table `qrtz_cron_triggers` */
 
 insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values 
-('clusteredScheduler','TASK_10','DEFAULT','0 0 0/1 * * ?','Asia/Shanghai'),
-('clusteredScheduler','TASK_11','DEFAULT','0 0 0/1 * * ?','Asia/Shanghai'),
-('clusteredScheduler','TASK_12','DEFAULT','0 0 0/1 * * ?','Asia/Shanghai'),
-('clusteredScheduler','TASK_13','DEFAULT','0 0 0/1 * * ?','Asia/Shanghai');
+('clusteredScheduler','TASK_14','DEFAULT','0 * * * * ?','Asia/Shanghai'),
+('clusteredScheduler','TASK_16','DEFAULT','0 0/5 * * * ?','Asia/Shanghai');
 
 /*Table structure for table `qrtz_fired_triggers` */
 
@@ -154,13 +93,31 @@ CREATE TABLE `qrtz_fired_triggers` (
 
 /*Data for the table `qrtz_fired_triggers` */
 
+/*Table structure for table `qrtz_job_details` */
+
+DROP TABLE IF EXISTS `qrtz_job_details`;
+
+CREATE TABLE `qrtz_job_details` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `JOB_NAME` varchar(200) NOT NULL,
+  `JOB_GROUP` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `JOB_CLASS_NAME` varchar(250) NOT NULL,
+  `IS_DURABLE` varchar(1) NOT NULL,
+  `IS_NONCONCURRENT` varchar(1) NOT NULL,
+  `IS_UPDATE_DATA` varchar(1) NOT NULL,
+  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_J_REQ_RECOVERY` (`SCHED_NAME`,`REQUESTS_RECOVERY`),
+  KEY `IDX_QRTZ_J_GRP` (`SCHED_NAME`,`JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Data for the table `qrtz_job_details` */
 
 insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`JOB_CLASS_NAME`,`IS_DURABLE`,`IS_NONCONCURRENT`,`IS_UPDATE_DATA`,`REQUESTS_RECOVERY`,`JOB_DATA`) values 
-('clusteredScheduler','TASK_10','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.Datehj�KYt\0\0xpw\0\0kds�sxt\0\r0 0 0/0 * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0\nt\0changeCoupont\0\0q\0~\0sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_11','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.Datehj�KYt\0\0xpw\0\0kdu0Sxt\0\r0 0 0/1 * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0deleteCouponUsert\0\0t\0)删除用户失效30天以上的优惠券sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_12','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.Datehj�KYt\0\0xpw\0\0kdu��xt\0\r0 0 0/1 * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0changeCouponUsert\0\0t\02改变用户优惠券的状态(设为失效状态)sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_13','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTasksr\0java.util.Datehj�KYt\0\0xpw\0\0kdv\n�xt\0\r0 0 0/1 * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0\rt\0putOnCoupont\0\0t\0投放优惠券sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0');
+('clusteredScheduler','TASK_14','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0	orderTaskpt\00 * * * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0cancelOrdert\0\0t\0取消超时未支付订单sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0'),
+('clusteredScheduler','TASK_16','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0	orderTaskpt\0\r0 0/5 * * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0confirmOrdert\0\0t\0系统自动确认收货订单sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0');
 
 /*Table structure for table `qrtz_locks` */
 
@@ -205,7 +162,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 /*Data for the table `qrtz_scheduler_state` */
 
 insert  into `qrtz_scheduler_state`(`SCHED_NAME`,`INSTANCE_NAME`,`LAST_CHECKIN_TIME`,`CHECKIN_INTERVAL`) values 
-('clusteredScheduler','izwz95bzimx383fx9d3foaz1561972471765',1562155479328,10000);
+('clusteredScheduler','DESKTOP-1HK3TCV1565167178497',1565168967434,10000);
 
 /*Table structure for table `qrtz_simple_triggers` */
 
@@ -249,13 +206,48 @@ CREATE TABLE `qrtz_simprop_triggers` (
 
 /*Data for the table `qrtz_simprop_triggers` */
 
+/*Table structure for table `qrtz_triggers` */
+
+DROP TABLE IF EXISTS `qrtz_triggers`;
+
+CREATE TABLE `qrtz_triggers` (
+  `SCHED_NAME` varchar(120) NOT NULL,
+  `TRIGGER_NAME` varchar(200) NOT NULL,
+  `TRIGGER_GROUP` varchar(200) NOT NULL,
+  `JOB_NAME` varchar(200) NOT NULL,
+  `JOB_GROUP` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(250) DEFAULT NULL,
+  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
+  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
+  `PRIORITY` int(11) DEFAULT NULL,
+  `TRIGGER_STATE` varchar(16) NOT NULL,
+  `TRIGGER_TYPE` varchar(8) NOT NULL,
+  `START_TIME` bigint(13) NOT NULL,
+  `END_TIME` bigint(13) DEFAULT NULL,
+  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
+  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  KEY `IDX_QRTZ_T_J` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_T_JG` (`SCHED_NAME`,`JOB_GROUP`),
+  KEY `IDX_QRTZ_T_C` (`SCHED_NAME`,`CALENDAR_NAME`),
+  KEY `IDX_QRTZ_T_G` (`SCHED_NAME`,`TRIGGER_GROUP`),
+  KEY `IDX_QRTZ_T_STATE` (`SCHED_NAME`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_N_STATE` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_N_G_STATE` (`SCHED_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_NEXT_FIRE_TIME` (`SCHED_NAME`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_ST` (`SCHED_NAME`,`TRIGGER_STATE`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`),
+  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_STATE`),
+  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
+  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `qrtz_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Data for the table `qrtz_triggers` */
 
 insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`NEXT_FIRE_TIME`,`PREV_FIRE_TIME`,`PRIORITY`,`TRIGGER_STATE`,`TRIGGER_TYPE`,`START_TIME`,`END_TIME`,`CALENDAR_NAME`,`MISFIRE_INSTR`,`JOB_DATA`) values 
-('clusteredScheduler','TASK_10','DEFAULT','TASK_10','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758441000,0,NULL,1,'��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0\ncouponTaskpt\0\r0 0 0/1 * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0\nt\0changeCoupont\0\0q\0~\0sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_11','DEFAULT','TASK_11','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758530000,0,NULL,1,''),
-('clusteredScheduler','TASK_12','DEFAULT','TASK_12','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758564000,0,NULL,1,''),
-('clusteredScheduler','TASK_13','DEFAULT','TASK_13','DEFAULT',NULL,1561359600000,1561356000000,5,'PAUSED','CRON',1560758586000,0,NULL,1,'');
+('clusteredScheduler','TASK_14','DEFAULT','TASK_14','DEFAULT',NULL,1565169000000,1565168940000,5,'WAITING','CRON',1565168511000,0,NULL,1,''),
+('clusteredScheduler','TASK_16','DEFAULT','TASK_16','DEFAULT',NULL,1565169000000,1565168700000,5,'WAITING','CRON',1565168517000,0,NULL,1,'');
 
 /*Table structure for table `tz_app_connect` */
 
@@ -4024,7 +4016,7 @@ CREATE TABLE `tz_attach_file` (
   `file_join_id` bigint(20) DEFAULT NULL COMMENT '文件关联的表主键id',
   `file_join_type` tinyint(2) DEFAULT NULL COMMENT '文件关联表类型：1 商品表  FileJoinType',
   PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tz_attach_file` */
 
@@ -4035,7 +4027,8 @@ insert  into `tz_attach_file`(`file_id`,`file_path`,`file_type`,`file_size`,`upl
 (4,'2019/07/94a2a3b53b9b4643ad80fec10ef96e28.jpg','jpg',19692,'2019-07-02 11:30:47',NULL,NULL),
 (5,'2019/07/ac0b289260174f0b9757afce4da9c115.jpg','jpg',25583,'2019-07-02 11:31:14',NULL,NULL),
 (6,'2019/07/5f3cd673cee046218c5916e004346d4c.jpg','jpg',25583,'2019-07-02 11:32:30',NULL,NULL),
-(7,'2019/07/44a492a2ec1942a9b7fefe813ba27b78.jpg','jpg',40107,'2019-07-02 17:14:38',NULL,NULL);
+(7,'2019/07/44a492a2ec1942a9b7fefe813ba27b78.jpg','jpg',40107,'2019-07-02 17:14:38',NULL,NULL),
+(8,'2019/07/bb485486c4334af283738f9192ae806b.gif','gif',10320,'2019-07-23 19:09:20',NULL,NULL);
 
 /*Table structure for table `tz_basket` */
 
@@ -4352,11 +4345,11 @@ CREATE TABLE `tz_order` (
 /*Data for the table `tz_order` */
 
 insert  into `tz_order`(`order_id`,`shop_id`,`prod_name`,`user_id`,`order_number`,`total`,`actual_total`,`pay_type`,`remarks`,`status`,`dvy_type`,`dvy_id`,`dvy_flow_id`,`freight_amount`,`addr_order_id`,`product_nums`,`create_time`,`update_time`,`pay_time`,`dvy_time`,`finally_time`,`cancel_time`,`is_payed`,`delete_status`,`refund_sts`,`reduce_amount`,`order_type`,`close_type`) values 
-(1,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1145634946149388288',1.01,1.01,1,'',3,NULL,14,'123656347535245',0.00,1,1,'2019-07-01 18:07:11','2019-07-01 18:07:22','2019-07-01 18:07:22','2019-07-03 11:06:57',NULL,NULL,1,0,0,0.00,NULL,NULL),
+(1,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1145634946149388288',1.01,1.01,1,'',5,NULL,14,'123656347535245',0.00,1,1,'2019-07-01 18:07:11','2019-07-01 18:07:22','2019-07-01 18:07:22','2019-07-03 11:06:57','2019-08-07 17:05:00',NULL,1,0,0,0.00,NULL,NULL),
 (2,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1146346112622399488',1.01,1.01,NULL,'',6,NULL,NULL,'',0.00,2,1,'2019-07-03 17:13:06','2019-07-03 17:13:06',NULL,NULL,NULL,'2019-07-03 17:17:46',0,2,0,0.00,NULL,NULL),
 (3,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 银色 64GB ','51540df5255e4d22903b0f83921095ff','1146346762332672000',7103.00,7103.00,NULL,'',6,NULL,NULL,'',0.00,3,1,'2019-07-03 17:15:41','2019-07-03 17:15:41',NULL,NULL,NULL,'2019-07-03 17:17:21',0,2,0,0.00,NULL,NULL),
 (4,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1146346992126005248',1.01,1.01,NULL,'',6,NULL,NULL,'',0.00,5,1,'2019-07-03 17:16:36','2019-07-03 17:16:36',NULL,NULL,NULL,'2019-07-03 17:17:17',0,2,0,0.00,NULL,NULL),
-(5,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1146347329394184192',1.01,1.01,NULL,'',1,NULL,NULL,'',0.00,6,1,'2019-07-03 17:17:56','2019-07-03 17:17:56',NULL,NULL,NULL,NULL,0,0,0,0.00,NULL,NULL);
+(5,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1146347329394184192',1.01,1.01,NULL,'',6,NULL,NULL,'',0.00,6,1,'2019-07-03 17:17:56','2019-07-03 17:17:56',NULL,NULL,NULL,'2019-08-07 17:02:00',0,0,0,0.00,NULL,NULL);
 
 /*Table structure for table `tz_order_item` */
 
@@ -4488,62 +4481,6 @@ CREATE TABLE `tz_pick_addr` (
 insert  into `tz_pick_addr`(`addr_id`,`addr_name`,`addr`,`mobile`,`province_id`,`province`,`city_id`,`city`,`area_id`,`area`,`shop_id`) values 
 (1,'测试','大学城附近','18888888888',440000000000,'广东省',440100000000,'广州市',440113000000,'番禺区',1);
 
-/*Table structure for table `tz_points_change` */
-
-DROP TABLE IF EXISTS `tz_points_change`;
-
-CREATE TABLE `tz_points_change` (
-  `points_change_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '积分流动记录表',
-  `points_wallet_id` bigint(20) DEFAULT NULL COMMENT '积分钱包id',
-  `add_or_reduce` tinyint(2) DEFAULT NULL COMMENT '增加或减少(增加 0 减少 1)',
-  `reason` tinyint(2) DEFAULT NULL COMMENT '原因(订单，邀请，签到，兑换)',
-  `state` tinyint(2) DEFAULT NULL COMMENT '积分状态（0:用户未收货待结算，1:已结算 2:用户退货退单）',
-  `points_number` double DEFAULT NULL COMMENT '积分数额',
-  `order_id` bigint(20) DEFAULT NULL COMMENT '关联订单id',
-  `merchant_order_id` bigint(20) DEFAULT NULL COMMENT '商户订单id',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`points_change_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `tz_points_change` */
-
-/*Table structure for table `tz_points_prod` */
-
-DROP TABLE IF EXISTS `tz_points_prod`;
-
-CREATE TABLE `tz_points_prod` (
-  `points_prod_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '积分商品id',
-  `points_id` bigint(20) DEFAULT NULL COMMENT '所需积分id',
-  `points_number` double DEFAULT NULL COMMENT '所需积分量',
-  `amount` decimal(15,2) DEFAULT NULL COMMENT '所需金额',
-  `prod_id` bigint(20) DEFAULT NULL COMMENT '关联商品id',
-  `stocks` int(11) DEFAULT NULL COMMENT '库存',
-  `state` tinyint(2) DEFAULT NULL COMMENT '状态(0下架 1上架)',
-  `upper_shelf_time` datetime DEFAULT NULL COMMENT '上架时间',
-  `lower_shelf` datetime DEFAULT NULL COMMENT '下架时间',
-  PRIMARY KEY (`points_prod_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `tz_points_prod` */
-
-/*Table structure for table `tz_points_wallet` */
-
-DROP TABLE IF EXISTS `tz_points_wallet`;
-
-CREATE TABLE `tz_points_wallet` (
-  `points_wallet_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '积分钱包id',
-  `points_id` bigint(20) DEFAULT NULL COMMENT '积分Id',
-  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
-  `unsettled` double DEFAULT NULL COMMENT '待结算积分',
-  `settled` double DEFAULT NULL COMMENT '已结算积分',
-  `addup` double DEFAULT NULL COMMENT '积累收益积分',
-  `version` int(11) DEFAULT NULL COMMENT '乐观锁',
-  PRIMARY KEY (`points_wallet_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `tz_points_wallet` */
-
 /*Table structure for table `tz_prod` */
 
 DROP TABLE IF EXISTS `tz_prod`;
@@ -4575,7 +4512,7 @@ CREATE TABLE `tz_prod` (
 /*Data for the table `tz_prod` */
 
 insert  into `tz_prod`(`prod_id`,`prod_name`,`shop_id`,`ori_price`,`price`,`brief`,`content`,`pic`,`imgs`,`status`,`category_id`,`sold_num`,`total_stocks`,`delivery_mode`,`delivery_template_id`,`create_time`,`update_time`,`putaway_time`,`version`) values 
-(18,'Apple iPhone XS Max 移动联通电信4G手机 ',1,0.00,1.01,'6.5英寸大屏，支持双卡。','<div style=\"margin: 0px; padding: 0px; color: #666666; font-family: tahoma, arial, \'Microsoft YaHei\', \'Hiragino Sans GB\', u5b8bu4f53, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;\" align=\"center\">\n<table id=\"__01\" style=\"text-align: center;\" border=\"0\" width=\"750\" cellspacing=\"0\" cellpadding=\"0\">\n<tbody>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/4626/32/3475/220504/5b997365E80a1373f/279c244f12161cb3.jpg\" alt=\"\" width=\"750\" height=\"1991\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img12.360buyimg.com/cms/jfs/t1/3397/21/3533/236322/5b99759aE73795787/f782e04a140c8f16.jpg\" alt=\"\" width=\"750\" height=\"2052\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img11.360buyimg.com/cms/jfs/t1/5274/3/3465/245167/5b997365E16b81bc9/93e07e40f3af5e62.jpg\" alt=\"\" width=\"750\" height=\"2250\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/2322/11/3524/269574/5b997365E26f81a7a/e01fc9486da9eda1.jpg\" alt=\"\" width=\"750\" height=\"2327\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img13.360buyimg.com/cms/jfs/t1/5074/21/3432/296470/5b997364Ee966f7a0/7f424d41479db45d.jpg\" alt=\"\" width=\"750\" height=\"2561\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img13.360buyimg.com/cms/jfs/t1/5770/18/3580/288371/5b997365Ea2c58cb4/176b9a40ccd4e56b.jpg\" alt=\"\" width=\"750\" height=\"2668\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img11.360buyimg.com/cms/jfs/t1/227/21/3811/268132/5b997364E3d6c51b2/92d2a3a559e3baa8.jpg\" alt=\"\" width=\"750\" height=\"2850\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img20.360buyimg.com/cms/jfs/t1/3787/5/3493/125020/5b997363E3c9f5910/ddbd08a556744630.jpg\" alt=\"\" width=\"750\" height=\"1486\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/1687/5/3327/266718/5b997366E9cc80e69/9e40ceae1fef4466.jpg\" alt=\"\" width=\"750\" height=\"3376\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/457/6/3849/283318/5b997363E0c5ab7a9/6f636f0a286bc87c.jpg\" alt=\"\" width=\"750\" height=\"2455\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img10.360buyimg.com/cms/jfs/t1/397/25/3796/217624/5b9975a8E5ee578af/4d8f05a606fa5c4a.jpg\" alt=\"\" width=\"750\" height=\"2703\" /></td>\n</tr>\n</tbody>\n</table>\n</div>','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg',1,93,NULL,95,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',47,'2019-03-29 14:40:00','2019-06-22 18:28:32','2019-06-22 18:28:32',85),
+(18,'Apple iPhone XS Max 移动联通电信4G手机 ',1,0.00,1.01,'6.5英寸大屏，支持双卡。','<div style=\"margin: 0px; padding: 0px; color: #666666; font-family: tahoma, arial, \'Microsoft YaHei\', \'Hiragino Sans GB\', u5b8bu4f53, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;\" align=\"center\">\n<table id=\"__01\" style=\"text-align: center;\" border=\"0\" width=\"750\" cellspacing=\"0\" cellpadding=\"0\">\n<tbody>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/4626/32/3475/220504/5b997365E80a1373f/279c244f12161cb3.jpg\" alt=\"\" width=\"750\" height=\"1991\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img12.360buyimg.com/cms/jfs/t1/3397/21/3533/236322/5b99759aE73795787/f782e04a140c8f16.jpg\" alt=\"\" width=\"750\" height=\"2052\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img11.360buyimg.com/cms/jfs/t1/5274/3/3465/245167/5b997365E16b81bc9/93e07e40f3af5e62.jpg\" alt=\"\" width=\"750\" height=\"2250\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/2322/11/3524/269574/5b997365E26f81a7a/e01fc9486da9eda1.jpg\" alt=\"\" width=\"750\" height=\"2327\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img13.360buyimg.com/cms/jfs/t1/5074/21/3432/296470/5b997364Ee966f7a0/7f424d41479db45d.jpg\" alt=\"\" width=\"750\" height=\"2561\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img13.360buyimg.com/cms/jfs/t1/5770/18/3580/288371/5b997365Ea2c58cb4/176b9a40ccd4e56b.jpg\" alt=\"\" width=\"750\" height=\"2668\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img11.360buyimg.com/cms/jfs/t1/227/21/3811/268132/5b997364E3d6c51b2/92d2a3a559e3baa8.jpg\" alt=\"\" width=\"750\" height=\"2850\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img20.360buyimg.com/cms/jfs/t1/3787/5/3493/125020/5b997363E3c9f5910/ddbd08a556744630.jpg\" alt=\"\" width=\"750\" height=\"1486\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/1687/5/3327/266718/5b997366E9cc80e69/9e40ceae1fef4466.jpg\" alt=\"\" width=\"750\" height=\"3376\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/457/6/3849/283318/5b997363E0c5ab7a9/6f636f0a286bc87c.jpg\" alt=\"\" width=\"750\" height=\"2455\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img10.360buyimg.com/cms/jfs/t1/397/25/3796/217624/5b9975a8E5ee578af/4d8f05a606fa5c4a.jpg\" alt=\"\" width=\"750\" height=\"2703\" /></td>\n</tr>\n</tbody>\n</table>\n</div>','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg',1,93,NULL,96,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',47,'2019-03-29 14:40:00','2019-06-22 18:28:32','2019-06-22 18:28:32',85),
 (59,'兰蔻粉水清滢柔肤水400ml 爽肤水女保湿舒缓滋润嫩肤',1,0.00,420.00,'好看耐穿','<p><img src=\"http://img-test.gz-yami.com/2019/04/71f54ee20ef34872b1e0aa53cb75b7b6.jpg\" alt=\"\" width=\"790\" height=\"1110\" /></p>','2019/04/ce5a32005a7a4f9483a17051bda6bd6c.jpg','2019/04/ce5a32005a7a4f9483a17051bda6bd6c.jpg,2019/04/8a8712b81a2d4f4ca3eb4a725ad229c6.jpg',1,87,NULL,0,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',48,'2019-04-21 19:15:34','2019-04-29 14:30:44','2019-04-29 14:30:44',NULL),
 (68,'【Dole都乐】菲律宾都乐非转基因木瓜1只 单只约410g',1,0.00,26.00,'包邮 肉厚籽少 独具风味','<p style=\"text-align: justify;\"><img src=\"http://img-test.gz-yami.com/2019/04/e7536a53a83d450e8635ce1e9819faf6.jpg\" alt=\"\" width=\"790\" height=\"350\" /></p>','2019/04/0bfd73f43d764d20b2f0b92813abdc56.jpg','2019/04/0bfd73f43d764d20b2f0b92813abdc56.jpg,2019/04/355020f27acd4b13a652cb830f03bedc.jpg',1,95,NULL,0,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',47,'2019-04-21 21:56:38','2019-05-22 10:30:37','2019-05-22 10:30:37',NULL),
 (69,'阿迪达斯官方 adidas 三叶草 NITE JOGGER 男子经典鞋BD7956',1,10.00,1199.00,' 运动鞋/休闲鞋','<p><img src=\"http://img-test.gz-yami.com/2019/04/6d0bea4a0be54423999136bcd1158897.jpg\" alt=\"\" width=\"790\" height=\"2232\" /></p>','2019/04/b3558ee506fb4589bfaa94a543226477.jpg','2019/04/b3558ee506fb4589bfaa94a543226477.jpg,2019/04/df052ea31d3149fdb5c54f7c4fc6349b.jpg',0,88,NULL,0,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',47,'2019-04-21 22:10:04','2019-05-23 20:17:03','2019-05-22 13:37:26',NULL),
@@ -4800,37 +4737,21 @@ CREATE TABLE `tz_schedule_job_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`log_id`),
   KEY `job_id` (`job_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
 
 /*Data for the table `tz_schedule_job_log` */
 
-/*Table structure for table `tz_score_log` */
-
-DROP TABLE IF EXISTS `tz_score_log`;
-
-CREATE TABLE `tz_score_log` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '积分记录id',
-  `user_id` varchar(36) DEFAULT NULL COMMENT '用户id',
-  `type` tinyint(2) DEFAULT NULL COMMENT '0支出 1收入',
-  `create_time` datetime DEFAULT NULL COMMENT '记录创建时间',
-  `sn` varchar(36) DEFAULT NULL COMMENT '流水号',
-  `score_type` tinyint(2) DEFAULT NULL COMMENT '积分类型：1回收加积分 2购买减积分',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `tz_score_log` */
-
-/*Table structure for table `tz_sens_word` */
-
-DROP TABLE IF EXISTS `tz_sens_word`;
-
-CREATE TABLE `tz_sens_word` (
-  `sens_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `words` varchar(255) DEFAULT NULL COMMENT '敏感字',
-  PRIMARY KEY (`sens_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='敏感字过滤表';
-
-/*Data for the table `tz_sens_word` */
+insert  into `tz_schedule_job_log`(`log_id`,`job_id`,`bean_name`,`method_name`,`params`,`status`,`error`,`times`,`create_time`) values 
+(1,14,'orderTask','cancelOrder','',1,NULL,57,'2019-08-07 17:02:00'),
+(2,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:02:06'),
+(3,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:03:00'),
+(4,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:04:00'),
+(5,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:05:00'),
+(6,16,'orderTask','confirmOrder','',1,NULL,16,'2019-08-07 17:05:00'),
+(7,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:06:00'),
+(8,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:07:00'),
+(9,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:08:00'),
+(10,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:09:00');
 
 /*Table structure for table `tz_shop_detail` */
 
@@ -4995,7 +4916,7 @@ insert  into `tz_sku`(`sku_id`,`prod_id`,`properties`,`ori_price`,`price`,`stock
 (311,18,'版本:换修无忧版;颜色:金色;内存:64GB',0.00,9.00,0,NULL,'2019-04-26 11:40:06','2019-04-26 11:40:06',NULL,NULL,NULL,'换修无忧版 金色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 金色 64GB ',0,0,0,0,0),
 (312,18,'版本:原厂延保版;颜色:金色;内存:64GB',0.00,8.00,0,NULL,'2019-04-26 11:40:06','2019-04-26 11:40:06',NULL,NULL,NULL,'原厂延保版 金色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  原厂延保版 金色 64GB ',0,0,0,0,0),
 (313,18,'版本:公开版;颜色:深空灰色;内存:64GB',0.00,7.00,0,NULL,'2019-04-26 11:40:06','2019-04-26 11:40:06',NULL,NULL,NULL,'公开版 深空灰色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  公开版 深空灰色 64GB ',0,0,0,0,0),
-(314,18,'版本:换修无忧版;颜色:深空灰色;内存:64GB',0.00,1.01,80,NULL,'2019-07-03 17:17:56','2019-04-26 11:40:06',NULL,NULL,'2019/04/2cd9ec641d92458983c00d87ff33ad57.jpg','换修无忧版 深空灰色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ',55,0,0,1,0),
+(314,18,'版本:换修无忧版;颜色:深空灰色;内存:64GB',0.00,1.01,81,NULL,'2019-07-03 17:17:56','2019-04-26 11:40:06',NULL,NULL,'2019/04/2cd9ec641d92458983c00d87ff33ad57.jpg','换修无忧版 深空灰色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ',55,0,0,1,0),
 (315,18,'版本:原厂延保版;颜色:深空灰色;内存:64GB',0.00,1.02,0,NULL,'2019-04-29 19:41:13','2019-04-26 11:40:06',NULL,NULL,'2019/04/bf4c40f7e6e5454e806c244ca49d3964.jpg','原厂延保版 深空灰色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  原厂延保版 深空灰色 64GB ',2,0,0,1,0),
 (316,18,'版本:公开版;颜色:银色;内存:64GB',0.00,7102.00,1,NULL,'2019-04-26 11:40:06','2019-04-26 11:40:06',NULL,NULL,NULL,'公开版 银色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  公开版 银色 64GB ',0,0,0,1,0),
 (317,18,'版本:换修无忧版;颜色:银色;内存:64GB',0.00,7103.00,1,NULL,'2019-07-03 17:15:41','2019-04-26 11:40:06',NULL,NULL,NULL,'换修无忧版 银色 64GB ','Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 银色 64GB ',1,0,0,1,0),
@@ -5138,7 +5059,7 @@ CREATE TABLE `tz_sys_log` (
   `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=843 DEFAULT CHARSET=utf8 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=846 DEFAULT CHARSET=utf8 COMMENT='系统日志';
 
 /*Data for the table `tz_sys_log` */
 
@@ -5156,7 +5077,10 @@ insert  into `tz_sys_log`(`id`,`username`,`operation`,`method`,`params`,`time`,`
 (839,'admin','保存配置','com.yami.shop.sys.controller.SysConfigController.save()','{\"id\":1,\"paramKey\":\"测试\",\"paramValue\":\"1\",\"remark\":\"1\"}',17,'127.0.0.1','2019-07-03 08:57:59'),
 (840,'admin','删除配置','com.yami.shop.sys.controller.SysConfigController.delete()','[1]',18,'127.0.0.1','2019-07-03 08:58:20'),
 (841,'admin','新增公告管理','com.yami.shop.admin.controller.NoticeController.save()','{\"id\":4,\"shopId\":1,\"title\":\"测试\",\"content\":\"<p>1111</p>\",\"status\":1,\"isTop\":1,\"publishTime\":\"2019-07-03T02:05:55.730+0000\",\"updateTime\":\"2019-07-03T02:05:55.730+0000\"}',26,'127.0.0.1','2019-07-03 10:05:56'),
-(842,'admin','删除公告管理','com.yami.shop.admin.controller.NoticeController.removeById()','4',37,'127.0.0.1','2019-07-03 20:00:24');
+(842,'admin','删除公告管理','com.yami.shop.admin.controller.NoticeController.removeById()','4',37,'127.0.0.1','2019-07-03 20:00:24'),
+(843,'admin','修改定时任务','com.yami.shop.quartz.controller.ScheduleJobController.update()','{\"jobId\":14,\"beanName\":\"orderTask\",\"methodName\":\"cancelOrder\",\"cronExpression\":\"0 * * * * ?\",\"status\":0,\"remark\":\"取消超时未支付订单\"}',50,'127.0.0.1','2019-08-07 17:01:52'),
+(844,'admin','修改定时任务','com.yami.shop.quartz.controller.ScheduleJobController.update()','{\"jobId\":16,\"beanName\":\"orderTask\",\"methodName\":\"confirmOrder\",\"cronExpression\":\"0 0/5 * * * ?\",\"status\":0,\"remark\":\"系统自动确认收货订单\"}',18,'127.0.0.1','2019-08-07 17:01:57'),
+(845,'admin','立即执行任务','com.yami.shop.quartz.controller.ScheduleJobController.run()','[14]',14,'127.0.0.1','2019-08-07 17:02:06');
 
 /*Table structure for table `tz_sys_menu` */
 

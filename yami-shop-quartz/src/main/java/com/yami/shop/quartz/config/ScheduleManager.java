@@ -94,6 +94,12 @@ public class ScheduleManager {
 
             CronTrigger trigger = getCronTrigger(scheduleJob);
 
+            // 如果定时任务不存在，则创建定时任务
+            if (trigger == null) {
+                createScheduleJob(scheduleJob);
+                return;
+            }
+
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
 
