@@ -170,11 +170,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public IPage<ProductDto> discountProdList(Page<ProductDto> page) {
-        return productMapper.discountProdList(page);
-    }
-
-    @Override
     public IPage<ProductDto> moreBuyProdList(Page<ProductDto> page) {
         return productMapper.moreBuyProdList(page);
     }

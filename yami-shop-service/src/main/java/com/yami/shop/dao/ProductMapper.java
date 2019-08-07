@@ -37,8 +37,6 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     IPage<ProductDto> pageByTagId(Page<ProductDto> page, @Param("tagId") Long tagId);
 
-    IPage<ProductDto> discountProdList(Page<ProductDto> page);
-
     IPage<ProductDto> moreBuyProdList(Page<ProductDto> page);
 
     IPage<ProductDto> pageByCategoryId(Page<ProductDto> page, @Param("categoryId") Long categoryId);

@@ -57,8 +57,6 @@ public interface ProductService extends IService<Product> {
 
     IPage<ProductDto> pageByTagId(Page<ProductDto> page, Long tagId);
 
-    IPage<ProductDto> discountProdList(Page<ProductDto> page);
-
     IPage<ProductDto> moreBuyProdList(Page<ProductDto> page);
 
     IPage<ProductDto> pageByCategoryId(Page<ProductDto> page, Long categoryId);

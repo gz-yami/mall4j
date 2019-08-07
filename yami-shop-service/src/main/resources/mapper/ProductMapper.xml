@@ -125,20 +125,6 @@
         ORDER BY putaway_time DESC
     </select>
 
-    <select id="discountProdList" resultType="com.yami.shop.bean.app.dto.ProductDto">
-        SELECT
-        <include refid="prodAndShopNameWithNoContent_SQL"/>
-        FROM tz_discount_prod dp
-        LEFT JOIN tz_prod p
-        ON p.`prod_id` = dp.`prod_id`
-        LEFT JOIN tz_discount d
-        ON d.`discount_id` = dp.`discount_id`
-        LEFT JOIN tz_shop_detail sd
-        ON p.shop_id = sd.shop_id
-        WHERE p.`status` = 1 AND d.`status` = 1 AND d.`start_time` &lt;= NOW() AND d.`end_time` &gt; NOW()
-        ORDER BY d.`start_time` DESC
-    </select>
-
     <select id="moreBuyProdList" resultType="com.yami.shop.bean.app.dto.ProductDto">
         SELECT
         <include refid="prodAndShopNameWithNoContent_SQL"/>

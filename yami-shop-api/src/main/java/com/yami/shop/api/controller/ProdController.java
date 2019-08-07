@@ -10,32 +10,30 @@
 
 package com.yami.shop.api.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.common.util.PageParam;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.yami.shop.bean.app.dto.SkuDto;
-import com.yami.shop.bean.app.dto.TagProductDto;
-import com.yami.shop.bean.model.Basket;
-import com.yami.shop.bean.model.Sku;
-import com.yami.shop.common.exception.YamiShopBindException;
-import com.yami.shop.security.service.YamiUser;
-import com.yami.shop.service.*;
-import io.swagger.annotations.ApiImplicitParams;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.yami.shop.bean.app.dto.ProductDto;
+import com.yami.shop.bean.app.dto.TagProductDto;
 import com.yami.shop.bean.model.Product;
+import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.model.Transport;
-
+import com.yami.shop.common.util.PageParam;
+import com.yami.shop.service.ProductService;
+import com.yami.shop.service.SkuService;
+import com.yami.shop.service.TransportService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import ma.glasnost.orika.MapperFacade;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/prod")
@@ -103,15 +101,6 @@ public class ProdController {
     public ResponseEntity<IPage<ProductDto>> prodListByTagId(
             @RequestParam(value = "tagId") Long tagId,PageParam<ProductDto> page) {
         IPage<ProductDto> productDtoIPage = prodService.pageByTagId(page, tagId);
-        return ResponseEntity.ok(productDtoIPage);
-    }
-
-    @GetMapping("/discountProdList")
-    @ApiOperation(value = "限时特惠", notes = "获取限时特惠商品列表")
-    @ApiImplicitParams({
-    })
-    public ResponseEntity<IPage<ProductDto>> discountProdList(PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoIPage = prodService.discountProdList(page);
         return ResponseEntity.ok(productDtoIPage);
     }
 

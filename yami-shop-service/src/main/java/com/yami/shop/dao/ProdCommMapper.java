@@ -14,13 +14,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yami.shop.bean.app.dto.ProdCommDataDto;
 import com.yami.shop.bean.app.dto.ProdCommDto;
-import com.yami.shop.bean.model.PointsWallet;
 import com.yami.shop.bean.model.ProdComm;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface ProdCommMapper extends BaseMapper<ProdComm> {
     ProdCommDataDto getProdCommDataByProdId(@Param("prodId") Long prodId, @Param("userId") String userId);
