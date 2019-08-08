@@ -16,7 +16,6 @@ import com.yami.shop.security.handler.LoginAuthFailedHandler;
 import com.yami.shop.security.handler.LoginAuthSuccessHandler;
 import com.yami.shop.security.provider.AdminAuthenticationProvider;
 import com.yami.shop.security.provider.MiniAppAuthenticationProvider;
-import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,16 +30,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @Order(90)
-@AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final LoginAuthSuccessHandler loginAuthSuccessHandler;
+    @Autowired
+    private LoginAuthSuccessHandler loginAuthSuccessHandler;
 
-    private final LoginAuthFailedHandler loginAuthFailedHandler;
+    @Autowired
+    private LoginAuthFailedHandler loginAuthFailedHandler;
 
-    private final AdminAuthenticationProvider adminAuthenticationProvider;
+    @Autowired
+    private AdminAuthenticationProvider adminAuthenticationProvider;
 
-    private final MiniAppAuthenticationProvider miniAppAuthenticationProvider;
+    @Autowired
+    private MiniAppAuthenticationProvider miniAppAuthenticationProvider;
 
     @Override
     @Bean
