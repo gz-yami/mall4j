@@ -45,7 +45,7 @@ public class ScheduleManager {
     /**
      * 获取表达式触发器
      */
-    private CronTrigger getCronTrigger(ScheduleJob scheduleJob) {
+    public CronTrigger getCronTrigger(ScheduleJob scheduleJob) {
         try {
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(scheduleJob));
         } catch (SchedulerException e) {

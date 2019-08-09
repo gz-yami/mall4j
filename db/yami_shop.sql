@@ -3,6 +3,7 @@ SQLyog Ultimate v12.5.1 (64 bit)
 MySQL - 5.7.23 : Database - yami_shops
 *********************************************************************
 */
+
 create database IF NOT EXISTS `yami_shops` default character set utf8 collate utf8_general_ci;
 
 USE yami_shops;
@@ -15,6 +16,8 @@ USE yami_shops;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `qrtz_blob_triggers` */
+
 /*Table structure for table `qrtz_blob_triggers` */
 
 DROP TABLE IF EXISTS `qrtz_blob_triggers`;
@@ -59,10 +62,6 @@ CREATE TABLE `qrtz_cron_triggers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_cron_triggers` */
-
-insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values 
-('clusteredScheduler','TASK_14','DEFAULT','0 * * * * ?','Asia/Shanghai'),
-('clusteredScheduler','TASK_16','DEFAULT','0 0/5 * * * ?','Asia/Shanghai');
 
 /*Table structure for table `qrtz_fired_triggers` */
 
@@ -115,10 +114,6 @@ CREATE TABLE `qrtz_job_details` (
 
 /*Data for the table `qrtz_job_details` */
 
-insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`JOB_CLASS_NAME`,`IS_DURABLE`,`IS_NONCONCURRENT`,`IS_UPDATE_DATA`,`REQUESTS_RECOVERY`,`JOB_DATA`) values 
-('clusteredScheduler','TASK_14','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0	orderTaskpt\00 * * * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0cancelOrdert\0\0t\0取消超时未支付订单sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0'),
-('clusteredScheduler','TASK_16','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','��\0sr\0org.quartz.JobDataMap���迩��\0\0xr\0&org.quartz.utils.StringKeyDirtyFlagMap�����](\0Z\0allowsTransientDataxr\0org.quartz.utils.DirtyFlagMap�.�(v\n�\0Z\0dirtyL\0mapt\0Ljava/util/Map;xpsr\0java.util.HashMap���`�\0F\0\nloadFactorI\0	thresholdxp?@\0\0\0\0\0w\0\0\0\0\0\0t\0\rJOB_PARAM_KEYsr\0&com.yami.shop.quartz.model.ScheduleJob~�dꂑ�\0L\0beanNamet\0Ljava/lang/String;L\0\ncreateTimet\0Ljava/util/Date;L\0cronExpressionq\0~\0	L\0jobIdt\0Ljava/lang/Long;L\0\nmethodNameq\0~\0	L\0paramsq\0~\0	L\0remarkq\0~\0	L\0statust\0Ljava/lang/Integer;xpt\0	orderTaskpt\0\r0 0/5 * * * ?sr\0java.lang.Long;��̏#�\0J\0valuexr\0java.lang.Number������\0\0xp\0\0\0\0\0\0\0t\0confirmOrdert\0\0t\0系统自动确认收货订单sr\0java.lang.Integer⠤���8\0I\0valuexq\0~\0\0\0\0\0x\0');
-
 /*Table structure for table `qrtz_locks` */
 
 DROP TABLE IF EXISTS `qrtz_locks`;
@@ -130,10 +125,6 @@ CREATE TABLE `qrtz_locks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_locks` */
-
-insert  into `qrtz_locks`(`SCHED_NAME`,`LOCK_NAME`) values 
-('clusteredScheduler','STATE_ACCESS'),
-('clusteredScheduler','TRIGGER_ACCESS');
 
 /*Table structure for table `qrtz_paused_trigger_grps` */
 
@@ -160,9 +151,6 @@ CREATE TABLE `qrtz_scheduler_state` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_scheduler_state` */
-
-insert  into `qrtz_scheduler_state`(`SCHED_NAME`,`INSTANCE_NAME`,`LAST_CHECKIN_TIME`,`CHECKIN_INTERVAL`) values 
-('clusteredScheduler','DESKTOP-1HK3TCV1565167178497',1565168967434,10000);
 
 /*Table structure for table `qrtz_simple_triggers` */
 
@@ -244,10 +232,6 @@ CREATE TABLE `qrtz_triggers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_triggers` */
-
-insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`NEXT_FIRE_TIME`,`PREV_FIRE_TIME`,`PRIORITY`,`TRIGGER_STATE`,`TRIGGER_TYPE`,`START_TIME`,`END_TIME`,`CALENDAR_NAME`,`MISFIRE_INSTR`,`JOB_DATA`) values 
-('clusteredScheduler','TASK_14','DEFAULT','TASK_14','DEFAULT',NULL,1565169000000,1565168940000,5,'WAITING','CRON',1565168511000,0,NULL,1,''),
-('clusteredScheduler','TASK_16','DEFAULT','TASK_16','DEFAULT',NULL,1565169000000,1565168700000,5,'WAITING','CRON',1565168517000,0,NULL,1,'');
 
 /*Table structure for table `tz_app_connect` */
 
@@ -4737,7 +4721,7 @@ CREATE TABLE `tz_schedule_job_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`log_id`),
   KEY `job_id` (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
 
 /*Data for the table `tz_schedule_job_log` */
 
@@ -4751,7 +4735,42 @@ insert  into `tz_schedule_job_log`(`log_id`,`job_id`,`bean_name`,`method_name`,`
 (7,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:06:00'),
 (8,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:07:00'),
 (9,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:08:00'),
-(10,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:09:00');
+(10,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:09:00'),
+(11,14,'orderTask','cancelOrder','',1,NULL,9,'2019-08-07 17:10:00'),
+(12,16,'orderTask','confirmOrder','',1,NULL,2,'2019-08-07 17:10:00'),
+(13,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:11:00'),
+(14,14,'orderTask','cancelOrder','',1,NULL,6,'2019-08-07 17:12:00'),
+(15,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:13:00'),
+(16,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:14:00'),
+(17,14,'orderTask','cancelOrder','',1,NULL,19,'2019-08-07 17:15:00'),
+(18,16,'orderTask','confirmOrder','',1,NULL,12,'2019-08-07 17:15:00'),
+(19,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:16:00'),
+(20,14,'orderTask','cancelOrder','',1,NULL,0,'2019-08-07 17:17:00'),
+(21,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:18:00'),
+(22,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:19:00'),
+(23,14,'orderTask','cancelOrder','',1,NULL,27,'2019-08-07 17:20:00'),
+(24,16,'orderTask','confirmOrder','',1,NULL,15,'2019-08-07 17:20:00'),
+(25,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:21:00'),
+(26,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:22:00'),
+(27,14,'orderTask','cancelOrder','',1,NULL,8,'2019-08-07 17:23:00'),
+(28,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:24:00'),
+(29,14,'orderTask','cancelOrder','',1,NULL,7,'2019-08-07 17:25:00'),
+(30,16,'orderTask','confirmOrder','',1,NULL,4,'2019-08-07 17:25:00'),
+(31,14,'orderTask','cancelOrder','',1,NULL,1,'2019-08-07 17:26:00'),
+(32,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:27:00'),
+(33,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:28:00'),
+(34,14,'orderTask','cancelOrder','',1,NULL,8,'2019-08-07 17:29:00'),
+(35,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:30:00'),
+(36,16,'orderTask','confirmOrder','',1,NULL,2,'2019-08-07 17:30:00'),
+(37,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:31:00'),
+(38,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:32:00'),
+(39,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:33:00'),
+(40,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:34:00'),
+(41,14,'orderTask','cancelOrder','',1,NULL,10,'2019-08-07 17:35:00'),
+(42,16,'orderTask','confirmOrder','',1,NULL,3,'2019-08-07 17:35:00'),
+(43,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:36:00'),
+(44,14,'orderTask','cancelOrder','',1,NULL,6,'2019-08-07 17:37:00'),
+(45,14,'orderTask','cancelOrder','',1,NULL,6,'2019-08-07 17:38:00');
 
 /*Table structure for table `tz_shop_detail` */
 
