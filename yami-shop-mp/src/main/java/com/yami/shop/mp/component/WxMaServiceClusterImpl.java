@@ -15,7 +15,6 @@ import org.redisson.api.RedissonClient;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 
 /**
  * WxMaServiceImpl 在集群模式获取accessToken的方式
@@ -40,23 +39,22 @@ public class WxMaServiceClusterImpl extends WxMaServiceImpl {
 
         RLock rLock = redissonClient.getLock(REDISSON_LOCK_PREFIX + ":WxMaServiceCluster:getAccessToken");
 
-        boolean doingUpdateAccessToken;
-
         try {
-            doingUpdateAccessToken = rLock.tryLock(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            return this.getWxMaConfig().getAccessToken();
-        }
+            boolean lockSuccess;
+            try {
+                lockSuccess = rLock.tryLock(10, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                return this.getWxMaConfig().getAccessToken();
+            }
 
-        if (!doingUpdateAccessToken) {
-            throw new YamiShopBindException("服务器繁忙，请稍后再试");
-        }
+            if (!lockSuccess) {
+                throw new YamiShopBindException("服务器繁忙，请稍后再试");
+            }
 
-        if (this.getWxMaConfig().isAccessTokenExpired()) {
-            return this.getWxMaConfig().getAccessToken();
-        }
+            if (this.getWxMaConfig().isAccessTokenExpired() && !forceRefresh) {
+                return this.getWxMaConfig().getAccessToken();
+            }
 
-        try {
             String url = String.format(WxMaService.GET_ACCESS_TOKEN_URL, this.getWxMaConfig().getAppid(),
                     this.getWxMaConfig().getSecret());
             try {

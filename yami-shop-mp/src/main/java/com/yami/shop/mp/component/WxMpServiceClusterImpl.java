@@ -40,25 +40,22 @@ public class WxMpServiceClusterImpl extends WxMpServiceImpl {
 
         RLock rLock = redissonClient.getLock(REDISSON_LOCK_PREFIX + ":WxMpServiceCluster:getAccessToken");
 
-        boolean doingUpdateAccessToken;
-
-        try {
-            doingUpdateAccessToken = rLock.tryLock(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            return this.getWxMpConfigStorage().getAccessToken();
-        }
-
-        if (!doingUpdateAccessToken) {
-            throw new YamiShopBindException("服务器繁忙，请稍后再试");
-        }
-
-        if (this.getWxMpConfigStorage().isAccessTokenExpired()) {
-            return this.getWxMpConfigStorage().getAccessToken();
-        }
-
-
         Object result = null;
         try {
+            boolean doingUpdateAccessToken;
+            try {
+                doingUpdateAccessToken = rLock.tryLock(10, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                return this.getWxMpConfigStorage().getAccessToken();
+            }
+
+            if (!doingUpdateAccessToken) {
+                throw new YamiShopBindException("服务器繁忙，请稍后再试");
+            }
+
+            if (this.getWxMpConfigStorage().isAccessTokenExpired()) {
+                return this.getWxMpConfigStorage().getAccessToken();
+            }
             String url = String.format(WxMpService.GET_ACCESS_TOKEN_URL,
                     this.getWxMpConfigStorage().getAppId(), this.getWxMpConfigStorage().getSecret());
             try {
