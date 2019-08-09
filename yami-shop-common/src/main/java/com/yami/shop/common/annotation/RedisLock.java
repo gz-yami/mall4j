@@ -45,5 +45,5 @@ public @interface RedisLock {
 	 *
 	 * @return 秒
 	 */
-	TimeUnit timeUnit() default TimeUnit.SECONDS;
+	TimeUnit timeUnit() default TimeUnit.MILLISECONDS;
 }

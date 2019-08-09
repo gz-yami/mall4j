@@ -13,7 +13,9 @@ package com.yami.shop.mp.config;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import com.yami.shop.mp.component.WxMaInRedisConfig;
+import com.yami.shop.mp.component.WxMaServiceClusterImpl;
 import lombok.AllArgsConstructor;
+import org.redisson.api.RedissonClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,10 +32,13 @@ public class WxMaConfiguration {
 
     private final WxMaInRedisConfig wxMaInRedisConfig;
 
+    private final RedissonClient redissonClient;
+
     @Bean
     public WxMaService wxMaService() {
-        WxMaService service = new WxMaServiceImpl();
+        WxMaServiceClusterImpl service = new WxMaServiceClusterImpl();
         service.setWxMaConfig(wxMaInRedisConfig);
+        service.setRedissonClient(redissonClient);
         return service;
     }
 

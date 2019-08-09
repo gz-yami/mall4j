@@ -11,11 +11,13 @@
 package com.yami.shop.mp.config;
 
 import com.yami.shop.mp.component.WxMpInRedisConfigStorage;
+import com.yami.shop.mp.component.WxMpServiceClusterImpl;
 import com.yami.shop.mp.handler.MenuHandler;
 import lombok.AllArgsConstructor;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
+import org.redisson.api.RedissonClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,11 +36,13 @@ public class WxMpConfiguration {
 
     private final MenuHandler menuHandler;
     private final WxMpInRedisConfigStorage wxMpInRedisConfigStorage;
+    private final RedissonClient redissonClient;
 
     @Bean
     public WxMpService wxMpService() {
-        WxMpService service = new WxMpServiceImpl();
+        WxMpServiceClusterImpl service = new WxMpServiceClusterImpl();
         service.setWxMpConfigStorage(wxMpInRedisConfigStorage);
+        service.setRedissonClient(redissonClient);
         return service;
     }
 
