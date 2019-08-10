@@ -2,18 +2,14 @@ package com.yami.shop.mp.component;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
+import cn.hutool.http.HttpUtil;
 import com.yami.shop.common.exception.YamiShopBindException;
 import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -57,28 +53,16 @@ public class WxMaServiceClusterImpl extends WxMaServiceImpl {
 
             String url = String.format(WxMaService.GET_ACCESS_TOKEN_URL, this.getWxMaConfig().getAppid(),
                     this.getWxMaConfig().getSecret());
-            try {
-                HttpGet httpGet = new HttpGet(url);
-                if (this.getRequestHttpProxy() != null) {
-                    RequestConfig config = RequestConfig.custom().setProxy(this.getRequestHttpProxy()).build();
-                    httpGet.setConfig(config);
-                }
-                try (CloseableHttpResponse response = getRequestHttpClient().execute(httpGet)) {
-                    String resultContent = new BasicResponseHandler().handleResponse(response);
-                    WxError error = WxError.fromJson(resultContent);
-                    if (error.getErrorCode() != 0) {
-                        throw new WxErrorException(error);
-                    }
-                    WxAccessToken accessToken = WxAccessToken.fromJson(resultContent);
-                    this.getWxMaConfig().updateAccessToken(accessToken.getAccessToken(), accessToken.getExpiresIn());
-
-                    return this.getWxMaConfig().getAccessToken();
-                } finally {
-                    httpGet.releaseConnection();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            String resultContent = HttpUtil.get(url);
+            WxError error = WxError.fromJson(resultContent);
+            if (error.getErrorCode() != 0) {
+                throw new WxErrorException(error);
             }
+            WxAccessToken accessToken = WxAccessToken.fromJson(resultContent);
+            this.getWxMaConfig().updateAccessToken(accessToken.getAccessToken(), accessToken.getExpiresIn());
+
+            return this.getWxMaConfig().getAccessToken();
+
         } finally {
             rLock.unlock();
         }
