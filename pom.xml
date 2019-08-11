@@ -32,7 +32,7 @@
         <jsoup.version>1.11.3</jsoup.version>
         <poi.version>3.17</poi.version>
         <qiniu.version>7.2.18</qiniu.version>
-        <weixin.version>3.4.0</weixin.version>
+        <weixin.version>3.5.0</weixin.version>
         <orika.version>1.5.4</orika.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-bootstrap.version>1.9.3</swagger-bootstrap.version>

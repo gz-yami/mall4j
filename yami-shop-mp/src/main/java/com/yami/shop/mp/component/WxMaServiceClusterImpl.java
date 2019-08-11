@@ -4,6 +4,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.hutool.http.HttpUtil;
 import com.yami.shop.common.exception.YamiShopBindException;
+import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -16,8 +17,8 @@ import java.util.concurrent.TimeUnit;
  * WxMaServiceImpl 在集群模式获取accessToken的方式
  * @author LGH
  */
+@Slf4j
 public class WxMaServiceClusterImpl extends WxMaServiceImpl {
-
 
     private static final String REDISSON_LOCK_PREFIX = "redisson_lock:";
 
@@ -47,7 +48,7 @@ public class WxMaServiceClusterImpl extends WxMaServiceImpl {
                 throw new YamiShopBindException("服务器繁忙，请稍后再试");
             }
 
-            if (this.getWxMaConfig().isAccessTokenExpired() && !forceRefresh) {
+            if (!this.getWxMaConfig().isAccessTokenExpired()) {
                 return this.getWxMaConfig().getAccessToken();
             }
 
