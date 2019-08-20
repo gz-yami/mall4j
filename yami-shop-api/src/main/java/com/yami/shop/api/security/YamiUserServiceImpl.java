@@ -123,7 +123,7 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 			user.setModifyTime(now);
 			user.setUserRegtime(now);
 			user.setStatus(1);
-			user.setRealName(EmojiUtil.toAlias(StrUtil.isBlank(appConnect.getNickName()) ? "" : appConnect.getNickName()));
+			user.setNickName(EmojiUtil.toAlias(StrUtil.isBlank(appConnect.getNickName()) ? "" : appConnect.getNickName()));
 			user.setPic(appConnect.getImageUrl());
 			userMapper.insert(user);
 		} else {
