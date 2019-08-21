@@ -8,19 +8,29 @@
  * 版权所有，侵权必究！
  */
 
-package com.yami.shop.security.token;
+package com.yami.shop.admin.security;
 
+import com.yami.shop.security.token.MyAuthenticationToken;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * 二维码Token
+ * 系统用户账号密码登陆
  */
+@Getter
+@Setter
 @NoArgsConstructor
-public class MiniAppAuthenticationToken extends MyAuthenticationToken {
+public class AdminAuthenticationToken extends MyAuthenticationToken {
 
+    private String sessionUUID;
 
-    public MiniAppAuthenticationToken(UserDetails principal, Object credentials) {
+    private String imageCode;
+
+    public AdminAuthenticationToken(UserDetails principal, Object credentials) {
         super(principal, credentials, principal.getAuthorities());
     }
+
+
 }

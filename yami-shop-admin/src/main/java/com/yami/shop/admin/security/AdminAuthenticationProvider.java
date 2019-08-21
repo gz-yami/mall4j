@@ -8,7 +8,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.yami.shop.security.provider;
+package com.yami.shop.admin.security;
 
 
 import cn.hutool.core.util.StrUtil;
@@ -19,8 +19,8 @@ import com.yami.shop.security.exception.BadCredentialsExceptionBase;
 import com.yami.shop.security.exception.ImageCodeNotMatchExceptionBase;
 import com.yami.shop.security.exception.UsernameNotFoundExceptionBase;
 import com.yami.shop.security.exception.BaseYamiAuth2Exception;
+import com.yami.shop.security.provider.AbstractUserDetailsAuthenticationProvider;
 import com.yami.shop.security.service.YamiUserDetailsService;
-import com.yami.shop.security.token.AdminAuthenticationToken;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
