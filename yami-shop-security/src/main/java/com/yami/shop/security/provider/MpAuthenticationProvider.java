@@ -12,9 +12,9 @@ package com.yami.shop.security.provider;
 
 
 
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.emoji.EmojiUtil;
-import cn.hutool.core.util.BooleanUtil;
 import com.yami.shop.security.enums.App;
 import com.yami.shop.security.exception.UsernameNotFoundExceptionBase;
 import com.yami.shop.security.exception.WxErrorExceptionBase;
@@ -31,13 +31,12 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 /**
  * 微信公众号登陆
  * @author LGH
  */
-@Component
+//@Component
 @AllArgsConstructor
 public class MpAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
