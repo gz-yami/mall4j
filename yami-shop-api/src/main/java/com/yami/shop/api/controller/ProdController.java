@@ -16,6 +16,7 @@ import com.yami.shop.bean.app.dto.TagProductDto;
 import com.yami.shop.bean.model.Product;
 import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.model.Transport;
+import com.yami.shop.common.util.Json;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
@@ -79,8 +80,16 @@ public class ProdController {
         List<Sku> useSkuList = skuList.stream().filter(sku -> sku.getStatus() == 1).collect(Collectors.toList());
         product.setSkuList(useSkuList);
         ProductDto productDto = mapperFacade.map(product, ProductDto.class);
-        Transport transportAndAllItems = transportService.getTransportAndAllItems(product.getDeliveryTemplateId());
-        productDto.setTransport(transportAndAllItems);
+
+
+        // 商品的配送方式
+        Product.DeliveryModeVO deliveryModeVO = Json.parseObject(product.getDeliveryMode(), Product.DeliveryModeVO.class);
+        // 有店铺配送的方式, 且存在运费模板，才返回运费模板的信息，供前端查阅
+        if (deliveryModeVO.getHasShopDelivery()  && product.getDeliveryTemplateId() != null) {
+            Transport transportAndAllItems = transportService.getTransportAndAllItems(product.getDeliveryTemplateId());
+            productDto.setTransport(transportAndAllItems);
+        }
+
         return ResponseEntity.ok(productDto);
     }
 
