@@ -157,14 +157,6 @@
         ORDER BY pt.`seq` DESC
     </select>
 
-    <select id="pageByDiscountId" resultType="com.yami.shop.bean.app.dto.ProductDto">
-       SELECT p.*,sd.`shop_name`
-       FROM tz_discount_prod dp
-       LEFT JOIN tz_prod p ON dp.prod_id = p.prod_id
-       LEFT JOIN tz_shop_detail sd ON p.shop_id = sd.shop_id
-       WHERE p.status= 1 AND dp.discount_id = #{discountId}
-    </select>
-
     <select id="getSearchProdDtoPageByProdName" resultType="com.yami.shop.bean.dto.SearchProdDto">
         select
         p.prod_id,

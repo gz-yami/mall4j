@@ -204,11 +204,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public IPage<ProductDto> pageByDiscountId(Page<ProductDto> page, Long discountId) {
-        return productMapper.pageByDiscountId(page, discountId);
-    }
-
-    @Override
     public IPage<ProductDto> collectionProds(PageParam page, String userId) {
         return productMapper.collectionProds(page, userId);
     }

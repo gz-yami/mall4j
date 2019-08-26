@@ -49,8 +49,6 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     List<TagProductDto> tagProdList();
 
-    IPage<ProductDto> pageByDiscountId(Page<ProductDto> page, @Param("discountId") Long discountId);
-
     /**
      * 查看店铺的所有活动商品
      */

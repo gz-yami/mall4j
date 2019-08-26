@@ -67,7 +67,5 @@ public interface ProductService extends IService<Product> {
 
     List<TagProductDto> tagProdList();
 
-    IPage<ProductDto> pageByDiscountId(Page<ProductDto> page, Long discountId);
-
     IPage<ProductDto> collectionProds(PageParam page, String userId);
 }

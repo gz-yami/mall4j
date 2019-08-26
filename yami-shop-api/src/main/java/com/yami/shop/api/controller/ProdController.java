@@ -128,18 +128,6 @@ public class ProdController {
         return ResponseEntity.ok(productDtoList);
     }
 
-    @GetMapping("/discountProds")
-    @ApiOperation(value = "根据活动id获取活动商品列表", notes = "根据活动id获取活动商品列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "discountId", value = "活动id", required = true, dataType = "Long"),
-    })
-    public ResponseEntity<IPage<ProductDto>> getDiscountProds(
-            @RequestParam(value = "discountId", required = true) Long discountId,
-            PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoList = prodService.pageByDiscountId(page, discountId);
-        return ResponseEntity.ok(productDtoList);
-    }
-
 
 
 }

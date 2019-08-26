@@ -221,12 +221,6 @@ public class ShopCartController {
 
             for (ShopCartItemDiscountDto shopCartItemDiscount : shopCartItemDiscounts) {
                 List<ShopCartItemDto> shopCartItems = shopCartItemDiscount.getShopCartItems();
-                ChooseDiscountItemDto chooseDiscountItemDto = shopCartItemDiscount.getChooseDiscountItemDto();
-
-                // 如果满足优惠活动
-                if (chooseDiscountItemDto != null && chooseDiscountItemDto.getNeedAmount() <= chooseDiscountItemDto.getProdsPrice()) {
-                    reduce = Arith.add(reduce, chooseDiscountItemDto.getReduceAmount());
-                }
 
                 for (ShopCartItemDto shopCartItem : shopCartItems) {
                     count = shopCartItem.getProdCount() + count;
