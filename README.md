@@ -9,7 +9,10 @@
 
 
 ## 授权
-Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权
+
+Mall4j官网 https://www.mall4j.com
+
+Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
 
 ## 项目链接
 
