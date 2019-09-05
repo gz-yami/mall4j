@@ -28,6 +28,5 @@
         SELECT *
         FROM tz_index_img
         ORDER BY seq DESC
-        LIMIT 3
   </select>
 </mapper>
