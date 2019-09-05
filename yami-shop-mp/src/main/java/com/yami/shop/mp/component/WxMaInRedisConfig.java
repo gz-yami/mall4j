@@ -10,7 +10,7 @@
 
 package com.yami.shop.mp.component;
 
-import cn.binarywang.wx.miniapp.config.WxMaInMemoryConfig;
+import cn.binarywang.wx.miniapp.config.impl.WxMaDefaultConfigImpl;
 import com.yami.shop.common.annotation.RedisLock;
 import com.yami.shop.common.util.RedisUtil;
 import com.yami.shop.mp.config.bean.WxMiniApp;
@@ -29,7 +29,7 @@ import java.util.concurrent.locks.Lock;
  * @author LGH
  */
 @Component
-public class WxMaInRedisConfig extends WxMaInMemoryConfig {
+public class WxMaInRedisConfig extends WxMaDefaultConfigImpl {
 
     private static final String ACCESS_TOKEN_KEY = "wxMa:access_token:";
 

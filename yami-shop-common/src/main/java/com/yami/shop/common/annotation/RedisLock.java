@@ -34,7 +34,7 @@ public @interface RedisLock {
 	String key() default "";
 
 	/**
-	 * 过期秒数,默认为5秒
+	 * 过期秒数,默认为5毫秒
 	 *
 	 * @return 轮询锁的时间
 	 */
@@ -45,5 +45,5 @@ public @interface RedisLock {
 	 *
 	 * @return 秒
 	 */
-	TimeUnit timeUnit() default TimeUnit.SECONDS;
+	TimeUnit timeUnit() default TimeUnit.MILLISECONDS;
 }

@@ -14,7 +14,7 @@ import com.yami.shop.common.annotation.RedisLock;
 import com.yami.shop.common.util.RedisUtil;
 import com.yami.shop.mp.config.bean.WxMp;
 import me.chanjar.weixin.common.bean.WxAccessToken;
-import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
+import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
 import me.chanjar.weixin.mp.enums.TicketType;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
  * @author LGH
  */
 @Component
-public class WxMpInRedisConfigStorage extends WxMpInMemoryConfigStorage {
+public class WxMpInRedisConfigStorage extends WxMpDefaultConfigImpl {
 
 	private static final String ACCESS_TOKEN_KEY = "wxMp:access_token:";
 

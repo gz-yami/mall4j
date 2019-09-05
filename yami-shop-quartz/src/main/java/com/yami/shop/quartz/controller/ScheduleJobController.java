@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.quartz.model.ScheduleJob;
 import com.yami.shop.quartz.service.ScheduleJobService;
 import lombok.extern.slf4j.Slf4j;
@@ -76,6 +77,12 @@ public class ScheduleJobController {
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys:schedule:save')")
 	public ResponseEntity<Void> save(@RequestBody @Valid ScheduleJob scheduleJob){
+
+		int dbAlikeCount = scheduleJobService.count(new LambdaQueryWrapper<ScheduleJob>().eq(ScheduleJob::getBeanName, scheduleJob.getBeanName()).eq(ScheduleJob::getMethodName, scheduleJob.getMethodName()));
+		if (dbAlikeCount > 0) {
+			throw new YamiShopBindException("定时任务已存在");
+		}
+
 		scheduleJobService.saveAndStart(scheduleJob);
 		return ResponseEntity.ok().build();
 	}
@@ -87,6 +94,12 @@ public class ScheduleJobController {
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys:schedule:update')")
 	public ResponseEntity<Void> update(@RequestBody @Valid ScheduleJob scheduleJob){
+
+		int dbAlikeCount = scheduleJobService.count(new LambdaQueryWrapper<ScheduleJob>().eq(ScheduleJob::getBeanName, scheduleJob.getBeanName()).eq(ScheduleJob::getMethodName, scheduleJob.getMethodName()).ne(ScheduleJob::getJobId,scheduleJob.getJobId()));
+		if (dbAlikeCount > 0) {
+			throw new YamiShopBindException("定时任务已存在");
+		}
+
 		scheduleJobService.updateScheduleJob(scheduleJob);
 		
 		return ResponseEntity.ok().build();

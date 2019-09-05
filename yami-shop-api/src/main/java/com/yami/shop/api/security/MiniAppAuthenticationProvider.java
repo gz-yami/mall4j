@@ -8,7 +8,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.yami.shop.security.provider;
+package com.yami.shop.api.security;
 
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
@@ -18,9 +18,9 @@ import com.yami.shop.security.enums.App;
 import com.yami.shop.security.exception.UsernameNotFoundExceptionBase;
 import com.yami.shop.security.exception.WxErrorExceptionBase;
 import com.yami.shop.security.model.AppConnect;
+import com.yami.shop.security.provider.AbstractUserDetailsAuthenticationProvider;
 import com.yami.shop.security.service.YamiUser;
 import com.yami.shop.security.service.YamiUserDetailsService;
-import com.yami.shop.security.token.MiniAppAuthenticationToken;
 import com.yami.shop.security.token.MyAuthenticationToken;
 import lombok.AllArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;

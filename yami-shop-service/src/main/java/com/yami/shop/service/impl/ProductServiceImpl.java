@@ -79,10 +79,10 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         productMapper.updateById(product);
         List<Long> dbSkuIds = dbProduct.getSkuList().stream().map(Sku::getSkuId).collect(Collectors.toList());
         // 2019/04/c0244be79909484fb67bc6d5f70cae18.jpg
-        if (!Objects.equals(dbProduct.getPic(), product.getPic()) && StrUtil.isNotBlank(dbProduct.getPic())) {
-            // 删除数据库中的商品图片
-            attachFileService.deleteFile(dbProduct.getPic());
-        }
+//        if (!Objects.equals(dbProduct.getPic(), product.getPic()) && StrUtil.isNotBlank(dbProduct.getPic())) {
+//            // 删除数据库中的商品图片
+//            attachFileService.deleteFile(dbProduct.getPic());
+//        }
         // 将所有该商品的sku标记为已删除状态
         skuMapper.deleteByProdId(product.getProdId());
 
@@ -141,12 +141,12 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
                 .eq(ProdTagReference::getProdId, prodId));
 
         // 删除数据库中的商品图片
-        if (StrUtil.isNotBlank(dbProduct.getImgs())) {
-            String[] imgs = dbProduct.getImgs().split(StrUtil.COMMA);
-            for (String img : imgs) {
-                attachFileService.deleteFile(img);
-            }
-        }
+//        if (StrUtil.isNotBlank(dbProduct.getImgs())) {
+//            String[] imgs = dbProduct.getImgs().split(StrUtil.COMMA);
+//            for (String img : imgs) {
+//                attachFileService.deleteFile(img);
+//            }
+//        }
     }
 
     @Override
@@ -167,11 +167,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public IPage<ProductDto> pageByTagId(Page<ProductDto> page, Long tagId) {
         return productMapper.pageByTagId(page, tagId);
-    }
-
-    @Override
-    public IPage<ProductDto> discountProdList(Page<ProductDto> page) {
-        return productMapper.discountProdList(page);
     }
 
     @Override
@@ -206,11 +201,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public List<TagProductDto> tagProdList() {
         return productMapper.tagProdList();
-    }
-
-    @Override
-    public IPage<ProductDto> pageByDiscountId(Page<ProductDto> page, Long discountId) {
-        return productMapper.pageByDiscountId(page, discountId);
     }
 
     @Override

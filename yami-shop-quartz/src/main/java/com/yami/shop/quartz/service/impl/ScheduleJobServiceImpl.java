@@ -16,6 +16,7 @@ import com.yami.shop.quartz.dao.ScheduleJobMapper;
 import com.yami.shop.quartz.enums.ScheduleStatus;
 import com.yami.shop.quartz.model.ScheduleJob;
 import com.yami.shop.quartz.service.ScheduleJobService;
+import org.quartz.CronTrigger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +43,11 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, Sched
 	@PostConstruct
 	public void init(){
 		list().forEach(scheduleJob -> {
-			if (ScheduleStatus.NORMAL.getType().equals(scheduleJob.getStatus())) {
+			CronTrigger trigger = scheduleManager.getCronTrigger(scheduleJob);
+			// 如果定时任务不存在，则创建定时任务
+			if (trigger == null) {
+				scheduleManager.createScheduleJob(scheduleJob);
+			} else if (ScheduleStatus.NORMAL.getType().equals(scheduleJob.getStatus())) {
 				scheduleManager.resumeJob(scheduleJob);
 			} else if (ScheduleStatus.PAUSE.getType().equals(scheduleJob.getStatus())) {
 				scheduleManager.pauseJob(scheduleJob);

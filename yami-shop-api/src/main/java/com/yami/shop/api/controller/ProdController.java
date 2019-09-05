@@ -10,34 +10,31 @@
 
 package com.yami.shop.api.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.common.util.PageParam;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.yami.shop.bean.app.dto.SkuDto;
-import com.yami.shop.bean.app.dto.TagProductDto;
-import com.yami.shop.bean.model.Basket;
-import com.yami.shop.bean.model.Sku;
-import com.yami.shop.common.exception.YamiShopBindException;
-import com.yami.shop.security.service.YamiUser;
-import com.yami.shop.service.*;
-import io.swagger.annotations.ApiImplicitParams;
-import org.apache.ibatis.logging.LogException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.yami.shop.bean.app.dto.ProductDto;
+import com.yami.shop.bean.app.dto.TagProductDto;
 import com.yami.shop.bean.model.Product;
+import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.model.Transport;
-
+import com.yami.shop.common.util.Json;
+import com.yami.shop.common.util.PageParam;
+import com.yami.shop.service.ProductService;
+import com.yami.shop.service.SkuService;
+import com.yami.shop.service.TransportService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import ma.glasnost.orika.MapperFacade;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/prod")
@@ -83,8 +80,16 @@ public class ProdController {
         List<Sku> useSkuList = skuList.stream().filter(sku -> sku.getStatus() == 1).collect(Collectors.toList());
         product.setSkuList(useSkuList);
         ProductDto productDto = mapperFacade.map(product, ProductDto.class);
-        Transport transportAndAllItems = transportService.getTransportAndAllItems(product.getDeliveryTemplateId());
-        productDto.setTransport(transportAndAllItems);
+
+
+        // 商品的配送方式
+        Product.DeliveryModeVO deliveryModeVO = Json.parseObject(product.getDeliveryMode(), Product.DeliveryModeVO.class);
+        // 有店铺配送的方式, 且存在运费模板，才返回运费模板的信息，供前端查阅
+        if (deliveryModeVO.getHasShopDelivery()  && product.getDeliveryTemplateId() != null) {
+            Transport transportAndAllItems = transportService.getTransportAndAllItems(product.getDeliveryTemplateId());
+            productDto.setTransport(transportAndAllItems);
+        }
+
         return ResponseEntity.ok(productDto);
     }
 
@@ -108,15 +113,6 @@ public class ProdController {
         return ResponseEntity.ok(productDtoIPage);
     }
 
-    @GetMapping("/discountProdList")
-    @ApiOperation(value = "限时特惠", notes = "获取限时特惠商品列表")
-    @ApiImplicitParams({
-    })
-    public ResponseEntity<IPage<ProductDto>> discountProdList(PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoIPage = prodService.discountProdList(page);
-        return ResponseEntity.ok(productDtoIPage);
-    }
-
     @GetMapping("/moreBuyProdList")
     @ApiOperation(value = "每日疯抢", notes = "获取销量最多的商品列表")
     @ApiImplicitParams({})
@@ -129,18 +125,6 @@ public class ProdController {
     @ApiOperation(value = "首页所有标签商品接口", notes = "获取首页所有标签商品接口")
     public ResponseEntity<List<TagProductDto>> getTagProdList() {
         List<TagProductDto> productDtoList = prodService.tagProdList();
-        return ResponseEntity.ok(productDtoList);
-    }
-
-    @GetMapping("/discountProds")
-    @ApiOperation(value = "根据活动id获取活动商品列表", notes = "根据活动id获取活动商品列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "discountId", value = "活动id", required = true, dataType = "Long"),
-    })
-    public ResponseEntity<IPage<ProductDto>> getDiscountProds(
-            @RequestParam(value = "discountId", required = true) Long discountId,
-            PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoList = prodService.pageByDiscountId(page, discountId);
         return ResponseEntity.ok(productDtoList);
     }
 

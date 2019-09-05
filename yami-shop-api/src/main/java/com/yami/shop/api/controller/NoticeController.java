@@ -10,25 +10,22 @@
 
 package com.yami.shop.api.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.common.util.PageParam;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.sun.tracing.dtrace.ArgsAttributes;
-import com.yami.shop.bean.app.dto.IndexImgDto;
 import com.yami.shop.bean.app.dto.NoticeDto;
-import com.yami.shop.bean.app.dto.ProductDto;
-import com.yami.shop.bean.model.IndexImg;
 import com.yami.shop.bean.model.Notice;
+import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.NoticeService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

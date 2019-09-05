@@ -45,7 +45,7 @@ public class ScheduleManager {
     /**
      * 获取表达式触发器
      */
-    private CronTrigger getCronTrigger(ScheduleJob scheduleJob) {
+    public CronTrigger getCronTrigger(ScheduleJob scheduleJob) {
         try {
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(scheduleJob));
         } catch (SchedulerException e) {
@@ -93,6 +93,12 @@ public class ScheduleManager {
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression()).withMisfireHandlingInstructionFireAndProceed();
 
             CronTrigger trigger = getCronTrigger(scheduleJob);
+
+            // 如果定时任务不存在，则创建定时任务
+            if (trigger == null) {
+                createScheduleJob(scheduleJob);
+                return;
+            }
 
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();

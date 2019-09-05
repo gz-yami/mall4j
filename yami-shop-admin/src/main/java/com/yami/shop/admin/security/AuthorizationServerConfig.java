@@ -126,7 +126,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);//支持刷新token
         tokenServices.setReuseRefreshToken(true);
-        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+//        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
         tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
         addUserDetailsService(tokenServices);
         return tokenServices;

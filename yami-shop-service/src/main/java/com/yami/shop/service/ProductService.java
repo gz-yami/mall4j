@@ -57,8 +57,6 @@ public interface ProductService extends IService<Product> {
 
     IPage<ProductDto> pageByTagId(Page<ProductDto> page, Long tagId);
 
-    IPage<ProductDto> discountProdList(Page<ProductDto> page);
-
     IPage<ProductDto> moreBuyProdList(Page<ProductDto> page);
 
     IPage<ProductDto> pageByCategoryId(Page<ProductDto> page, Long categoryId);
@@ -68,8 +66,6 @@ public interface ProductService extends IService<Product> {
     IPage<SearchProdDto> getSearchProdDtoPageByProdName(Page page, String prodName, Integer sort, Integer orderBy);
 
     List<TagProductDto> tagProdList();
-
-    IPage<ProductDto> pageByDiscountId(Page<ProductDto> page, Long discountId);
 
     IPage<ProductDto> collectionProds(PageParam page, String userId);
 }

@@ -17,6 +17,7 @@ import com.yami.shop.dao.UserMapper;
 import com.yami.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -33,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
     @Override
-    @CacheEvict(cacheNames="user",key="#userId")
+    @Cacheable(cacheNames="user",key="#userId")
     public User getUserByUserId(String userId) {
         return userMapper.selectById(userId);
     }
