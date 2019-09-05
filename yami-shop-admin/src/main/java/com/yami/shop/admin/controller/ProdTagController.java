@@ -125,9 +125,8 @@ public class ProdTagController {
     }
 
     @GetMapping("/listTagList")
-    @PreAuthorize("@pms.hasPermission('prod:prodTag:update')")
     public ResponseEntity<List<ProdTag>> listTagList() {
-        return ResponseEntity.ok(prodTagService.list());
+        return ResponseEntity.ok(prodTagService.listProdTag());
 
     }
 
