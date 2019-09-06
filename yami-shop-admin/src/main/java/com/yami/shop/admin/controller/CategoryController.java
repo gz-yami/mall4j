@@ -109,7 +109,7 @@ public class CategoryController {
 	@DeleteMapping("/{categoryId}")
 	@PreAuthorize("@pms.hasPermission('prod:category:delete')")
 	public ResponseEntity<String> delete(@PathVariable("categoryId") Long categoryId){
-		if (CollectionUtil.isNotEmpty(categoryService.listByParentId(categoryId))) {
+		if (categoryService.count(new LambdaQueryWrapper<Category>().eq(Category::getParentId,categoryId)) >0) {
 			return ResponseEntity.badRequest().body("请删除子分类，再删除该分类");
 		}
 		categoryService.deleteCategroy(categoryId);
