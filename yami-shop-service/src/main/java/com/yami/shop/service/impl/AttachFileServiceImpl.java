@@ -33,6 +33,7 @@ import com.yami.shop.service.AttachFileService;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.RandomUtil;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -58,6 +59,7 @@ public class AttachFileServiceImpl extends ServiceImpl<AttachFileMapper, AttachF
     public final static String NORM_MONTH_PATTERN = "yyyy/MM/";
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public String uploadFile(byte[] bytes,String originalName) throws QiniuException {
 		String extName = FileUtil.extName(originalName);
 		String fileName =DateUtil.format(new Date(), NORM_MONTH_PATTERN)+ IdUtil.simpleUUID() + "." + extName;
