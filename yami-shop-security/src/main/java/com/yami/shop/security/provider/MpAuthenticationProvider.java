@@ -45,10 +45,6 @@ public class MpAuthenticationProvider extends AbstractUserDetailsAuthenticationP
     private final WxMpService wxMpService;
 
 
-    @Override
-    protected void additionalAuthenticationChecks(UserDetails var1, Authentication authentication) throws AuthenticationException {
-
-    }
 
     @Override
     protected Authentication createSuccessAuthentication(Authentication authentication, UserDetails user) {
