@@ -35,7 +35,7 @@ import java.util.Date;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
 	private SysUserRoleMapper sysUserRoleMapper;
-	
+
 	private SysUserMapper sysUserMapper;
 
 	@Override
@@ -52,11 +52,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	@CacheEvict(cacheNames="sys_user",key="#user.userId")
 	public void updateUserAndUserRole(SysUser user) {
 		// 更新用户
 		sysUserMapper.updateById(user);
-		
+
 		//先删除用户与角色关系
 		sysUserRoleMapper.deleteByUserId(user.getUserId());
 
@@ -86,14 +85,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	}
 
 	@Override
-	@Cacheable(cacheNames="sys_user",key="#userId")
 	public SysUser getSysUserById(Long userId) {
 		return sysUserMapper.selectById(userId);
-	}
-
-	@Override
-	@CacheEvict(cacheNames="sys_user",key="#userId")
-	public void evictSysUserById(Long userId) {
-
 	}
 }

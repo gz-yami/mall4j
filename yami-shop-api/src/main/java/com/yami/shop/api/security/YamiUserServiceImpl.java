@@ -75,22 +75,15 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 
 		String cacheKey = app.value() + StrUtil.COLON + bizUserId;
 
-		YamiUser yamiUser = cacheManagerUtil.getCache("yami_user", cacheKey);
-		if (yamiUser != null) {
-			return yamiUser;
-		}
-
-
 		User user = userMapper.getUserByBizUserId(app.value(), bizUserId);
 		if (user == null) {
 			throw new UsernameNotFoundExceptionBase("无法获取用户信息");
 		}
 		String name = StrUtil.isBlank(user.getRealName()) ? user.getNickName() : user.getRealName();
-		yamiUser = new YamiUser(user.getUserId(), bizUserId, app.value(), user.getStatus() == 1);
+		YamiUser yamiUser = new YamiUser(user.getUserId(), bizUserId, app.value(), user.getStatus() == 1);
 		yamiUser.setName(name);
 		yamiUser.setPic(user.getPic());
 
-		cacheManagerUtil.putCache("yami_sys_user",cacheKey, yamiUser);
 		return yamiUser;
 	}
 
