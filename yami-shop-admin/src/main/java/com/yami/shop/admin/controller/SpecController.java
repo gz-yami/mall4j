@@ -39,6 +39,8 @@ import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.service.ProdPropService;
 import com.yami.shop.service.ProdPropValueService;
 
+import javax.validation.Valid;
+
 /**
  * 规格管理
  *
@@ -89,7 +91,7 @@ public class SpecController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('prod:spec:save')")
-    public ResponseEntity<Void> save(@RequestBody ProdProp prodProp) {
+    public ResponseEntity<Void> save(@Valid @RequestBody ProdProp prodProp) {
         prodProp.setRule(ProdPropRule.SPEC.value());
         prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
         prodPropService.saveProdPropAndValues(prodProp);
@@ -101,7 +103,7 @@ public class SpecController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('prod:spec:update')")
-    public ResponseEntity<Void> update(@RequestBody ProdProp prodProp) {
+    public ResponseEntity<Void> update(@Valid @RequestBody ProdProp prodProp) {
         ProdProp dbProdProp = prodPropService.getById(prodProp.getPropId());
         if (!Objects.equals(dbProdProp.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("没有权限获取该商品规格信息");

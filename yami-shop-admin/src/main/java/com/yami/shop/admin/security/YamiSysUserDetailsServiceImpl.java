@@ -60,14 +60,7 @@ public class YamiSysUserDetailsServiceImpl implements YamiUserDetailsService {
 	@Override
 	@SneakyThrows
 	public YamiSysUser loadUserByUsername(String username) {
-		YamiSysUser userDetails = cacheManagerUtil.getCache("yami_sys_user", username);
-		if (userDetails != null) {
-			return userDetails;
-		}
-
-		userDetails = getUserDetails(username);
-		cacheManagerUtil.putCache("yami_sys_user",username, userDetails);
-		return userDetails;
+		return getUserDetails(username);
 	}
 
 

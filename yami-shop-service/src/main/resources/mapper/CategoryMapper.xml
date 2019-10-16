@@ -46,7 +46,7 @@
 
 
   <select id="listByParentId" resultType="com.yami.shop.bean.model.Category">
-  	select category_id,category_name,`seq`,`status`,pic from tz_category where parent_id = #{parentId} order by seq
+  	select category_id,category_name,`seq`,`status`,pic from tz_category where parent_id = #{parentId} and `status` = 1 order by seq
   </select>
 
   <select id="tableCategory" resultType="com.yami.shop.bean.model.Category">

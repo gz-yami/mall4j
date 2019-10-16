@@ -42,11 +42,6 @@ public class MiniAppAuthenticationProvider extends AbstractUserDetailsAuthentica
     private final WxMaService wxMaService;
 
     @Override
-    protected void additionalAuthenticationChecks(UserDetails var1, Authentication authentication) throws AuthenticationException {
-
-    }
-
-    @Override
     protected Authentication createSuccessAuthentication(Authentication authentication, UserDetails user) {
         MiniAppAuthenticationToken result = new MiniAppAuthenticationToken(user, authentication.getCredentials());
         result.setDetails(authentication.getDetails());

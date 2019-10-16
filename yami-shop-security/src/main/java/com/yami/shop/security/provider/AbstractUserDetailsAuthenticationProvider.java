@@ -28,8 +28,6 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
 
 
 
-    protected abstract void additionalAuthenticationChecks(UserDetails var1, Authentication var2) throws AuthenticationException;
-
     @Override
     public final void afterPropertiesSet() {
     }
@@ -46,8 +44,6 @@ public abstract class AbstractUserDetailsAuthenticationProvider implements Authe
 
             throw var6;
         }
-
-        this.additionalAuthenticationChecks(user, authentication);
 
         return this.createSuccessAuthentication(authentication, user);
     }

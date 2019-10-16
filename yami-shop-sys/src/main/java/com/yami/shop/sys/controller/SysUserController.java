@@ -185,10 +185,6 @@ public class SysUserController {
 			return ResponseEntity.badRequest().body("当前用户不能删除");
 		}
 		sysUserService.deleteBatch(userIds,SecurityUtils.getSysUser().getShopId());
-		// 删除缓存
-		for (Long userId : userIds) {
-			sysUserService.evictSysUserById(userId);
-		}
 		return ResponseEntity.ok().build();
 	}
 

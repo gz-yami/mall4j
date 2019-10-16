@@ -12,12 +12,15 @@ package com.yami.shop.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yami.shop.bean.model.ProdTagReference;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.bean.model.ProdTag;
 import com.yami.shop.common.annotation.SysLog;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.service.ProdTagReferenceService;
 import com.yami.shop.service.ProdTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +43,9 @@ public class ProdTagController {
 
     @Autowired
     private ProdTagService prodTagService;
+
+    @Autowired
+    private ProdTagReferenceService prodTagReferenceService;
 
     /**
      * 分页查询
@@ -120,14 +126,20 @@ public class ProdTagController {
         if (prodTag.getIsDefault() != 0) {
             throw new YamiShopBindException("默认标签不能删除");
         }
+        // 校验分组是否已经使用过
+        int count = prodTagReferenceService.count(new LambdaUpdateWrapper<ProdTagReference>()
+                .eq(ProdTagReference::getStatus, 1)
+                .eq(ProdTagReference::getTagId, id));
+        if (count > 0) {
+            throw new YamiShopBindException("该分组已被商品使用，无法进行删除操作");
+        }
         prodTagService.removeProdTag();
         return ResponseEntity.ok(prodTagService.removeById(id));
     }
 
     @GetMapping("/listTagList")
-    @PreAuthorize("@pms.hasPermission('prod:prodTag:update')")
     public ResponseEntity<List<ProdTag>> listTagList() {
-        return ResponseEntity.ok(prodTagService.list());
+        return ResponseEntity.ok(prodTagService.listProdTag());
 
     }
 

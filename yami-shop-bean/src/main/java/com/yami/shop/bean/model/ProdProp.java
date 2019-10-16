@@ -16,6 +16,10 @@ import java.util.List;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Data
 @TableName("tz_prod_prop")
 public class ProdProp implements Serializable {
@@ -30,7 +34,7 @@ public class ProdProp implements Serializable {
     /**
      * 属性名称
      */
-
+    @NotBlank(message = "属性名称不能为空")
     private String propName;
 
     /**
@@ -44,6 +48,7 @@ public class ProdProp implements Serializable {
      * 属性值
      */
     @TableField(exist=false)
+    @NotEmpty(message="规格属性值不能为空")
     private List<ProdPropValue> prodPropValues;
 
 }

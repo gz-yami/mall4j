@@ -30,7 +30,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 //@ConditionalOnBean(DataSource.class)
-@MapperScan({"com.yami.shop.dao","com.yami.shop.**.dao"})
+@MapperScan({"com.yami.shop.**.dao"})
 public class MybatisPlusConfig {
 
     /**

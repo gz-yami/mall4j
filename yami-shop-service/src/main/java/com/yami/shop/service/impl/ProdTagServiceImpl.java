@@ -37,7 +37,9 @@ public class ProdTagServiceImpl extends ServiceImpl<ProdTagMapper, ProdTag> impl
     @Override
     @Cacheable(cacheNames = "prodTag", key = "'prodTag'")
     public List<ProdTag> listProdTag() {
-        return prodTagMapper.selectList(new LambdaQueryWrapper<ProdTag>().orderByDesc(ProdTag::getSeq));
+        return prodTagMapper.selectList(new LambdaQueryWrapper<ProdTag>()
+                .eq(ProdTag::getStatus, 1)
+                .orderByDesc(ProdTag::getSeq));
     }
 
     @Override

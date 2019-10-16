@@ -19,7 +19,7 @@ import com.yami.shop.sys.model.SysUser;
  * @author lgh
  */
 public interface SysUserService extends IService<SysUser> {
-	
+
 	/**
 	 * 修改密码
 	 * @param userId       用户ID
@@ -32,8 +32,8 @@ public interface SysUserService extends IService<SysUser> {
 	 * @param user
 	 */
 	void saveUserAndUserRole(SysUser user);
-	
-	
+
+
 	/**
 	 * 更新用户与用户角色关系
 	 * @param user
@@ -60,10 +60,4 @@ public interface SysUserService extends IService<SysUser> {
 	 */
 	SysUser getSysUserById(Long userId);
 
-	/**
-	 * 根据用户id删除用户缓存信息
-	 * @param userId
-	 * @return
-	 */
-	void evictSysUserById(Long userId);
 }

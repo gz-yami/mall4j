@@ -87,17 +87,17 @@ public class YamiTokenServices implements AuthorizationServerTokenServices, Reso
         OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication);
         OAuth2RefreshToken refreshToken = null;
         // 如果有token，直接删除，更新token，避免出现缓存问题
-        if (existingAccessToken != null) {
-            if (existingAccessToken.getRefreshToken() != null) {
-                refreshToken = existingAccessToken.getRefreshToken();
-                // The token store could remove the refresh token when the
-                // access token is removed, but we want to
-                // be sure...
-                tokenStore.removeRefreshToken(refreshToken);
-            }
-            tokenStore.removeAccessToken(existingAccessToken);
-
-        }
+//        if (existingAccessToken != null) {
+//            if (existingAccessToken.getRefreshToken() != null) {
+//                refreshToken = existingAccessToken.getRefreshToken();
+//                // The token store could remove the refresh token when the
+//                // access token is removed, but we want to
+//                // be sure...
+//                tokenStore.removeRefreshToken(refreshToken);
+//            }
+//            tokenStore.removeAccessToken(existingAccessToken);
+//
+//        }
 
         // Only create a new refresh token if there wasn't an existing one
         // associated with an expired access token.

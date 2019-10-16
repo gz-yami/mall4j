@@ -63,10 +63,6 @@ public class SysLoginController {
 	 */
 	@PostMapping(value = "/sys/logout")
 	public ResponseEntity<String> logout() {
-		Cache cache = cacheManager.getCache("yami_sys_user");
-		if (cache != null) {
-			cache.evict(SecurityUtils.getSysUser().getUsername());
-		}
 		SecurityContextHolder.clearContext();
 		return ResponseEntity.ok().build();
 	}

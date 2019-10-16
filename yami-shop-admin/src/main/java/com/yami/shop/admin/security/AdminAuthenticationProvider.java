@@ -41,20 +41,7 @@ public class AdminAuthenticationProvider extends AbstractUserDetailsAuthenticati
 
     @Override
     protected UserDetails retrieveUser(String username, Authentication authentication) throws BaseYamiAuth2Exception {
-        UserDetails user;
-        try {
-            user = yamiUserDetailsService.loadUserByUsername(username);
-        } catch (UsernameNotFoundExceptionBase var6) {
-            throw new UsernameNotFoundExceptionBase("账号或密码不正确");
-        }
-        if (!user.isEnabled()) {
-            throw new UsernameNotFoundExceptionBase("账号已被锁定,请联系管理员");
-        }
-        return user;
-    }
 
-    @Override
-    protected void additionalAuthenticationChecks(UserDetails sysUser, Authentication authentication) throws BaseYamiAuth2Exception {
         AdminAuthenticationToken adminAuthenticationToken = (AdminAuthenticationToken) authentication;
 
         String kaptchaKey = SecurityConstants.SPRING_SECURITY_RESTFUL_IMAGE_CODE + adminAuthenticationToken.getSessionUUID();
@@ -67,16 +54,27 @@ public class AdminAuthenticationProvider extends AbstractUserDetailsAuthenticati
             throw new ImageCodeNotMatchExceptionBase("验证码有误");
         }
 
+        UserDetails user;
+        try {
+            user = yamiUserDetailsService.loadUserByUsername(username);
+        } catch (UsernameNotFoundExceptionBase var6) {
+            throw new UsernameNotFoundExceptionBase("账号或密码不正确");
+        }
 
-
-        String encodedPassword = sysUser.getPassword();
+        String encodedPassword = user.getPassword();
         String rawPassword = authentication.getCredentials().toString();
 
         // 密码不正确
         if (!passwordEncoder.matches(rawPassword,encodedPassword)){
             throw new BadCredentialsExceptionBase("账号或密码不正确");
         }
+
+        if (!user.isEnabled()) {
+            throw new UsernameNotFoundExceptionBase("账号已被锁定,请联系管理员");
+        }
+        return user;
     }
+
 
     @Override
     protected Authentication createSuccessAuthentication(Authentication authentication, UserDetails user) {

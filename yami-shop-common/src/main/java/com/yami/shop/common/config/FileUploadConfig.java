@@ -10,6 +10,7 @@
 
 package com.yami.shop.common.config;
 
+import com.yami.shop.common.enums.QiniuZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,8 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import com.yami.shop.common.bean.Qiniu;
 
+import java.util.Objects;
+
 /**
  * 文件上传配置
  * @author lgh
@@ -27,16 +30,28 @@ import com.yami.shop.common.bean.Qiniu;
 @Configuration
 public class FileUploadConfig {
 
-	
+
 	@Autowired
 	private Qiniu qiniu;
-	
+
     /**
-     * 华南机房
+     * 根据配置文件选择机房
      */
     @Bean
     public com.qiniu.storage.Configuration qiniuConfig() {
-        return new com.qiniu.storage.Configuration(Zone.zone2());
+        Zone zone = null;
+        if (Objects.equals(qiniu.getZone(), QiniuZone.HUA_BEI)) {
+            zone = Zone.huabei();
+        } else if (Objects.equals(qiniu.getZone(), QiniuZone.HUA_DONG)) {
+            zone = Zone.huadong();
+        } else if (Objects.equals(qiniu.getZone(), QiniuZone.HUA_NAN)) {
+            zone = Zone.huanan();
+        } else if (Objects.equals(qiniu.getZone(), QiniuZone.BEI_MEI)) {
+            zone = Zone.beimei();
+        } else if (Objects.equals(qiniu.getZone(), QiniuZone.XIN_JIA_PO)) {
+            zone = Zone.xinjiapo();
+        }
+        return new com.qiniu.storage.Configuration(zone);
     }
 
     /**
@@ -55,7 +70,7 @@ public class FileUploadConfig {
     public Auth auth() {
         return Auth.create(qiniu.getAccessKey(), qiniu.getSecretKey());
     }
-    
+
     /**
      * 构建七牛空间管理实例
      */

@@ -10,6 +10,7 @@
 
 package com.yami.shop.common.bean;
 
+import com.yami.shop.common.enums.QiniuZone;
 import lombok.Data;
 
 /**
@@ -27,4 +28,5 @@ public class Qiniu {
 
 	private String resourcesUrl;
 
+	private QiniuZone zone;
 }
