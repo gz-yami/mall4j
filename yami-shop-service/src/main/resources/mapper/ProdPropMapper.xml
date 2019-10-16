@@ -38,7 +38,7 @@
             <if test="prodProp.propName != null and prodProp.propName != ''">
                 and prop_name like concat('%',#{prodProp.propName},'%')
             </if>
-            LIMIT #{adapter.begin} , #{adapter.end}
+            LIMIT #{adapter.begin} , #{adapter.size}
         ) pp
         left join tz_prod_prop_value ppv
         on pp.prop_id = ppv.prop_id

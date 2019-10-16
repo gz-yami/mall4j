@@ -19,11 +19,11 @@ public class PageAdapter{
 
     private int begin;
 
-    private int end;
+    private int size;
 
     public PageAdapter(Page page) {
         int[] startEnd = PageUtil.transToStartEnd((int) page.getCurrent(), (int) page.getSize());
         this.begin = startEnd[0];
-        this.end = startEnd[1];
+        this.size = (int)page.getSize();
     }
 }

@@ -254,7 +254,7 @@
             </if>
         </where>
         ORDER BY update_time DESC
-        LIMIT #{adapter.begin} , #{adapter.end}
+        LIMIT #{adapter.begin} , #{adapter.size}
         ) AS o
         LEFT JOIN tz_order_item oi
         ON o.order_number = oi.order_number
@@ -315,7 +315,7 @@
             AND temp.status = #{status}
         </if>
         ORDER BY temp.create_time DESC
-        LIMIT #{adapter.begin} , #{adapter.end}
+        LIMIT #{adapter.begin} , #{adapter.size}
         )AS o
         LEFT JOIN tz_order_item oi ON o.order_number = oi.order_number
     </select>
