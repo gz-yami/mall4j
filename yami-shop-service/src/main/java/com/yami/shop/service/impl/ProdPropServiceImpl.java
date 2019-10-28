@@ -72,7 +72,7 @@ public class ProdPropServiceImpl extends ServiceImpl<ProdPropMapper, ProdProp> i
     @Transactional(rollbackFor = Exception.class)
     public void updateProdPropAndValues(ProdProp prodProp) {
         ProdProp dbProdProp = prodPropMapper.getProdPropByPropNameAndShopId(prodProp.getPropName(), prodProp.getShopId(), prodProp.getRule());
-        if (dbProdProp != null && !Objects.equals(prodProp.getPropName(), dbProdProp.getPropName())) {
+        if (dbProdProp != null && !Objects.equals(prodProp.getPropId(), dbProdProp.getPropId())) {
             throw new YamiShopBindException("已有相同名称规格");
         }
         prodPropMapper.updateById(prodProp);
