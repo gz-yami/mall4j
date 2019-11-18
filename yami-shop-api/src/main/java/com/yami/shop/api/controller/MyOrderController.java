@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yami.shop.bean.enums.OrderStatus;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.bean.app.dto.*;
@@ -141,6 +142,9 @@ public class MyOrderController {
         if (!Objects.equals(order.getUserId(), userId)) {
             throw new YamiShopBindException("你没有权限获取该订单信息");
         }
+        if (!Objects.equals(order.getStatus(), OrderStatus.UNPAY.value())) {
+            throw new YamiShopBindException("订单已支付，无法取消订单");
+        }
         List<OrderItem> orderItems = orderItemService.getOrderItemsByOrderNumber(orderNumber);
         order.setOrderItems(orderItems);
         // 取消订单
@@ -165,6 +169,9 @@ public class MyOrderController {
         Order order = orderService.getOrderByOrderNumber(orderNumber);
         if (!Objects.equals(order.getUserId(), userId)) {
             throw new YamiShopBindException("你没有权限获取该订单信息");
+        }
+        if (!Objects.equals(order.getStatus(), OrderStatus.CONSIGNMENT.value())) {
+            throw new YamiShopBindException("订单未发货，无法确认收货");
         }
         List<OrderItem> orderItems = orderItemService.getOrderItemsByOrderNumber(orderNumber);
         order.setOrderItems(orderItems);
@@ -193,6 +200,9 @@ public class MyOrderController {
         }
         if (!Objects.equals(order.getUserId(), userId)) {
             throw new YamiShopBindException("你没有权限获取该订单信息");
+        }
+        if (!Objects.equals(order.getStatus(), OrderStatus.SUCCESS.value()) || !Objects.equals(order.getStatus(), OrderStatus.CLOSE.value()) ) {
+            throw new YamiShopBindException("订单未完成或未关闭，无法删除订单");
         }
 
         // 删除订单
