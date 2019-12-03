@@ -25,5 +25,5 @@ public interface IndexImgService extends IService<IndexImg> {
 
     List<IndexImg> listIndexImgs();
 
-    void removeIndexImgs();
+    void removeIndexImgCache();
 }

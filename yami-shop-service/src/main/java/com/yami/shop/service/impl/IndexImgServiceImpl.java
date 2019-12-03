@@ -45,6 +45,6 @@ public class IndexImgServiceImpl extends ServiceImpl<IndexImgMapper, IndexImg> i
 
     @Override
     @CacheEvict(cacheNames = "indexImg", key = "'indexImg'")
-    public void removeIndexImgs() {
+    public void removeIndexImgCache() {
     }
 }
