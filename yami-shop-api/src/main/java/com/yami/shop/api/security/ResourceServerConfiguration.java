@@ -10,7 +10,6 @@
 
 package com.yami.shop.api.security;
 
-import com.yami.shop.security.filter.LoginAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

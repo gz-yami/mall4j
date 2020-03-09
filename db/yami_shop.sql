@@ -251,7 +251,7 @@ CREATE TABLE `tz_app_connect` (
 
 /*Data for the table `tz_app_connect` */
 
-insert  into `tz_app_connect`(`id`,`user_id`,`app_id`,`nick_name`,`image_url`,`biz_user_id`,`biz_unionid`) values 
+insert  into `tz_app_connect`(`id`,`user_id`,`app_id`,`nick_name`,`image_url`,`biz_user_id`,`biz_unionid`) values
 (48,'51540df5255e4d22903b0f83921095ff',1,NULL,NULL,'o-lgc5CUDIn2nkk8512hKumBnjMI','o92Yz1cLnHuo70epfneTG8SaRY0c'),
 (49,'5f159317be5b4dc4bf3188f1a3da0369',1,NULL,NULL,'o-lgc5IHLX-RuR1aw5qwP9bpGDuQ','o92Yz1bmhLV8CKMwQkuPk5C8lFfg');
 
@@ -270,7 +270,7 @@ CREATE TABLE `tz_area` (
 
 /*Data for the table `tz_area` */
 
-insert  into `tz_area`(`area_id`,`area_name`,`parent_id`,`level`) values 
+insert  into `tz_area`(`area_id`,`area_name`,`parent_id`,`level`) values
 (110000000000,'北京市',0,1),
 (110100000000,'市辖区',110000000000,2),
 (110101000000,'东城区',110100000000,3),
@@ -4004,7 +4004,7 @@ CREATE TABLE `tz_attach_file` (
 
 /*Data for the table `tz_attach_file` */
 
-insert  into `tz_attach_file`(`file_id`,`file_path`,`file_type`,`file_size`,`upload_time`,`file_join_id`,`file_join_type`) values 
+insert  into `tz_attach_file`(`file_id`,`file_path`,`file_type`,`file_size`,`upload_time`,`file_join_id`,`file_join_type`) values
 (1,'2019/07/6aeea212368e4796ad83e17381d62c38.png','png',26409,'2019-07-01 17:26:44',NULL,NULL),
 (2,'2019/07/44097d528be24d48bf54eb0bd596ebc0.jpg','jpg',22379,'2019-07-02 11:30:16',NULL,NULL),
 (3,'2019/07/ec73013a82d44306ac477c7bfbaad209.jpg','jpg',41935,'2019-07-02 11:30:26',NULL,NULL),
@@ -4081,7 +4081,7 @@ CREATE TABLE `tz_category` (
 
 /*Data for the table `tz_category` */
 
-insert  into `tz_category`(`category_id`,`shop_id`,`parent_id`,`category_name`,`icon`,`pic`,`seq`,`status`,`rec_time`,`grade`,`update_time`) values 
+insert  into `tz_category`(`category_id`,`shop_id`,`parent_id`,`category_name`,`icon`,`pic`,`seq`,`status`,`rec_time`,`grade`,`update_time`) values
 (85,1,0,'手机数码',NULL,'2019/04/4f148d81d60941b695cb77370a073653.jpg',1,1,'2019-04-21 17:28:32',0,'2019-04-27 11:22:09'),
 (87,1,0,'美妆护肤',NULL,'2019/04/84f1a591a9ed46f68d46eee55c130b34.jpg',1,1,'2019-04-21 17:30:45',0,'2019-04-27 10:46:12'),
 (88,1,0,'运动服饰',NULL,'2019/04/68f081f04c2644319d882a8828f4741c.jpg',1,1,'2019-04-21 17:31:12',0,'2019-04-27 10:38:31'),
@@ -4136,7 +4136,7 @@ CREATE TABLE `tz_delivery` (
 
 /*Data for the table `tz_delivery` */
 
-insert  into `tz_delivery`(`dvy_id`,`dvy_name`,`company_home_url`,`rec_time`,`modify_time`,`query_url`) values 
+insert  into `tz_delivery`(`dvy_id`,`dvy_name`,`company_home_url`,`rec_time`,`modify_time`,`query_url`) values
 (14,'顺丰快递公司','http://www.sf-express.com','2015-08-20 11:58:03','2017-03-22 17:12:27','http://www.kuaidi100.com/query?type=shunfeng&postid={dvyFlowId}&id=11'),
 (15,'申通快递公司','http://www.sto-express.com','2015-08-20 11:58:24','2015-08-20 12:04:23','http://www.kuaidi100.com/query?type=shentong&postid={dvyFlowId}&id=11'),
 (16,'中通速递','http://www.zto.cn','2015-08-20 11:58:48','2015-08-20 12:04:31','http://www.kuaidi100.com/query?type=zhongtong&postid={dvyFlowId}&id=11'),
@@ -4194,7 +4194,7 @@ CREATE TABLE `tz_index_img` (
 
 /*Data for the table `tz_index_img` */
 
-insert  into `tz_index_img`(`img_id`,`shop_id`,`img_url`,`des`,`title`,`link`,`status`,`seq`,`upload_time`,`relation`,`type`) values 
+insert  into `tz_index_img`(`img_id`,`shop_id`,`img_url`,`des`,`title`,`link`,`status`,`seq`,`upload_time`,`relation`,`type`) values
 (2,1,'2019/04/f676a8a8dbcb4e5c9bc907ef059aedb9.jpg','',NULL,NULL,1,1,'2018-12-20 15:22:19',73,0),
 (4,1,'2019/04/52b0082c60c04fc99dd03288548f2841.dpg','',NULL,NULL,1,120,'2019-04-17 17:12:37',76,0),
 (5,1,'2019/04/c2d830afc56d469f96825e91e464d155.jpg','',NULL,NULL,1,10,'2019-04-22 09:57:34',76,0);
@@ -4233,7 +4233,7 @@ CREATE TABLE `tz_message` (
 
 /*Data for the table `tz_message` */
 
-insert  into `tz_message`(`id`,`create_time`,`user_name`,`email`,`contact`,`content`,`reply`,`status`) values 
+insert  into `tz_message`(`id`,`create_time`,`user_name`,`email`,`contact`,`content`,`reply`,`status`) values
 (1,'2018-10-16 00:11:02','djr','123456','nihao','<p>aaaaaaqqqqffff</p>','<p>??</p>',0),
 (9,'2018-11-30 08:00:00','111','111','111','<p>11111dddd</p>','<p>111</p>',1),
 (10,'2019-03-15 18:48:05','yami','643254332@qq.com','15534243444','<p>hello</p>','<p>hi</p>',0);
@@ -4256,36 +4256,11 @@ CREATE TABLE `tz_notice` (
 
 /*Data for the table `tz_notice` */
 
-insert  into `tz_notice`(`id`,`shop_id`,`title`,`content`,`status`,`is_top`,`publish_time`,`update_time`) values 
+insert  into `tz_notice`(`id`,`shop_id`,`title`,`content`,`status`,`is_top`,`publish_time`,`update_time`) values
 (1,1,'两种意见 | 早餐绝配，松软到怀疑人生的酵母面包','<p style=\"text-align: justify;\"><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">这款酵母面包我吹爆，不愧是销量超900万的爆品，非常新鲜，松软到怀疑人生，感觉跟超市里卖的那种小面包不太一样。因为是用天然酵母混合面粉发酵，制作周期比人工合成的速发酵母要长很多，但很松软，是那种自然的甜味，也不容易长胖，跟咖啡搭配简直绝了，已经成了我每天早餐的绝配。</span></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://img-test.gz-yami.com/2019/04/3b6bf397f22c42249e463661a522c88c.jpg\" alt=\"\" width=\"750\" height=\"450\" /></p>',1,1,'2019-04-22 14:33:41','2019-04-27 15:24:27'),
 (2,1,'超大容量折叠包，再也不担心旅游购物买爆','<p><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://img-test.gz-yami.com/2019/04/febc23ad9cab40a3b7a9557df244b948.jpg\" alt=\"\" width=\"750\" height=\"450\" /></span></p>\n<p>&nbsp;</p>\n<p style=\"text-align: justify;\"><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">出国旅游，购物时很容易不小心就放飞自我，买一大堆东西，发现装不下了。这时，我就会从包里拿出严选折叠手提袋，优雅地解决&ldquo;爆买&rdquo;后无处安放的尴尬。</span></p>\n<p style=\"text-align: justify;\"><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">这个手提袋容量巨大，双层防水面料，但非常轻，收纳起来只有手掌厚度和大小，放在包里一点不占空间。真的超能装，打开后最多能装25L，抵半个行李箱了。袋子一侧能直接套入拉杆，稳稳地放在箱子上，拖起来毫不费力。我每次长途旅行必备它，平时拿去买菜、健身房也很好用。</span></p>',1,1,'2019-04-22 15:54:55','2019-04-27 15:24:39'),
 (3,1,'同是纯棉，为什么它睡起来如此舒服','<p style=\"text-align: justify;\"><span style=\"font-size: 20px;\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://img-test.gz-yami.com/2019/04/b837e346051a4c51a5d0d22e137187fe.jpg\" alt=\"\" width=\"670\" height=\"480\" /></span></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><span style=\"font-size: 20px;\"><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">说到床品，我一直很想要那种五星级酒店的面料，但每次都搞不懂那些纺织名词，稀里糊涂就买了，结果往往是不好睡。</span><br /></span></p>\n<p style=\"text-align: justify;\"><span style=\"font-size: 16px;\"><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">后来查了一下，只有贡缎才具有这种光滑细腻的质感，但织法工艺难度高，一套动辄六七百。同事推荐了严选这款四件套，是用60支的优质长绒棉，每平方英寸400根线织成的，非常细密柔软。</span></span></p>\n<p style=\"text-align: justify;\"><span style=\"font-size: 16px;\"><span style=\"color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">第一天睡觉的时候我惊呆了，同样是纯棉床品，为什么它睡起来如此舒服，竟然有着丝绸一样的顺滑触感。而且厚薄适中，透气性也不错，一年四季都能用，非常推荐。</span></span></p>\n<p>&nbsp;</p>',1,1,'2019-04-22 16:28:18','2019-04-27 15:25:00');
 
-/*Table structure for table `tz_oauth_client_details` */
-
-DROP TABLE IF EXISTS `tz_oauth_client_details`;
-
-CREATE TABLE `tz_oauth_client_details` (
-  `client_id` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
-  `client_secret` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `resource_ids` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `scope` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `authorized_grant_types` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `web_server_redirect_uri` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `authorities` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `access_token_validity` int(11) DEFAULT NULL,
-  `refresh_token_validity` int(11) DEFAULT NULL,
-  `additional_information` varchar(4096) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `autoapprove` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL,
-  PRIMARY KEY (`client_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='终端信息表';
-
-/*Data for the table `tz_oauth_client_details` */
-
-insert  into `tz_oauth_client_details`(`client_id`,`client_secret`,`resource_ids`,`scope`,`authorized_grant_types`,`web_server_redirect_uri`,`authorities`,`access_token_validity`,`refresh_token_validity`,`additional_information`,`autoapprove`) values 
-('admin','admin',NULL,'','',NULL,NULL,NULL,NULL,NULL,'true'),
-('mini_app','mini_app',NULL,'','',NULL,NULL,NULL,NULL,NULL,'true'),
-('weixin_mp','weixin_mp',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tz_order` */
 
@@ -4328,7 +4303,7 @@ CREATE TABLE `tz_order` (
 
 /*Data for the table `tz_order` */
 
-insert  into `tz_order`(`order_id`,`shop_id`,`prod_name`,`user_id`,`order_number`,`total`,`actual_total`,`pay_type`,`remarks`,`status`,`dvy_type`,`dvy_id`,`dvy_flow_id`,`freight_amount`,`addr_order_id`,`product_nums`,`create_time`,`update_time`,`pay_time`,`dvy_time`,`finally_time`,`cancel_time`,`is_payed`,`delete_status`,`refund_sts`,`reduce_amount`,`order_type`,`close_type`) values 
+insert  into `tz_order`(`order_id`,`shop_id`,`prod_name`,`user_id`,`order_number`,`total`,`actual_total`,`pay_type`,`remarks`,`status`,`dvy_type`,`dvy_id`,`dvy_flow_id`,`freight_amount`,`addr_order_id`,`product_nums`,`create_time`,`update_time`,`pay_time`,`dvy_time`,`finally_time`,`cancel_time`,`is_payed`,`delete_status`,`refund_sts`,`reduce_amount`,`order_type`,`close_type`) values
 (1,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1145634946149388288',1.01,1.01,1,'',5,NULL,14,'123656347535245',0.00,1,1,'2019-07-01 18:07:11','2019-07-01 18:07:22','2019-07-01 18:07:22','2019-07-03 11:06:57','2019-08-07 17:05:00',NULL,1,0,0,0.00,NULL,NULL),
 (2,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','51540df5255e4d22903b0f83921095ff','1146346112622399488',1.01,1.01,NULL,'',6,NULL,NULL,'',0.00,2,1,'2019-07-03 17:13:06','2019-07-03 17:13:06',NULL,NULL,NULL,'2019-07-03 17:17:46',0,2,0,0.00,NULL,NULL),
 (3,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 银色 64GB ','51540df5255e4d22903b0f83921095ff','1146346762332672000',7103.00,7103.00,NULL,'',6,NULL,NULL,'',0.00,3,1,'2019-07-03 17:15:41','2019-07-03 17:15:41',NULL,NULL,NULL,'2019-07-03 17:17:21',0,2,0,0.00,NULL,NULL),
@@ -4362,7 +4337,7 @@ CREATE TABLE `tz_order_item` (
 
 /*Data for the table `tz_order_item` */
 
-insert  into `tz_order_item`(`order_item_id`,`shop_id`,`order_number`,`prod_id`,`sku_id`,`prod_count`,`prod_name`,`sku_name`,`pic`,`price`,`user_id`,`product_total_amount`,`rec_time`,`comm_sts`,`distribution_card_no`,`basket_date`) values 
+insert  into `tz_order_item`(`order_item_id`,`shop_id`,`order_number`,`prod_id`,`sku_id`,`prod_count`,`prod_name`,`sku_name`,`pic`,`price`,`user_id`,`product_total_amount`,`rec_time`,`comm_sts`,`distribution_card_no`,`basket_date`) values
 (1,1,'1145634946149388288',18,314,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','换修无忧版 深空灰色 64GB ','2019/04/2cd9ec641d92458983c00d87ff33ad57.jpg',1.01,'51540df5255e4d22903b0f83921095ff',1.01,'2019-07-01 18:07:11',0,NULL,'2019-07-01 18:05:54'),
 (2,1,'1146346112622399488',18,314,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 深空灰色 64GB ','换修无忧版 深空灰色 64GB ','2019/04/2cd9ec641d92458983c00d87ff33ad57.jpg',1.01,'51540df5255e4d22903b0f83921095ff',1.01,'2019-07-03 17:13:06',0,NULL,'2019-07-03 17:13:05'),
 (3,1,'1146346762332672000',18,317,1,'Apple iPhone XS Max 移动联通电信4G手机  换修无忧版 银色 64GB ','换修无忧版 银色 64GB ','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg',7103.00,'51540df5255e4d22903b0f83921095ff',7103.00,'2019-07-03 17:15:41',0,NULL,'2019-07-03 17:15:40'),
@@ -4434,7 +4409,7 @@ CREATE TABLE `tz_order_settlement` (
 
 /*Data for the table `tz_order_settlement` */
 
-insert  into `tz_order_settlement`(`settlement_id`,`pay_no`,`biz_pay_no`,`order_number`,`pay_type`,`pay_type_name`,`pay_amount`,`is_clearing`,`user_id`,`create_time`,`clearing_time`,`version`,`pay_status`) values 
+insert  into `tz_order_settlement`(`settlement_id`,`pay_no`,`biz_pay_no`,`order_number`,`pay_type`,`pay_type_name`,`pay_amount`,`is_clearing`,`user_id`,`create_time`,`clearing_time`,`version`,`pay_status`) values
 (1,'1145634947151826944',NULL,'1145634946149388288',1,NULL,1.01,0,'51540df5255e4d22903b0f83921095ff','2019-07-01 18:07:11',NULL,1,1),
 (2,'1146346113691947008',NULL,'1146346112622399488',1,NULL,1.01,0,'51540df5255e4d22903b0f83921095ff','2019-07-03 17:13:06',NULL,0,0),
 (3,'1146346763158949888',NULL,'1146346762332672000',1,NULL,7103.00,0,'51540df5255e4d22903b0f83921095ff','2019-07-03 17:15:41',NULL,0,0),
@@ -4462,7 +4437,7 @@ CREATE TABLE `tz_pick_addr` (
 
 /*Data for the table `tz_pick_addr` */
 
-insert  into `tz_pick_addr`(`addr_id`,`addr_name`,`addr`,`mobile`,`province_id`,`province`,`city_id`,`city`,`area_id`,`area`,`shop_id`) values 
+insert  into `tz_pick_addr`(`addr_id`,`addr_name`,`addr`,`mobile`,`province_id`,`province`,`city_id`,`city`,`area_id`,`area`,`shop_id`) values
 (1,'测试','大学城附近','18888888888',440000000000,'广东省',440100000000,'广州市',440113000000,'番禺区',1);
 
 /*Table structure for table `tz_prod` */
@@ -4495,7 +4470,7 @@ CREATE TABLE `tz_prod` (
 
 /*Data for the table `tz_prod` */
 
-insert  into `tz_prod`(`prod_id`,`prod_name`,`shop_id`,`ori_price`,`price`,`brief`,`content`,`pic`,`imgs`,`status`,`category_id`,`sold_num`,`total_stocks`,`delivery_mode`,`delivery_template_id`,`create_time`,`update_time`,`putaway_time`,`version`) values 
+insert  into `tz_prod`(`prod_id`,`prod_name`,`shop_id`,`ori_price`,`price`,`brief`,`content`,`pic`,`imgs`,`status`,`category_id`,`sold_num`,`total_stocks`,`delivery_mode`,`delivery_template_id`,`create_time`,`update_time`,`putaway_time`,`version`) values
 (18,'Apple iPhone XS Max 移动联通电信4G手机 ',1,0.00,1.01,'6.5英寸大屏，支持双卡。','<div style=\"margin: 0px; padding: 0px; color: #666666; font-family: tahoma, arial, \'Microsoft YaHei\', \'Hiragino Sans GB\', u5b8bu4f53, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;\" align=\"center\">\n<table id=\"__01\" style=\"text-align: center;\" border=\"0\" width=\"750\" cellspacing=\"0\" cellpadding=\"0\">\n<tbody>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/4626/32/3475/220504/5b997365E80a1373f/279c244f12161cb3.jpg\" alt=\"\" width=\"750\" height=\"1991\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img12.360buyimg.com/cms/jfs/t1/3397/21/3533/236322/5b99759aE73795787/f782e04a140c8f16.jpg\" alt=\"\" width=\"750\" height=\"2052\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img11.360buyimg.com/cms/jfs/t1/5274/3/3465/245167/5b997365E16b81bc9/93e07e40f3af5e62.jpg\" alt=\"\" width=\"750\" height=\"2250\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/2322/11/3524/269574/5b997365E26f81a7a/e01fc9486da9eda1.jpg\" alt=\"\" width=\"750\" height=\"2327\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img13.360buyimg.com/cms/jfs/t1/5074/21/3432/296470/5b997364Ee966f7a0/7f424d41479db45d.jpg\" alt=\"\" width=\"750\" height=\"2561\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img13.360buyimg.com/cms/jfs/t1/5770/18/3580/288371/5b997365Ea2c58cb4/176b9a40ccd4e56b.jpg\" alt=\"\" width=\"750\" height=\"2668\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img11.360buyimg.com/cms/jfs/t1/227/21/3811/268132/5b997364E3d6c51b2/92d2a3a559e3baa8.jpg\" alt=\"\" width=\"750\" height=\"2850\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img20.360buyimg.com/cms/jfs/t1/3787/5/3493/125020/5b997363E3c9f5910/ddbd08a556744630.jpg\" alt=\"\" width=\"750\" height=\"1486\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/1687/5/3327/266718/5b997366E9cc80e69/9e40ceae1fef4466.jpg\" alt=\"\" width=\"750\" height=\"3376\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img30.360buyimg.com/cms/jfs/t1/457/6/3849/283318/5b997363E0c5ab7a9/6f636f0a286bc87c.jpg\" alt=\"\" width=\"750\" height=\"2455\" /></td>\n</tr>\n<tr>\n<td><img class=\"\" style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: middle;\" src=\"https://img10.360buyimg.com/cms/jfs/t1/397/25/3796/217624/5b9975a8E5ee578af/4d8f05a606fa5c4a.jpg\" alt=\"\" width=\"750\" height=\"2703\" /></td>\n</tr>\n</tbody>\n</table>\n</div>','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg','2019/04/eaa8c9bd3e7b41eaa310adbde10b6401.jpg',1,93,NULL,96,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',47,'2019-03-29 14:40:00','2019-06-22 18:28:32','2019-06-22 18:28:32',85),
 (59,'兰蔻粉水清滢柔肤水400ml 爽肤水女保湿舒缓滋润嫩肤',1,0.00,420.00,'好看耐穿','<p><img src=\"http://img-test.gz-yami.com/2019/04/71f54ee20ef34872b1e0aa53cb75b7b6.jpg\" alt=\"\" width=\"790\" height=\"1110\" /></p>','2019/04/ce5a32005a7a4f9483a17051bda6bd6c.jpg','2019/04/ce5a32005a7a4f9483a17051bda6bd6c.jpg,2019/04/8a8712b81a2d4f4ca3eb4a725ad229c6.jpg',1,87,NULL,0,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',48,'2019-04-21 19:15:34','2019-04-29 14:30:44','2019-04-29 14:30:44',NULL),
 (68,'【Dole都乐】菲律宾都乐非转基因木瓜1只 单只约410g',1,0.00,26.00,'包邮 肉厚籽少 独具风味','<p style=\"text-align: justify;\"><img src=\"http://img-test.gz-yami.com/2019/04/e7536a53a83d450e8635ce1e9819faf6.jpg\" alt=\"\" width=\"790\" height=\"350\" /></p>','2019/04/0bfd73f43d764d20b2f0b92813abdc56.jpg','2019/04/0bfd73f43d764d20b2f0b92813abdc56.jpg,2019/04/355020f27acd4b13a652cb830f03bedc.jpg',1,95,NULL,0,'{\"hasUserPickUp\": false, \"hasShopDelivery\": true}',47,'2019-04-21 21:56:38','2019-05-22 10:30:37','2019-05-22 10:30:37',NULL),
@@ -4566,7 +4541,7 @@ CREATE TABLE `tz_prod_prop` (
 
 /*Data for the table `tz_prod_prop` */
 
-insert  into `tz_prod_prop`(`prop_id`,`prop_name`,`rule`,`shop_id`) values 
+insert  into `tz_prod_prop`(`prop_id`,`prop_name`,`rule`,`shop_id`) values
 (80,'内存',1,1),
 (81,'颜色',1,1);
 
@@ -4584,7 +4559,7 @@ CREATE TABLE `tz_prod_prop_value` (
 
 /*Data for the table `tz_prod_prop_value` */
 
-insert  into `tz_prod_prop_value`(`value_id`,`prop_value`,`prop_id`) values 
+insert  into `tz_prod_prop_value`(`value_id`,`prop_value`,`prop_id`) values
 (381,'32G',80),
 (382,'64G',80),
 (383,'128G',80),
@@ -4613,7 +4588,7 @@ CREATE TABLE `tz_prod_tag` (
 
 /*Data for the table `tz_prod_tag` */
 
-insert  into `tz_prod_tag`(`id`,`title`,`shop_id`,`status`,`is_default`,`prod_count`,`style`,`seq`,`create_time`,`update_time`,`delete_time`) values 
+insert  into `tz_prod_tag`(`id`,`title`,`shop_id`,`status`,`is_default`,`prod_count`,`style`,`seq`,`create_time`,`update_time`,`delete_time`) values
 (1,'每日上新',1,1,0,0,2,3,'2019-04-18 14:27:02','2019-04-18 14:27:06',NULL),
 (2,'商城热卖',1,1,0,0,1,2,'2019-04-18 14:27:27','2019-04-18 14:27:30',NULL),
 (3,'更多宝贝',1,1,1,0,0,1,'2019-04-18 10:07:17','2019-04-18 10:07:17',NULL);
@@ -4634,7 +4609,7 @@ CREATE TABLE `tz_prod_tag_reference` (
 
 /*Data for the table `tz_prod_tag_reference` */
 
-insert  into `tz_prod_tag_reference`(`reference_id`,`shop_id`,`tag_id`,`prod_id`,`status`,`create_time`) values 
+insert  into `tz_prod_tag_reference`(`reference_id`,`shop_id`,`tag_id`,`prod_id`,`status`,`create_time`) values
 (25,1,1,60,1,'2019-04-21 21:29:19'),
 (26,1,3,60,1,'2019-04-21 21:29:19'),
 (29,1,3,62,1,'2019-04-21 21:35:13'),
@@ -4701,7 +4676,7 @@ CREATE TABLE `tz_schedule_job` (
 
 /*Data for the table `tz_schedule_job` */
 
-insert  into `tz_schedule_job`(`job_id`,`bean_name`,`method_name`,`params`,`cron_expression`,`status`,`remark`,`create_time`) values 
+insert  into `tz_schedule_job`(`job_id`,`bean_name`,`method_name`,`params`,`cron_expression`,`status`,`remark`,`create_time`) values
 (14,'orderTask','cancelOrder','','0 * * * * ?',0,'取消超时未支付订单','2019-06-24 14:51:51'),
 (16,'orderTask','confirmOrder','','0 0/5 * * * ?',0,'系统自动确认收货订单','2019-06-24 14:52:47');
 
@@ -4725,7 +4700,7 @@ CREATE TABLE `tz_schedule_job_log` (
 
 /*Data for the table `tz_schedule_job_log` */
 
-insert  into `tz_schedule_job_log`(`log_id`,`job_id`,`bean_name`,`method_name`,`params`,`status`,`error`,`times`,`create_time`) values 
+insert  into `tz_schedule_job_log`(`log_id`,`job_id`,`bean_name`,`method_name`,`params`,`status`,`error`,`times`,`create_time`) values
 (1,14,'orderTask','cancelOrder','',1,NULL,57,'2019-08-07 17:02:00'),
 (2,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:02:06'),
 (3,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:03:00'),
@@ -4811,7 +4786,7 @@ CREATE TABLE `tz_shop_detail` (
 
 /*Data for the table `tz_shop_detail` */
 
-insert  into `tz_shop_detail`(`shop_id`,`shop_name`,`user_id`,`shop_type`,`intro`,`shop_notice`,`shop_industry`,`shop_owner`,`mobile`,`tel`,`shop_lat`,`shop_lng`,`shop_address`,`province`,`city`,`area`,`pca_code`,`shop_logo`,`shop_photos`,`open_time`,`shop_status`,`transport_type`,`fixed_freight`,`full_free_shipping`,`create_time`,`update_time`,`is_distribution`) values 
+insert  into `tz_shop_detail`(`shop_id`,`shop_name`,`user_id`,`shop_type`,`intro`,`shop_notice`,`shop_industry`,`shop_owner`,`mobile`,`tel`,`shop_lat`,`shop_lng`,`shop_address`,`province`,`city`,`area`,`pca_code`,`shop_logo`,`shop_photos`,`open_time`,`shop_status`,`transport_type`,`fixed_freight`,`full_free_shipping`,`create_time`,`update_time`,`is_distribution`) values
 (1,'亚米小店1',NULL,NULL,'亚米小店 爱你哟',NULL,NULL,NULL,NULL,'020-123456',NULL,NULL,'大学城北','广东省','广州市','番禺区','44/4401/440113','2018/08/78a6a63cf02d4965912bc5047f49afa0.jpg','2018/08/c7a50f443a85462d8129d83cf0f7eb91.jpg,2018/08/79791fc749444ef1ab4d2ca56fe9363f.jpg','00:00:00 - 00:20:00',1,NULL,NULL,NULL,'2018-08-30 11:10:05',NULL,1),
 (2,'亚米大店2',NULL,NULL,'亚米大店 店大大',NULL,NULL,NULL,NULL,'010-123456',NULL,NULL,'天安门哟','北京市','市辖区','东城区','11/1101/110101','2018/08/0907446e05c44431be5d27ec7c277ee6.jpg','2018/08/5f97fc62c18d4d2292f8101fa0291e85.jpg','06:00:00 - 00:00:00',1,NULL,NULL,NULL,'2018-08-31 10:16:06',NULL,NULL),
 (3,'亚米3',NULL,NULL,'亚米 店铺描述',NULL,NULL,NULL,NULL,'010-211111111',NULL,NULL,'大学城北','天津市','市辖区','和平区','12/1201/120101','2018/09/4bb8b326f85a4c6aad251c561a17f0c4.png','2018/09/63c3d47beb5544f9b30103721002ca2e.jpg,2018/09/899e1ebf3c6c467d8d8630a3c18720db.jpg','00:02:00 - 00:00:00',1,NULL,NULL,NULL,'2018-09-06 18:50:00','2018-09-29 09:50:05',NULL);
@@ -4846,7 +4821,7 @@ CREATE TABLE `tz_sku` (
 
 /*Data for the table `tz_sku` */
 
-insert  into `tz_sku`(`sku_id`,`prod_id`,`properties`,`ori_price`,`price`,`stocks`,`actual_stocks`,`update_time`,`rec_time`,`party_code`,`model_id`,`pic`,`sku_name`,`prod_name`,`version`,`weight`,`volume`,`status`,`is_delete`) values 
+insert  into `tz_sku`(`sku_id`,`prod_id`,`properties`,`ori_price`,`price`,`stocks`,`actual_stocks`,`update_time`,`rec_time`,`party_code`,`model_id`,`pic`,`sku_name`,`prod_name`,`version`,`weight`,`volume`,`status`,`is_delete`) values
 (10,4,NULL,NULL,0.10,0,100,'2019-05-14 10:00:41','2018-09-14 14:05:52',NULL,NULL,NULL,'',NULL,10,NULL,NULL,1,NULL),
 (116,13,'面积:75m²',25000000.00,25.00,2,200,'2018-11-22 11:42:59','2018-11-22 11:42:59','100001',NULL,'2018/11/d9316669736f48f7bd047a928e3b2972.jpg','75m² ','房子 75m² ',0,0,0,1,1),
 (117,15,'',0.00,0.00,0,0,'2018-11-22 15:20:53','2018-11-22 15:20:53','',NULL,NULL,'','',0,0,0,1,1),
@@ -5046,7 +5021,7 @@ CREATE TABLE `tz_sms_log` (
 
 /*Data for the table `tz_sms_log` */
 
-insert  into `tz_sms_log`(`id`,`user_id`,`user_phone`,`content`,`mobile_code`,`type`,`rec_date`,`response_code`,`status`) values 
+insert  into `tz_sms_log`(`id`,`user_id`,`user_phone`,`content`,`mobile_code`,`type`,`rec_date`,`response_code`,`status`) values
 (15,'25477c53-6f67-4309-9e10-a26876ebfddb','13726236870','感谢您对xxx的支持。您的验证码是129619，请勿把验证码泄漏给第三方。','129619',0,'2019-04-24 11:20:29',NULL,0);
 
 /*Table structure for table `tz_sys_config` */
@@ -5082,7 +5057,7 @@ CREATE TABLE `tz_sys_log` (
 
 /*Data for the table `tz_sys_log` */
 
-insert  into `tz_sys_log`(`id`,`username`,`operation`,`method`,`params`,`time`,`ip`,`create_date`) values 
+insert  into `tz_sys_log`(`id`,`username`,`operation`,`method`,`params`,`time`,`ip`,`create_date`) values
 (829,'admin','保存定时任务','com.yami.shop.quartz.controller.ScheduleJobController.save()','{\"jobId\":14,\"beanName\":\"orderTask\",\"methodName\":\"cancelOrder\",\"cronExpression\":\"0 * * * * ?\",\"status\":0,\"remark\":\"取消超时未支付订单\",\"createTime\":\"2019-06-24T06:51:51.074+0000\"}',167,'127.0.0.1','2019-06-24 14:51:51'),
 (830,'admin','保存定时任务','com.yami.shop.quartz.controller.ScheduleJobController.save()','{\"jobId\":16,\"beanName\":\"orderTask\",\"methodName\":\"confirmOrder\",\"cronExpression\":\"0 0/5 * * * ?\",\"status\":0,\"remark\":\"系统自动确认收货订单\",\"createTime\":\"2019-06-24T06:52:47.482+0000\"}',62,'127.0.0.1','2019-06-24 14:52:48'),
 (831,'admin','删除菜单','com.yami.shop.sys.controller.SysMenuController.delete()','168',8,'127.0.0.1','2019-06-26 14:04:22'),
@@ -5119,7 +5094,7 @@ CREATE TABLE `tz_sys_menu` (
 
 /*Data for the table `tz_sys_menu` */
 
-insert  into `tz_sys_menu`(`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`,`order_num`) values 
+insert  into `tz_sys_menu`(`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`,`order_num`) values
 (1,0,'系统管理','','',0,'system',3),
 (2,1,'管理员列表','sys/user','',1,'admin',1),
 (3,1,'角色管理','sys/role','',1,'role',2),
@@ -5240,7 +5215,7 @@ CREATE TABLE `tz_sys_role` (
 
 /*Data for the table `tz_sys_role` */
 
-insert  into `tz_sys_role`(`role_id`,`role_name`,`remark`,`create_user_id`,`create_time`) values 
+insert  into `tz_sys_role`(`role_id`,`role_name`,`remark`,`create_user_id`,`create_time`) values
 (1,'管理员','测试',NULL,'2019-07-03 08:39:49');
 
 /*Table structure for table `tz_sys_role_menu` */
@@ -5256,7 +5231,7 @@ CREATE TABLE `tz_sys_role_menu` (
 
 /*Data for the table `tz_sys_role_menu` */
 
-insert  into `tz_sys_role_menu`(`id`,`role_id`,`menu_id`) values 
+insert  into `tz_sys_role_menu`(`id`,`role_id`,`menu_id`) values
 (1,1,34),
 (2,1,70),
 (3,1,71),
@@ -5383,7 +5358,7 @@ CREATE TABLE `tz_sys_user` (
 
 /*Data for the table `tz_sys_user` */
 
-insert  into `tz_sys_user`(`user_id`,`username`,`password`,`email`,`mobile`,`status`,`create_user_id`,`create_time`,`shop_id`) values 
+insert  into `tz_sys_user`(`user_id`,`username`,`password`,`email`,`mobile`,`status`,`create_user_id`,`create_time`,`shop_id`) values
 (1,'admin','{bcrypt}$2a$10$AV9Xz.3ck4RsXiad5ArcBO5.ZKwlpcnJzs740BHY..fsSp0PnM/Zu','root@123.com','13612345678',1,1,'2016-11-11 11:11:11',1);
 
 /*Table structure for table `tz_sys_user_role` */
@@ -5414,7 +5389,7 @@ CREATE TABLE `tz_transcity` (
 
 /*Data for the table `tz_transcity` */
 
-insert  into `tz_transcity`(`transcity_id`,`transfee_id`,`city_id`) values 
+insert  into `tz_transcity`(`transcity_id`,`transfee_id`,`city_id`) values
 (655,119,440118000000),
 (656,119,440117000000),
 (657,119,440115000000),
@@ -5443,7 +5418,7 @@ CREATE TABLE `tz_transcity_free` (
 
 /*Data for the table `tz_transcity_free` */
 
-insert  into `tz_transcity_free`(`transcity_free_id`,`transfee_free_id`,`free_city_id`) values 
+insert  into `tz_transcity_free`(`transcity_free_id`,`transfee_free_id`,`free_city_id`) values
 (18,NULL,52994),
 (19,NULL,52995),
 (339,32,2376),
@@ -6129,7 +6104,7 @@ CREATE TABLE `tz_transfee` (
 
 /*Data for the table `tz_transfee` */
 
-insert  into `tz_transfee`(`transfee_id`,`transport_id`,`continuous_piece`,`first_piece`,`continuous_fee`,`first_fee`) values 
+insert  into `tz_transfee`(`transfee_id`,`transport_id`,`continuous_piece`,`first_piece`,`continuous_fee`,`first_fee`) values
 (101,50,0.02,0.01,1.00,2.00),
 (115,47,1.00,1.00,0.00,0.00),
 (118,48,7.00,7.00,7.00,7.00),
@@ -6152,7 +6127,7 @@ CREATE TABLE `tz_transfee_free` (
 
 /*Data for the table `tz_transfee_free` */
 
-insert  into `tz_transfee_free`(`transfee_free_id`,`transport_id`,`free_type`,`amount`,`piece`) values 
+insert  into `tz_transfee_free`(`transfee_free_id`,`transport_id`,`free_type`,`amount`,`piece`) values
 (32,53,1,88.00,NULL),
 (49,67,0,NULL,1.75),
 (51,68,0,NULL,3.50),
@@ -6178,7 +6153,7 @@ CREATE TABLE `tz_transport` (
 
 /*Data for the table `tz_transport` */
 
-insert  into `tz_transport`(`transport_id`,`trans_name`,`create_time`,`shop_id`,`charge_type`,`is_free_fee`,`has_free_condition`) values 
+insert  into `tz_transport`(`transport_id`,`trans_name`,`create_time`,`shop_id`,`charge_type`,`is_free_fee`,`has_free_condition`) values
 (47,'包邮','2018-11-21 17:17:07',1,0,1,0),
 (48,'广州单独计算运费','2018-11-21 17:20:09',1,0,0,0),
 (51,'深圳包邮','2019-04-13 13:42:38',1,0,0,1);
@@ -6213,7 +6188,7 @@ CREATE TABLE `tz_user` (
 
 /*Data for the table `tz_user` */
 
-insert  into `tz_user`(`user_id`,`nick_name`,`real_name`,`user_mail`,`login_password`,`pay_password`,`user_mobile`,`modify_time`,`user_regtime`,`user_regip`,`user_lasttime`,`user_lastip`,`user_memo`,`sex`,`birth_date`,`pic`,`status`,`score`) values 
+insert  into `tz_user`(`user_id`,`nick_name`,`real_name`,`user_mail`,`login_password`,`pay_password`,`user_mobile`,`modify_time`,`user_regtime`,`user_regip`,`user_lasttime`,`user_lastip`,`user_memo`,`sex`,`birth_date`,`pic`,`status`,`score`) values
 ('51540df5255e4d22903b0f83921095ff','.','',NULL,NULL,NULL,NULL,'2019-06-26 14:37:04','2019-06-26 14:37:04',NULL,NULL,NULL,NULL,'M',NULL,'https://wx.qlogo.cn/mmopen/vi_32/krmdRqHOnNAFoGzW2Ssy6pmzAMQryWphiaDZU5AsAR0AMvuLzlcBLtjEe8VlUAMIiah8juTPWa839BnOn1C0Oykg/132',1,NULL),
 ('5f159317be5b4dc4bf3188f1a3da0369','Leo','',NULL,NULL,NULL,NULL,'2019-07-02 10:56:53','2019-07-02 10:56:53',NULL,NULL,NULL,NULL,'M',NULL,'https://wx.qlogo.cn/mmopen/vi_32/hOM3grD77lIBdbdY0UXg4ql4NI1BeyJxlh1gPxgdnMbGzWCicahV4Ukt0pRkmo068d5CaSlM76xDrDDAsYFje6Q/132',1,NULL);
 
@@ -6244,7 +6219,7 @@ CREATE TABLE `tz_user_addr` (
 
 /*Data for the table `tz_user_addr` */
 
-insert  into `tz_user_addr`(`addr_id`,`user_id`,`receiver`,`province_id`,`province`,`city`,`city_id`,`area`,`area_id`,`post_code`,`addr`,`mobile`,`status`,`common_addr`,`create_time`,`version`,`update_time`) values 
+insert  into `tz_user_addr`(`addr_id`,`user_id`,`receiver`,`province_id`,`province`,`city`,`city_id`,`area`,`area_id`,`post_code`,`addr`,`mobile`,`status`,`common_addr`,`create_time`,`version`,`update_time`) values
 (3,'51540df5255e4d22903b0f83921095ff','user',110000000000,'北京市','市辖区',110100000000,'东城区',110101000000,NULL,'b613','15000000000',1,1,'2019-07-01 18:05:53',0,'2019-07-01 18:05:53');
 
 /*Table structure for table `tz_user_addr_order` */
@@ -6272,7 +6247,7 @@ CREATE TABLE `tz_user_addr_order` (
 
 /*Data for the table `tz_user_addr_order` */
 
-insert  into `tz_user_addr_order`(`addr_order_id`,`addr_id`,`user_id`,`receiver`,`province_id`,`province`,`area_id`,`area`,`city_id`,`city`,`addr`,`post_code`,`mobile`,`create_time`,`version`) values 
+insert  into `tz_user_addr_order`(`addr_order_id`,`addr_id`,`user_id`,`receiver`,`province_id`,`province`,`area_id`,`area`,`city_id`,`city`,`addr`,`post_code`,`mobile`,`create_time`,`version`) values
 (1,3,'51540df5255e4d22903b0f83921095ff','user',110000000000,'北京市',110101000000,'东城区',110100000000,'市辖区','b613',NULL,'15000000000','2019-07-01 18:07:11',0),
 (2,3,'51540df5255e4d22903b0f83921095ff','user',110000000000,'北京市',110101000000,'东城区',110100000000,'市辖区','b613',NULL,'15000000000','2019-07-03 17:13:06',0),
 (3,3,'51540df5255e4d22903b0f83921095ff','user',110000000000,'北京市',110101000000,'东城区',110100000000,'市辖区','b613',NULL,'15000000000','2019-07-03 17:15:41',0),
