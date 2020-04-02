@@ -10,49 +10,37 @@
 
 package com.yami.shop.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.yami.shop.bean.model.Area;
-import com.yami.shop.bean.model.Transcity;
-import com.yami.shop.bean.model.TranscityFree;
-import com.yami.shop.bean.model.Transfee;
-import com.yami.shop.bean.model.TransfeeFree;
-import com.yami.shop.bean.model.Transport;
+import com.yami.shop.bean.model.*;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.dao.TranscityMapper;
 import com.yami.shop.dao.TransfeeMapper;
 import com.yami.shop.dao.TransportMapper;
 import com.yami.shop.service.TransportService;
+import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import cn.hutool.core.collection.CollectionUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author lgh on 2018/11/16.
  */
 @Service
+@AllArgsConstructor
 public class TransportServiceImpl extends ServiceImpl<TransportMapper, Transport> implements TransportService {
 
-    @Autowired
-    private TransportMapper transportMapper;
+	private final TransportMapper transportMapper;
 
-    @Autowired
-    private TransfeeMapper transfeeMapper;
+	private final TransfeeMapper transfeeMapper;
 
-    @Autowired
-    private TranscityMapper transcityMapper;
-
-    @Autowired
-    private TransportService transportService;
+	private final TranscityMapper transcityMapper;
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
@@ -73,7 +61,7 @@ public class TransportServiceImpl extends ServiceImpl<TransportMapper, Transport
 	@Transactional(rollbackFor = Exception.class)
 	@CacheEvict(cacheNames = "TransportAndAllItems", key = "#transport.transportId")
 	public void updateTransportAndTransfee(Transport transport) {
-		Transport dbTransport = transportService.getTransportAndAllItems(transport.getTransportId());
+		Transport dbTransport = getTransportAndAllItems(transport.getTransportId());
 
 		// 删除所有的运费项
 		transfeeMapper.deleteByTransportId(transport.getTransportId());
@@ -169,7 +157,7 @@ public class TransportServiceImpl extends ServiceImpl<TransportMapper, Transport
 
 
 		for (Long id : ids) {
-			Transport dbTransport = transportService.getTransportAndAllItems(id);
+			Transport dbTransport = getTransportAndAllItems(id);
 			List<Long> transfeeIds = dbTransport.getTransfees().stream().map(Transfee::getTransfeeId).collect(Collectors.toList());
 			// 删除所有运费项包含的城市
 			transcityMapper.deleteBatchByTransfeeIds(transfeeIds);
@@ -185,6 +173,9 @@ public class TransportServiceImpl extends ServiceImpl<TransportMapper, Transport
 	@Cacheable(cacheNames = "TransportAndAllItems", key = "#transportId")
 	public Transport getTransportAndAllItems(Long transportId) {
 		Transport transport = transportMapper.getTransportAndTransfeeAndTranscity(transportId);
+		if (transport == null) {
+			return null;
+		}
 		List<TransfeeFree> transfeeFrees = transportMapper.getTransfeeFreeAndTranscityFreeByTransportId(transportId);
 		transport.setTransfeeFrees(transfeeFrees);
 		return transport;
