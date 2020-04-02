@@ -1,0 +1,202 @@
+/* pages/user/user.wxss */
+
+page {
+  background-color: #f7f7f7;
+  padding-bottom: 60rpx;
+}
+
+/* 用户信息 */
+
+.userinfo {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.userinfo .userinfo-avatar {
+  overflow: hidden;
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+}
+
+.userinfo .userinfo-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+
+.binding-phone {
+  position: relative;
+  background: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  border-top: 2rpx solid #f7f7f7;
+  border-bottom: 2rpx solid #f7f7f7;
+}
+
+.binding-phone .show-tip {
+  font-size: 26rpx;
+}
+
+.binding-phone .gotobinding {
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #e24b4b;
+  font-weight: bold;
+}
+
+/*end 用户信息 */
+
+/* 订单状态 */
+
+.list-cont {
+  
+  width: 100%;
+  background: #f7f7f7;
+  margin-top: 20rpx;
+}
+
+.list-cont .total-order {
+  /* width: 100%; */
+  /* margin-bottom: 30rpx; */
+  background: #fff;
+  
+}
+
+.list-cont .total-order .order-tit {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  border-bottom:1px solid #f7f7f7;
+  padding: 0 30rpx;
+}
+
+.list-cont .total-order .order-tit .checkmore {
+  font-size: 22rpx;
+  color: #80848f;
+  display: flex;
+  align-items: center;
+}
+
+.list-cont .total-order .procedure {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25rpx;
+  height: 160rpx;
+}
+
+.list-cont .total-order .procedure .items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-cont .total-order .procedure .items image {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 20rpx;
+}
+
+.list-cont .total-order .procedure .items .num-badge {
+  position: absolute;
+  top: -15rpx;
+  right: -12rpx;
+  color: #eb2444;
+  border: 3rpx solid #eb2444;
+  border-radius: 50rpx;
+  background: #fff;
+  min-width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  padding: 2rpx;
+  display: block;
+}
+
+/* end 订单状态 */
+
+/* 列表项 */
+
+.list-cont .my-menu {
+  /* width: 100%; */
+  background-color: #fff;
+  margin-top:20rpx;
+}
+
+.list-cont .my-menu .memu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  border-bottom: 2rpx solid #f7f7f7;
+  padding:0 30rpx;
+}
+
+.list-cont .my-menu .memu-item:nth-child(1) {
+  border-top: 2rpx solid #f7f7f7;
+}
+
+.list-cont .my-menu .memu-item:last-child {
+  border-bottom: none;
+}
+
+.list-cont .my-menu .memu-item text {
+  font-size: 28rpx;
+}
+.list-cont .my-menu .memu-item image{
+  width:50rpx;
+  height:50rpx;
+  margin-right:20rpx;
+
+}
+.list-cont .my-menu .memu-item .i-name{
+  display: flex;
+  align-items: center;
+}
+
+/* end 列表项 */
+
+/* 箭头 */
+
+.arrowhead {
+  width: 15rpx;
+  height: 15rpx;
+  border-top: 2rpx solid #999;
+  border-right: 2rpx solid #999;
+  transform: rotate(45deg);
+  margin-left: 10rpx;
+}
+
+
+/* 商品收藏消息等 */
+.prod-col{
+  margin-top:20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding:30rpx 0 10rpx 0;
+  font-size: 12px;
+}
+.prod-col .col-item{
+  text-align: center;
+}
+.prod-col .col-item .num{
+  font-size: 16px;
+    font-weight: 700;
+    color: #3a86b9;
+}
+
+.prod-col .col-item .tit{
+  line-height: 34px;
+}

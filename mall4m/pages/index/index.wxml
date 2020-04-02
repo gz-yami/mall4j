@@ -1,0 +1,151 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='bg-sear'>
+    <view class="scrolltop">
+      <view class='section' bindtap='toSearchPage'>
+        <image src='../../images/icon/search.png' class='search-img'></image>
+        <text class='placeholder'>搜索</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='content'>
+    <!-- swiper -->
+    <swiper autoplay="{{autoplay}}" indicator-color="{{indicatorColor}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}} " circular='true' class='pic-swiper' indicator-dots previous-margin='20rpx' next-margin='20rpx'>
+      <block wx:for='{{indexImgs}}' wx:key=''>
+        <swiper-item class="banner-item">
+          <view class='img-box'>
+            <image src='{{item.imgUrl}}' data-prodid='{{item.relation}}' bindtap='toProdPage' class='banner'></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- end swiper -->
+
+    <view class='cat-item'>
+      <view class='item' bindtap='toClassifyPage' data-sts="1">
+        <image src='../../images/icon/newProd.png'></image>
+        <text>新品推荐</text>
+      </view>
+      <view class='item' bindtap='toClassifyPage' data-sts="2">
+        <image src='../../images/icon/timePrice.png'></image>
+        <text>限时特惠</text>
+      </view>
+      <view class='item' bindtap='toClassifyPage' data-sts="3">
+        <image src='../../images/icon/neweveryday.png'></image>
+        <text>每日疯抢</text>
+      </view>
+      <view class='item' bindtap='toCouponCenter'>
+        <image src='../../images/icon/newprods.png'></image>
+        <text>领优惠券</text>
+      </view>
+    </view>
+
+    <!-- 消息播放 -->
+    <view class='message-play' bindtap='onNewsPage'>
+      <image src='../../images/icon/horn.png' class='hornpng'></image>
+      <swiper vertical='true' autoplay='true' duration='1000' class='swiper-cont'>
+        <block wx:for='{{news}}' wx:key=''>
+          <swiper-item class="items">{{item.title}}</swiper-item>
+        </block>
+      </swiper>
+      <text class='arrow'></text>
+    </view>
+
+  </view>
+
+  <block wx:for="{{taglist}}" wx:key="id">
+    <!-- 每日上新 -->
+    <view class='up-to-date' wx:if="{{item.style==2}}">
+      <view class='title'>
+        <text>{{item.title}}</text>
+        <view class='more-prod-cont' bindtap='toClassifyPage' data-sts="0" data-id="{{item.id}}" data-title="{{item.title}}">
+          <text class='more'>查看更多</text>
+          <!-- <text class='arrow'></text> -->
+        </view>
+      </view>
+      <view class='item-cont'>
+        <block wx:for="{{item.prods}}" wx:for-item="prod" wx:key="prodId">
+          <view class='prod-item' bindtap='toProdPage' data-prodid="{{prod.prodId}}">
+            <view>
+              <view class='imagecont'>
+                <image src='{{prod.pic}}' class='prodimg'></image>
+              </view>
+              <view class='prod-text'>{{prod.prodName}}</view>
+              <view class='price'>
+                <text class='symbol'>￥</text>
+                <text class='big-num'>{{wxs.parsePrice(prod.price)[0]}}</text>
+                <text class='small-num'>.{{wxs.parsePrice(prod.price)[1]}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+    </view>
+
+    <!-- 商城热卖 -->
+    <view class='hot-sale' wx:if="{{item.style==1}}">
+      <view class='title'>
+        <text>{{item.title}}</text>
+        <view class='more-prod-cont' bindtap='toClassifyPage' data-sts="0" data-id="{{item.id}}" data-title="{{item.title}}">
+          <text class='more'>更多</text>
+          <text class='arrow'></text>
+        </view>
+      </view>
+      <view class='hotsale-item-cont'>
+        <block wx:for="{{item.prods}}" wx:for-item="prod" wx:key="prodId">
+          <view class='prod-items' bindtap='toProdPage' data-prodid="{{prod.prodId}}">
+            <view class='hot-imagecont'>
+              <image src='{{prod.pic}}' class='hotsaleimg'></image>
+            </view>
+            <view class='hot-text'>
+              <view class='hotprod-text'>{{prod.prodName}}</view>
+              <view class='prod-info'>{{prod.brief}}</view>
+              <view class='prod-text-info'>
+                <view class='price'>
+                  <text class='symbol'>￥</text>
+                  <text class='big-num'>{{wxs.parsePrice(prod.price)[0]}}</text>
+                  <text class='small-num'>.{{wxs.parsePrice(prod.price)[1]}}</text>
+                </view>
+                <!-- <view class='singal-price'>
+                  <text>￥</text>
+                  <text>{{prod.oriPrice}}</text>
+                </view> -->
+                <image src='../../images/tabbar/basket-sel.png' class='basket-img'></image>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 更多宝贝 -->
+    <view class='more-prod' wx:if="{{item.style==0}}">
+      <view class='title'>{{item.title}}</view>
+      <view class='prod-show'>
+        <block wx:for="{{item.prods}}" wx:for-item="prod" wx:key="prodId">
+          <view class='show-item' bindtap='toProdPage' data-prodid="{{prod.prodId}}">
+            <view class='more-prod-pic'>
+              <image src='{{prod.pic}}' class='more-pic'></image>
+            </view>
+            <view class='prod-text-right'>
+              <view class='prod-text more'>{{prod.prodName}}</view>
+              <view class='prod-info'>{{prod.brief}}</view>
+              <view class='b-cart'>
+                <view class='price'>
+                  <text class='symbol'>￥</text>
+                  <text class='big-num'>{{wxs.parsePrice(prod.price)[0]}}</text>
+                  <text class='small-num'>.{{wxs.parsePrice(prod.price)[1]}}</text>
+                </view>
+                <!-- <view class='go-to-buy'>立即购买</view> -->
+                <image src='../../images/tabbar/basket-sel.png' class='basket-img'></image>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+<wxs module="wxs" src="../../wxs/number.wxs" />

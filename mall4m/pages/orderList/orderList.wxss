@@ -1,0 +1,257 @@
+/* pages/orderList/orderList.wxss */
+
+page {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* 头部菜单 */
+
+.order-tit {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  z-index: 999;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #f4f4f4;
+}
+
+.order-tit text {
+  display: block;
+  font-size: 28rpx;
+  color: 999;
+  width: 100rpx;
+  text-align: center;
+}
+
+.order-tit text.on {
+  border-bottom: 4rpx solid #eb2444;
+  color: #eb2444;
+}
+
+/*  end 头部菜单 */
+
+.main {
+  margin-top: 100rpx;
+}
+
+/* 商品列表 */
+
+.prod-item {
+  background-color: #fff;
+  margin-top: 15rpx;
+  font-size: 28rpx;
+}
+
+.prod-item .item-cont .prod-pic image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.prod-item .order-num {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+
+.order-state {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.prod-item .item-cont .categories {
+  white-space: nowrap;
+}
+
+.prod-item .item-cont {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  border-radius: 10rpx;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  background: #fafafa;
+}
+
+.prod-item .order-num .clear-btn {
+  width: 32rpx;
+  height: 32rpx;
+  font-size: 0;
+  vertical-align: top;
+  margin-left: 42rpx;
+  position: relative;
+}
+
+.prod-item .order-num .clear-btn::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: -10px;
+  top: 0rpx;
+  width: 1px;
+  height: 32rpx;
+  background: #ddd;
+}
+
+.prod-item .order-num .clear-btn .clear-list-btn {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.prod-item .item-cont .prod-pic {
+  font-size: 0;
+  display: inline-block;
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+  background: #fff;
+  margin-right: 16rpx;
+}
+
+.prod-item .item-cont .prod-pic image {
+  width: 100%;
+  height: 100%;
+}
+
+.prod-item .item-cont .prod-info {
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  width: 100%;
+  position: relative;
+  height: 160rpx;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  flex: 1;
+}
+
+.prod-item .item-cont .prod-info .prodname {
+  font-size: 28rpx;
+  line-height: 36rpx;
+  max-height: 86rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.prod-item .item-cont .prod-info .prod-info-cont {
+  color: #999;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.prod-item  .total-num {
+  text-align: right;
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+}
+
+.prod-item .price-nums .prodprice {
+  color: #333;
+  position: absolute;
+  bottom: 0;
+}
+
+.prod-item  .price-nums .prodcount {
+  position: absolute;
+  bottom: 5rpx;
+  right: 0;
+  color: #999;
+  font-family: verdana;
+}
+
+.prod-item .total-num .prodprice {
+  display: inline-block;
+  color: #333;
+}
+
+.prod-item .total-num .prodcount {
+  margin-right: 20rpx;
+}
+
+.prod-item  .prod-foot {
+  padding: 20rpx 30rpx;
+  border-top: 2rpx solid #e6e6e6;
+}
+
+.prod-item  .prod-foot .total {
+  font-size: 25rpx;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #e9eaec;
+}
+
+.prod-item  .prod-foot .btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.other-button-hover {
+  background-color: blue;
+}
+
+.button-hover {
+  background-color: red;
+}
+
+/** 添加自定义button点击态样式类**/
+
+.button-hover {
+  background-color: blue;
+}
+
+.button {
+  margin-left: 10px;
+  font-size: 26rpx;
+  background: #fff;
+  padding: 10rpx 30rpx;
+  border-radius: 80rpx;
+  border: 2rpx solid #e1e1e1;
+}
+
+.button.warn {
+  color: #eb2444;
+  border-color: #eb2444;
+}
+
+/* end 商品列表 */
+
+.empty {
+  font-size: 24rpx;
+  margin-top: 100rpx;
+  text-align: center;
+  color: #999;
+  height: 300rpx;
+  line-height: 300rpx;
+}
+
+/* 根据状态显示不同的颜色 */
+
+.order-state .order-sts.red {
+  color: #eb2444;
+}
+
+.order-state .order-sts.gray {
+  color: #999;
+}

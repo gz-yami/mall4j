@@ -1,0 +1,42 @@
+<!--pages/search-page/search-page.wxml-->
+<view class='container'>
+
+  <!-- 搜索框 -->
+  <view class='search-bar'>
+    <view class='search-box'>
+      <input placeholder="输入关键字搜索" class='sear-input'confirm-type='search' bindconfirm='toSearchProdPage' bindinput='getSearchContent' value='{{prodName}}'></input>
+      <image src='../../images/icon/search.png' class='search-img'></image>
+    </view>
+    <text class='search-hint' bindtap='goBackIndex'>取消</text>
+  </view>
+
+  <view class='search-display'>
+    <!-- 热门搜索 -->
+    <view class='hot-search'>
+      <view class='title-text'>
+        热门搜索
+      </view>
+      <view class='hot-search-tags'>
+       <block wx:for='{{hotSearchList}}' wx:key=''>
+        <text class='tags' bindtap='onHistSearch' data-name="{{item.content}}" >{{item.title}}</text>
+        </block> 
+      </view>
+    
+    </view>
+
+    <!-- 搜索历史 -->
+    <view class='history-search'>
+      <view class='title-text history-line'>
+        搜索历史
+        <view class='clear-history'>
+          <image src='../../images/icon/clear-his.png' bindtap='clearSearch'></image>
+        </view>
+      </view>
+      <block wx:for="{{recentSearch}}" wx:key='{{item}}'>
+        <view class='his-search-tags'>
+          <text class='tags' bindtap='onHistSearch' data-name="{{item}}">{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

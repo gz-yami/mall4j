@@ -1,0 +1,11 @@
+<!--pages/prod-classify/prod-classify.wxml-->
+
+<view class='container'>
+  <view class='line-fix'></view>
+  <view class='tit-background'></view>
+  <view>
+    <block wx:for="{{prodList}}" wx:key ="key">
+      <prod item="{{item}}" ></prod>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,98 @@
+<!--pages/orderList/orderList.wxml-->
+
+<view class='container'>
+  <!-- 头部菜单 -->
+  <view class='order-tit'>
+    <text bindtap='onStsTap' data-sts="0" class="{{sts==0?'on':''}}">全部</text>
+    <text bindtap='onStsTap' data-sts="1" class="{{sts==1?'on':''}}">待支付</text>
+    <text bindtap='onStsTap' data-sts="2" class="{{sts==2?'on':''}}">待发货</text>
+    <text bindtap='onStsTap' data-sts="3" class="{{sts==3?'on':''}}">待收货</text>
+    <text bindtap='onStsTap' data-sts="5" class="{{sts==5?'on':''}}">已完成</text>
+  </view>
+  <!-- end 头部菜单 -->
+  <view class='main'>
+    <view class="empty" wx:if="{{list.length==0}}">
+      还没有任何相关订单
+    </view>
+    <!-- 订单列表 -->
+    <block wx:for="{{list}}" wx:key=''>
+      <view class='prod-item'>
+        <view class="order-num">
+          <text>订单编号：{{item.orderNumber}}</text>
+          <view class='order-state'>
+            <text class="order-sts  {{item.status==1?'red':''}}  {{(item.status==5||item.status==6)?'gray':''}}">{{item.status==1?'待支付':(item.status==2?'待发货':(item.status==3?'待收货':(item.status==5?'已完成':'已取消')))}}</text>
+
+            <view class='clear-btn' wx:if="{{item.status==5 || item.status==6}}">
+              <image src='../../images/icon/clear-his.png' class='clear-list-btn' bindtap='delOrderList' data-ordernum="{{item.orderNumber}}"></image>
+            </view>
+          </view>
+        </view>
+
+        <!-- 商品列表 -->
+        <!-- 一个订单单个商品的显示 -->
+        <block wx:if="{{item.orderItemDtos.length==1}}">
+          <block wx:for="{{item.orderItemDtos}}" wx:for-item="prod" wx:key=''>
+            <view>
+              <view class='item-cont' bindtap='toOrderDetailPage' data-ordernum="{{item.orderNumber}}">
+                <view class='prod-pic'>
+                  <image src='{{prod.pic}}'></image>
+                </view>
+                <view class='prod-info'>
+                  <view class='prodname'>
+                    {{prod.prodName}}
+                  </view>
+                  <view class='prod-info-cont'>{{prod.skuName}}</view>
+                  <view class='price-nums'>
+                    <text class='prodprice'><text class='symbol'>￥</text>
+                    <text class='big-num'>{{wxs.parsePrice(prod.price)[0]}}</text>
+                    <text class='small-num'>.{{wxs.parsePrice(prod.price)[1]}}</text></text>
+                    <text class="prodcount">x{{prod.prodCount}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </block>
+        <!-- 一个订单多个商品时的显示 -->
+        <block wx:else>
+          <view class='item-cont' bindtap='toOrderDetailPage' data-ordernum="{{item.orderNumber}}">
+            <scroll-view scroll-x="true" scroll-left='0' scroll-with-animation="false" class="categories">
+              <block wx:for="{{item.orderItemDtos}}" wx:for-item="prod" wx:key=''>
+                <view class='prod-pic'>
+                  <image src="{{prod.pic}}"></image>
+                </view>
+              </block>
+            </scroll-view>
+          </view>
+        </block>
+
+        <view class='total-num'>
+          <text class="prodcount">共1件商品</text>
+          <view class='prodprice'>合计：
+            <text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(item.actualTotal)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(item.actualTotal)[1]}}</text>
+          </view>
+        </view>
+        <!-- end 商品列表 -->
+        <view class='prod-foot'>
+          <view class='btn'>
+            <text wx:if="{{item.status==1}}" class="button" bindtap="onCancelOrder" data-ordernum="{{item.orderNumber}}" hover-class='none'>取消订单</text>
+            <text class="button warn" bindtap="" data-ordernum="{{item.orderNumber}}" hover-class='none'>再次购买</text>
+            <text wx:if="{{item.status==1}}" class="button warn" bindtap="onPayAgain" data-ordernum="{{item.orderNumber}}" hover-class='none'>付款</text>
+            <text wx:if="{{item.status==3 || item.status==5}}" class="button" bindtap="toDeliveryPage" data-ordernum="{{item.orderNumber}}" hover-class='none'>查看物流</text>
+            <text wx:if="{{item.status==3}}" class="button warn" bindtap="onConfirmReceive" data-ordernum="{{item.orderNumber}}" hover-class='none'>确认收货</text>
+          </view>
+        </view>
+      </view>
+
+
+
+    </block>
+
+
+  </view>
+</view>
+<!-- end 订单列表 -->
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

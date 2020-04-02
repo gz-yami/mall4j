@@ -1,0 +1,11 @@
+{
+
+  "usingComponents": {
+    "coupon":"/components/coupon/coupon"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "提交订单",
+  "navigationBarTextStyle": "black"
+
+}

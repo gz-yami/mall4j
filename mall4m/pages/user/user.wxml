@@ -1,0 +1,101 @@
+<!--pages/user/user.wxml-->
+<view class='container'>
+  <!-- 用户信息 -->
+  <view class='userinfo'>
+    <view class='userinfo-avatar'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class='userinfo-name'>
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+  <view class='binding-phone'>
+    <text class='show-tip'>绑定手机号后可查看订单和领取优惠券，</text>
+    <text class='gotobinding' bindtap='toBindingPhone'>去绑定</text>
+  </view>
+  <!-- end 用户信息 -->
+
+  <view class='list-cont'>
+
+    <!-- 订单状态 -->
+    <view class='total-order'>
+      <view class='order-tit'>
+        <text style='font-weight:bold'>我的订单</text>
+        <view class='checkmore' bindtap='toOrderListPage' data-sts="0">
+          <text>查看全部 </text>
+          <text class='arrowhead'></text>
+        </view>
+      </view>
+      <view class='procedure'>
+        <view class='items' bindtap='toOrderListPage' data-sts="1">
+          <image src='../../images/icon/toPay.png'></image>
+          <text>待支付</text>
+          <text class='num-badge' wx:if="{{orderAmount.unPay>0}}">{{orderAmount.unPay}}</text>
+        </view>
+        <view class='items' bindtap='toOrderListPage' data-sts="2">
+          <image src='../../images/icon/toDelivery.png'></image>
+          <text>待发货</text>
+          <text class='num-badge' wx:if="{{orderAmount.payed>0}}">{{orderAmount.payed}}</text>
+        </view>
+        <view class='items' bindtap='toOrderListPage' data-sts="3">
+          <image src='../../images/icon/toTake.png'></image>
+          <text>待收货</text>
+          <text class='num-badge' wx:if="{{orderAmount.consignment>0}}">{{orderAmount.consignment}}</text>
+        </view>
+        <view class='items' bindtap='toOrderListPage' data-sts="5">
+          <image src='../../images/icon/toComment.png'></image>
+          <text>已完成</text>
+        </view>
+      </view>
+    </view>
+    <!--end 订单状态 -->
+
+    <view class="prod-col">
+      <view class="col-item" bindtap='myCollectionHandle'>
+        <view class="num">{{collectionCount}}</view>
+        <view class="tit">我的收藏</view>
+      </view>
+      <view class="col-item">
+        <view class="num">5</view>
+        <view class="tit">我的消息</view>
+      </view>
+      <view class="col-item">
+        <view class="num">3</view>
+        <view class="tit">我的足迹</view>
+      </view>
+    </view>
+
+    <view class='my-menu'>
+      <view class='memu-item' bindtap='toDistCenter'>
+        <view class="i-name">
+          <image src='../../images/icon/promotion.png'></image>
+          <text>分销中心</text>
+        </view>
+        <view class='arrowhead'></view>
+      </view>
+      <view class='memu-item' bindtap='toCouponCenter'>
+        <view class="i-name">
+          <image src='../../images/icon/getCoupon.png'></image>
+          <text>领券中心</text>
+        </view>
+        <view class='arrowhead'></view>
+      </view>
+      <view class='memu-item' bindtap='toMyCouponPage'>
+        <view class="i-name">
+          <image src='../../images/icon/myCoupon.png'></image>
+          <text>我的优惠券</text>
+        </view>
+        <view class='arrowhead'></view>
+      </view>
+      <view class='memu-item' bindtap='toAddressList'>
+        <view class="i-name">
+          <image src='../../images/icon/myAddr.png'></image>
+          <text>收货地址</text>
+        </view>
+        <view class='arrowhead'></view>
+      </view>
+    </view>
+    <!--end 列表项 -->
+  </view>
+
+</view>
