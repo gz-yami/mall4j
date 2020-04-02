@@ -52,9 +52,6 @@ import java.nio.charset.StandardCharsets;
  * 小程序登陆：此时principal为code
  *       post:http://127.0.0.1:8086/login
  *       {principal:code}
- * 管理员登陆：
- *       post: http://127.0.0.1:8086/login
- *       {principal:username,credentials:password}
  */
 @Component
 public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
