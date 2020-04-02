@@ -80,7 +80,7 @@ public class IndexImgController {
         indexImg.setShopId(shopId);
         indexImg.setUploadTime(new Date());
         indexImgService.save(indexImg);
-        indexImgService.removeIndexImgs();
+        indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
     }
 
@@ -91,7 +91,7 @@ public class IndexImgController {
     @PreAuthorize("@pms.hasPermission('admin:indexImg:update')")
     public ResponseEntity<Void> update(@RequestBody @Valid IndexImg indexImg) {
         indexImgService.updateById(indexImg);
-        indexImgService.removeIndexImgs();
+        indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
     }
 
@@ -102,7 +102,7 @@ public class IndexImgController {
     @PreAuthorize("@pms.hasPermission('admin:indexImg:delete')")
     public ResponseEntity<Void> delete(@RequestBody Long[] ids) {
         indexImgService.deleteIndexImgsByIds(ids);
-        indexImgService.removeIndexImgs();
+        indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
     }
 }

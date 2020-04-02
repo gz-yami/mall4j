@@ -29,18 +29,4 @@ public class YamiClientDetailsService extends JdbcClientDetailsService {
 	public YamiClientDetailsService(DataSource dataSource) {
 		super(dataSource);
 	}
-
-	/**
-	 * 重写原生方法支持redis缓存
-	 *
-	 * @param clientId
-	 * @return tz_oauth_client_details表对应的实体
-	 * @throws InvalidClientException
-	 */
-	@Override
-	@SneakyThrows
-	@Cacheable(value = SecurityConstants.CLIENT_DETAILS_KEY, key = "#clientId", unless = "#result == null")
-	public ClientDetails loadClientByClientId(String clientId) {
-		return super.loadClientByClientId(clientId);
-	}
 }

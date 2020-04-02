@@ -16,11 +16,12 @@ Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作
 
 ## 项目链接
 
-java后台：https://github.com/gz-yami/mall4j
+java后台：https://gitee.com/gz-yami/mall4j
 
-vue后台前端：https://github.com/gz-yami/mall4v
+vue后台前端：https://gitee.com/gz-yami/mall4v
 
-小程序：https://github.com/gz-yami/mall4m
+小程序：https://gitee.com/gz-yami/mall4m
+
 
 
 ## 演示地址
@@ -58,37 +59,10 @@ vue后台前端：https://github.com/gz-yami/mall4v
 
 ## 部署教程
 
+ps: 如果你不清楚如何启动我们的商城，请仔细阅wiki当中的文档
 
 
-### 1.开发环境
-
-以下版本是最低要求的！！！ 提问问题前请注意开发环境！！
-
-
-| 工具  | 版本 |
-| ----- | ---- |
-| jdk   | 1.8+ |
-| mysql | 5.7+ |
-| redis | 3.2+ |
-
-### 2.启动
-
-- 推荐使用idea，安装lombok插件后，使用idea导入maven项目
-- 将yami_shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
-- 将mysql配置为不区分表名大小写(定时任务需要)
-- 通过修改`ma.properties` 修改微信小程序信息
-- 通过修改`mp.properties` 修改微信公众号信息
-- 通过修改`pay.properties` 修改微信支付信息
-- 通过修改`shop.properties` 修改七牛云、阿里大于等信息
-- 修改`api.properties` 修改当前接口所在域名，用于支付回调
-- 启动redis，端口6379
-- 通过`WebApplication`启动项目后台接口，`ApiApplication` 启动项目前端接口
-
-
-关于如何启动可以参考视频： https://www.bilibili.com/video/av60447070
-
-关于授权流程可以参考视频：https://www.bilibili.com/video/av60453722
-
+https://gitee.com/gz-yami/mall4j/wikis
 
 ## 相关截图
 

@@ -16,6 +16,7 @@ import java.util.Objects;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.security.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,7 @@ public class CategoryController {
 
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	/**
 	 * 获取菜单页面的表
 	 * @return
@@ -62,7 +63,7 @@ public class CategoryController {
 		List<Category> categoryMenuList = categoryService.tableCategory(SecurityUtils.getSysUser().getShopId());
 		return ResponseEntity.ok(categoryMenuList);
 	}
-	
+
 	/**
 	 * 获取分类信息
 	 */
@@ -71,9 +72,9 @@ public class CategoryController {
 		Category category = categoryService.getById(categoryId);
 		return ResponseEntity.ok(category);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 保存分类
 	 */
@@ -83,10 +84,15 @@ public class CategoryController {
 	public ResponseEntity<Void> save(@RequestBody Category category){
 		category.setShopId(SecurityUtils.getSysUser().getShopId());
 		category.setRecTime(new Date());
+		Category categoryName = categoryService.getOne(new LambdaQueryWrapper<Category>().eq(Category::getCategoryName,category.getCategoryName())
+				.eq(Category::getShopId,category.getShopId()));
+		if(categoryName != null){
+			throw new YamiShopBindException("类目名称已存在！");
+		}
 		categoryService.saveCategroy(category);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	/**
 	 * 更新分类
 	 */
@@ -98,10 +104,15 @@ public class CategoryController {
 		if (Objects.equals(category.getParentId(),category.getCategoryId())) {
 			return ResponseEntity.badRequest().body("分类的上级不能是自己本身");
 		}
+		Category categoryName = categoryService.getOne(new LambdaQueryWrapper<Category>().eq(Category::getCategoryName,category.getCategoryName())
+				.eq(Category::getShopId,category.getShopId()).ne(Category::getCategoryId,category.getCategoryId()));
+		if(categoryName != null){
+			throw new YamiShopBindException("类目名称已存在！");
+		}
 		categoryService.updateCategroy(category);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	/**
 	 * 删除分类
 	 */
@@ -115,7 +126,7 @@ public class CategoryController {
 		categoryService.deleteCategroy(categoryId);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	/**
 	 * 所有的
 	 */
@@ -127,7 +138,7 @@ public class CategoryController {
 														.eq(Category::getShopId, SecurityUtils.getSysUser().getShopId())
 														.orderByAsc(Category::getSeq)));
 	}
-	
+
 	/**
 	 * 所有的产品分类
 	 */

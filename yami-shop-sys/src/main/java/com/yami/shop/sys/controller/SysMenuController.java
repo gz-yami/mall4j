@@ -117,59 +117,59 @@ public class SysMenuController{
 		return ResponseEntity.ok(menu);
 	}
 
-//	/**
-//	 * 保存
-//	 */
-//	@SysLog("保存菜单")
-//	@PostMapping
-//	@PreAuthorize("@pms.hasPermission('sys:menu:save')")
-//	public ResponseEntity<Void> save(@Valid @RequestBody SysMenu menu){
-//		//数据校验
-//		verifyForm(menu);
-//		sysMenuService.save(menu);
-//		return ResponseEntity.ok().build();
-//	}
-//
-//	/**
-//	 * 修改
-//	 */
-//	@SysLog("修改菜单")
-//	@PutMapping
-//	@PreAuthorize("@pms.hasPermission('sys:menu:update')")
-//	public ResponseEntity<String> update(@Valid @RequestBody SysMenu menu){
-//		//数据校验
-//		verifyForm(menu);
-//
-//		if(menu.getType() == MenuType.MENU.getValue()){
-//			if(StrUtil.isBlank(menu.getUrl())){
-//				return ResponseEntity.badRequest().body("菜单URL不能为空");
-//			}
-//		}
-//		sysMenuService.updateById(menu);
-//
-//		return ResponseEntity.ok().build();
-//	}
-//
-//	/**
-//	 * 删除
-//	 */
-//	@SysLog("删除菜单")
-//	@DeleteMapping("/{menuId}")
-//	@PreAuthorize("@pms.hasPermission('sys:menu:delete')")
-//	public ResponseEntity<String> delete(@PathVariable Long menuId){
-//		if(menuId <= Constant.SYS_MENU_MAX_ID){
-//			return ResponseEntity.badRequest().body("系统菜单，不能删除");
-//		}
-//		//判断是否有子菜单或按钮
-//		List<SysMenu> menuList = sysMenuService.listChildrenMenuByParentId(menuId);
-//		if(menuList.size() > 0){
-//			return ResponseEntity.badRequest().body("请先删除子菜单或按钮");
-//		}
-//
-//		sysMenuService.deleteMenuAndRoleMenu(menuId);
-//
-//		return ResponseEntity.ok().build();
-//	}
+	/**
+	 * 保存
+	 */
+	@SysLog("保存菜单")
+	@PostMapping
+	@PreAuthorize("@pms.hasPermission('sys:menu:save')")
+	public ResponseEntity<Void> save(@Valid @RequestBody SysMenu menu){
+		//数据校验
+		verifyForm(menu);
+		sysMenuService.save(menu);
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * 修改
+	 */
+	@SysLog("修改菜单")
+	@PutMapping
+	@PreAuthorize("@pms.hasPermission('sys:menu:update')")
+	public ResponseEntity<String> update(@Valid @RequestBody SysMenu menu){
+		//数据校验
+		verifyForm(menu);
+
+		if(menu.getType() == MenuType.MENU.getValue()){
+			if(StrUtil.isBlank(menu.getUrl())){
+				return ResponseEntity.badRequest().body("菜单URL不能为空");
+			}
+		}
+		sysMenuService.updateById(menu);
+
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * 删除
+	 */
+	@SysLog("删除菜单")
+	@DeleteMapping("/{menuId}")
+	@PreAuthorize("@pms.hasPermission('sys:menu:delete')")
+	public ResponseEntity<String> delete(@PathVariable Long menuId){
+		if(menuId <= Constant.SYS_MENU_MAX_ID){
+			return ResponseEntity.badRequest().body("系统菜单，不能删除");
+		}
+		//判断是否有子菜单或按钮
+		List<SysMenu> menuList = sysMenuService.listChildrenMenuByParentId(menuId);
+		if(menuList.size() > 0){
+			return ResponseEntity.badRequest().body("请先删除子菜单或按钮");
+		}
+
+		sysMenuService.deleteMenuAndRoleMenu(menuId);
+
+		return ResponseEntity.ok().build();
+	}
 
 	/**
 	 * 验证参数是否正确

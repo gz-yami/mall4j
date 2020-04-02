@@ -60,30 +60,12 @@ public class LoginAuthSuccessHandler implements AuthenticationSuccessHandler {
 
         try {
 
-            // ClientDetails clientDetails = clientDetailsService.loadClientByClientId(clientId);
+            TokenRequest tokenRequest = new TokenRequest(null, null, null, null);
 
-
-            String grantType = request.getParameter(OAuth2Utils.GRANT_TYPE);
-            // 目前先简化登陆传入的参数
-            String clientId = grantType;
             // 简化
-            BaseClientDetails clientDetails = new BaseClientDetails();
-            clientDetails.setClientId(clientId);
-
-            TokenRequest tokenRequest = new TokenRequest(MapUtil.newHashMap(), clientId, Sets.newHashSet(), grantType);
-
-
-            OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
+            OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(new BaseClientDetails());
             OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
 
-
-//            OAuth2AccessToken accessToken = defaultAuthorizationServerTokenServices.getAccessToken(oAuth2Authentication);
-//            OAuth2AccessToken oAuth2AccessToken = null;
-//            if (accessToken != null) {
-//                oAuth2AccessToken = defaultAuthorizationServerTokenServices.refreshAccessToken(accessToken.getRefreshToken().getValue(), tokenRequest);
-//            } else {
-//                oAuth2AccessToken = defaultAuthorizationServerTokenServices.createAccessToken(oAuth2Authentication);
-//            }
 
             OAuth2AccessToken oAuth2AccessToken = yamiTokenServices.createAccessToken(oAuth2Authentication);
             log.info("获取token 成功：{}", oAuth2AccessToken.getValue());

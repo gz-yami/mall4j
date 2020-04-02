@@ -12,4 +12,4 @@ EXPOSE 8086
 
 ADD ./yami-shop-api/target/yami-shop-api-0.0.1-SNAPSHOT.jar ./
 
-CMD java -jar -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC -Dspring.profiles.active=docker yami-shop-api-0.0.1-SNAPSHOT.jar
+CMD java -jar -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC -Dspring.profiles.active=docker yami-shop-api-0.0.1-SNAPSHOT.jar
