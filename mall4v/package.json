@@ -12,7 +12,7 @@
     "build": "gulp"
   },
   "dependencies": {
-    "@smallwei/avue": "^2.0.2",
+    "@smallwei/avue": "2.0.2",
     "axios": "0.18.1",
     "babel-plugin-component": "0.10.1",
     "babel-polyfill": "6.26.0",
@@ -22,7 +22,7 @@
     "gulp-load-plugins": "1.6.0",
     "gulp-replace": "1.0.0",
     "lodash": "4.17.5",
-    "node-sass": "~4.12.0",
+    "node-sass": "4.12.0",
     "sass-loader": "6.0.6",
     "svg-sprite-loader": "3.7.3",
     "vue": "2.6.10",
