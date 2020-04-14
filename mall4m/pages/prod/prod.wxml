@@ -1,0 +1,225 @@
+<!-- 商品详情 -->
+<view class="container">
+  <!-- 轮播图 -->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" indicator-color="{{indicatorColor}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
+    <block wx:for="{{imgs}}" wx:key='*this'>
+      <swiper-item>
+        <image src='{{item}}'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- end  轮播图 -->
+  <!-- 商品信息 -->
+  <!-- <block wx:for="{{imgs}}" wx:key=''> -->
+  <view class='prod-info'>
+    <view class="tit-wrap">
+      <view class="prod-tit">{{prodName}}</view>
+      <view class="col" bindtap='addOrCannelCollection'>
+        <image wx-if="{{!isCollection}}" src="../../images/icon/prod-col.png"></image>
+        <image wx-if="{{isCollection}}" src="../../images/icon/prod-col-red.png"></image>
+        收藏
+      </view>
+    </view>
+    <view class="sales-p">{{brief}}</view>
+    <view class="prod-price">
+      <text class="price">￥<text class="price-num">{{wxs.parsePrice(defaultSku.price)[0]}}</text>.{{wxs.parsePrice(defaultSku.price)[1]}}</text>
+      <text class="sales"></text>
+    </view>
+    <!-- <button class="share-icon" open-type="share">
+        <image src='../../images/icon/share.png'></image>
+        <view class="share-text">分享</view>
+      </button> -->
+  </view>
+  <!-- </block> -->
+  <!-- end 商品信息 -->
+  <!-- 领券 -->
+  <!-- <view class="coupon" bindtap='showPopup' wx:if="{{couponList.length}}">
+    <view class="coupon-tit">领券</view>
+    <view class="coupon-con">
+      <text class="item" wx:for="{{couponList}}" wx:key="item.couponId">满{{item.cashCondition}}<block wx:if="{{item.couponType == 1}}">减{{item.reduceAmount}}</block><block wx:if="{{item.couponType == 2}}">打{{item.couponDiscount}}折</block></text>
+    </view>
+    <view class="num">共{{couponList.length}}张</view>
+    <view class="more">...</view>
+  </view> -->
+  <!-- 已选规格 -->
+  <view class="sku" bindtap='showSku'>
+    <view class="sku-tit">已选</view>
+    <view class="sku-con">{{selectedProp.length>0?selectedProp+'，':selectedProp}}{{prodNum}}件</view>
+    <view class="more">...</view>
+  </view>
+  <!-- 评价 -->
+  <view class='cmt-wrap'>
+    <view class="cmt-tit" bindtap='showComment'>
+      <view class="cmt-t">
+        评价
+        <text class="cmt-good">好评{{prodCommData.positiveRating}}%</text>
+      </view>
+      <view class="cmt-count">
+        共{{prodCommData.number}}条
+        <text class="cmt-more"></text>
+      </view>
+    </view>
+    <view class="cmt-cont">
+      <view class="cmt-tag" bindtap='showComment'>
+        <text>全部({{prodCommData.number}})</text>
+        <text>好评({{prodCommData.praiseNumber}})</text>
+        <text>中评({{prodCommData.secondaryNumber}})</text>
+        <text>差评({{prodCommData.negativeNumber}})</text>
+        <text>有图({{prodCommData.picNumber}})</text>
+      </view>
+      <view class="cmt-items">
+        <view class="cmt-item" wx:for="{{littleCommPage}}" wx:key="prodCommId">
+          <view class="cmt-user">
+            <text class="date">{{item.recTime}}</text>
+            <view class="cmt-user-info">
+              <image class="user-img" src="{{item.pic}}"></image>
+              <view class="nickname">{{item.nickName}}</view>
+              <van-rate readonly value="{{ item.score }}" bind:change="onChange" color="#f44" />
+            </view>
+          </view>
+          <view class="cmt-cnt">{{item.content}}</view>
+          <scroll-view class="cmt-attr" scroll-x="true" wx:if="{{item.pics.length}}">
+            <image src="{{commPic}}" wx:for='{{item.pics}}' wx:for-item="commPic" wx:key='*this'></image>
+          </scroll-view>
+        </view>
+      </view>
+      <view class="cmt-more-v" wx:if="{{prodCommPage.records.length > 2}}">
+        <text bindtap='showComment'>查看全部评价</text>
+      </view>
+    </view>
+  </view>
+  <!-- 商品详情 -->
+  <view class="prod-detail">
+    <view>
+      <rich-text nodes="{{content}}"></rich-text>
+      <!-- <image src="//img14.360buyimg.com/cms/jfs/t1/25195/1/9487/388554/5c7f80a5E8b8f8f0c/46818404849d6ec6.jpg!q70.dpg" mode="widthFix"></image> -->
+    </view>
+  </view>
+  <!-- end 商品详情 -->
+  <!-- 底部按钮 -->
+  <view class="cart-footer {{findSku?'':'gray'}}">
+    <view class="btn icon" bindtap='toHomePage'>
+      <image src="../../images/tabbar/homepage.png"></image>
+      首页
+    </view>
+    <view class="btn icon" bindtap='toCartPage'>
+      <image src="../../images/tabbar/basket.png"></image>
+      购物车
+      <view class='badge badge-1' wx:if="{{totalCartNum>0}}">{{totalCartNum}}</view>
+    </view>
+    <view class="btn cart" bindtap='addToCart'>
+      <text>加入购物车</text>
+    </view>
+    <view class="btn buy" bindtap='buyNow'>
+      <text>立即购买</text>
+    </view>
+  </view>
+
+  <!-- end 底部按钮 -->
+
+  <!-- 优惠券 -->
+  <!-- <view class="popup-hide" wx:if="{{popupShow}}">
+    <view class="popup-box">
+      <view class="popup-tit">
+        <text>优惠券</text>
+        <text class="close" bindtap='closePopup'></text>
+      </view>
+      <view class='popup-cnt'>
+        <block wx:for="{{couponList}}" wx:key='couponId'>
+          <coupon showTimeType="{{1}}" canUse="{{true}}" item="{{item}}"></coupon>
+        </block>
+      </view>
+    </view>
+  </view> -->
+  <!-- 规格弹窗 -->
+  <view class="pup-sku" wx:if="{{skuShow}}">
+    <view class="pup-sku-main">
+      <view class='pup-sku-header'>
+        <image class="pup-sku-img" src="{{defaultSku.pic?defaultSku.pic:pic}}"></image>
+        <view class="pup-sku-price" wx-if="{{findSku}}">
+          ￥
+          <text class="pup-sku-price-int">{{wxs.parsePrice(defaultSku.price)[0]}}</text> .{{wxs.parsePrice(defaultSku.price)[1]}}
+        </view>
+        <view class="pup-sku-price" wx-if="{{!findSku}}">无货</view>
+        <view class='pup-sku-prop'>
+          <text>已选</text> {{selectedProp.length>0?selectedProp+'，':selectedProp}}{{prodNum}}件
+        </view>
+        <view class='close' bindtap='closePopup'></view>
+      </view>
+      <view class='pup-sku-body'>
+        <view class="pup-sku-area">
+          <block wx:for="{{skuGroup}}" wx:for-index="key" wx:for-item="value" wx:key='*this'>
+            <view class='sku-kind'>{{key}}</view>
+            <view class='sku-choose'>
+              <block wx:for="{{value}}" wx:key='*this'>
+                <text class="sku-choose-item {{wxs.array_contain(selectedProp,item)?'active':''}} {{['dashed',''][wxs.props_contain(allProperties,selectedPropObj,key,item,propKeys)]}}" bindtap='toChooseItem'
+                  data-key="{{key}}" data-val="{{item}}">{{item}}</text>
+              </block>
+            </view>
+          </block>
+        </view>
+        <view class="pup-sku-count">
+          <view class="num-wrap">
+            <view class="minus" bindtap='onCountMinus'>
+              <text class="row"></text>
+            </view>
+            <view class="text-wrap">
+              <input type="number" value="{{prodNum}}" disabled />
+            </view>
+            <view class="plus" bindtap='onCountPlus'>
+              <text class="row"></text>
+              <text class="col"></text>
+            </view>
+          </view>
+          <view class="count-name">数量</view>
+        </view>
+      </view>
+      <view class='pup-sku-footer {{findSku?"":"gray"}}'>
+        <view class="btn cart" bindtap='addToCart'>加入购物车</view>
+        <view class="btn buy" bindtap='buyNow'>立即购买</view>
+      </view>
+    </view>
+  </view>
+  <!-- 评价弹窗 -->
+  <view class="cmt-popup" wx:if="{{commentShow}}">
+    <view class="cmt-tit">
+      <view class="cmt-t">
+        商品评价
+        <text class="cmt-good">好评度{{prodCommData.positiveRating}}%</text>
+      </view>
+      <text class="close" bindtap='closePopup'></text>
+    </view>
+    <view class="cmt-cont">
+      <view class="cmt-tag">
+        <text bindtap='getProdCommPage' data-evaluate="-1" class="{{evaluate==-1?'selected':''}}">全部({{prodCommData.number}})</text>
+        <text bindtap='getProdCommPage' data-evaluate="0" class="{{evaluate==0?'selected':''}}">好评({{prodCommData.praiseNumber}})</text>
+        <text bindtap='getProdCommPage' data-evaluate="1" class="{{evaluate==1?'selected':''}}">中评({{prodCommData.secondaryNumber}})</text>
+        <text bindtap='getProdCommPage' data-evaluate="2" class="{{evaluate==2?'selected':''}}">差评({{prodCommData.negativeNumber}})</text>
+        <text bindtap='getProdCommPage' data-evaluate="3" class="{{evaluate==3?'selected':''}}">有图({{prodCommData.picNumber}})</text>
+      </view>
+      <view class="cmt-items">
+        <view class="cmt-item" wx:for="{{prodCommPage.records}}" wx:key="prodCommId">
+          <view class="cmt-user">
+            <text class="date">{{item.recTime}}</text>
+            <view class="cmt-user-info">
+              <image class="user-img" src="{{item.pic}}"></image>
+              <view class="nickname">{{item.nickName}}</view>
+              <van-rate readonly value="{{ item.score }}" bind:change="onChange" color="#f44" />
+            </view>
+          </view>
+          <view class="cmt-cnt">{{item.content}}</view>
+          <scroll-view class="cmt-attr" scroll-x="true" wx:if="{{item.pics.length}}">
+            <image src="{{commPic}}" wx:for='{{item.pics}}' wx:for-item="commPic" wx:key='*this'></image>
+          </scroll-view>
+          <view class="cmt-reply" wx:if="{{item.replyContent}}">
+            <text class='reply-tit'>店铺回复：</text> {{item.replyContent}}
+          </view>
+        </view>
+      </view>
+      <view class="load-more" wx:if='{{prodCommPage.pages > prodCommPage.current}}'>
+        <text bindtap='getMoreCommPage'>点击加载更多</text>
+      </view>
+    </view>
+  </view>
+</view>
+<wxs module="wxs" src="../../wxs/number.wxs" />

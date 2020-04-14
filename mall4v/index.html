@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="referrer" content="same-origin">
+  <title>亚米后台</title>
+  <% if (process.env.NODE_ENV === 'production') { %>
+    <!-- 生产环境 -->
+    <script>document.write('<script src="./config/index.js?t=' + new Date().getTime() + '"><\/script>');</script>
+  <% }else { %>
+    <!-- 开发环境 -->
+    <link rel="shortcut icon" type="image/x-icon" href="./static/img/favicon.ico">
+    <script src="./static/config/index.js"></script>
+    <script src="./static/plugins/echarts-4.2.1/echarts.common.min.js"></script>
+    <script src="./static/plugins/tinymce.4.9.4/tinymce.min.js"></script>
+    <script src="./static/plugins/tinymce.4.9.4/zh_CN.js"></script>
+  <% } %>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>

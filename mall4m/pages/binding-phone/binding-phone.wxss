@@ -1,0 +1,69 @@
+/* pages/binding-phone/binding-phone.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.binding-phone {
+  height: 100%;
+  margin-top: 20rpx;
+  background: #fff;
+}
+
+.binding-phone .item {
+  display: flex;
+  padding: 20rpx 0;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: 2rpx solid #e1e1e1;
+}
+
+.binding-phone .item:last-child {
+  border: none;
+}
+
+.binding-phone .item input {
+  flex: 1;
+  height: auto;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+.binding-phone .item .item-tip {
+  width: 140rpx;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+}
+
+.binding-phone .item .get-code {
+  font-size: 30rpx;
+  color: #999;
+  margin-right: 20rpx;
+  text-align: center;
+}
+
+.binding-phone .item .get-code.gray {
+  color: #3eb370;
+}
+
+.btn-box {
+  padding: 0 20rpx;
+  margin-top: 60rpx;
+}
+
+.btn-box .sure-btn {
+  display: block;
+  font-size: 32rpx;
+  color: #fff;
+  background: #3eb370;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 50rpx;
+}
+
+.btn-box .sure-btn.gray {
+  background: #e1e1e1;
+  margin-bottom: 30rpx;
+}

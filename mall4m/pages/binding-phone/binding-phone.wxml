@@ -1,0 +1,21 @@
+<!--pages/binding-phone/binding-phone.wxml-->
+<view class='container'>
+  <view class='binding-phone'>
+    <!-- <block wx:for='{{couponList}}' wx:key=''> -->
+      <view class='item'>
+        <text class='item-tip'>手机号码：</text>
+        <input placeholder='输入手机号码'  type='number' maxlength='11' value="{{phonenum}}" bindinput="onPhoneInput" ></input>
+      </view>
+      <view class='item '>
+        <text class='item-tip'>验证码：</text>
+        <input placeholder='输入验证码' type='number' value="{{code}}" bindinput="onCodeInput" ></input>
+        <text class='get-code gray' bindtap='getCodeNumber'>获取验证码</text>
+      </view>
+    <!-- </block> -->
+  </view>
+
+  <view class='btn-box'>
+    <text class='sure-btn gray'>确定</text>
+    <text class='sure-btn '>确定</text>
+  </view>
+</view>

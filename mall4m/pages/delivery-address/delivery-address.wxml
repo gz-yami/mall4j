@@ -1,0 +1,37 @@
+<!--pages/delivery-address/delivery-address.wxml-->
+<view class='container'>
+  <view class='main'>
+    <view class="empty" wx:if="{{addressList.length==0}}">
+      <view class="img">
+        <image src='http://jiales.gz-yami.com/addr.png'></image>
+      </view>
+      <view class='txt'>您还没有收货地址</view>
+    </view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <block wx:for="{{addressList}}">
+        <view class='address'>
+          <view class='personal' bindtap='selAddrToOrder' data-item="{{item}}">
+            <view class='info-tit'>
+              <text class='name'>{{item.receiver}}</text>
+              <text class='tel'>{{item.mobile}}</text>
+              <image src='../../images/icon/revise.png' catchtap='toEditAddress' data-addrid="{{item.addrId}}"></image>
+            </view>
+            <view class='addr'>
+
+              <text class='addr-get'> {{item.province}}{{item.city}}{{item.area}}{{item.addr}}</text>
+            </view>
+          </view>
+          <view class='select-btn'>
+            <view class="box">
+              <label  bindtap='onDefaultAddr' data-addrid="{{item.addrId}}">
+                <radio value="{{item.prodId}}" checked="{{item.commonAddr==1}}" color="#eb2444" />设为默认地址</label>
+            </view>
+          </view>
+        </view>
+      </block>
+    </radio-group>
+  </view>
+  <view class='footer' bindtap='onAddAddr'>
+    <text>新增收货地址</text>
+  </view>
+</view>

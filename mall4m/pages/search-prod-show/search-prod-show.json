@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "搜索结果",
+  "navigationBarTextStyle": "black",
+  "usingComponents":{
+    "prod":"/components/production/production"
+  }
+}

@@ -1,0 +1,30 @@
+<view class="coupon-item {{canUse?'':'gray'}}">
+  <view class='left'>
+    <view class="num" wx:if="{{item.couponType == 1}}">
+      ￥
+      <text class="coupon-price">{{item.reduceAmount}}</text>
+    </view>
+    <view class="num" wx:if="{{item.couponType == 2}}">
+      <text class="coupon-price">{{item.couponDiscount}}</text>折
+    </view>
+    <view class='condition'>
+      满{{item.cashCondition}}元可用
+    </view>
+  </view>
+  <view class='right'>
+    <view class="c-des">
+      <text class="c-type">{{item.suitableProdType==0?'通用':'商品'}}</text> {{item.suitableProdType==0?'全场通用':'指定商品可用'}}
+    </view>
+    <view class="c-date">
+      <text wx:if="{{showTimeType==1 && item.couponType==2}}" class="c-data-info">领券{{item.validDays}}天后失效</text>
+      <text wx:else class="c-data-info">{{item.startTime}}~{{item.endTime}}</text>
+      <text class="c-btn" wx:if="{{item.canReceive && !order}}" bindtap='receiveCoupon'>立即领取</text>
+      <text class="c-btn get-btn" wx:if="{{!item.canReceive && !order}}" bindtap='useCoupon'>立即使用</text>
+    </view>
+    <view wx:if="{{order && canUse}}" class="sel-btn">
+      <checkbox color="#eb2444" data-couponid="{{item.couponId}}" checked="{{item.choose}}" bindtap="checkCoupon"></checkbox>
+    </view>
+  </view>
+  <image class="tag-img" src="../../images/icon/coupon-used.png" wx:if="{{type==1}}"></image>
+  <image class="tag-img" src="../../images/icon/coupon-ot.png" wx:if="{{type==2}}"></image>
+</view>

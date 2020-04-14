@@ -1,0 +1,114 @@
+<!--pages/basket/basket.wxml-->
+<view class='container'>
+  <view class="prod-list">
+    <block wx:for="{{shopCartItemDiscounts}}" wx:key='' wx:for-index="scIndex">
+      <view class='prod-block'>
+        <view class='discount-tips' hidden='{{!item.chooseDiscountItemDto}}'>
+          <text class='text-block'>{{wxs.parseDiscount(item.chooseDiscountItemDto.discountRule)}}</text>
+          <text class='text-list'>{{wxs.parseDiscountMsg(item.chooseDiscountItemDto.discountRule,item.chooseDiscountItemDto.needAmount,item.chooseDiscountItemDto.discount)}}</text>
+        </view>
+        <block wx:for="{{item.shopCartItems}}" wx:key='' wx:for-item="prod">
+          <view class='item'>
+            <view class="btn">
+              <label>
+                <checkbox bindtap='onSelectedItem' data-scindex="{{scIndex}}" data-index="{{index}}" value="{{prod.prodId}}" checked="{{prod.checked}}" color="#105c3e" />
+              </label>
+            </view>
+            <view class='prodinfo'>
+              <view class="pic">
+                <image src='{{prod.pic}}' />
+              </view>
+              <view class="opt">
+                <view class='prod-name'>{{prod.prodName}}</view>
+                <text class='prod-info-text {{prod.skuName?"":"empty-n"}}'>{{prod.skuName}}</text>
+                <view class='price-count'>
+                  <view class='price'>
+                    <text class='symbol'>￥</text>
+                    <text class='big-num'>{{wxs.parsePrice(prod.price)[0]}}</text>
+                    <text class='small-num'>.{{wxs.parsePrice(prod.price)[1]}}</text>
+                  </view>
+                  <view class="m-numSelector">
+                    <view bindtap='onCountMinus' class="minus" data-scindex="{{scIndex}}" data-index="{{index}}"></view>
+                    <input type='number' value='{{prod.prodCount}}' disabled></input>
+                    <view bindtap='onCountPlus' class="plus" data-scindex="{{scIndex}}" data-index="{{index}}"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+    </block>
+
+    <!-- <view class='lose-efficacy'>
+      <view class='discount-tips'>
+        
+        <text class='text-list'>失效商品</text>
+        <text class='empty-prod'>清空失效商品</text>
+      </view>
+      <view class='item'>
+        <view class="staus">
+          <text>失效</text>
+        </view>
+        <view class='prodinfo'>
+          <view class="pic">
+            <image src='../../images/prod/pic11.jpg' />
+          </view>
+          <view class="opt">
+            <view class='prod-name'>宠物用品洗澡香波沐浴除臭留</view>
+            <view class='prod-info-text'>60克</view>
+            <view class='price-count'>
+              <view class='price'>
+                <text class='symbol'>￥</text>
+                <text class='big-num'>{{wxs.parsePrice(10.00)[0]}}</text>
+                <text class='small-num'>.{{wxs.parsePrice(10.00)[1]}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view> -->
+
+  </view>
+
+  <view class="empty" wx:if="{{shopCartItemDiscounts.length==0}}">
+    <view class="img">
+      <image src='../../images/tabbar/basket.png'></image>
+    </view>
+    <view class="txt">
+      您还没有添加任何商品哦~
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="cart-footer" wx:if="{{shopCartItemDiscounts.length>0}}">
+    <view class="btn all">
+      <label bindtap='onSelAll'>
+        <checkbox checked='{{allChecked}}' color='#f7d731;' />全选</label>
+    </view>
+    <view class="btn del" bindtap='onDelBasket'>
+      <text>删除</text>
+    </view>
+    <view class="btn total">
+      <view class="finally">
+        <text>合计:</text>
+        <view class='price'>
+          <text class='symbol'>￥</text>
+          <text class='big-num'>{{wxs.parsePrice(finalMoney)[0]}}</text>
+          <text class='small-num'>.{{wxs.parsePrice(finalMoney)[1]}}</text>
+        </view>
+      </view>
+      <view class="total-msg" wx:if="{{subtractMoney>0}}">
+        总额:￥{{wxs.toPrice(totalMoney)}} 立减:￥{{wxs.toPrice(subtractMoney)}}
+      </view>
+    </view>
+    <view class="btn settle" bindtap='toFirmOrder'>
+      <text>结算</text>
+    </view>
+  </view>
+  <!-- end 底部按钮 -->
+
+</view>
+
+<wxs module="wxs" src="../../wxs/number.wxs" />
