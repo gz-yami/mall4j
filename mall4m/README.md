@@ -16,11 +16,11 @@ Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作
 
 ## 项目链接
 
-java后台：https://gitee.com/gz-yami/mall4j
+java后台：https://github.com/gz-yami/mall4j
 
-vue中后台：https://gitee.com/gz-yami/mall4v
+vue中后台：https://github.com/gz-yami/mall4v
 
-小程序：https://gitee.com/gz-yami/mall4m
+小程序：https://github.com/gz-yami/mall4m
 
 
 
@@ -32,7 +32,7 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
 小程序：1. 扫描二维码
 
-![小程序](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
+![小程序](https://github.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
 
 ​		2. 搜索小程序 **亚米商城** 
 
@@ -40,15 +40,15 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
 ## 相关截图
 
-![首页](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/index.jpg)
+![首页](https://github.com/gz-yami/mall4m/raw/master/screenshot/index.jpg)
 
-![商品详情](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/prodInfo.jpg)
+![商品详情](https://github.com/gz-yami/mall4m/raw/master/screenshot/prodInfo.jpg)
 
-![购物车](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/shopCart.jpg)
+![购物车](https://github.com/gz-yami/mall4m/raw/master/screenshot/shopCart.jpg)
 
-![sku](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/sku.jpg)
+![sku](https://github.com/gz-yami/mall4m/raw/master/screenshot/sku.jpg)
 
-![我的](https://gitee.com/gz-yami/mall4m/raw/master/screenshot/my.jpg)
+![我的](https://github.com/gz-yami/mall4m/raw/master/screenshot/my.jpg)
 
 
 
@@ -62,7 +62,7 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
 - QQ群：722835385
 
-  ![QQ群](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/qqGroup.png)
+  ![QQ群](https://github.com/gz-yami/mall4j/raw/master/screenshot/qqGroup.png)
 
 - 论坛：<http://bbs.gz-yami.com>
 
