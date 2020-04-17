@@ -7,7 +7,6 @@
 
 `Mall4j`项目致力于为中小企业打造一个完整、易于维护的开源的电商系统，采用现阶段流行技术实现。后台管理系统包含商品管理、订单管理、运费模板、规格管理、会员管理、运营管理、内容管理、统计报表、权限管理、设置等模块。
 
-
 ## 授权
 
 Mall4j官网 https://www.mall4j.com
@@ -22,7 +21,7 @@ vue后台前端：https://github.com/gz-yami/mall4v
 
 小程序：https://github.com/gz-yami/mall4m
 
-
+### ps 由于网络原因无法查看图片的，可以跳到gitee上查看：<https://gitee.com/gz-yami/mall4j> 
 
 ## 演示地址
 
@@ -70,7 +69,7 @@ https://github.com/gz-yami/mall4j/wikis
 
 ### 1. 后台截图
 
-![登陆](https://github.com/gz-yami/mall4j/raw/master/screenshot/login.png)
+![登陆](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/login.png)
 
 ![订单](https://github.com/gz-yami/mall4j/raw/master/screenshot/order.png)
 
