@@ -21,8 +21,6 @@ vue后台前端：https://github.com/gz-yami/mall4v
 
 小程序：https://github.com/gz-yami/mall4m
 
-### ps 由于网络原因无法查看图片的，可以跳到gitee上查看：<https://gitee.com/gz-yami/mall4j> 
-
 ## 演示地址
 
  **由于我们并不希望小程序的数据被弄混乱，我们弄了两个数据库。因此，您修改了后台的商品信息，小程序并不能看到！** 
@@ -65,6 +63,8 @@ https://github.com/gz-yami/mall4j/wikis
 
 ## 相关截图
 
+
+### ps 由于网络原因无法查看图片的，可以跳到gitee上查看：<https://gitee.com/gz-yami/mall4j> 
 
 
 ### 1. 后台截图
