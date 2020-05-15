@@ -98,3 +98,7 @@ https://gitee.com/gz-yami/mall4j/wikis
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
+
+
+
+![软著截图](https://images.gitee.com/uploads/images/2020/0515/200917_995e6632_1613814.png "软著.png")
