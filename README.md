@@ -1,4 +1,3 @@
-![输入图片说明](https://gitee.com/vip_title.png "在这里输入图片标题")
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0711/174845_6db7724e_5094767.png "屏幕截图.png")
 一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的完全开源商城
 
