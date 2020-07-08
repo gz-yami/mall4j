@@ -12,6 +12,14 @@ Mall4j官网 https://www.mall4j.com
 
 Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
 
+## 文档
+
+这代码有没有文档呀？ 当然有啦，你已经下载了，在doc这个文件夹上，实在不知道，我就给链接出来咯：
+
+gitee：https://gitee.com/gz-yami/mall4j/tree/master/doc
+
+看云：https://www.kancloud.cn/yami/mall4j
+
 ## 项目链接
 
 java后台：https://github.com/gz-yami/mall4j
