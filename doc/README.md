@@ -15,18 +15,41 @@
 6. 我们开源的刚上线直接申请通过了推荐项目，第一天就有100个星星，一个月就有1k的星星，大家都不是傻的，这代码是能用的，拜托...后来没怎么维护（整个流程都是好的，整个功能都是好的，都不知道维护啥），现在又开始维护了，星星也没了（如果你悄悄拿去做外包项目，觉得这个项目对你有用，就给个星星呗）
 
 
+
+## 先确定我们下载的项目有几个项目
+
+- mall4j：j代表java，java项目，这里面包含了小程序/后台vue连接需要的接口。
+- mall4v：v代表vue项目，是后台管理员界面使用的前端项目，因为前后端分离的
+- mall4m：m代表mini，小程序项目，这里的项目是小程序的项目
+- jvm：java虚拟机啦~
+
+
 ## 1.java开发环境安装
 
 
-### 1.开发环境
+### 1.1开发环境
 
 以下版本是最低要求的！！！ 提问问题前请注意开发环境！！
 
-| 工具  | 版本 |
-| ----- | ---- |
-| jdk   | 1.8+ |
-| mysql | 5.7+ |
-| redis | 3.2+ |
+| 工具   | 版本 |
+| ------ | ---- |
+| jdk    | 1.8+ |
+| mysql  | 5.7+ |
+| redis  | 3.2+ |
+| nodejs | 8-12 |
+
+
+### 1.2 安装jdk + mysql + redis + maven
+
+如果不了解怎么安装jdk的，可以参考 [菜鸟教程的java相关](https://www.runoob.com/java/java-environment-setup.html)
+
+如果不了解怎么安装mysql的，可以参考  [菜鸟教程的mysql相关](https://www.runoob.com/mysql/mysql-install.html) 
+
+如果不了解怎么安装maven的，可以参考  [菜鸟教程的maven相关]( https://www.runoob.com/maven/maven-setup.html ) 
+
+如果对于redis的安装并不了解的，可以参考 [菜鸟教程的redis相关](https://www.runoob.com/redis/redis-install.html)
+
+安装相对简单，网上也有很多教程，这里就不多讲述。安装完按需对redis进行配置，后启动redis服务即可。
 
 ### 2.启动
 
@@ -41,20 +64,70 @@
 - 启动redis，端口6379
 - 通过`WebApplication`启动项目后台接口，`ApiApplication` 启动项目前端接口
 
-## 2.vue开发环境安装
+## 3.vue开发环境安装
 
 这是一套正常的vue启动流程。如果你无法理解，可能要先学习一下vue...
 
-推荐使用vs code
+#### 3.1 安装nodejs + 淘宝npm镜像
 
-1. 安装nodejs的开发环境
-2. 安装npm的淘宝镜像（一定要用淘宝镜像，不然有的依赖下载不完！！启动不了）
-3. 使用淘宝镜像安装依赖
-4. 启动
+如果不了解怎么安装nodejs的，可以参考   [菜鸟教程的nodejs相关](https://www.runoob.com/nodejs/nodejs-install-setup.html)
+
+
+
+安装cnpm淘宝镜像，使用命令行输入，回车：
+
+```bash
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+
+
+#### 3.2 安装依赖启动项目
+
+使用vs code打开vue项目，进入到该项目的根目录（根目录有`package.json` 的文件）
+
+使用cnpm安装依赖（请勿直接使用npm安装依赖，除非你能确定你的网络能够畅快访问外网），使用命令行输入，回车：
+
+```bash
+cnpm i
+```
+
+修改`config/index.js` 里面的`target`为服务器域名端口
+
+```json
+'/proxyApi': {
+    target: 'http://localhost:8087/',
+    changeOrigin: true,
+    pathRewrite: {
+    '^/proxyApi': '/'
+}
+```
+
+修改`config/index.js` 里面的`host`以便于内网联调
+
+```json
+    // Various Dev Server settings
+    host: '192.168.1.120', // can be overwritten by process.env.HOST
+    port: 8002, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    autoOpenBrowser: true,
+```
+
+
+
+运行dev环境：
+
+```bash
+npm run dev
+```
+
 
 ## 3.小程序开发环境安装
 
-使用“微信开发者工具” 导入项目，设置你小程序申请的appid打开项目。然后就可以用了
+修改`project.config.json` 里面的appid为你所申请的appid，并登陆通过`微信公众平台` 将对应的开发人员设置为该小程序开发人员的角色
+
+修改`utils/config.js` 当中的域名端口为自己服务器的域名
+
+使用[微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)导入已下载好的项目，进行小程序开发
 
 ## 4.文档
 
