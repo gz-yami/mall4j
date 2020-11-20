@@ -24,7 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
-        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.6.RELEASE</spring-boot.version>
         <security.oauth.auto.version>2.3.4.RELEASE</security.oauth.auto.version>
         <java.version>1.8</java.version>
         <guava.version>28.2-jre</guava.version>
