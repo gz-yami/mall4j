@@ -1,0 +1,56 @@
+<!--pages/search-prod-show/search-prod-show.wxml-->
+<view class='container'>
+
+  <!-- 搜索框 -->
+  <view class='fixed-box'>
+    <view class='search-bar'>
+      <view class='search-box'>
+        <input class='sear-input' value="{{prodName}}" bindinput='getSearchContent' confirm-type='search' bindconfirm='toSearchConfirm'></input>
+        <image src='../../images/icon/search.png' class='search-img'></image>
+      </view>
+      <view class='search-list-img' bindtap='changeShowType'>
+        <image wx:if="{{showType==1}}" src='../../images/icon/search-col.png'></image>
+        <image wx:if="{{showType==2}}" src='../../images/icon/search-col2.png'></image>
+      </view>
+    </view>
+    <view class='tabs'>
+      <text class="tab-item complete {{sts==0?'on':''}}" bindtap='onStsTap' data-sts="0">综合</text>
+      <text class="tab-item {{sts==1?'on':''}}" bindtap='onStsTap' data-sts="1">销量</text>
+      <text class="tab-item {{sts==2?'on':''}}" bindtap='onStsTap' data-sts="2">价格</text>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class='prod-list'>
+    <!-- 横向列表 -->
+    <view class='prod-show' wx:if="{{showType==1}}">
+      <view class='hotsale-item-cont'>
+        <block wx:for="{{searchProdList}}">
+          <prod item="{{item}}" sts="6"></prod>
+        </block>
+      </view>
+    </view>
+
+    <!-- 纵向列表 -->
+    <view class='cont-item' wx:if="{{showType==2}}">
+      <block wx:for='{{searchProdList}}' wx:key=''>
+        <view class='show-item' bindtap='toProdPage' data-prodid="{{item.prodId}}">
+          <view class='more-prod-pic'>
+            <image src='{{item.pic}}' class='more-pic'></image>
+          </view>
+          <view class='prod-text-right'>
+            <view class='prod-text more'>{{item.prodName}}</view>
+            <view class='cate-prod-info'>{{item.praiseNumber}}评价 {{item.positiveRating}}%好评</view>
+            <view class='prod-price more'>
+              <text class='symbol'>￥</text>
+              <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text>
+              <text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+</view>
+<wxs module="wxs" src="../../wxs/number.wxs" />

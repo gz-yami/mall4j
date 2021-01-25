@@ -1,0 +1,31 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  color: #333;
+  font-family: helvetica,'Heiti SC',PingFangSC-Light;
+} 
+.price{
+  font-family: Arial;
+  display: inline-block;
+  color: #eb2444;
+  padding-bottom:10rpx;
+padding-left:10rpx;
+
+}
+
+
+
+/* 价格数字显示不同大小 */
+
+.symbol {
+  font-size: 24rpx;
+}
+
+.big-num {
+  font-size: 32rpx;
+}
+
+.small-num {
+  font-size: 24rpx;
+}

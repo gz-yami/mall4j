@@ -6,12 +6,6 @@
 
 `Mall4j`项目致力于为中小企业打造一个完整、易于维护的开源的电商系统，采用现阶段流行技术实现。后台管理系统包含商品管理、订单管理、运费模板、规格管理、会员管理、运营管理、内容管理、统计报表、权限管理、设置等模块。
 
-## 授权
-
-Mall4j官网 https://www.mall4j.com
-
-Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
-
 ## 文档
 
 这代码有没有文档呀？ 当然有啦，你已经下载了，在doc这个文件夹上，实在不知道，我就给链接出来咯：
@@ -20,13 +14,24 @@ gitee：https://gitee.com/gz-yami/mall4j/tree/master/doc
 
 看云：https://www.kancloud.cn/yami/mall4j
 
+
+## 授权
+
+除了开源版本，我们商业版有B2C和B2B2C商城，多端呈现：小程序 + PC + H5 + APP，更多详情请查看官网 
+
+Mall4j官网 https://www.mall4j.com
+
+Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
+
 ## 项目链接
 
-java后台：https://github.com/gz-yami/mall4j
+java后台：https://gitee.com/gz-yami/mall4j
 
-vue后台前端：https://github.com/gz-yami/mall4v
+vue后台前端：https://gitee.com/gz-yami/mall4v
 
-小程序：https://github.com/gz-yami/mall4m
+小程序：https://gitee.com/gz-yami/mall4m
+
+
 
 ## 演示地址
 
@@ -36,7 +41,7 @@ vue后台前端：https://github.com/gz-yami/mall4v
 
 小程序：1. 扫描二维码
 
-![小程序](https://github.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
+![小程序](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
 
 ​		2. 搜索小程序 **亚米商城** 
 
@@ -66,25 +71,24 @@ vue后台前端：https://github.com/gz-yami/mall4v
 ps: 如果你不清楚如何启动我们的商城，请仔细阅wiki当中的文档
 
 
-https://github.com/gz-yami/mall4j/wikis
+https://gitee.com/gz-yami/mall4j/wikis
 
 ## 相关截图
 
 
-### ps 由于网络原因无法查看图片的，可以跳到gitee上查看：<https://gitee.com/gz-yami/mall4j> 
-
+ 
 
 ### 1. 后台截图
 
 ![登陆](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/login.png)
 
-![订单](https://github.com/gz-yami/mall4j/raw/master/screenshot/order.png)
+![订单](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/order.png)
 
-![商品列表](https://github.com/gz-yami/mall4j/raw/master/screenshot/prodList.png)
+![商品列表](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/prodList.png)
 
-![sku](https://github.com/gz-yami/mall4j/raw/master/screenshot/sku.png)
+![sku](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/sku.png)
 
-![运费模板](https://github.com/gz-yami/mall4j/raw/master/screenshot/transport.png)
+![运费模板](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/transport.png)
 
 
 
@@ -104,3 +108,7 @@ https://github.com/gz-yami/mall4j/wikis
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
+
+
+
+![软著截图](https://images.gitee.com/uploads/images/2020/0515/200917_995e6632_1613814.png "软著.png")

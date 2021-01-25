@@ -1,0 +1,177 @@
+<!--pages/submit-order/submit-order.wxml-->
+<view class='container'>
+  <view class='submit-order'>
+    <!-- 收货地址 -->
+    <view class='delivery-addr ' bindtap='toAddrListPage'>
+      <view class='addr-bg ' wx:if="{{!userAddr}}">
+        <view class='add-addr'>
+          <view class='plus-sign-img'>
+            <image src='../../images/icon/plus-sign.png'></image>
+          </view>
+          <text>新增收货地址</text>
+        </view>
+        <view class='arrow empty'></view>
+      </view>
+      <view class='addr-bg whole' wx:if="{{userAddr}}">
+        <view class='addr-icon'>
+          <image src='../../images/icon/addr.png'></image>
+        </view>
+        <view class='user-info'>
+          <text class='item'>{{userAddr.receiver}}</text>
+          <text class='item'>{{userAddr.mobile}}</text>
+        </view>
+        <view class='addr'>{{userAddr.province}}{{userAddr.city}}{{userAddr.area}}{{userAddr.addr}}</view>
+        <view class='arrow'></view>
+      </view>
+    </view>
+
+    <!-- 商品详情 -->
+    <view class='prod-item'>
+      <block wx:for="{{orderItems}}" wx:key=''>
+        <view class='item-cont' bindtap='toOrderDetailPage' data-ordernum="{{item.primaryOrderNo}}">
+          <view class='prod-pic'>
+            <image src='{{item.pic}}'></image>
+          </view>
+          <view class='prod-info'>
+            <view class='prodname'>
+              {{item.prodName}}
+            </view>
+            <view class='prod-info-cont'>{{item.skuName}}</view>
+            <view class='price-nums'>
+              <text class='prodprice'><text class='symbol'>￥</text>
+              <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text>
+              <text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text></text>
+              <text class="prodcount">x{{item.prodCount}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- <view class='item-cont' bindtap='toOrderDetailPage' data-ordernum="{{item.primaryOrderNo}}">
+        <view class='prod-pic'>
+          <image src='../../images/prod/pic09.jpg'></image>
+        </view>
+        <view class='prod-info'>
+          <view class='prodname'>
+            THE BEAST/野兽派 易烊千玺同款
+          </view>
+          <view class='prod-info-cont'>经典杯型升级，杯型更细长优雅</view>
+          <view class='price-nums'>
+            <text class='prodprice'><text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(40.00)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(40.00)[1]}}</text></text>
+            <text class="prodcount">x1</text>
+          </view>
+        </view>
+      </view> -->
+
+      <view class='total-num'>
+        <text class="prodcount">共{{totalCount}}件商品</text>
+        <view class='prodprice'>合计：
+          <text class='symbol'>￥</text>
+          <text class='big-num'>{{wxs.parsePrice(total)[0]}}</text>
+          <text class='small-num'>.{{wxs.parsePrice(total)[1]}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单详情 -->
+    <view class='order-msg'>
+      <view class='msg-item'>
+        <view class='item coupon' bindtap='showCouponPopup'>
+          <text class='item-tit'>优惠券：</text>
+          <text class='item-txt' wx:if="{{!coupons.canUseCoupons}}">暂无可用</text>
+          <text class='coupon-btn'>{{coupons.totalLength? coupons.totalLength: 0}}张</text>
+          <text class='arrow'></text>
+        </view>
+        <view class='item'>
+          <text>买家留言：</text>
+          <input placeholder='给卖家留言'></input>
+        </view>
+      </view>
+
+    </view>
+
+    <view class='order-msg'>
+      <view class='msg-item'>
+        <view class='item'>
+          <view class='item-tit'>订单总额：</view>
+          <view class='item-txt price'>
+            <text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(total)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(total)[1]}}</text>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='item-tit'>运费：</view>
+          <view class='item-txt price'>
+            <text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(transfee)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(transfee)[1]}}</text>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='item-tit'>优惠金额：</view>
+          <view class='item-txt price'>
+            <text class='symbol'>-￥</text>
+            <text class='big-num'>{{wxs.parsePrice(shopReduce)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(shopReduce)[1]}}</text>
+          </view>
+        </view>
+        <view class='item payment'>
+          <view class='item-txt price'>
+            小计：
+            <text class='symbol'>￥</text>
+            <text class='big-num'>{{wxs.parsePrice(actualTotal)[0]}}</text>
+            <text class='small-num'>.{{wxs.parsePrice(actualTotal)[1]}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 底部栏 -->
+  <view class='submit-order-footer'>
+    <view class='sub-order'>
+      <view class='item-txt'>
+        合计：
+        <view class='price'>
+          <text class='symbol'>￥</text>
+          <text class='big-num'>{{wxs.parsePrice(actualTotal)[0]}}</text>
+          <text class='small-num'>.{{wxs.parsePrice(actualTotal)[1]}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='footer-box' bindtap='toPay'>
+      提交订单
+    </view>
+  </view>
+</view>
+
+<!-- 选择优惠券弹窗 -->
+<view class="popup-hide" wx:if="{{popupShow}}">
+  <view class="popup-box">
+    <view class="popup-tit">
+      <text>优惠券</text>
+      <text class="close" bindtap='closePopup'></text>
+    </view>
+    <view class="coupon-tabs">
+      <view class="coupon-tab {{couponSts==1?'on':''}}" bindtap='changeCouponSts' data-sts='1'>可用优惠券({{coupons.canUseCoupons.length}})</view>
+      <view class="coupon-tab {{couponSts==2?'on':''}}" bindtap='changeCouponSts' data-sts='2'>不可用优惠券({{coupons.unCanUseCoupons.length}})</view>
+    </view>
+    <view class='popup-cnt'>
+      <block wx:for="{{coupons.canUseCoupons}}" wx:if="{{couponSts == 1}}" wx:key="couponId">
+        <coupon item="{{item}}" order="{{true}}" bind:checkCoupon="checkCoupon" canUse="{{true}}"></coupon>
+      </block>
+      <block wx:for="{{coupons.unCanUseCoupons}}" wx:if="{{couponSts == 2}}" wx:key="couponId">
+        <coupon item="{{item}}" order="{{true}}" canUse="{{false}}"></coupon>
+      </block>
+      <view class="botm-empty"></view>
+    </view>
+    <view class="coupon-ok" wx:if="{{couponSts==1}}">
+      <text bindtap='choosedCoupon'>确定</text>
+    </view>
+  </view>
+</view>
+
+<wxs module="wxs" src="../../wxs/number.wxs" />

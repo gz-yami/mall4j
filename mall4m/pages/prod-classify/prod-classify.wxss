@@ -1,0 +1,19 @@
+/* pages/prod-classify/prod-classify.wxss */
+
+page {
+  background: #fff;
+}
+
+.line-fix {
+  width: 100%;
+  height: 2rpx;
+  background: #e1e1e1;
+  position: fixed;
+  top: 0;
+}
+
+.tit-background {
+  width: 100%;
+  height: 20rpx;
+  background: #f4f4f4;
+}

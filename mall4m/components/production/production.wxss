@@ -1,0 +1,66 @@
+@import "../../app.wxss";
+.prod-items {
+  width: 375rpx;
+  float: left;
+  background: #fff;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+prod:nth-child(2n-1) .prod-items {
+  padding: 20rpx 10rpx 10rpx 20rpx;
+}
+
+prod:nth-child(2n) .prod-items {
+  padding: 20rpx 20rpx 10rpx 10rpx;
+}
+
+.hot-imagecont .hotsaleimg {
+ width:345rpx;
+height:345rpx;
+
+}
+
+.hot-text .hotprod-text {
+  height: 76rpx;
+  font-size: 28rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #000;
+}
+
+.prod-items .hot-imagecont {
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 0;
+}
+
+.prod-items .hot-text {
+  margin-top: 20rpx;
+}
+
+.prod-items .hot-text .prod-info {
+  font-size: 20rpx;
+  color: #777;
+  margin-top: 8rpx;
+}
+
+.prod-items .hot-text .prod-text-info {
+  position: relative;
+  height: 50rpx;
+  line-height: 70rpx;
+  font-family: Arial;
+}
+
+.prod-items .hot-text .prod-text-info .price {
+  color: #eb2444;
+}
+.deadline-price{
+  font-size: 22rpx;
+  margin-right: 5rpx;
+}

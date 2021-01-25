@@ -1,6 +1,5 @@
 ### gradle ###
 .gradle
-/build/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -23,7 +22,6 @@ rebel.xml
 
 ### NetBeans ###
 nbproject/private/
-build/
 nbbuild/
 dist/
 nbdist/

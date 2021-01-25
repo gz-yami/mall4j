@@ -1,0 +1,184 @@
+/* pages/express-delivery/express-delivery.wxss */
+
+.container {
+  height: 100%;
+}
+
+.padding20 {
+  padding-top: 88rpx;
+}
+
+.f-fl {
+  float: left;
+}
+
+.f-fr {
+  float: right;
+}
+
+.navWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+  background-color: #fafafa;
+  border-bottom: 2rpx solid #f4f4f4;
+  height: 92rpx;
+}
+
+.nav {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.nav-slider {
+  left: 0;
+  bottom: 0;
+  height: 4rpx;
+  background-color: #b4282d;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  box-sizing: border-box;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  float: left;
+  height: 88rpx;
+  padding: 0 16rpx;
+  font-size: 28rpx;
+}
+
+.nav-item text {
+  box-sizing: border-box;
+  color: #333;
+  padding: 27rpx 16rpx 23rpx;
+  line-height: 34rpx;
+}
+
+.nav-item.active text {
+  color: #b4282d;
+}
+
+.u-icon {
+  vertical-align: middle;
+}
+
+.deliveryInfo {
+  height: 198rpx;
+  width: 100%;
+  vertical-align: middle;
+  padding-left: 30rpx;
+  background-size: cover;
+  display: table;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.icon-express {
+  width: 104rpx;
+  height: 104rpx;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 48rpx;
+  left: 30rpx;
+}
+
+.infoWarp {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.deliveryInfo .companyname, .deliveryInfo .expno {
+  line-height: 1;
+  margin-left: 136rpx;
+  font-size: 28rpx;
+}
+
+.deliveryInfo .companyname .key, .deliveryInfo .expno .key {
+  color: #666;
+}
+
+.deliveryInfo .expno {
+  margin-top: 16rpx;
+}
+
+.deliveryDetail {
+  margin-top: 20rpx;
+  padding-top: 40rpx;
+  background-color: #fff;
+  min-height: 670rpx;
+}
+
+.detailItem {
+  border-left: 1px dashed #f4f4f4;
+  margin-left: 42rpx;
+  position: relative;
+  margin-bottom: 2rpx;
+}
+
+.dot image {
+  width: 35rpx;
+  height: 35rpx;
+  background-size: 100%;
+  position: absolute;
+  top: 40rpx;
+  left: -18rpx;
+}
+
+.lastest .dot image {
+  top: -2rpx;
+}
+
+.detail .desc {
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+
+.detail .time {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #999;
+  margin-top: 15rpx;
+}
+
+.detail {
+  border-top: 1px solid #f4f4f4;
+  margin-left: 28rpx;
+  overflow: hidden;
+  padding-right: 30rpx;
+}
+
+.detail .desc {
+  margin-top: 40rpx;
+}
+
+.detail .time {
+  margin-bottom: 39rpx;
+}
+
+.lastest .detail .desc, .lastest .detail .time {
+  color: #105c3e;
+}
+
+.lastest .detail {
+  border-top: 0;
+}
+
+.lastest .detail .desc {
+  margin-top: 0;
+}
+
+.deliveryTip {
+  height: 80rpx;
+  background-color: #fff8d8;
+  padding-left: 30rpx;
+  color: #f48f18;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  margin-bottom: 20rpx;
+}

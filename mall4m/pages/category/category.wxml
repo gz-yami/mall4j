@@ -1,0 +1,58 @@
+<!--pages/category/category.wxml-->
+
+<view class="container">
+
+
+<!-- 头部搜索区 -->
+
+  <view class='search-bar'>
+    <view class='search-box' bindtap='toSearchPage'>
+      <image src='../../images/icon/search.png' class='search-img'></image>
+      <text class='sear-input'>搜索您想要的商品</text>
+    </view>
+  </view>
+<!-- 滚动内容区 -->
+  <view class="main">
+    <!-- 左侧菜单start -->
+    <scroll-view scroll-y="true" class='leftmenu'>
+      <block wx:for='{{ categoryList}}' wx:key=''>
+        <view class='menu-item {{selIndex==index?"active":""}} ' data-index="{{index}}" data-id="{{item.categoryId}}" bindtap='onMenuTab'>
+          {{item.categoryName}}
+        </view>
+      </block>
+    </scroll-view>
+    <!-- 左侧菜单end -->
+
+    <!-- 右侧内容start -->
+    <scroll-view scroll-y="true" class='rightcontent' scroll-into-view="{{toViewId}}">
+    <!-- <block wx:for='{{ productList}}' wx:key=''> -->
+      <view class='adver-map'>
+        <view class='item-a'>
+            <image src='{{categoryImg}}' mode='widthFix'></image>
+        </view>
+      </view>
+      <view class='cont-item'>
+        <block wx:for='{{productList}}' wx:key=''>
+          <view class='show-item'  bindtap='toProdPage' data-prodid="{{item.prodId}}">
+            <view class='more-prod-pic'>
+              <image src='{{item.pic}}' class='more-pic'mode='widthFix'></image>
+            </view>
+            <view class='prod-text-right'>
+              <view class='prod-text more'>{{item.prodName}}</view>
+              <view class='cate-prod-info'>{{item.brief}}</view>
+              <view class='prod-price more'>
+                <text class='symbol'>￥</text> <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text><text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text> 
+              </view>
+            </view>
+          </view>
+         
+        </block>
+      </view>
+     <!-- </block> -->
+    </scroll-view>
+    <!-- 右侧内容end -->
+    <!-- </block> -->
+  </view>
+
+</view>
+<wxs module="wxs" src="../../wxs/number.wxs" />

@@ -1,0 +1,35 @@
+<!--pages/express-delivery/express-delivery.wxml-->
+<!-- 物流信息 -->
+<view class='container'>
+  <view class="wrapper">
+    <view class="deliveryInfo" style="background:url(http://jiales.gz-yami.com/delivery-bg.png) center center no-repeat #fff;">
+      <view class="icon-express"  style="background:url(http://jiales.gz-yami.com/delivery-car.png) no-repeat;background-size:100% 100%;">
+      </view>
+      <view class="infoWarp">
+        <view class="companyname">
+          <text class="key">物流公司：</text>
+          <text class="value">{{companyName}}</text>
+        </view>
+        <view class="expno">
+          <text class="key">运单编号：</text>
+          <text class="value">{{dvyFlowId}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="deliveryDetail">
+      <block wx:for="{{dvyData}}" wx:key=''>
+        
+        <view class="detailItem {{index==0?'lastest':''}}" >
+          <view class="dot">
+            <image src='../../images/icon/delive-dot.png' ></image>
+             <image src='../../images/icon/dot.png' ></image>
+          </view>
+          <view class="detail">
+            <view class="desc">{{item.context}}</view>
+            <view class="time">{{item.time}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
