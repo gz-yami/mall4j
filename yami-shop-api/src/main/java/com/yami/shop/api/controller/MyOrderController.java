@@ -201,7 +201,7 @@ public class MyOrderController {
         if (!Objects.equals(order.getUserId(), userId)) {
             throw new YamiShopBindException("你没有权限获取该订单信息");
         }
-        if (!Objects.equals(order.getStatus(), OrderStatus.SUCCESS.value()) || !Objects.equals(order.getStatus(), OrderStatus.CLOSE.value()) ) {
+        if (!Objects.equals(order.getStatus(), OrderStatus.SUCCESS.value()) && !Objects.equals(order.getStatus(), OrderStatus.CLOSE.value()) ) {
             throw new YamiShopBindException("订单未完成或未关闭，无法删除订单");
         }
 
