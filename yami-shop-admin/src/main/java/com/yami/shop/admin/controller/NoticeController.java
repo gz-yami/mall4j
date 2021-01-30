@@ -49,6 +49,7 @@ public class NoticeController {
     public ResponseEntity<IPage<Notice>> getNoticePage(PageParam<Notice> page, Notice notice) {
         IPage<Notice> noticeIPage = noticeService.page(page, new LambdaQueryWrapper<Notice>()
                 .eq(notice.getStatus() != null, Notice::getStatus, notice.getStatus())
+                .eq(notice.getIsTop()!=null,Notice::getIsTop,notice.getIsTop())
                 .like(notice.getTitle() != null, Notice::getTitle, notice.getTitle()).orderByDesc(Notice::getUpdateTime));
         return ResponseEntity.ok(noticeIPage);
     }
