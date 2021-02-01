@@ -50,7 +50,7 @@
   </select>
 
   <select id="tableCategory" resultType="com.yami.shop.bean.model.Category">
-  	select category_id ,parent_id ,category_name,pic,seq from tz_category where shop_id = #{shopId} order by seq
+  	select category_id ,parent_id ,category_name,pic,seq,status from tz_category where shop_id = #{shopId} order by seq
   </select>
 
   <select id="listCategoryAndProdByShopId" resultMap="categoryProdMap">
