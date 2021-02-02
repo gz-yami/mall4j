@@ -69,6 +69,7 @@
                           label-width="0px"
                           :rules="[{ required: true, message: `${tableTitle[0]}不能为空`}]">
               <el-input type="number"
+                        @change="checkNumber(scope.row, 1)"
                         v-model="scope.row.firstPiece"
                         :disabled="!scope.row.status && scope.$index === 0"></el-input>
             </el-form-item>
@@ -95,6 +96,7 @@
                           label-width="0px"
                           :rules="[{ required: true, message: `${tableTitle[2]}不能为空`}]">
               <el-input type="number"
+                        @change="checkNumber(scope.row, 3)"
                         v-model="scope.row.continuousPiece"
                         :disabled="!scope.row.status && scope.$index === 0"></el-input>
             </el-form-item>
@@ -334,6 +336,25 @@ export default {
       } else {
         this.dataForm.transfees = [{ cityList: [], status: 1 }]
       }
+    },
+    /**
+     * 校验输入的数字
+     */
+    checkNumber (row, type) {
+      if (type === 1) {
+        row.firstPiece = this.getNumber(row.firstPiece)
+        row.firstPiece = row.firstPiece === 0 ? 1 : row.firstPiece
+      } else if (type === 3) {
+        row.continuousPiece = this.getNumber(row.continuousPiece)
+        row.continuousPiece = row.continuousPiece === 0 ? 1 : row.continuousPiece
+      }
+    },
+    /**
+     * 保留整数并小于零的数设为0
+     */
+    getNumber (num) {
+      num = Math.round(num)
+      return num < 0 ? 0 : num
     },
     // 表单提交
     dataFormSubmit () {
