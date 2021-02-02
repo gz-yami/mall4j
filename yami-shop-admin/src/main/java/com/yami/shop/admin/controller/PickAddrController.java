@@ -75,7 +75,7 @@ public class PickAddrController {
 		PickAddr pickAddr = pickAddrService.getById(id);
 		return ResponseEntity.ok(pickAddr);
 	}
-	
+
 	/**
 	 * 保存
 	 */
@@ -86,7 +86,7 @@ public class PickAddrController {
 		pickAddrService.save(pickAddr);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	/**
 	 * 修改
 	 */
@@ -94,13 +94,13 @@ public class PickAddrController {
 	@PreAuthorize("@pms.hasPermission('shop:pickAddr:update')")
 	public ResponseEntity<Void> update(@Valid @RequestBody PickAddr pickAddr){
 		PickAddr dbPickAddr = pickAddrService.getById(pickAddr.getAddrId());
-		if (!Objects.equals(dbPickAddr.getShopId(),pickAddr.getShopId())) {
+		if (!Objects.equals(dbPickAddr.getShopId(),SecurityUtils.getSysUser().getShopId())) {
 			throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED);
 		}
 		pickAddrService.updateById(pickAddr);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	/**
 	 * 删除
 	 */
