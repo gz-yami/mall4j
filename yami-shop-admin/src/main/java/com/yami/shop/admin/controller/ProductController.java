@@ -157,9 +157,7 @@ public class ProductController {
     /**
      * 删除
      */
-    @DeleteMapping("/{prodId}")
-    @PreAuthorize("@pms.hasPermission('prod:prod:delete')")
-    public ResponseEntity<Void> delete(@PathVariable("prodId") Long prodId) {
+    public ResponseEntity<Void> delete(Long prodId) {
         Product dbProduct = productService.getProductByProdId(prodId);
         if (!Objects.equals(dbProduct.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("无法获取非本店铺商品信息");
@@ -182,6 +180,17 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * 批量删除
+     */
+    @DeleteMapping
+    @PreAuthorize("@pms.hasPermission('prod:prod:delete')")
+    public ResponseEntity<Void> batchDelete(@RequestBody Long[] prodIds) {
+        for (Long prodId : prodIds) {
+            delete(prodId);
+        }
+        return ResponseEntity.ok().build();
+    }
 
     /**
      * 更新商品状态
