@@ -107,8 +107,12 @@ export default {
         query: { prodId: id }
       })
     },
-    // 删除
+    // 删除和批量删除
     deleteHandle (id) {
+      let prodIds = this.getSeleProdIds()
+      if (id) {
+        prodIds.push(id)
+      }
       this.$confirm(`确定进行[${id ? '删除' : '批量删除'}]操作?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -116,9 +120,9 @@ export default {
       })
         .then(() => {
           this.$http({
-            url: this.$http.adornUrl(`/prod/prod/${id}`),
+            url: this.$http.adornUrl(`/prod/prod`),
             method: 'delete',
-            data: this.$http.adornData({})
+            data: this.$http.adornData(prodIds, false)
           }).then(({ data }) => {
             this.$message({
               message: '操作成功',
@@ -139,6 +143,12 @@ export default {
     // 多选变化
     selectionChange (val) {
       this.dataListSelections = val
+    },
+    // 获取选中的商品Id列表
+    getSeleProdIds () {
+      return this.dataListSelections.map(item => {
+        return item.prodId
+      })
     }
   }
 }
