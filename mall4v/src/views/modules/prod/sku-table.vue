@@ -32,14 +32,30 @@
           prop="price"
           label="销售价">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.price" type="number" :disabled="!scope.row.status"></el-input>
+            <el-input-number
+              size="small"
+              v-model="scope.row.price"
+              controls-position="right"
+              :precision="2"
+              :max="1000000000"
+              :min="0.01"
+              :disabled="!scope.row.status">
+            </el-input-number>
           </template>
         </el-table-column>
         <el-table-column
           prop="oriPrice"
           label="市场价">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.oriPrice" type="number" :disabled="!scope.row.status"></el-input>
+            <el-input-number
+              size="small"
+              v-model="scope.row.oriPrice"
+              controls-position="right"
+              :precision="2"
+              :max="1000000000"
+              :min="0.01"
+              :disabled="!scope.row.status">
+            </el-input-number>
           </template>
         </el-table-column>
         <el-table-column
