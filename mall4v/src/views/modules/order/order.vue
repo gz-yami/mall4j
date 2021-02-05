@@ -102,7 +102,9 @@
                       style="height: 100%;">
                 <div class="item">
                   <div>
-                    <span>{{order.payTypeName}}</span>
+                    <span v-if="order.payType === 1">微信支付</span>
+                    <span v-else-if="order.payType === 2">支付宝</span>
+                    <span v-else>手动代付</span>
                   </div>
                 </div>
               </el-col>

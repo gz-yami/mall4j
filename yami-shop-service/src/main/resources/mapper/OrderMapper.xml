@@ -156,6 +156,7 @@
             <result column="sku_id" jdbcType="BIGINT" property="skuId"/>
             <result column="prod_count" jdbcType="INTEGER" property="prodCount"/>
             <result column="item_prod_name" jdbcType="VARCHAR" property="prodName"/>
+            <result column="item_sku_name" jdbcType="VARCHAR" property="skuName"/>
             <result column="pic" jdbcType="VARCHAR" property="pic"/>
             <result column="price" jdbcType="DECIMAL" property="price"/>
             <result column="user_id" jdbcType="VARCHAR" property="userId"/>
@@ -229,7 +230,7 @@
     </select>
 
     <select id="listOrdersDetialByOrderParam" resultMap="orderAndOrderItemAndUserAddrMap">
-        SELECT * FROM
+        SELECT *,oi.sku_name as item_sku_name,oi.prod_name as item_prod_name FROM
         (
         SELECT * FROM tz_order
         <where>
