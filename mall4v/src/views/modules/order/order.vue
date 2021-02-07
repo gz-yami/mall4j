@@ -43,6 +43,8 @@
                    @click="getSoldExcel()"
                    type="primary"
                    size="small">导出销售记录</el-button>
+        <el-button @click="clearDatas()"
+                   size="small">清空</el-button>
       </el-form-item>
     </el-form>
     <div class="main">
@@ -248,6 +250,10 @@ export default {
         this.page.total = data.total
         this.dataListLoading = false
       })
+    },
+    // 清除数据
+    clearDatas () {
+      this.dataForm = []
     },
     // 每页数
     sizeChangeHandle (val) {
