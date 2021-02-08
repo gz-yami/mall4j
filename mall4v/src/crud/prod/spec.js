@@ -17,9 +17,6 @@ export const tableOption = {
     value: 'value'
   },
   column: [{
-    label: '属性ID',
-    prop: 'propId'
-  }, {
     label: '属性名称',
     prop: 'propName',
     search: true
