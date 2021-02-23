@@ -308,7 +308,8 @@ Page({
       })
       return;
     }
-    if (mobile.length != 11) {
+    var regexp = /^[1]([3-9])[0-9]{9}$/;
+    if (!regexp.test(mobile)) {
       wx.showToast({
         title: '请输入正确的手机号码',
         icon: "none"
