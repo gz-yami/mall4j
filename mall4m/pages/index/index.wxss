@@ -276,7 +276,7 @@ line-height:44rpx;
   font-size: 28rpx;
   overflow: hidden;
   margin: 10rpx 0;
-  height: 75rpx;
+  height: 68rpx;
   display: -webkit-box;
   word-break: break-all;
   display: -webkit-box;
