@@ -18,4 +18,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper extends BaseMapper<User> {
 
 	User getUserByBizUserId(@Param("appId")Integer appId, @Param("bizUserId")String bizUserId);
+
+	User getUserByUserMail(@Param("userMail") String userMail);
 }

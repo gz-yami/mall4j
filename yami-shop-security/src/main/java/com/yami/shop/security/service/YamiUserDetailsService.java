@@ -37,4 +37,12 @@ public interface YamiUserDetailsService extends UserDetailsService {
 	 * @param appConnect
 	 */
 	void insertUserIfNecessary(AppConnect appConnect);
+
+	/**
+	 * 账号、密码登录
+	 * @param userMail
+	 * @param loginPassword
+	 * @return
+	 */
+	YamiUser loadUserByUserMail(String userMail, String loginPassword);
 }

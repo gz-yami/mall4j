@@ -15,6 +15,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.emoji.EmojiUtil;
 import com.yami.shop.bean.model.User;
 import com.yami.shop.common.annotation.RedisLock;
+import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.CacheManagerUtil;
 import com.yami.shop.dao.UserMapper;
 import com.yami.shop.security.dao.AppConnectMapper;
@@ -28,6 +29,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +50,7 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 
 	private final AppConnectMapper appConnectMapper;
 
-	private final CacheManagerUtil cacheManagerUtil;
-
-
+	private final PasswordEncoder passwordEncoder;
 	@Override
 	@SneakyThrows
 	public YamiUser loadUserByUsername(String username) {
@@ -126,5 +127,23 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 		appConnect.setUserId(user.getUserId());
 
 		appConnectMapper.insert(appConnect);
+	}
+
+	@Override
+	public YamiUser loadUserByUserMail(String userMail, String loginPassword) {
+		User user = userMapper.getUserByUserMail(userMail);
+		if (user == null) {
+			throw new YamiShopBindException("用户不存在");
+		}
+		String paramPassword = passwordEncoder.encode(loginPassword);
+		if (!passwordEncoder.matches(loginPassword, user.getLoginPassword())) {
+			// 原密码不正确
+			throw new YamiShopBindException("密码不正确");
+		}
+		String name = StrUtil.isBlank(user.getRealName()) ? user.getNickName() : user.getRealName();
+		YamiUser yamiUser = new YamiUser(user.getUserId(), loginPassword, user.getStatus() == 1);
+		yamiUser.setName(name);
+		yamiUser.setPic(user.getPic());
+		return yamiUser;
 	}
 }
