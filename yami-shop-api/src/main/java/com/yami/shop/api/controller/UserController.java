@@ -18,7 +18,6 @@ import com.yami.shop.security.util.SecurityUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,8 +34,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ma.glasnost.orika.MapperFacade;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 @RequestMapping("/p/user")
 @Api(tags="用户接口")
@@ -44,12 +41,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
 	private final UserService userService;
-
+    
 	private final MapperFacade mapperFacade;
 
 	private final CacheManagerUtil cacheManagerUtil;
-
-	private final ConsumerTokenServices consumerTokenServices;
     /**
      * 查看用户接口
      */
@@ -61,7 +56,7 @@ public class UserController {
     	UserDto userDto = mapperFacade.map(user, UserDto.class);
         return ResponseEntity.ok(userDto);
     }
-
+    
     @PutMapping("/setUserInfo")
     @ApiOperation(value="设置用户信息", notes="设置用户信息")
     public ResponseEntity<Void> setUserInfo(@RequestBody UserInfoParam userInfoParam) {
@@ -75,14 +70,4 @@ public class UserController {
 		cacheManagerUtil.evictCache("yami_user", cacheKey);
         return ResponseEntity.ok(null);
     }
-
-	/**
-	 * 退出登录,并清除redis中的token
-	 **/
-	@GetMapping("/logout")
-	public Boolean removeToken(HttpServletRequest httpRequest){
-		String authorization = httpRequest.getHeader("authorization");
-		String token = authorization.replace("bearer", "");
-		return consumerTokenServices.revokeToken(token);
-	}
 }

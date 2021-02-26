@@ -84,7 +84,7 @@ public class YamiTokenServices implements AuthorizationServerTokenServices, Reso
     @Override
     public OAuth2AccessToken createAccessToken(OAuth2Authentication authentication) {
 
-//        OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication);
+        OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication);
         OAuth2RefreshToken refreshToken = null;
         // 如果有token，直接删除，更新token，避免出现缓存问题
 //        if (existingAccessToken != null) {

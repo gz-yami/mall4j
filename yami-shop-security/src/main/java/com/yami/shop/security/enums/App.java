@@ -20,24 +20,19 @@ public enum App {
 	/**
 	 * 微信公众号
 	 */
-	MP(2),
-
-	/**
-	 * H5
-	 */
-	H5(3)
+	MP(2)
 	;
-
+	
 	private Integer num;
-
+	
 	public Integer value() {
 		return num;
 	}
-
+	
 	App(Integer num){
 		this.num = num;
 	}
-
+	
 	public static App instance(Integer value) {
 		App[] enums = values();
 		for (App statusEnum : enums) {

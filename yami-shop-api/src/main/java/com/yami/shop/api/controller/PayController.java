@@ -10,7 +10,6 @@
 
 package com.yami.shop.api.controller;
 
-import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -32,8 +31,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/p/order")
@@ -71,23 +68,5 @@ public class PayController {
         orderRequest.setOpenid(openId);
 
         return ResponseEntity.ok(wxMiniPayService.createOrder(orderRequest));
-    }
-
-    /**
-     * 普通支付接口
-     */
-    @PostMapping("/normalPay")
-    @ApiOperation(value = "根据订单号进行支付", notes = "根据订单号进行支付")
-    @SneakyThrows
-    public ResponseEntity<Boolean> normalPay(@RequestBody PayParam payParam) {
-
-        YamiUser user = SecurityUtils.getUser();
-        String userId = user.getUserId();
-        PayInfoDto pay = payService.pay(userId, payParam);
-
-        // 根据内部订单号更新order settlement
-        payService.paySuccess(pay.getPayNo(), "");
-
-        return ResponseEntity.ok(true);
     }
 }
