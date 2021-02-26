@@ -28,8 +28,10 @@ public class YamiUser extends User {
 	/**
 	 * 用户ID
 	 */
+	@Setter
 	private String userId;
 
+	@Setter
 	private String bizUserId;
 
 	@Setter
@@ -40,6 +42,15 @@ public class YamiUser extends User {
 
 	@Setter
 	private boolean debugger;
+
+	@Setter
+	private String password;
+
+	public YamiUser(String userId, String password, boolean enabled) {
+		super(userId, password, enabled,true, true, true , Collections.emptyList());
+		this.userId = userId;
+		this.password = password;
+	}
 
 	public YamiUser(String userId, String bizUserId, Integer appId, boolean enabled) {
 		super(appId + StrUtil.COLON + bizUserId, "", enabled,true, true, true , Collections.emptyList());
