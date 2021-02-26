@@ -69,4 +69,22 @@ public class PayController {
 
         return ResponseEntity.ok(wxMiniPayService.createOrder(orderRequest));
     }
+
+    /**
+     * 普通支付接口
+     */
+    @PostMapping("/normalPay")
+    @ApiOperation(value = "根据订单号进行支付", notes = "根据订单号进行支付")
+    @SneakyThrows
+    public ResponseEntity<Boolean> normalPay(@RequestBody PayParam payParam) {
+
+        YamiUser user = SecurityUtils.getUser();
+        String userId = user.getUserId();
+        PayInfoDto pay = payService.pay(userId, payParam);
+
+        // 根据内部订单号更新order settlement
+        payService.paySuccess(pay.getPayNo(), "");
+
+        return ResponseEntity.ok(true);
+    }
 }
