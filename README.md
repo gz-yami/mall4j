@@ -31,6 +31,7 @@ vue后台前端：https://gitee.com/gz-yami/mall4v
 
 小程序：https://gitee.com/gz-yami/mall4m
 
+uni-app：https://gitee.com/gz-yami/mall4uni
 
 
 ## 演示地址
@@ -95,6 +96,13 @@ https://gitee.com/gz-yami/mall4j/wikis
 ### 2. 小程序截图
 
 ![小程序截图](https://images.gitee.com/uploads/images/2019/0706/085234_4eb7509b_5094767.jpeg "小程序截图")
+
+
+### 3. uni-app截图
+
+![uni-app截图](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/uniappInfo.png "uni-app截图")
+
+
 
 ## 提交反馈
 
