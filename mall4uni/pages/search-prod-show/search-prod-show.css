@@ -1,0 +1,199 @@
+/* pages/search-prod-show/search-prod-show.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+/* 搜索栏 */
+
+.fixed-box {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #777;
+  background: #fff;
+  z-index: 3;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.search-bar .search-box {
+  position: relative;
+  height: 60rpx;
+  background: #f7f7f7;
+  z-index: 999;
+  width: 80%;
+  border-radius: 50rpx;
+  margin-right: 30rpx;
+  flex: 1;
+}
+
+.sear-input {
+  height: 60rpx;
+  border-radius: 50rpx;
+  border: 0;
+  margin: 0 30rpx 0 64rpx;
+  line-height: 48rpx;
+  vertical-align: top;
+  background: #f7f7f7;
+  font-size: 28rpx;
+}
+
+.search-bar .search-hint {
+  font-size: 28rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 31rpx;
+  color: #eb2444;
+}
+
+.search-bar .search-box .search-img {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 14rpx;
+  display: block;
+}
+
+.search-bar .search-list-img {
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 0;
+}
+
+.search-bar .search-list-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.fixed-box .tabs {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 10rpx 0;
+  z-index: 999;
+  background: #fff;
+}
+
+.fixed-box .tabs::after {
+  content: '';
+  background-color: #e1e1e1;
+  left: 0;
+  height: 1px;
+  transform-origin: 50% 100% 0;
+  bottom: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+}
+
+.fixed-box .tabs .tab-item {
+  display: inline-block;
+  width: 33.33%;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.fixed-box .tabs .tab-item.on {
+  color: #eb2444;
+}
+
+/* 横向列表 */
+
+.prod-show {
+  background: #fff;
+  margin-top: 160rpx;
+}
+
+.prod-show .prod-items {
+  width: 375rpx;
+  float: left;
+  background: #fff;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 纵向列表 */
+
+.prod-list .cont-item {
+  padding: 0 20rpx 20rpx 20rpx;
+  margin-top: 180rpx;
+}
+
+.prod-list .cont-item .show-item .more-prod-pic {
+  text-align: center;
+  width: 170rpx;
+  height: 170rpx;
+  font-size: 0;
+}
+
+.prod-list .cont-item .show-item .more-prod-pic .more-pic {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.prod-list .cont-item .show-item {
+  position: relative;
+  display: flex;
+  justify-content: start;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+  box-shadow: 0 16rpx 32rpx 0 rgba(7, 17, 27, 0.05);
+}
+
+.prod-list .cont-item .show-item .prod-text-right {
+  margin-left: 20rpx;
+  width: 75%;
+}
+
+.prod-list .cont-item .show-item .prod-text-right .cate-prod-info {
+  font-size: 22rpx;
+  color: #999;
+  margin: 10rpx 0 20rpx 0;
+}
+
+.prod-list .cont-item .show-item .prod-text-right .go-to-buy {
+  font-size: 26rpx;
+  background: #eb2444;
+  color: #fff;
+  border-radius: 50rpx;
+  width: 150rpx;
+  text-align: center;
+  padding: 8rpx 3rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+}
+
+.prod-list .cont-item .show-item .prod-text-right .prod-text.more {
+  margin: 0;
+  height: 78rpx;
+  font-size: 28rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #000;
+}
+
+.prod-list .cont-item .show-item .prod-text-right .prod-price.more {
+  font-size: 28rpx;
+  color: #eb2444;
+  font-family: arial;
+}

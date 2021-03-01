@@ -1,0 +1,33 @@
+/* pages/recent-news/recent-news.wxss */
+
+.recent-news {
+  background: #fff;
+}
+
+.recent-news .news-item {
+  padding: 20rpx 20rpx 0 20rpx;
+  position: relative;
+}
+
+.recent-news .news-item::after {
+  content: " ";
+  width: 100%;
+  height: 2rpx;
+  background-color: #e1e1e1;
+  left: 20rpx;
+  display: block;
+  position: absolute;
+}
+
+.recent-news .news-item .news-item-title {
+  font-size: 28rpx;
+  text-align: left;
+}
+
+.recent-news .news-item .news-item-date {
+  font-size: 24rpx;
+  color: #999;
+  text-align: right;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
