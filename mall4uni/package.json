@@ -1,0 +1,20 @@
+{
+  "name": "mall4uni",
+  "version": "1.0.0",
+  "description": "请使用 uniapp官方推荐的开发工具 HBuilderX 导入项目进行开发",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/gz-yami/mall4uni.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "uni-read-pages": "^1.0.5",
+    "query-string": "^6.13.1"
+  }
+}

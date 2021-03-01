@@ -1,0 +1,20 @@
+/* pages/news-detail/news-detail.wxss */
+
+.news-detail {
+  padding: 20rpx;
+}
+
+.news-detail .news-detail-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 50rpx;
+  padding: 20rpx;
+}
+
+.news-detail .news-detail-text {
+  font-size: 28rpx;
+  line-height: 46rpx;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  margin-top: 20rpx;
+}

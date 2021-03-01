@@ -1,0 +1,44 @@
+/* pages/login/login.wxss */
+
+
+image {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+  margin: auto;
+  margin-top: 100rpx;
+  border-radius: 50%;
+}
+
+view.msg {
+  font-size: 24rpx;
+  color: #666;
+  width: 100%;
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+view.title {
+  font-size: 28rpx;
+  color: #333;
+  width: 100%;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+button {
+  margin-top: 30rpx;
+  width: 450rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background: #eb2444;
+  border: 2rpx solid #eb2444;
+}
+
+
+.button-hover{
+  background-color: #fff;
+  color: #eb2444;
+}

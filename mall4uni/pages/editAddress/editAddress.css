@@ -1,0 +1,181 @@
+/* pages/editAddress/editAddress.wxss */
+
+page {
+  background: #fff;
+}
+
+/* input列表 */
+
+.input-box {
+  margin-bottom: 50rpx;
+  background: #fff;
+  padding: 0 20rpx;
+}
+
+.input-box .section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 28rpx;
+  padding: 30rpx 0;
+  line-height: 48rpx;
+  height: 100%;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.input-box .section text {
+  width: 20%;
+  color: #333;
+}
+
+.input-box .section input {
+  width: 70%;
+  padding: 0 20rpx;
+  color: #333;
+}
+
+.input-box .section picker {
+  width: 70%;
+  padding: 0 30rpx;
+}
+
+.input-box .section .pca {
+  width: 70%;
+  padding: 0 20rpx;
+}
+
+.input-box .section .arrow {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.input-box .section .arrow image {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+
+/* end input列表 */
+
+/* 功能按钮 */
+
+.btn-box {
+  padding: 5px 10px;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+.btn-box text {
+  font-size: 30rpx;
+}
+
+.btn-box .clear.btn, .keep.btn {
+  width: 60%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: auto;
+  text-align: center;
+  border: 1rpx solid #eb2444;
+  border-radius: 50rpx;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-box .keep {
+  color: #fff;
+  background-color: #eb2444;
+}
+
+.btn-box .clear.btn {
+  margin-top: 40rpx;
+  color: #eb2444;
+  background-color: #f8f0f1b6;
+}
+
+/* end 功能按钮 */
+
+.infoText {
+  margin-top: 20rpx;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+}
+
+picker-view {
+  background-color: white;
+  padding: 0;
+  width: 100%;
+  height: 380rpx;
+  bottom: 0;
+  position: fixed;
+}
+
+picker-view-column view {
+  vertical-align: middle;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation-element-wrapper {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+.animation-element {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 470rpx;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.animation-button {
+  top: 20rpx;
+  width: 290rpx;
+  height: 100rpx;
+  align-items: center;
+}
+
+picker-view text {
+  color: #999;
+  display: inline-flex;
+  position: fixed;
+  margin-top: 20rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 34rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.left-bt {
+  left: 30rpx;
+}
+
+.right-bt {
+  right: 20rpx;
+  top: 20rpx;
+  position: absolute;
+  width: 80rpx !important;
+}
+
+.line {
+  display: block;
+  position: fixed;
+  height: 2rpx;
+  width: 100%;
+  margin-top: 89rpx;
+  background-color: #eee;
+}

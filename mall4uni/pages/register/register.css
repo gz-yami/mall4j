@@ -1,0 +1,235 @@
+page{
+  background: #fff;
+  height: 100%;
+}
+.con{
+  margin-top: 50px;
+}
+image {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+  margin: auto;
+  border-radius: 50%;
+  margin-bottom: 8%;
+}
+.login-form{
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20%;
+}
+.authorized-btn {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #0ab906;
+  border: 1rpx solid #0ab906;
+  color: #fff;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  padding: 8rpx;
+  margin-top: 80rpx;
+}
+.to-idx-btn{
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #eeeeee;
+	color: #333;
+	border-radius: 6rpx;
+	font-size: 26rpx;
+	padding: 8rpx;
+	margin-top: 30rpx;
+}
+.form-title {
+  width: 100%;
+  margin-bottom: 50rpx;
+  font-size: 32rpx;
+  text-align: center;
+  color: #00a0e9;
+}
+.item {
+	display: block;
+	margin-bottom: 30rpx;
+}
+.account{
+  display: flex;
+  background: #f8f8f8;
+  padding: 15rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  align-items: center;
+}
+.account input{
+  padding-left: 20rpx;
+  width:75%;
+}
+.inp-palcehoder{
+  font-size: 26rpx;
+}
+.account input.int-yzm {
+  width: 410rpx;
+  padding-right: 10rpx;
+  box-sizing: border-box;
+}
+.input-btn {
+  width: 152rpx;
+  font-size: 26rpx;
+  color: #00a0ea;
+  text-align: center;
+}
+
+button::after{
+  border: 0 !important;
+}
+
+/* 找回密码&去注册 */
+.operate {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.forgot-password,
+.to-register {
+	font-size: 28rpx;
+	color: #00AAFF;
+}
+
+/* 错误提示 */
+.error .error-text {
+	display: block;
+	width: 100%;
+	font-size: 28rpx;
+	color: #e43130;
+  text-align: left;
+  margin-top: 10rpx;
+}
+.error .error-text .warning-icon {
+  display: inline-block;;
+  color: #fff;
+  width: 26rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+  background: #e43130;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 12rpx;
+  font-size: 22rpx;
+}page{
+  background: #fff;
+  height: 100%;
+}
+.con{
+  margin-top: 50px;
+}
+image {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+  margin: auto;
+  border-radius: 50%;
+  margin-bottom: 8%;
+}
+.login-form{
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20%;
+}
+.authorized-btn {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #0ab906;
+  border: 1rpx solid #0ab906;
+  color: #fff;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  padding: 8rpx;
+  margin-top: 80rpx;
+}
+.to-idx-btn{
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #eeeeee;
+	color: #333;
+	border-radius: 6rpx;
+	font-size: 26rpx;
+	padding: 8rpx;
+	margin-top: 30rpx;
+}
+.form-title {
+  width: 100%;
+  margin-bottom: 50rpx;
+  font-size: 32rpx;
+  text-align: center;
+  color: #00a0e9;
+}
+.item {
+	display: block;
+	margin-bottom: 30rpx;
+}
+.account{
+  display: flex;
+  background: #f8f8f8;
+  padding: 15rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  align-items: center;
+}
+.account input{
+  padding-left: 20rpx;
+  width:75%;
+}
+.inp-palcehoder{
+  font-size: 26rpx;
+}
+.account input.int-yzm {
+  width: 410rpx;
+  padding-right: 10rpx;
+  box-sizing: border-box;
+}
+.input-btn {
+  width: 152rpx;
+  font-size: 26rpx;
+  color: #00a0ea;
+  text-align: center;
+}
+
+button::after{
+  border: 0 !important;
+}
+
+/* 找回密码&去注册 */
+.operate {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.forgot-password,
+.to-register {
+	font-size: 28rpx;
+	color: #00AAFF;
+}
+
+/* 错误提示 */
+.error .error-text {
+	display: block;
+	width: 100%;
+	font-size: 28rpx;
+	color: #e43130;
+  text-align: left;
+  margin-top: 10rpx;
+}
+.error .error-text .warning-icon {
+  display: inline-block;;
+  color: #fff;
+  width: 26rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+  background: #e43130;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 12rpx;
+  font-size: 22rpx;
+}
