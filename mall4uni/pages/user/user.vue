@@ -17,12 +17,12 @@
   </view> -->
 
 		<view class="userinfo" v-if="isAuthInfo">
-			<view class="userinfo-con" @tap="toPersonalInformation">
+			<view class="userinfo-con">
 				<view class="userinfo-avatar">
 					<!-- <open-data type="userAvatarUrl"></open-data> -->
 					<image :src="loginResult.pic?loginResult.pic:'../../static/images/icon/head04.png'"></image>
 				</view>
-				<view class="userinfo-name" @tap="toPersonalInformation">
+				<view class="userinfo-name">
 					<view>{{loginResult.nickName ? loginResult.nickName : "用户昵称"}}</view>
 					<!-- <open-data type="userNickName"></open-data> -->
 				</view>
