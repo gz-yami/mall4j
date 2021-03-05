@@ -51,7 +51,8 @@ page {
 .personal .addr .addr-get {
   display: inline-block;
   color: #999;
-  width: 85%;
+  width: 100%;
+  word-break: break-word;
 }
 
 .address .select-btn {
