@@ -117,4 +117,9 @@ public class YamiSysUserDetailsServiceImpl implements YamiUserDetailsService {
 	public void insertUserIfNecessary(AppConnect appConnect) {
 
 	}
+
+	@Override
+	public YamiUser loadUserByUserMail(String userMail, String loginPassword) {
+		return null;
+	}
 }
