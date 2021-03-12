@@ -156,8 +156,8 @@
       <text class="close" bindtap='closePopup'></text>
     </view>
     <view class="coupon-tabs">
-      <view class="coupon-tab {{couponSts==1?'on':''}}" bindtap='changeCouponSts' data-sts='1'>可用优惠券({{coupons.canUseCoupons.length:coupons.canUseCoupons.length:0}})</view>
-      <view class="coupon-tab {{couponSts==2?'on':''}}" bindtap='changeCouponSts' data-sts='2'>不可用优惠券({{coupons.unCanUseCoupons.length:coupons.unCanUseCoupons.length:0}})</view>
+      <view class="coupon-tab {{couponSts==1?'on':''}}" bindtap='changeCouponSts' data-sts='1'>可用优惠券({{coupons.canUseCoupons.length?coupons.canUseCoupons.length:0}})</view>
+      <view class="coupon-tab {{couponSts==2?'on':''}}" bindtap='changeCouponSts' data-sts='2'>不可用优惠券({{coupons.unCanUseCoupons.length?coupons.unCanUseCoupons.length:0}})</view>
     </view>
     <view class='popup-cnt'>
       <block wx:for="{{coupons.canUseCoupons}}" wx:if="{{couponSts == 1}}" wx:key="couponId">
