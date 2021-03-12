@@ -158,8 +158,8 @@
       <text class="close" @tap="closePopup"></text>
     </view>
     <view class="coupon-tabs">
-      <view :class="'coupon-tab ' + (couponSts==1?'on':'')" @tap="changeCouponSts" data-sts="1">可用优惠券({{coupons.canUseCoupons.length:coupons.canUseCoupons.length:0}})</view>
-      <view :class="'coupon-tab ' + (couponSts==2?'on':'')" @tap="changeCouponSts" data-sts="2">不可用优惠券({{coupons.unCanUseCoupons.length:coupons.unCanUseCoupons.length:0}})</view>
+      <view :class="'coupon-tab ' + (couponSts==1?'on':'')" @tap="changeCouponSts" data-sts="1">可用优惠券({{coupons.canUseCoupons.length?coupons.canUseCoupons.length:0}})</view>
+      <view :class="'coupon-tab ' + (couponSts==2?'on':'')" @tap="changeCouponSts" data-sts="2">不可用优惠券({{coupons.unCanUseCoupons.length?coupons.unCanUseCoupons.length:0}})</view>
     </view>
     <view class="popup-cnt">
       <block v-for="(item, index) in coupons.canUseCoupons" :key="index" v-if="couponSts == 1">
