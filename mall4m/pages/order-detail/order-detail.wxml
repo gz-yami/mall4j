@@ -15,11 +15,11 @@
 
     <!-- 商品信息 -->
     <view class='prod-item'>
-      <view class="order-num">
+      <!-- <view class="order-num">
         <view class='order-state'>
           <text class="order-sts  gray">{{status}}</text>
         </view>
-      </view>
+      </view> -->
       <block wx:for="{{orderItemDtos}}" wx:key=''>
         <view class='item-cont' bindtap='toProdPage' data-prodid="{{item.prodId}}">
           <view class='prod-pic'>
