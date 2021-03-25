@@ -155,6 +155,7 @@ page {
 
 .rightcontent .cont-item {
   padding: 0 20rpx 20rpx 20rpx;
+  padding-bottom: 94rpx;
 }
 
 .rightcontent .cont-item .show-item .more-prod-pic {
