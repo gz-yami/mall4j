@@ -200,6 +200,7 @@ export default {
       }
     });
 		//#endif
+	http.getCartCount(); //重新计算购物车总数量
   },
 
   /**
