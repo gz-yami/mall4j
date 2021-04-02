@@ -90,7 +90,7 @@ Page({
       }
     })
 
-
+	http.getCartCount(); //重新计算购物车总数量
   },
   getAllData() {
     http.getCartCount(); //重新计算购物车总数量
