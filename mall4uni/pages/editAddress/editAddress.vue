@@ -15,7 +15,7 @@
     <view class="section" @tap="translate">
       <text>所在地区</text>
       <view class="pca">{{province}} {{city}} {{area}}</view>
-      <view class="animation-element-wrapper" :animation="animation" :style="'visibility:' + (show ? 'visible':'hidden')" @tap="hiddenFloatView">
+      <view class="animation-element-wrapper" :animation="animation" :style="'visibility:' + (show ? 'visible':'hidden')" @tap.stop="hiddenFloatView">
         <view class="animation-element" @tap.stop="nono">
           <text class="right-bt" @tap.stop="hiddenFloatView">确定</text>
           <view class="line"></view>
@@ -217,11 +217,11 @@ export default {
     translate: function (e) {
       if (t == 0) {
         moveY = 0;
-        show = false;
+        show = true;
         t = 1;
       } else {
         moveY = 200;
-        show = true;
+        show = false;
         t = 0;
       } // this.animation.translate(arr[0], arr[1]).step();
 
@@ -233,7 +233,7 @@ export default {
     hiddenFloatView(e) {
       //console.log(e);
       moveY = 200;
-      show = true;
+      show = false;
       t = 0;
       this.animationEvents(this, moveY, show);
     },
