@@ -39,7 +39,7 @@ Page({
     http.getCartCount();//重新计算购物车总数量
   },
   loadBasketData(){
-			uni.showLoading(); //加载购物车
+			wx.showLoading(); //加载购物车
 			
 			var params = {
 			  url: "/p/shopCart/info",
@@ -66,7 +66,7 @@ Page({
 			
 			    this.calTotalPrice(); //计算总价
 			
-			    uni.hideLoading();
+			    wx.hideLoading();
 			  }
 			};
 			http.request(params);
