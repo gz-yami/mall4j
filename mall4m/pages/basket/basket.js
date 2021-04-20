@@ -14,7 +14,7 @@ Page({
     finalMoney: 0,
     totalMoney: 0,
     subtractMoney: 0,
-    allChecked: true
+    allChecked: false
   },
 
   /**
@@ -35,41 +35,42 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading();
-    //加载购物车
-    var params = {
-      url: "/p/shopCart/info",
-      method: "POST",
-      data: {},
-      callBack: res => {
-        if (res.length > 0) {
-          // 默认全选
-          var shopCartItemDiscounts = res[0].shopCartItemDiscounts;
-          shopCartItemDiscounts.forEach(shopCartItemDiscount => {
-            shopCartItemDiscount.shopCartItems.forEach(shopCartItem => {
-              shopCartItem.checked = true;
-            })
-          })
-
-          this.setData({
-            shopCartItemDiscounts: shopCartItemDiscounts,
-            allChecked: true
-          });
-          
-        } else {
-          this.setData({
-            shopCartItemDiscounts: [],
-          });
-        }
-        this.calTotalPrice();//计算总价
-        wx.hideLoading();
-      }
-    };
-    http.request(params);
-
+	this.loadBasketData();
     http.getCartCount();//重新计算购物车总数量
-    
   },
+  loadBasketData(){
+			uni.showLoading(); //加载购物车
+			
+			var params = {
+			  url: "/p/shopCart/info",
+			  method: "POST",
+			  data: {},
+			  callBack: res => {
+			    if (res.length > 0) {
+			      // 默认不选中
+			      var shopCartItemDiscounts = res[0].shopCartItemDiscounts;
+			      shopCartItemDiscounts.forEach(shopCartItemDiscount => {
+			        shopCartItemDiscount.shopCartItems.forEach(shopCartItem => {
+			          shopCartItem.checked = false;
+			        });
+			      });
+			      this.setData({
+			        shopCartItemDiscounts: shopCartItemDiscounts,
+			        allChecked: false
+			      });
+			    } else {
+			      this.setData({
+			        shopCartItemDiscounts: []
+			      });
+			    }
+			
+			    this.calTotalPrice(); //计算总价
+			
+			    uni.hideLoading();
+			  }
+			};
+			http.request(params);
+		},
 
   /**
    * 去结算
@@ -290,7 +291,7 @@ Page({
               data: basketIds,
               callBack: function (res) {
                 wx.hideLoading();
-                ths.onShow();
+                ths.loadBasketData();
               }
             };
             http.request(params);
