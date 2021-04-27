@@ -108,7 +108,7 @@
       购物车
       <view class="badge badge-1" v-if="totalCartNum>0">{{totalCartNum}}</view>
     </view>
-    <view class="btn cart" @tap="addToCart">
+    <view class="btn cart" @tap="showSku">
       <text>加入购物车</text>
     </view>
     <view class="btn buy" @tap="buyNow">
