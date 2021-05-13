@@ -84,15 +84,21 @@ export default {
   },
   components: {},
   methods: {
-    init (data) {
+    init (id) {
+      this.dataForm.hotSearchId = id || 0
       this.visible = true
-      if (data) {
-        this.dataForm = Object.assign({}, data)
-      } else {
-        this.$nextTick(() => {
-          this.$refs['dataForm'].resetFields()
-        })
-      }
+      this.$nextTick(() => {
+        this.$refs['dataForm'].resetFields()
+        if (this.dataForm.hotSearchId) {
+          this.$http({
+            url: this.$http.adornUrl('/admin/hotSearch/info/' + this.dataForm.hotSearchId),
+            method: 'get',
+            params: this.$http.adornParams()
+          }).then(({data}) => {
+            this.dataForm = data
+          })
+        }
+      })
     },
     // 表单提交
     dataFormSubmit () {

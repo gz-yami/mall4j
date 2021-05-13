@@ -69,7 +69,6 @@ public class HotSearchController {
 	 * 获取信息
 	 */
 	@GetMapping("/info/{id}")
-	@PreAuthorize("@pms.hasPermission('admin:hotSearch:info')")
 	public ResponseEntity<HotSearch> info(@PathVariable("id") Long id){
 		HotSearch hotSearch = hotSearchService.getById(id);
 		return ResponseEntity.ok(hotSearch);

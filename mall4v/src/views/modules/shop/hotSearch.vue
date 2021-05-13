@@ -38,7 +38,7 @@
                    type="primary"
                    size="small"
                    icon="el-icon-edit"
-                   @click="addOrUpdateHandle(scope.row)">修改</el-button>
+                   @click="addOrUpdateHandle(scope.row.hotSearchId)">修改</el-button>
         <el-button v-if="isAuth('admin:hotSearch:delete')"
                    type="danger"
                    icon="el-icon-delete"
