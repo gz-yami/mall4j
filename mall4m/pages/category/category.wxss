@@ -201,6 +201,10 @@ page {
   font-size: 22rpx;
   color: #999;
   margin: 10rpx 0 20rpx 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .rightcontent .cont-item .show-item .prod-text-right .prod-text.more {
