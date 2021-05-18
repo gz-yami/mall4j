@@ -123,7 +123,11 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 ## 特别鸣谢
 wxjava:https://github.com/Wechat-Group/WxJava
+
 mybaitsplus:https://github.com/baomidou/mybatis-plus
+
 hutool:https://github.com/looly/hutool
+
 vue:https://github.com/vuejs/vue
+
 element:https://github.com/ElemeFE/element
