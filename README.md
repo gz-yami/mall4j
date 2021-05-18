@@ -120,3 +120,10 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 
 ![软著截图](https://images.gitee.com/uploads/images/2020/0515/200917_995e6632_1613814.png "软著.png")
+
+## 特别鸣谢
+wxjava:https://github.com/Wechat-Group/WxJava
+mybaitsplus:https://github.com/baomidou/mybatis-plus
+hutool:https://github.com/looly/hutool
+vue:https://github.com/vuejs/vue
+element:https://github.com/ElemeFE/element
