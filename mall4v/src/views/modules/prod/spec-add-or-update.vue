@@ -52,7 +52,7 @@ export default {
       dataList: [{ propId: 0, propName: '', prodPropValues: [{ valueId: 0 }] }],
       dataRule: {
         propName: [
-          { required: true, message: '菜单名称不能为空', trigger: 'blur' }
+          { required: true, message: '属性名称不能为空', trigger: 'blur' }
         ]
       },
       page: {
@@ -86,6 +86,11 @@ export default {
           }
         }
         this.dataList[0].prodPropValues = temp
+      }
+      if (this.dataList[0].prodPropValues.length < 1) {
+        this.dataList[0].prodPropValues = [{ valueId: 0 }]
+        this.$message.error('规格项不能为空')
+        return
       }
       this.$http({
         url: this.$http.adornUrl(`/prod/spec`),
