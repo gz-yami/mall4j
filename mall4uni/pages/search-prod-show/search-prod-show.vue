@@ -165,8 +165,20 @@ export default {
       http.request(params);
     },
     //当前搜索页二次搜索商品
-    toSearchConfirm: function () {
-      this.toLoadData();
+    toSearchConfirm: function (e) {
+      // this.toLoadData();
+      if (e.detail.value) {
+				let recentSearch = uni.getStorageSync('recentSearch') || [];
+				recentSearch = recentSearch.filter(item => item !== this.prodName);
+				recentSearch.unshift(this.prodName);
+				if (recentSearch.length > 10) {
+				  recentSearch.pop();
+				}
+				uni.setStorageSync('recentSearch', recentSearch);
+			}
+      uni.redirectTo({
+        url: '/pages/search-prod-show/search-prod-show?prodName=' + e.detail.value
+      })
     },
 
     /**
