@@ -40,11 +40,10 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 
 后台：<http://mall4j-admin.gz-yami.com>  账号：admin/123456
 
-小程序：1. 扫描二维码
+小程序：扫描二维码
 
 ![小程序](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
 
-​		2. 搜索小程序 **亚米商城** 
 
 ## 技术选型
 
@@ -124,8 +123,4 @@ https://gitee.com/gz-yami/mall4j/wikis
 ## 特别鸣谢
 
 - wxjava:https://github.com/Wechat-Group/WxJava
-- mybaitsplus:https://github.com/baomidou/mybatis-plus
-- hutool:https://github.com/looly/hutool
-- vue:https://github.com/vuejs/vue
-- element:https://github.com/ElemeFE/element
 
