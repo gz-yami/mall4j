@@ -119,11 +119,9 @@ export default {
       http.request(params);
     },
     onPhoneInput: function (e) {
-      console.log('e.detail.value：', e.detail.value)
       this.setData({
         phonenum: e.detail.value
       });
-      console.log('phonenum：', this.phonenum)
     },
     onCodeInput: function (e) {
       this.setData({
