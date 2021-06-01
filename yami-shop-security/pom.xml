@@ -14,7 +14,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.yami.shop</groupId>
-			<artifactId>yami-shop-common</artifactId>
+			<artifactId>yami-shop-service</artifactId>
 			<version>${yami.shop.version}</version>
 		</dependency>
 		<!--security、oauth2-->

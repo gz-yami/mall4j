@@ -10,6 +10,7 @@
 
 package com.yami.shop.security.service;
 
+import com.yami.shop.bean.model.User;
 import com.yami.shop.security.enums.App;
 import com.yami.shop.security.exception.UsernameNotFoundExceptionBase;
 import com.yami.shop.security.model.AppConnect;
@@ -45,4 +46,8 @@ public interface YamiUserDetailsService extends UserDetailsService {
 	 * @return
 	 */
 	YamiUser loadUserByUserMail(String userMail, String loginPassword);
+
+	User loadUserByMobileOrUserName(String mobileOrUserName, Integer loginType);
+
+	YamiUser getYamiUser(Integer appId, User user, String bizUserId);
 }
