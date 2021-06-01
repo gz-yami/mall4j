@@ -2,7 +2,7 @@
 
 var http = require("../../utils/http.js");
 var config = require("../../utils/config.js");
-
+var constant = require("../../utils/constant.js");
 Page({
 
   /**
@@ -70,7 +70,7 @@ Page({
   },
 
   getCodeNumber:function(){
-    if (this.data.phoneNumber == "" ) {
+    if (!this.data.phonenum) {
       wx.showToast({
         title: '请输入手机号',
         icon: "none"
@@ -83,13 +83,9 @@ Page({
       data: {
         // phonenum: this.data.phonenum,
         // code: this.data.code
+        mobile: this.data.phonenum
       },
-      callBack: (res) => {
-        this.setData({
-          phonenum: this.data.phonenum,
-          code: this.data.code
-        });
-      }
+      callBack: (res) => {}
     };
     http.request(params);
   },
@@ -102,5 +98,27 @@ Page({
     this.setData({
       code: e.detail.value
     });
+  },
+  /**
+   * 绑定
+   */
+  bindMobile() {
+    var params = {
+      url: '/user/registerOrBindUser',
+      method: 'PUT',
+      data: {
+        appType: AppType.MP,
+        mobile: this.data.phonenum,
+        validCode: this.data.code,
+        validateType: 1, // 验证类型:1验证码验证 ,
+        registerOrBind: 2 // 验证类型 1注册 2绑定
+      },
+      callBack: res => {
+        uni.navigateTo({
+          url: '/pages/index/index'
+        });
+      },
+    }
+    http.request(params)
   }
 })
