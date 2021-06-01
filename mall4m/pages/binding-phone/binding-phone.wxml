@@ -15,7 +15,7 @@
   </view>
 
   <view class='btn-box'>
-    <text class='sure-btn gray'>确定</text>
-    <text class='sure-btn '>确定</text>
+    <text wx:if="{{phonenum && code}}" class='sure-btn' bindtap="bindMobile">确定</text>
+    <text wx:if="{{!phonenum || !code}}" class='sure-btn gray'>确定</text>
   </view>
 </view>
