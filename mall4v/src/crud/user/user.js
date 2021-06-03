@@ -1,6 +1,6 @@
 export const tableOption = {
   border: true,
-  selection: true,
+  // selection: true,
   index: false,
   indexLabel: '序号',
   stripe: true,
