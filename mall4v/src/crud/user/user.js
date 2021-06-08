@@ -42,6 +42,9 @@ export const tableOption = {
         value: 1
       }
     ]
-
+  }, {
+    label: '注册时间',
+    prop: 'userRegtime',
+    imgWidth: 150
   }]
 }
