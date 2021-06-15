@@ -87,7 +87,7 @@
         </view>
         <view class="item">
           <text>买家留言：</text>
-          <input placeholder="给卖家留言"></input>
+          <input v-model="remarks" placeholder="给卖家留言"></input>
         </view>
       </view>
 
@@ -205,7 +205,7 @@ export default {
       totalCount: 0,
       transfee: 0,
       reduceAmount: 0,
-      remark: "",
+      remarks: "",
       couponIds: [],
       coupons: {},
       shopReduce: ""
@@ -384,7 +384,7 @@ export default {
         method: "POST",
         data: {
           orderShopParam: [{
-            remarks: this.remark,
+            remarks: this.remarks,
             shopId: 1
           }]
         },
