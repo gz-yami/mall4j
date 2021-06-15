@@ -12,6 +12,7 @@ package com.yami.shop.admin.security;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.yami.shop.bean.model.User;
 import com.yami.shop.common.util.CacheManagerUtil;
 import com.yami.shop.sys.constant.Constant;
 import com.yami.shop.security.enums.App;
@@ -122,4 +123,14 @@ public class YamiSysUserDetailsServiceImpl implements YamiUserDetailsService {
 	public YamiUser loadUserByUserMail(String userMail, String loginPassword) {
 		return null;
 	}
+
+	@Override
+	public User loadUserByMobileOrUserName(String mobileOrUserName, Integer loginType) {
+		return null;
+	}
+
+    @Override
+    public YamiUser getYamiUser(Integer appId, User user, String bizUserId) {
+        return null;
+    }
 }

@@ -24,4 +24,6 @@ public interface UserService extends IService<User> {
     User getUserByUserId(String userId);
 
     Boolean insertUser(UserRegisterParam userRegisterParam);
+
+    void validate(UserRegisterParam userRegisterParam, String checkRegisterSmsFlag);
 }

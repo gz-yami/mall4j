@@ -32,4 +32,28 @@ public class UserRegisterParam {
 
 	@ApiModelProperty(value = "应用类型 1小程序 2微信公众号 3 PC 4 h5")
 	private Integer appType;
+
+	@ApiModelProperty(value = "手机号")
+	private String mobile;
+
+	@ApiModelProperty(value = "验证码")
+	private String validCode;
+
+	@ApiModelProperty(value = "微信小程序的encryptedData")
+	private String encryptedData;
+
+	@ApiModelProperty(value = "微信小程序的ivStr")
+	private String ivStr;
+
+	@ApiModelProperty(value = "头像")
+	private String img;
+
+	@ApiModelProperty(value = "校验登陆注册验证码成功的标识")
+	private String checkRegisterSmsFlag;
+
+	@ApiModelProperty(value = "验证类型 1验证码验证 2 小程序encryptedData验证 3 密码验证 ")
+	private Integer validateType;
+
+	@ApiModelProperty(value = "验证类型 1注册 2绑定 ")
+	private Integer registerOrBind;
 }

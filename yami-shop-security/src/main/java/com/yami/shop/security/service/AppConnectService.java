@@ -12,6 +12,7 @@ package com.yami.shop.security.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yami.shop.bean.model.User;
 import com.yami.shop.security.enums.App;
 import com.yami.shop.security.model.AppConnect;
 
@@ -22,4 +23,7 @@ import com.yami.shop.security.model.AppConnect;
 public interface AppConnectService extends IService<AppConnect> {
 
 	AppConnect getByBizUserId(String bizUserId, App app);
+
+	User registerOrBindUser(User user, AppConnect appConnect, Integer appId);
+
 }

@@ -13,10 +13,12 @@ package com.yami.shop.api.security;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.emoji.EmojiUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yami.shop.bean.model.User;
 import com.yami.shop.common.annotation.RedisLock;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.CacheManagerUtil;
+import com.yami.shop.common.util.PrincipalUtil;
 import com.yami.shop.dao.UserMapper;
 import com.yami.shop.security.dao.AppConnectMapper;
 import com.yami.shop.security.enums.App;
@@ -144,6 +146,30 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 		YamiUser yamiUser = new YamiUser(user.getUserId(), loginPassword, user.getStatus() == 1);
 		yamiUser.setName(name);
 		yamiUser.setPic(user.getPic());
+		return yamiUser;
+	}
+
+	@Override
+	public User loadUserByMobileOrUserName(String mobileOrUserName, Integer loginType) {
+		User user = null;
+		// 手机验证码登陆，或传过来的账号很像手机号
+		if (Objects.equals(loginType, 1) || PrincipalUtil.isMobile(mobileOrUserName)) {
+			user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUserMobile, mobileOrUserName));
+		}
+		return user;
+	}
+
+	@Override
+	public YamiUser getYamiUser(Integer appId, User user, String bizUserId) {
+		String name = StrUtil.isBlank(user.getRealName()) ? user.getNickName() : user.getRealName();
+		YamiUser yamiUser = new YamiUser();
+		yamiUser.setEnabled(user.getStatus() == 1);
+		yamiUser.setUserId(user.getUserId());
+		yamiUser.setBizUserId(bizUserId);
+		yamiUser.setAppType(appId);
+		yamiUser.setName(name);
+		yamiUser.setPic(user.getPic());
+		yamiUser.setPassword(user.getLoginPassword());
 		return yamiUser;
 	}
 }

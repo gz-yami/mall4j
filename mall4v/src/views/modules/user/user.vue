@@ -8,11 +8,11 @@
                @selection-change="selectionChange"
                @on-load="getDataList">
       <template slot="menuLeft">
-        <el-button type="danger"
-                   @click="deleteHandle()"
-                   v-if="isAuth('admin:user:delete')"
-                   size="small"
-                   :disabled="dataListSelections.length <= 0">批量删除</el-button>
+<!--        <el-button type="danger"-->
+<!--                   @click="deleteHandle()"-->
+<!--                   v-if="isAuth('admin:user:delete')"-->
+<!--                   size="small"-->
+<!--                   :disabled="dataListSelections.length <= 0">批量删除</el-button>-->
       </template>
 
       <template slot-scope="scope"
@@ -32,11 +32,11 @@
                    v-if="isAuth('admin:user:update')"
                    @click.stop="addOrUpdateHandle(scope.row.userId)">编辑</el-button>
 
-        <el-button type="danger"
-                   icon="el-icon-delete"
-                   size="small"
-                   v-if="isAuth('admin:user:delete')"
-                   @click.stop="deleteHandle(scope.row.userId)">删除</el-button>
+<!--        <el-button type="danger"-->
+<!--                   icon="el-icon-delete"-->
+<!--                   size="small"-->
+<!--                   v-if="isAuth('admin:user:delete')"-->
+<!--                   @click.stop="deleteHandle(scope.row.userId)">删除</el-button>-->
       </template>
     </avue-crud>
 
