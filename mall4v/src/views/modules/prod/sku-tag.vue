@@ -69,6 +69,10 @@ export default {
         propName: '',
         selectValues: []
       },
+      type: 0,
+      tagItemName: '',
+      tagName: '',
+      tagNameIndex: 0,
       tagItemInputs: [],
       // sku的标记
       // tags: [],
@@ -77,6 +81,8 @@ export default {
       // 根据选定的规格所查询出来的规格值
       dbTagValues: [],
       specs: [], // 使用的规格
+      maxValueId: 0, // 规格值id最大
+      maxPropId: 0, // 规格id 最大
       initing: false
     }
   },
@@ -87,6 +93,22 @@ export default {
       params: this.$http.adornParams()
     }).then(({data}) => {
       this.dbTags = data
+      if (data) {
+        this.maxPropId = Math.max.apply(Math, data.map(item => { return item.propId }))
+      } else {
+        this.maxPropId = 0
+      }
+    })
+    this.$http({
+      url: this.$http.adornUrl(`/prod/spec/listSpecMaxValueId`),
+      method: 'get',
+      params: this.$http.adornParams()
+    }).then(({ data }) => {
+      if (data) {
+        this.maxValueId = data
+      } else {
+        this.maxValueId = 0
+      }
     })
   },
   props: {
@@ -322,6 +344,9 @@ export default {
     },
     // 关闭标签 --删除
     handleTagClose (tagIndex, tagItemIndex) {
+      this.tagName = this.skuTags[tagIndex].tagName
+      this.tagNameIndex = tagIndex
+      this.tagItemName = this.skuTags[tagIndex].tagItems[tagItemIndex].propValue
       if (this.skuTags[tagIndex].tagItems.length === 1) {
         return
       }

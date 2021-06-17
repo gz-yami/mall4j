@@ -123,4 +123,15 @@ public class SpecController {
         prodPropService.deleteProdPropAndValues(id, ProdPropRule.SPEC.value(), SecurityUtils.getSysUser().getShopId());
         return ResponseEntity.ok().build();
     }
+
+    /**
+     * 根据获取规格值最大的自增id
+     */
+    @GetMapping("/listSpecMaxValueId")
+    public ResponseEntity<Long> listSpecMaxValueId() {
+        ProdPropValue propValue = prodPropValueService.getOne(new LambdaQueryWrapper<ProdPropValue>()
+                .orderByDesc(ProdPropValue::getValueId).last("limit 1"));
+        return ResponseEntity.ok(Objects.isNull(propValue) ? 0L : propValue.getValueId());
+    }
+
 }
