@@ -78,6 +78,7 @@ page {
   width: 90%;
   padding-bottom: 20rpx;
   margin-top: 15rpx;
+  word-wrap:break-word;
 }
 
 .submit-order .delivery-addr .arrow {
