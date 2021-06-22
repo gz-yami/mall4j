@@ -35,6 +35,7 @@ page {
   font-size: 26rpx;
   line-height: 36rpx;
   color: #999;
+  word-wrap:break-word;
 }
 
 /* 商品列表 */
