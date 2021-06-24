@@ -111,7 +111,7 @@ export default {
     },
     // 删除
     deleteHandle (id) {
-      this.$confirm(`确定对[id=${id}]进行[删除]操作?`, '提示', {
+      this.$confirm(`确定进行删除操作?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
