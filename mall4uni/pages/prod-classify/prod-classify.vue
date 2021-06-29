@@ -8,6 +8,8 @@
     <block v-for="(item, index) in prodList" :key="index">
       <prod :item="item"></prod>
     </block>
+
+    <view v-if="!prodList.length" class="empty">暂无数据</view>
   </view>
 </view>
 </template>
