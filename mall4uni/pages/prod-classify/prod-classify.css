@@ -17,3 +17,13 @@ page {
   height: 20rpx;
   background: #f4f4f4;
 }
+
+/* 空 */
+.empty {
+  display: block;
+  width: 100%;
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 20vh;
+  text-align: center;
+}
