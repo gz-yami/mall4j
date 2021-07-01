@@ -108,8 +108,7 @@ export default {
           return item.addrId
         })
       this.$confirm(
-        `确定对[id=${ids.join(',')}]进行[${id ? '删除' : '批量删除'}]操作?`,
-        '提示',
+        `确定进行删除操作?`, '提示',
         {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
