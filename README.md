@@ -101,26 +101,30 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 ![uni-app截图](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/uniappInfo.png "uni-app截图")
 
+### 4. 软著截图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/110940_a9b72c43_5094767.png "Mall4j商城系统V1.0.png")
+
 
 
 ## 提交反馈
+- Mall4j官网 https://www.mall4j.com
+- 商务合作微信
 
-- QQ群：722835385
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/131508_13858876_5094767.jpeg "法宝微信2.jpg")
 
-  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0723/094927_e686539d_5094767.jpeg "微信图片_20190723091006.jpg")
 
+- mall4j开源技术QQ群：722835385
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/110919_835cf484_5094767.jpeg "mall4j群.jpg")
+
+
+## 特别鸣谢
+
+- wxjava:https://github.com/Wechat-Group/WxJava
 
 ## 后续会加入微服务框架、分布式版本
 
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
-
-
-
-![软著截图](https://images.gitee.com/uploads/images/2020/0515/200917_995e6632_1613814.png "软著.png")
-
-## 特别鸣谢
-
-- wxjava:https://github.com/Wechat-Group/WxJava
 
