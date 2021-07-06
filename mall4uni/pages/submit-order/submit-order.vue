@@ -87,7 +87,7 @@
         </view>
         <view class="item">
           <text>买家留言：</text>
-          <input v-model="remarks" placeholder="给卖家留言"></input>
+          <input v-model="remarks" placeholder="给卖家留言" />
         </view>
       </view>
 
@@ -208,7 +208,9 @@ export default {
       remarks: "",
       couponIds: [],
       coupons: {},
-      shopReduce: ""
+      shopReduce: "",
+      item: {},
+      selAddress: ''
     };
   },
 
@@ -237,15 +239,12 @@ export default {
   onShow: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];
+    if (currPage.selAddress == "yes") {
+      //将携带的参数赋值
+      this.userAddr = currPage.item
+    }
 
-    // if (currPage.data.selAddress == "yes") {
-    //   this.setData({
-    //     //将携带的参数赋值
-    //     userAddr: currPage.data.item
-    //   });
-    // } //获取订单数据
-
-
+    //获取订单数据
     this.loadOrderData();
   },
 

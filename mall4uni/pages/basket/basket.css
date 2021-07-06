@@ -317,7 +317,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 
 .cart-footer {
   position: fixed;
-  bottom: 100rpx;
+  /* bottom: 100rpx; */
+  bottom: calc(90rpx + env(safe-area-inset-bottom));
   left: 0;
   width: 100%;
   display: flex;

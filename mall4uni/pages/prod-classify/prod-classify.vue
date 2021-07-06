@@ -225,7 +225,6 @@ export default {
             prodList: list,
             pages: res.pages
           });
-          console.log('我的收藏prodList:', this.prodList)
           uni.hideLoading();
         }
       };

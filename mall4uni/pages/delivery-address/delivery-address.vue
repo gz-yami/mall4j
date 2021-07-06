@@ -11,7 +11,7 @@
     <radio-group class="radio-group" @change="radioChange">
       <block v-for="(item, index) in addressList" :key="index">
         <view class="address">
-          <view class="personal" @tap="selAddrToOrder" :data-item="item">
+          <view class="personal" @tap="selAddrToOrder(item)">
             <view class="info-tit">
               <text class="name">{{item.receiver}}</text>
               <text class="tel">{{item.mobile}}</text>
@@ -109,7 +109,7 @@ export default {
       };
       http.request(params);
     },
-    // 修改地址 
+    // 修改地址
     toEditAddress: function (e) {
       var addrId = e.currentTarget.dataset.addrid;
       uni.navigateTo({
@@ -120,17 +120,14 @@ export default {
     /**
      * 选择地址 跳转回提交订单页
      */
-    selAddrToOrder: function (e) {
+    selAddrToOrder: function (item) {
       if (this.order == 0) {
         var pages = getCurrentPages(); //当前页面
 
         var prevPage = pages[pages.length - 2]; //上一页面
-
-        prevPage.setData({
-          //直接给上移页面赋值
-          item: e.currentTarget.dataset.item,
-          selAddress: 'yes'
-        });
+        //直接给上一页面赋值
+        prevPage.item = item
+        prevPage.selAddress = 'yes'
         uni.navigateBack({
           //返回
           delta: 1
