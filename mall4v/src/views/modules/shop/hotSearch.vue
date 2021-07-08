@@ -118,7 +118,7 @@ export default {
       var ids = row.hotSearchId ? [row.hotSearchId] : this.dataListSelections.map(item => {
         return item.hotSearchId
       })
-      this.$confirm(`确定对[id=${ids.join(',')}]进行[${row.hotSearchId ? '删除' : '批量删除'}]操作?`, '提示', {
+      this.$confirm(`确定进行[${row.hotSearchId ? '删除' : '批量删除'}]操作?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
