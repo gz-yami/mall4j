@@ -2,9 +2,9 @@
 <!--pages/prod-classify/prod-classify.wxml-->
 
 <view class="container">
-  <view class="line-fix"></view>
-  <view class="tit-background"></view>
-  <view>
+  <!-- <view class="line-fix"></view>
+  <view class="tit-background"></view> -->
+  <view class="prod-list">
     <block v-for="(item, index) in prodList" :key="index">
       <prod :item="item"></prod>
     </block>

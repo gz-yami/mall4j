@@ -18,3 +18,9 @@
   text-justify: inter-ideograph;
   margin-top: 20rpx;
 }
+
+.content >>> img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
