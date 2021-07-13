@@ -5,7 +5,7 @@
   <view class="news-detail">
     <view class="news-detail-title">{{news.title}}</view>
     <!-- <view class='news-detail-text'>{{news.content}}</view> -->
-    <rich-text :nodes="news.content"></rich-text>
+    <rich-text class="content" :nodes="news.content"></rich-text>
   </view>
    <!-- </block> -->
 </view>

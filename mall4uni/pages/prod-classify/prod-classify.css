@@ -4,6 +4,10 @@ page {
   background: #fff;
 }
 
+.container {
+  margin: 7px;
+}
+
 .line-fix {
   width: 100%;
   height: 2rpx;
