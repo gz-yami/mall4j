@@ -93,7 +93,7 @@ public class SysUserController {
 	public ResponseEntity<String> password(@RequestBody @Valid UpdatePasswordDto param){
 		Long userId = SecurityUtils.getSysUser().getUserId();
 
-        // 开源版代码，禁止用户修改admin 的账号密码密码
+        // 开源版代码，禁止用户修改admin 的账号密码
         // 正式使用时，删除此部分代码即可
         if (Objects.equals(1L,userId) && StrUtil.isNotBlank(param.getNewPassword())) {
             throw new YamiShopBindException("禁止修改admin的账号密码");
@@ -153,7 +153,6 @@ public class SysUserController {
 	@PreAuthorize("@pms.hasPermission('sys:user:update')")
 	public ResponseEntity<String> update(@Valid @RequestBody SysUser user){
 		String password = user.getPassword();
-
 		SysUser dbUser = sysUserService.getSysUserById(user.getUserId());
 
 		if (!Objects.equals(dbUser.getShopId(), SecurityUtils.getSysUser().getShopId())) {
@@ -174,6 +173,10 @@ public class SysUserController {
 		boolean is = Objects.equals(1L,dbUser.getUserId()) && (StrUtil.isNotBlank(password) || !StrUtil.equals("admin",user.getUsername()));
 		if (is) {
 			throw new YamiShopBindException("禁止修改admin的账号密码");
+		}
+
+		if (Objects.equals(1L,user.getUserId()) && user.getStatus()==0) {
+			throw new YamiShopBindException("admin用户不可以被禁用");
 		}
 		sysUserService.updateUserAndUserRole(user);
 		return ResponseEntity.ok().build();
