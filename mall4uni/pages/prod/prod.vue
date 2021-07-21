@@ -23,7 +23,7 @@
     </view>
     <view class="sales-p">{{brief}}</view>
     <view class="prod-price">
-      <text class="price">￥<text class="price-num">{{wxs.parsePrice(defaultSku.price)[0]}}</text>.{{wxs.parsePrice(defaultSku.price)[1]}}</text>
+      <text v-if="defaultSku && defaultSku.price" class="price">￥<text class="price-num">{{wxs.parsePrice(defaultSku.price)[0]}}</text>.{{wxs.parsePrice(defaultSku.price)[1]}}</text>
       <text class="sales"></text>
     </view>
     <!-- <button class="share-icon" open-type="share">
@@ -139,7 +139,7 @@
         <image class="pup-sku-img" :src="defaultSku.pic?defaultSku.pic:pic"></image>
         <view class="pup-sku-price">
           ￥
-          <text class="pup-sku-price-int">{{wxs.parsePrice(defaultSku.price)[0]}}</text> .{{wxs.parsePrice(defaultSku.price)[1]}}
+          <text v-if="defaultSku && defaultSku.price" class="pup-sku-price-int">{{wxs.parsePrice(defaultSku.price)[0]}}</text> .{{wxs.parsePrice(defaultSku.price)[1]}}
         </view>
         <view class="pup-sku-prop">
           <text>已选</text> {{selectedProp.length>0?selectedProp+'，':selectedProp}}{{prodNum}}件
