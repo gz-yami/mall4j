@@ -92,7 +92,7 @@ import AddOrUpdate from './transport-add-or-update'
               params
             )
           )
-        }).then(({data}) = > {
+        }).then(({data}) => {
           this.dataList = data.records
           this.page.total = data.total
           this.dataListLoading = false
@@ -102,28 +102,28 @@ import AddOrUpdate from './transport-add-or-update'
       // 新增 / 修改
       addOrUpdateHandle(id) {
         this.addOrUpdateVisible = true
-        this.$nextTick(() = > {
+        this.$nextTick(() => {
           this.$refs.addOrUpdate.init(id)
         }
       )
       },
       // 删除
       deleteHandle(id) {
-        var ids = id ? [id] : this.dataListSelections.map(item = > {return item.transportId}
+        var ids = id ? [id] : this.dataListSelections.map(item => {return item.transportId}
       )
-        this.$confirm(`确定对[id=${ids.join(',')}]进行[${id ? '删除' : '批量删除'}]操作?`, '提示',
+        this.$confirm(`确定进行[${id ? '删除' : '批量删除'}]操作?`, '提示',
           {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
           }
         )
-          .then(() = > {
+          .then(() => {
           this.$http({
             url: this.$http.adornUrl('/shop/transport'),
             method: 'delete',
             data: this.$http.adornData(ids, false)
-          }).then(({data}) = > {
+          }).then(({data}) => {
             this.$message({
               message: '操作成功',
               type: 'success',
@@ -135,9 +135,7 @@ import AddOrUpdate from './transport-add-or-update'
           }
       )
       })
-      })
-      .
-        catch(() = > {}
+      }).catch(() => {}
       )
       },
 
