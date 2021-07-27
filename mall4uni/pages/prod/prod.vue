@@ -197,23 +197,26 @@
         <text @tap="getProdCommPage" data-evaluate="3" :class="evaluate==3?'selected':''">有图({{prodCommData.picNumber}})</text>
       </view>
       <view class="cmt-items">
-        <view v-for="(item, index) in prodCommPage.records" :key="index" class="cmt-item">
-          <view class="cmt-user">
-            <text class="date">{{item.recTime}}</text>
-            <view class="cmt-user-info">
-              <image class="user-img" :src="item.pic"></image>
-              <view class="nickname">{{item.nickName}}</view>
-              <!-- <van-rate readonly :value="item.score" @change="onChange" color="#f44"></van-rate> -->
+        <block v-if="prodCommPage.records.length">
+          <view v-for="(item, index) in prodCommPage.records" :key="index" class="cmt-item">
+            <view class="cmt-user">
+              <text class="date">{{item.recTime}}</text>
+              <view class="cmt-user-info">
+                <image class="user-img" :src="item.pic"></image>
+                <view class="nickname">{{item.nickName}}</view>
+                <!-- <van-rate readonly :value="item.score" @change="onChange" color="#f44"></van-rate> -->
+              </view>
+            </view>
+            <view class="cmt-cnt">{{item.content}}</view>
+            <scroll-view class="cmt-attr" scroll-x="true" v-if="item.pics.length">
+              <image v-for="(commPic, index2) in item.pics" :key="index2" :src="commPic"></image>
+            </scroll-view>
+            <view class="cmt-reply" v-if="item.replyContent">
+              <text class="reply-tit">店铺回复：</text> {{item.replyContent}}
             </view>
           </view>
-          <view class="cmt-cnt">{{item.content}}</view>
-          <scroll-view class="cmt-attr" scroll-x="true" v-if="item.pics.length">
-            <image v-for="(commPic, index2) in item.pics" :key="index2" :src="commPic"></image>
-          </scroll-view>
-          <view class="cmt-reply" v-if="item.replyContent">
-            <text class="reply-tit">店铺回复：</text> {{item.replyContent}}
-          </view>
-        </view>
+        </block>
+        <view v-if="!prodCommPage.records.length" class="empty">暂无评价</view>
       </view>
       <view class="load-more" v-if="prodCommPage.pages > prodCommPage.current">
         <text @tap="getMoreCommPage">点击加载更多</text>
