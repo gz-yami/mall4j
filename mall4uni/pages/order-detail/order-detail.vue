@@ -82,7 +82,7 @@
         <view class="item">
           <text class="item-tit">订单编号：</text>
           <text class="item-txt">{{orderNumber}}</text>
-          <text class="copy-btn" @tap="copyBtn">复制</text>
+          <!-- <text class="copy-btn" @tap="copyBtn">复制</text> -->
         </view>
         <view class="item">
           <text class="item-tit">下单时间：</text>

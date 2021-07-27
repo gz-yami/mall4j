@@ -226,3 +226,12 @@ page {
   color: #eb2444;
   font-family: arial;
 }
+
+/* 空 */
+.cont-item.empty {
+  display: block;
+  font-size: 24rpx;
+  margin-top: 80rpx;
+  color: #aaa;
+  text-align: center;
+}

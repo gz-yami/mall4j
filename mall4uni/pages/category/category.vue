@@ -32,7 +32,7 @@
             <image :src="categoryImg" mode="widthFix"></image>
         </view>
       </view>
-      <view class="cont-item">
+      <view v-if="productList.length" class="cont-item">
         <block v-for="(item, index) in productList" :key="index">
           <view class="show-item" @tap="toProdPage" :data-prodid="item.prodId">
             <view class="more-prod-pic">
@@ -49,6 +49,7 @@
          
         </block>
       </view>
+      <view v-if="!productList.length" class="cont-item empty">该分类下暂无商品</view>
      <!-- </block> -->
     </scroll-view>
     <!-- 右侧内容end -->

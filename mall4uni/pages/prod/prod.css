@@ -326,6 +326,13 @@ swiper image {
   right: -10px;
   border-bottom-color: #e5e5e5;
 }
+.cmt-items .empty {
+  display: block;
+  font-size: 24rpx;
+  text-align: center;
+  color: #aaa;
+  margin-top: 5vh;
+}
 
 .cmt-user {
   line-height: 25px;
