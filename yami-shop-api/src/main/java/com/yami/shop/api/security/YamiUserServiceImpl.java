@@ -22,6 +22,7 @@ import com.yami.shop.common.util.PrincipalUtil;
 import com.yami.shop.dao.UserMapper;
 import com.yami.shop.security.dao.AppConnectMapper;
 import com.yami.shop.security.enums.App;
+import com.yami.shop.security.exception.UsernameNotFoundException;
 import com.yami.shop.security.exception.UsernameNotFoundExceptionBase;
 import com.yami.shop.security.model.AppConnect;
 import com.yami.shop.security.service.YamiUser;
@@ -135,7 +136,7 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 	public YamiUser loadUserByUserMail(String userMail, String loginPassword) {
 		User user = userMapper.getUserByUserMail(userMail);
 		if (user == null) {
-			throw new YamiShopBindException("用户不存在");
+			throw new UsernameNotFoundException("用户不存在");
 		}
 		String paramPassword = passwordEncoder.encode(loginPassword);
 		if (!passwordEncoder.matches(loginPassword, user.getLoginPassword())) {

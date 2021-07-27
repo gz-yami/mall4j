@@ -37,8 +37,7 @@
                count(CASE WHEN evaluate = 2 THEN 1 ELSE null END)     AS negative_number,
                count(CASE WHEN pics is not null THEN 1 ELSE null END) AS pic_number
         FROM tz_prod_comm
-        WHERE prod_id = #{prodId}
-          and (status = 1 or user_id = #{userId})
+        WHERE prod_id = #{prodId} and status = 1
     </select>
 
 
@@ -78,13 +77,14 @@
         from
         tz_prod_comm pc
         left join tz_user u on u.user_id=pc.user_id
-        where pc.prod_id = #{prodId} and (pc.status = 1 or pc.user_id = #{userId} )
+        where pc.prod_id = #{prodId} and pc.status = 1
         <if test="evaluate != -1 and evaluate != 3">
             and pc.evaluate = #{evaluate}
         </if>
         <if test="evaluate == 3">
             and pc.pics is not null
         </if>
+        order by pc.rec_time desc
     </select>
 
     <select id="getProdCommDtoPageByUserId" resultMap="ProdCommDto">

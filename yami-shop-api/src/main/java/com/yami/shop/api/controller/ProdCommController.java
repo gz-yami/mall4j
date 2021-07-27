@@ -43,7 +43,7 @@ public class ProdCommController {
     @GetMapping("/prodCommData")
     @ApiOperation(value = "返回商品评论数据(好评率 好评数量 中评数 差评数)", notes = "根据商品id获取")
     public ResponseEntity<ProdCommDataDto> getProdCommData(Long prodId) {
-        return ResponseEntity.ok(prodCommService.getProdCommDataByProdId(prodId, SecurityUtils.getUser().getUserId()));
+        return ResponseEntity.ok(prodCommService.getProdCommDataByProdId(prodId));
     }
 
     @GetMapping("/prodCommPageByUser")
@@ -59,7 +59,7 @@ public class ProdCommController {
             @ApiImplicitParam(name = "evaluate", value = "-1或null 全部，0好评 1中评 2差评 3有图", required = true, dataType = "Long"),
     })
     public ResponseEntity<IPage<ProdCommDto>> getProdCommPageByProdId(PageParam page, Long prodId, Integer evaluate) {
-        return ResponseEntity.ok(prodCommService.getProdCommDtoPageByProdId(page, prodId, evaluate, SecurityUtils.getUser().getUserId()));
+        return ResponseEntity.ok(prodCommService.getProdCommDtoPageByProdId(page, prodId, evaluate));
     }
 
     @PostMapping

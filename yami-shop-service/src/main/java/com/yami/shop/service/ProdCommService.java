@@ -28,11 +28,11 @@ import java.util.List;
  * @date 2019-04-19 10:43:57
  */
 public interface ProdCommService extends IService<ProdComm> {
-    ProdCommDataDto getProdCommDataByProdId(Long prodId, String userId);
+    ProdCommDataDto getProdCommDataByProdId(Long prodId);
 
     IPage<ProdCommDto> getProdCommDtoPageByUserId(Page page,String userId);
 
-    IPage<ProdCommDto> getProdCommDtoPageByProdId(Page page, Long prodId, Integer evaluate, String userId);
+    IPage<ProdCommDto> getProdCommDtoPageByProdId(Page page, Long prodId, Integer evaluate);
 
     IPage<ProdComm> getProdCommPage(Page page,ProdComm prodComm);
 
