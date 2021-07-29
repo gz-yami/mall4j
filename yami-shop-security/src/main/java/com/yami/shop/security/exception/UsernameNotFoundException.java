@@ -10,7 +10,7 @@
 
 package com.yami.shop.security.exception;
 
-public class UsernameNotFoundException extends YamiAuth2Exception {
+public class UsernameNotFoundException extends BaseYamiAuth2Exception {
 
     public UsernameNotFoundException(String msg) {
         super(msg);

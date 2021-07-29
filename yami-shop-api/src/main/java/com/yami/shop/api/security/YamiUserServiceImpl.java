@@ -138,10 +138,10 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("用户不存在");
 		}
-		String paramPassword = passwordEncoder.encode(loginPassword);
+
 		if (!passwordEncoder.matches(loginPassword, user.getLoginPassword())) {
 			// 原密码不正确
-			throw new YamiShopBindException("密码不正确");
+			throw new UsernameNotFoundException("密码不正确");
 		}
 		String name = StrUtil.isBlank(user.getRealName()) ? user.getNickName() : user.getRealName();
 		YamiUser yamiUser = new YamiUser(user.getUserId(), loginPassword, user.getStatus() == 1);

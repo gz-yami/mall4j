@@ -45,7 +45,7 @@ public class LoginAuthFailedHandler implements AuthenticationFailureHandler {
         BaseYamiAuth2Exception auth2Exception = (BaseYamiAuth2Exception) exception;
 
         response.setCharacterEncoding(CharsetUtil.UTF_8);
-        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(auth2Exception.getHttpErrorCode());
         PrintWriter printWriter = response.getWriter();
         printWriter.append(auth2Exception.getMessage());
