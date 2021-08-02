@@ -1,3 +1,6 @@
+
+# 微服务版已上线，快来给个star吧 https://gitee.com/gz-yami/mall4cloud
+
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0711/174845_6db7724e_5094767.png "屏幕截图.png")
 一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的完全开源商城
 
@@ -122,7 +125,6 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 - wxjava:https://github.com/Wechat-Group/WxJava
 
-## 后续会加入微服务框架、分布式版本
 
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
