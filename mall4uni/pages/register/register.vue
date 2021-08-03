@@ -9,7 +9,7 @@
 			<view class="login-form">
 				<view :class="['item',errorTips==1? 'error':'']">
 					<view class="account">
-						<text class="input-item">注册账号</text>
+						<text class="input-item">账号</text>
 						<input type="text" @input="getInputVal" data-type="account" placeholder-class="inp-palcehoder" placeholder="请输入账号名称"></input>
 					</view>
 					<view class="error-text" v-if="errorTips==1"><text class="warning-icon">!</text>请输入账号！</view>

@@ -168,7 +168,7 @@ export default {
             for (var index in res) {
               if (res[index].areaId == provinceId) {
                 ths.setData({
-                  value: [index, ths.value[1], ths.value[2]]
+                  value: [parseInt(index), ths.value[1], ths.value[2]]
                 });
               }
             }
@@ -275,7 +275,7 @@ export default {
             for (var index in res) {
               if (res[index].areaId == cityId) {
                 ths.setData({
-                  value: [ths.value[0], index, ths.value[2]]
+                  value: [ths.value[0], parseInt(index), ths.value[2]]
                 });
               }
             }
@@ -309,7 +309,7 @@ export default {
             for (var _index in res) {
               if (res[_index].areaId == areaId) {
                 ths.setData({
-                  value: [ths.value[0], ths.value[1], _index]
+                  value: [ths.value[0], ths.value[1], parseInt(_index)]
                 });
               }
             }
