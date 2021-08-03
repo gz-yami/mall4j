@@ -8,7 +8,7 @@
       </view>
       <view class="txt">您还没有收货地址</view>
     </view>
-    <radio-group class="radio-group" @change="radioChange">
+    <radio-group class="radio-group">
       <block v-for="(item, index) in addressList" :key="index">
         <view class="address">
           <view class="personal" @tap="selAddrToOrder(item)">
