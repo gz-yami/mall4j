@@ -215,7 +215,7 @@ export default {
         transportId: 0,
         isFreeFee: 0,
         transfees: [{ cityList: [], status: 1 }],
-        transfeeFrees: [{ freeCityList: [] }]
+        transfeeFrees: [{ freeCityList: [], freeType: 0 }]
       },
       page: {
         total: 0, // 总页数
@@ -259,7 +259,7 @@ export default {
           transportId: 0,
           isFreeFee: 0,
           transfees: [{ cityList: [], status: 1 }],
-          transfeeFrees: [{ freeCityList: [] }]
+          transfeeFrees: [{ freeCityList: [], freeType: 0 }]
         }
       })
       if (this.dataForm.transportId) {
@@ -309,7 +309,7 @@ export default {
     },
     // 添加指定包邮条件
     addTransfeeFree () {
-      this.dataForm.transfeeFrees.push({ freeCityList: [] })
+      this.dataForm.transfeeFrees.push({ freeCityList: [], freeType: 0 })
     },
     // 删除指定包邮条件
     deleteTransfeeFree (rowIndex) {
