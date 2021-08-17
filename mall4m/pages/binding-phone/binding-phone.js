@@ -2,7 +2,6 @@
 
 var http = require("../../utils/http.js");
 var config = require("../../utils/config.js");
-var constant = require("../../utils/constant.js");
 Page({
 
   /**
