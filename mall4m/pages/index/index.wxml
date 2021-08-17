@@ -12,7 +12,7 @@
   <view class='content'>
     <!-- swiper -->
     <swiper autoplay="{{autoplay}}" indicator-color="{{indicatorColor}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}} " circular='true' class='pic-swiper' indicator-dots previous-margin='20rpx' next-margin='20rpx'>
-      <block wx:for='{{indexImgs}}' wx:key=''>
+      <block wx:for='{{indexImgs}}' wx:key='imgUrl'>
         <swiper-item class="banner-item">
           <view class='img-box'>
             <image src='{{item.imgUrl}}' data-prodid='{{item.relation}}' bindtap='toProdPage' class='banner'></image>
@@ -45,7 +45,7 @@
     <view class='message-play' bindtap='onNewsPage'>
       <image src='../../images/icon/horn.png' class='hornpng'></image>
       <swiper vertical='true' autoplay='true' duration='1000' class='swiper-cont'>
-        <block wx:for='{{news}}' wx:key=''>
+        <block wx:for='{{news}}' wx:key='id'>
           <swiper-item class="items">{{item.title}}</swiper-item>
         </block>
       </swiper>
