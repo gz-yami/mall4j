@@ -24,6 +24,7 @@
         <el-button type="danger"
                    @click="deleteHandle()"
                    v-if="isAuth('shop:transport:delete')"
+                   size="small"
                    :disabled="dataListSelections.length <= 0">批量删除
         </el-button>
       </template>
