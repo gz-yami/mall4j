@@ -17,3 +17,10 @@ page {
   height: 20rpx;
   background: #f4f4f4;
 }
+
+.empty-list {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin: 100rpx 0;
+}
