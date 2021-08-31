@@ -45,7 +45,7 @@
   <!-- 已选规格 -->
   <view class="sku" @tap="showSku">
     <view class="sku-tit">已选</view>
-    <view class="sku-con">{{selectedProp.length>0?selectedProp+'，':selectedProp}}{{prodNum}}件</view>
+    <view class="sku-con">{{selectedProp.length>0?selectedProp+'，':''}}{{prodNum}}件</view>
     <view class="more">...</view>
   </view>
   <!-- 评价 -->

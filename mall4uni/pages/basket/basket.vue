@@ -12,7 +12,7 @@
           <view class="item">
             <view class="btn">
               <label>
-                <checkbox @tap="onSelectedItem" :data-scindex="scIndex" :data-index="index" :value="prod.prodId" :checked="prod.checked" color="#105c3e"></checkbox>
+                <checkbox @tap="onSelectedItem" :data-scindex="scIndex" :data-index="index" :value="toString(prod.prodId)" :checked="prod.checked" color="#105c3e"></checkbox>
               </label>
             </view>
             <view class="prodinfo">

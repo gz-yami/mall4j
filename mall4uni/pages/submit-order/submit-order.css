@@ -296,6 +296,9 @@ page {
   text-overflow: ellipsis;
   word-break: break-all;
 }
+.order-msg .msg-item .item .item-txt.price {
+  padding: 0;
+}
 
 .order-msg .msg-item .item.coupon {
   border-bottom: 2rpx solid #e1e1e1;
