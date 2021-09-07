@@ -82,11 +82,13 @@
 					<view class="tit">我的收藏</view>
 				</view>
 				<view class="col-item">
-					<view class="num">--</view>
+					<view v-if="loginResult" class="num">5</view>
+					<view v-else class="num">--</view>
 					<view class="tit">我的消息</view>
 				</view>
 				<view class="col-item">
-					<view class="num">--</view>
+					<view v-if="loginResult" class="num">3</view>
+					<view v-else class="num">--</view>
 					<view class="tit">我的足迹</view>
 				</view>
 			</view>
