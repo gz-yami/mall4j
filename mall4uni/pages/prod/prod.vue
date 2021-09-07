@@ -142,7 +142,7 @@
           <text v-if="defaultSku && defaultSku.price" class="pup-sku-price-int">{{wxs.parsePrice(defaultSku.price)[0]}}</text> .{{wxs.parsePrice(defaultSku.price)[1]}}
         </view>
         <view class="pup-sku-prop">
-          <text>已选</text> {{selectedProp.length>0?selectedProp+'，':selectedProp}}{{prodNum}}件
+          <text>已选</text> {{selectedProp.length>0?selectedProp+'，':''}}{{prodNum}}件
         </view>
         <view class="close" @tap="closePopup"></view>
       </view>
