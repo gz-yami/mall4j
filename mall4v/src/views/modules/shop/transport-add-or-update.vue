@@ -2,7 +2,9 @@
   <el-dialog :title="!dataForm.transportId ? '新增' : '修改'"
              :close-on-click-modal="false"
              :visible.sync="visible"
-             width="1400px">
+             width="1400px"
+             class="transport-dialog"
+  >
     <el-form :model="dataForm"
              ref="dataForm"
              @keyup.enter.native="dataFormSubmit()"
@@ -37,7 +39,9 @@
       </el-form-item>
       <el-table :data="dataForm.transfees"
                 border
-                style="width: 100%;">
+                style="width: 100%;"
+                class="table-con"
+      >
         <el-table-column header-align="center"
                          align="center"
                          width="450"
@@ -309,7 +313,9 @@ export default {
     },
     // 添加指定包邮条件
     addTransfeeFree () {
-      this.dataForm.transfeeFrees.push({ freeCityList: [], freeType: 0 })
+      if (this.dataForm.hasFreeCondition) {
+        this.dataForm.transfeeFrees.push({ freeCityList: [], freeType: 0 })
+      }
     },
     // 删除指定包邮条件
     deleteTransfeeFree (rowIndex) {
@@ -406,3 +412,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.transport-dialog .table-con .el-form-item {
+  margin-top: 16px;
+  margin-bottom: 16px!important;
+}
+</style>
