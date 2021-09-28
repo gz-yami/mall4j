@@ -253,7 +253,8 @@ export default {
     },
     // 清除数据
     clearDatas () {
-      this.dataForm = []
+      this.dataForm = {}
+      this.dateRange = []
     },
     // 每页数
     sizeChangeHandle (val) {

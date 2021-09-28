@@ -114,7 +114,7 @@
                   </el-table-column>
                   <el-table-column prop="totalPrice" label="总价" width="180" align="center">
                     <template slot-scope="scope">
-                      <span>{{scope.row.productTotalAmout}}</span>
+                      <span>{{scope.row.productTotalAmount}}</span>
                     </template>
                   </el-table-column>
                 </el-table>
