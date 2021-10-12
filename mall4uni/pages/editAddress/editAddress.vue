@@ -355,7 +355,8 @@ export default {
       var mobile = ths.mobile;
       var addr = ths.addr;
 
-      if (!receiver) {
+      if (!receiver.trim()) {
+        ths.receiver = ''
         uni.showToast({
           title: '请输入收货人姓名',
           icon: "none"
@@ -379,7 +380,8 @@ export default {
         return;
       }
 
-      if (!addr) {
+      if (!addr.trim()) {
+        ths.receiver = ''
         uni.showToast({
           title: '请输入详细地址',
           icon: "none"
