@@ -53,6 +53,7 @@
     </view>
   </view>
 
+  <view v-if="!searchProdList.length" :class="['empty',showType==1? 'empty-top':'']">暂无结果</view>
 </view>
 </template>
 
