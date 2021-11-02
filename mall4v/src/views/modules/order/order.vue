@@ -85,7 +85,7 @@
                     </div>
                     <div class="prod-price">
                       <span>￥{{orderItem.price}}</span>
-                      <span>X{{orderItem.prodCount}}</span>
+                      <span>×{{orderItem.prodCount}}</span>
                     </div>
                   </div>
                 </div>
@@ -140,7 +140,7 @@
                     <el-button v-if="isAuth('order:order:update')"
                                type="text"
                                size="small"
-                               @click="addOrUpdateHandle(order.orderNumber)">修改</el-button>
+                               @click="addOrUpdateHandle(order.orderNumber)">查看</el-button>
                   </div>
                 </div>
               </el-col>
@@ -430,7 +430,7 @@ export default {
   .prod-price {
     position: absolute;
     right: 40px;
-    text-align: center;
+    text-align: right;
   }
   .prod-price span {
     display: block;

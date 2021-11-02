@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="!dataForm.orderNumber ? '新增' : '修改'" :close-on-click-modal="false" :visible.sync="visible" width="80%">
+  <el-dialog :title="!dataForm.orderNumber ? '新增' : '查看'" :close-on-click-modal="false" :visible.sync="visible" width="80%">
     <el-form :model="dataForm" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
       <div class="main">
         <div class="content">
@@ -98,8 +98,10 @@
                 <el-table :data="dataForm.orderItems" border>
                   <el-table-column prop="" label="商品">
                     <template slot-scope="scope">
-                      <img :src="resourcesUrl + scope.row.pic" width="100" height="100"/>
-                      <span>{{scope.row.prodName}}</span>
+                      <div class="prod-con">
+                        <img :src="resourcesUrl + scope.row.pic" class="prod-img"/>
+                        <span>{{scope.row.prodName}}</span>
+                      </div>
                     </template>
                   </el-table-column>
                   <el-table-column prop="price" label="单价" width="180" align="center">
@@ -439,7 +441,7 @@
 }
 
 .order-state .item-info {
-  padding-left: 70%;
+  padding-left: 80%;
   margin: 25px 0;
 }
 
@@ -463,12 +465,25 @@
   width: 100%;
   line-height: 50px;
   font-weight: bold;
-  border-bottom: 1px dashed #e9eaec;
+  /* border-bottom: 1px dashed #e9eaec; */
 }
 
 .order-log .log-cont {
-  margin-top: 15px;
+  /* margin-top: 15px; */
   color: #4395ff;
+}
+
+.order-log .log-cont .el-form-item__content {
+  line-height: 1.5em;
+}
+
+.item-list .prod-con {
+  display: flex;
+}
+.item-list .prod-con .prod-img {
+  width: 100px;
+  height: 100px;
+  margin-right: 8px;
 }
 </style>
 
