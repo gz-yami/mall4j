@@ -108,9 +108,6 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 ## 提交反馈
 - Mall4j官网 https://www.mall4j.com
-- 商务合作微信
-
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/131508_13858876_5094767.jpeg "法宝微信2.jpg")
 
 
 - mall4j开源技术QQ群：722835385
