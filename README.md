@@ -119,6 +119,8 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 - wxjava:https://github.com/Wechat-Group/WxJava
 
+## mall4cloud微服务版本已上线
+https://gitee.com/gz-yami/mall4cloud
 
 ## 你的点赞鼓励，是我们前进的动力~
 ## 你的点赞鼓励，是我们前进的动力~
