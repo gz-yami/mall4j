@@ -45,7 +45,7 @@
         </el-form>
       </div>
 
-      <div class="bottom">Copyright © 2019 广州亚米科技有限公司</div>
+      <div class="bottom">Copyright © 2019 广州市蓝海创新科技有限公司</div>
     </div>
   </div>
 </template>
@@ -131,6 +131,8 @@ export default {
 }
 .login .login-box .top .logo {
   font-size: 0;
+  max-width: 50%;
+  margin: 0 auto;
 }
 .login .login-box .top .company {
   font-size: 16px;
