@@ -1,7 +1,7 @@
 <template>
 <view>
 <!--pages/login/login.wxml-->
-<image src="http://img-test.gz-yami.com/mini/logo.jpg" class="c-logo"></image>
+<image src="https://img.mall4j.com/mini/logo.jpg" class="c-logo"></image>
 <view class="title">mall4j</view>
 <view class="msg">申请获得你的公开信息（昵称、头像等）</view>
 <button color="#eb2444" open-type="getUserInfo" lang="zh_CN" @getuserinfo="onGotUserInfo" class>微信授权</button>
