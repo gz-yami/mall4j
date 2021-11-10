@@ -86,7 +86,7 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 ### 2. 移动端截图
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/144610_94dd1d2f_5094767.gif "前端.gif")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/145209_2ec1ad04_5094767.png "开源移动端截图.png")
 
 
 ### 3. 软著截图
