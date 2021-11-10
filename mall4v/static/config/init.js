@@ -10,9 +10,11 @@
     js: [
       // 插件, 放置业务之前加载, 以免业务需求依赖插件时, 还未加载出错
       // 插件 - echarts
-      'https://cdn.bootcss.com/echarts/4.2.1/echarts.common.min.js',
+      'https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js',
+
       // 插件 - tinymce
-      'https://cdn.bootcss.com/tinymce/4.9.4/tinymce.min.js',
+      'https://cdn.jsdelivr.net/npm/tinymce@4.9.4/tinymce.min.js',
+      'https://cdn.jsdelivr.net/npm/d3@5.16.0/dist/d3.min.js',
 	    window.SITE_CONFIG.cdnUrl + '/static/plugins/tinymce.4.9.4/zh_CN.js',
       // 业务
       window.SITE_CONFIG.cdnUrl + '/static/js/manifest.js',

@@ -4,7 +4,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"backgroundTextStyle": "dark",
-				"navigationBarBackgroundColor": "white",
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": true,
 				"navigationBarTitleText": "mall4j"

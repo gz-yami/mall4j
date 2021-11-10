@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -13,13 +13,16 @@ package com.yami.shop.api.security;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.emoji.EmojiUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yami.shop.bean.model.User;
 import com.yami.shop.common.annotation.RedisLock;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.CacheManagerUtil;
+import com.yami.shop.common.util.PrincipalUtil;
 import com.yami.shop.dao.UserMapper;
 import com.yami.shop.security.dao.AppConnectMapper;
 import com.yami.shop.security.enums.App;
+import com.yami.shop.security.exception.UsernameNotFoundException;
 import com.yami.shop.security.exception.UsernameNotFoundExceptionBase;
 import com.yami.shop.security.model.AppConnect;
 import com.yami.shop.security.service.YamiUser;
@@ -133,17 +136,41 @@ public class YamiUserServiceImpl implements YamiUserDetailsService {
 	public YamiUser loadUserByUserMail(String userMail, String loginPassword) {
 		User user = userMapper.getUserByUserMail(userMail);
 		if (user == null) {
-			throw new YamiShopBindException("用户不存在");
+			throw new UsernameNotFoundException("用户不存在");
 		}
-		String paramPassword = passwordEncoder.encode(loginPassword);
+
 		if (!passwordEncoder.matches(loginPassword, user.getLoginPassword())) {
 			// 原密码不正确
-			throw new YamiShopBindException("密码不正确");
+			throw new UsernameNotFoundException("密码不正确");
 		}
 		String name = StrUtil.isBlank(user.getRealName()) ? user.getNickName() : user.getRealName();
 		YamiUser yamiUser = new YamiUser(user.getUserId(), loginPassword, user.getStatus() == 1);
 		yamiUser.setName(name);
 		yamiUser.setPic(user.getPic());
+		return yamiUser;
+	}
+
+	@Override
+	public User loadUserByMobileOrUserName(String mobileOrUserName, Integer loginType) {
+		User user = null;
+		// 手机验证码登陆，或传过来的账号很像手机号
+		if (Objects.equals(loginType, 1) || PrincipalUtil.isMobile(mobileOrUserName)) {
+			user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUserMobile, mobileOrUserName));
+		}
+		return user;
+	}
+
+	@Override
+	public YamiUser getYamiUser(Integer appId, User user, String bizUserId) {
+		String name = StrUtil.isBlank(user.getRealName()) ? user.getNickName() : user.getRealName();
+		YamiUser yamiUser = new YamiUser();
+		yamiUser.setEnabled(user.getStatus() == 1);
+		yamiUser.setUserId(user.getUserId());
+		yamiUser.setBizUserId(bizUserId);
+		yamiUser.setAppType(appId);
+		yamiUser.setName(name);
+		yamiUser.setPic(user.getPic());
+		yamiUser.setPassword(user.getLoginPassword());
 		return yamiUser;
 	}
 }

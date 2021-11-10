@@ -55,11 +55,17 @@
       },
       // 限制图片上传大小
       beforeAvatarUpload (file) {
+        const isJPG = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif' || file.type === 'image/jpg'
+        if (!isJPG) {
+          this.$message.error('上传图片只能是jpeg/jpg/png/gif 格式!')
+        }
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!')
+          this.$message.error('上传图片大小不能超过 2MB!')
         }
         return isLt2M
+        return isLt2M && isJPG
       },
       handleRemove (file, fileList) {
         let pics = fileList.map(file => {

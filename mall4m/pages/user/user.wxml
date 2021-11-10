@@ -56,11 +56,11 @@
         <view class="tit">我的收藏</view>
       </view>
       <view class="col-item">
-        <view class="num">5</view>
+        <view class="num">0</view>
         <view class="tit">我的消息</view>
       </view>
       <view class="col-item">
-        <view class="num">3</view>
+        <view class="num">0</view>
         <view class="tit">我的足迹</view>
       </view>
     </view>

@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -10,6 +10,7 @@
 
 package com.yami.shop.api.controller;
 
+import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -31,6 +32,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/p/order")

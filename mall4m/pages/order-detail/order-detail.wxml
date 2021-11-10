@@ -38,7 +38,7 @@
               <text class='big-num'>{{wxs.parsePrice(item.price)[0]}}</text>
               <text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text></text>
               <view class='btn-box'>
-                <text class='btn' wx:if="{{item.status!=1}}">申请售后</text>
+                <text class='btn'>申请售后</text>
                 <text class='btn'>加购物车</text>
               </view>
             </view>
@@ -62,7 +62,7 @@
             <text class='big-num'>{{wxs.parsePrice(40.00)[0]}}</text>
             <text class='small-num'>.{{wxs.parsePrice(40.00)[1]}}</text></text>
             <view class='btn-box'>
-              <text class='btn'>申请售后</text>
+              <text class='btn' wx:if="{{item.status!=1}}">申请售后</text>
               <text class='btn'>加购物车</text>
             </view>
           </view>

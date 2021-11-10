@@ -63,6 +63,7 @@
       <prod-transport v-show="dataForm.deliveryMode.hasShopDelivery"
                       v-model="dataForm.deliveryTemplateId"></prod-transport>
       <sku-tag ref="skuTag"
+                :skuList="dataForm.skuList"
                @change="skuTagChangeSkuHandler"></sku-tag>
       <sku-table ref="skuTable"
                  v-model="dataForm.skuList"

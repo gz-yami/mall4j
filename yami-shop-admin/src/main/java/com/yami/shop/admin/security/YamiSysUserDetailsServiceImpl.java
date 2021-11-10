@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -12,6 +12,7 @@ package com.yami.shop.admin.security;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.yami.shop.bean.model.User;
 import com.yami.shop.common.util.CacheManagerUtil;
 import com.yami.shop.sys.constant.Constant;
 import com.yami.shop.security.enums.App;
@@ -117,4 +118,19 @@ public class YamiSysUserDetailsServiceImpl implements YamiUserDetailsService {
 	public void insertUserIfNecessary(AppConnect appConnect) {
 
 	}
+
+	@Override
+	public YamiUser loadUserByUserMail(String userMail, String loginPassword) {
+		return null;
+	}
+
+	@Override
+	public User loadUserByMobileOrUserName(String mobileOrUserName, Integer loginType) {
+		return null;
+	}
+
+    @Override
+    public YamiUser getYamiUser(Integer appId, User user, String bizUserId) {
+        return null;
+    }
 }

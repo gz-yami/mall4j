@@ -72,7 +72,7 @@ public class YamiAuthenticationProcessingFilter extends AbstractAuthenticationPr
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, ServletException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, ServletException{
         if (!ServletUtil.METHOD_POST.equals(request.getMethod())) {
             throw new HttpRequestMethodNotSupportedException(request.getMethod(), new String[] { "POST" });
         }

@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -123,4 +123,15 @@ public class SpecController {
         prodPropService.deleteProdPropAndValues(id, ProdPropRule.SPEC.value(), SecurityUtils.getSysUser().getShopId());
         return ResponseEntity.ok().build();
     }
+
+    /**
+     * 根据获取规格值最大的自增id
+     */
+    @GetMapping("/listSpecMaxValueId")
+    public ResponseEntity<Long> listSpecMaxValueId() {
+        ProdPropValue propValue = prodPropValueService.getOne(new LambdaQueryWrapper<ProdPropValue>()
+                .orderByDesc(ProdPropValue::getValueId).last("limit 1"));
+        return ResponseEntity.ok(Objects.isNull(propValue) ? 0L : propValue.getValueId());
+    }
+
 }

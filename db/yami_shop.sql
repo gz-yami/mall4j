@@ -4787,9 +4787,9 @@ CREATE TABLE `tz_shop_detail` (
 /*Data for the table `tz_shop_detail` */
 
 insert  into `tz_shop_detail`(`shop_id`,`shop_name`,`user_id`,`shop_type`,`intro`,`shop_notice`,`shop_industry`,`shop_owner`,`mobile`,`tel`,`shop_lat`,`shop_lng`,`shop_address`,`province`,`city`,`area`,`pca_code`,`shop_logo`,`shop_photos`,`open_time`,`shop_status`,`transport_type`,`fixed_freight`,`full_free_shipping`,`create_time`,`update_time`,`is_distribution`) values
-(1,'亚米小店1',NULL,NULL,'亚米小店 爱你哟',NULL,NULL,NULL,NULL,'020-123456',NULL,NULL,'大学城北','广东省','广州市','番禺区','44/4401/440113','2018/08/78a6a63cf02d4965912bc5047f49afa0.jpg','2018/08/c7a50f443a85462d8129d83cf0f7eb91.jpg,2018/08/79791fc749444ef1ab4d2ca56fe9363f.jpg','00:00:00 - 00:20:00',1,NULL,NULL,NULL,'2018-08-30 11:10:05',NULL,1),
-(2,'亚米大店2',NULL,NULL,'亚米大店 店大大',NULL,NULL,NULL,NULL,'010-123456',NULL,NULL,'天安门哟','北京市','市辖区','东城区','11/1101/110101','2018/08/0907446e05c44431be5d27ec7c277ee6.jpg','2018/08/5f97fc62c18d4d2292f8101fa0291e85.jpg','06:00:00 - 00:00:00',1,NULL,NULL,NULL,'2018-08-31 10:16:06',NULL,NULL),
-(3,'亚米3',NULL,NULL,'亚米 店铺描述',NULL,NULL,NULL,NULL,'010-211111111',NULL,NULL,'大学城北','天津市','市辖区','和平区','12/1201/120101','2018/09/4bb8b326f85a4c6aad251c561a17f0c4.png','2018/09/63c3d47beb5544f9b30103721002ca2e.jpg,2018/09/899e1ebf3c6c467d8d8630a3c18720db.jpg','00:02:00 - 00:00:00',1,NULL,NULL,NULL,'2018-09-06 18:50:00','2018-09-29 09:50:05',NULL);
+(1,'mall4j小店1',NULL,NULL,'mall4j小店 爱你哟',NULL,NULL,NULL,NULL,'020-123456',NULL,NULL,'大学城北','广东省','广州市','番禺区','44/4401/440113','2018/08/78a6a63cf02d4965912bc5047f49afa0.jpg','2018/08/c7a50f443a85462d8129d83cf0f7eb91.jpg,2018/08/79791fc749444ef1ab4d2ca56fe9363f.jpg','00:00:00 - 00:20:00',1,NULL,NULL,NULL,'2018-08-30 11:10:05',NULL,1),
+(2,'mall4j大店2',NULL,NULL,'mall4j大店 店大大',NULL,NULL,NULL,NULL,'010-123456',NULL,NULL,'天安门哟','北京市','市辖区','东城区','11/1101/110101','2018/08/0907446e05c44431be5d27ec7c277ee6.jpg','2018/08/5f97fc62c18d4d2292f8101fa0291e85.jpg','06:00:00 - 00:00:00',1,NULL,NULL,NULL,'2018-08-31 10:16:06',NULL,NULL),
+(3,'mall4j3',NULL,NULL,'mall4j 店铺描述',NULL,NULL,NULL,NULL,'010-211111111',NULL,NULL,'大学城北','天津市','市辖区','和平区','12/1201/120101','2018/09/4bb8b326f85a4c6aad251c561a17f0c4.png','2018/09/63c3d47beb5544f9b30103721002ca2e.jpg,2018/09/899e1ebf3c6c467d8d8630a3c18720db.jpg','00:02:00 - 00:00:00',1,NULL,NULL,NULL,'2018-09-06 18:50:00','2018-09-29 09:50:05',NULL);
 
 /*Table structure for table `tz_sku` */
 

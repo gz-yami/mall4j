@@ -87,7 +87,7 @@
         </view>
         <view class="item">
           <text>买家留言：</text>
-          <input v-model="remarks" placeholder="给卖家留言"></input>
+          <input v-model="remarks" placeholder="给卖家留言" />
         </view>
       </view>
 

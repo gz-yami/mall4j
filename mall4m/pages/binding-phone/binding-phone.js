@@ -106,7 +106,7 @@ Page({
       url: '/user/registerOrBindUser',
       method: 'PUT',
       data: {
-        appType: 1,  // 微信小程序
+        appType: 1, // 微信小程序
         mobile: this.data.phonenum,
         validCode: this.data.code,
         validateType: 1, // 验证类型:1验证码验证 ,

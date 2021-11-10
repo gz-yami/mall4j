@@ -150,11 +150,11 @@ export default {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-	this.loadBasketData();
+    this.loadBasketData();
     http.getCartCount(); //重新计算购物车总数量
   },
   methods: {
-	loadBasketData(){
+    loadBasketData(){
 			uni.showLoading(); //加载购物车
 			
 			var params = {

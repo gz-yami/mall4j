@@ -27,6 +27,7 @@
     <select id="listIndexImgs" resultType="com.yami.shop.bean.model.IndexImg">
         SELECT *
         FROM tz_index_img
+        where `status` = 1
         ORDER BY seq DESC
   </select>
 </mapper>

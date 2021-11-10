@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -10,7 +10,7 @@
 
 package com.yami.shop.security.exception;
 
-public class UsernameNotFoundException extends YamiAuth2Exception {
+public class UsernameNotFoundException extends BaseYamiAuth2Exception {
 
     public UsernameNotFoundException(String msg) {
         super(msg);

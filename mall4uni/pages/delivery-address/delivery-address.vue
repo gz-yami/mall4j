@@ -109,7 +109,7 @@ export default {
       };
       http.request(params);
     },
-    // 修改地址 
+    // 修改地址
     toEditAddress: function (e) {
       var addrId = e.currentTarget.dataset.addrid;
       uni.navigateTo({
@@ -125,7 +125,6 @@ export default {
         var pages = getCurrentPages(); //当前页面
 
         var prevPage = pages[pages.length - 2]; //上一页面
-
         //直接给上一页面赋值
         prevPage.item = item
         prevPage.selAddress = 'yes'

@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -45,10 +45,10 @@ public class SwaggerConfiguration {
 	 @Bean
 	 public ApiInfo apiInfo() {
 	     return new ApiInfoBuilder()
-	     .title("亚米管理系统接口文档")
-	     .description("亚米商城接口文档Swagger版")
-	     .termsOfServiceUrl("https://www.gz-yami.com/")
-	     .contact(new Contact("广州亚米信息科技有限公司","https://www.gz-yami.com/", ""))
+	     .title("mall4j管理系统接口文档")
+	     .description("mall4j商城接口文档Swagger版")
+	     .termsOfServiceUrl("https://www.mall4j.com/")
+	     .contact(new Contact("广州市蓝海创新科技有限公司","https://www.mall4j.com/", ""))
 	     .version("1.0")
 	     .build();
 	 }

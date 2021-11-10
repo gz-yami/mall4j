@@ -472,7 +472,6 @@
   /* margin-top: 15px; */
   color: #4395ff;
 }
-
 .order-log .log-cont .el-form-item__content {
   line-height: 1.5em;
 }

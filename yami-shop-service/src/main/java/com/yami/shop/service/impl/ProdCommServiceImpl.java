@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2018-2999 广州亚米信息科技有限公司 All rights reserved.
+ * Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
  *
- * https://www.gz-yami.com/
+ * https://www.mall4j.com/
  *
  * 未经允许，不可做商业用途！
  *
@@ -36,8 +36,8 @@ public class ProdCommServiceImpl extends ServiceImpl<ProdCommMapper, ProdComm> i
     private ProdCommMapper prodCommMapper;
 
     @Override
-    public ProdCommDataDto getProdCommDataByProdId(Long prodId, String userId) {
-        ProdCommDataDto prodCommDataDto=prodCommMapper.getProdCommDataByProdId(prodId, userId);
+    public ProdCommDataDto getProdCommDataByProdId(Long prodId) {
+        ProdCommDataDto prodCommDataDto=prodCommMapper.getProdCommDataByProdId(prodId);
         //计算出好评率
         if(prodCommDataDto.getPraiseNumber() == 0||prodCommDataDto.getNumber() == 0){
             prodCommDataDto.setPositiveRating(0.0);
@@ -53,9 +53,9 @@ public class ProdCommServiceImpl extends ServiceImpl<ProdCommMapper, ProdComm> i
     }
 
     @Override
-    public IPage<ProdCommDto> getProdCommDtoPageByProdId(Page page, Long prodId, Integer evaluate, String userId) {
+    public IPage<ProdCommDto> getProdCommDtoPageByProdId(Page page, Long prodId, Integer evaluate) {
 
-        IPage<ProdCommDto> prodCommDtos = prodCommMapper.getProdCommDtoPageByProdId(page, prodId, evaluate, userId);
+        IPage<ProdCommDto> prodCommDtos = prodCommMapper.getProdCommDtoPageByProdId(page, prodId, evaluate);
         prodCommDtos.getRecords().forEach(prodCommDto -> {
             // 匿名评价
             if (prodCommDto.getIsAnonymous() == 1) {
