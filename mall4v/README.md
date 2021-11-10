@@ -28,7 +28,7 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
  **由于我们并不希望小程序的数据被弄混乱，我们弄了两个数据库。因此，您修改了后台的商品信息，小程序并不能看到！** 
 
-后台：<http://mall4j-admin.gz-yami.com>  账号：admin/123456
+后台：<http://mall4j-admin.mall4j.com>  账号：admin/123456
 
 小程序：1. 扫描二维码
 
@@ -84,6 +84,6 @@ npm run build
 
   ![QQ群](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/qqGroup.png)
 
-- 论坛：<http://bbs.gz-yami.com>
+- 论坛：<http://bbs.mall4j.com>
 
 - 商务邮箱：yamitech@163.com

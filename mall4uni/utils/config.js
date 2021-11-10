@@ -6,13 +6,13 @@
 
 //配置文件
 // #ifndef MP
-// var domain = "http://mall4j-admin.gz-yami.com/api"; //统一接口域名，正式环境
-// var wsDomain = "http://mall4j-admin.gz-yami.com/api"; //统一接口域名，正式环境
+// var domain = "http://mall4j-admin.mall4j.com/api"; //统一接口域名，正式环境
+// var wsDomain = "http://mall4j-admin.mall4j.com/api"; //统一接口域名，正式环境
 // #endif
 
 // #ifndef MP
-// var domain = "https://h5.gz-yami.com/api"; //统一接口域名，正式环境
-// var wsDomain = "https://h5.gz-yami.com/api"; //统一接口域名，正式环境
+// var domain = "https://h5.mall4j.com/api"; //统一接口域名，正式环境
+// var wsDomain = "https://h5.mall4j.com/api"; //统一接口域名，正式环境
 // #endif
 
 var mpAppId = 'wx42bbe857570c5b40'
@@ -20,9 +20,9 @@ var mpAppId = 'wx42bbe857570c5b40'
 var domain = "http://192.168.1.90:8989/api"; //统一接口域名，测试环境
 var wsDomain = "ws://192.168.1.90:8989/api"; //统一接口域名，测试环境
 
-// var picDomain = "http://img-test.gz-yami.com/"; //图片域名
+var picDomain = "https://img.mall4j.com/"; //图片域名
 
 exports.domain = domain;
-// exports.picDomain = picDomain;
+exports.picDomain = picDomain;
 exports.wsDomain = wsDomain;
 exports.mpAppId = mpAppId;
