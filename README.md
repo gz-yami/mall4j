@@ -38,7 +38,7 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 
  **由于我们并不希望小程序的数据被弄混乱，我们弄了两个数据库。因此，您修改了后台的商品信息，小程序并不能看到！** 
 
-后台：<http://mall4j-admin.gz-yami.com>  账号：admin/123456
+后台：<http://mall4j-admin.mall4j.com>  账号：admin/123456
 
 小程序：扫描二维码
 
@@ -79,29 +79,17 @@ https://gitee.com/gz-yami/mall4j/wikis
  
 
 ### 1. 后台截图
-
-![登陆](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/login.png)
-
-![订单](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/order.png)
-
-![商品列表](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/prodList.png)
-
-![sku](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/sku.png)
-
-![运费模板](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/transport.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/143738_88a8a1e6_5094767.gif "后台.gif")
 
 
 
-### 2. 小程序截图
 
-![小程序截图](https://images.gitee.com/uploads/images/2019/0706/085234_4eb7509b_5094767.jpeg "小程序截图")
+### 2. 移动端截图
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/145209_2ec1ad04_5094767.png "开源移动端截图.png")
 
 
-### 3. uni-app截图
-
-![uni-app截图](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/uniappInfo.png "uni-app截图")
-
-### 4. 软著截图
+### 3. 软著截图
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/110940_a9b72c43_5094767.png "Mall4j商城系统V1.0.png")
 
 
