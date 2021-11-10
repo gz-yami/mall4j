@@ -79,16 +79,8 @@ https://gitee.com/gz-yami/mall4j/wikis
  
 
 ### 1. 后台截图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/143738_88a8a1e6_5094767.gif "后台.gif")
 
-![登陆](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/login.png)
-
-![订单](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/order.png)
-
-![商品列表](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/prodList.png)
-
-![sku](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/sku.png)
-
-![运费模板](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/transport.png)
 
 
 
