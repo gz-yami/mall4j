@@ -8,6 +8,9 @@
              @keyup.enter.native="dataFormSubmit()"
              label-width="80px">
       <el-form-item label="标签名称"
+                    :rules="[
+                      { required: true, message: '标签名称不能为空', trigger: 'blur' },
+                    ]"
                     prop="title">
         <el-input v-model="dataForm.title"></el-input>
       </el-form-item>

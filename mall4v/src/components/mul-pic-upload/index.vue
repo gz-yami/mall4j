@@ -64,7 +64,6 @@
           this.$message.error('上传头像图片大小不能超过 2MB!')
           this.$message.error('上传图片大小不能超过 2MB!')
         }
-        return isLt2M
         return isLt2M && isJPG
       },
       handleRemove (file, fileList) {

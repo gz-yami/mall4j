@@ -13,6 +13,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="产品分类"
+                    :rules="[{ required: true, message: '请选择产品分类'}]"
                     prop="categoryId">
         <el-col :span="8">
           <el-cascader expand-trigger="hover"
@@ -24,7 +25,7 @@
           </el-cascader>
         </el-col>
       </el-form-item>
-      <el-form-item label="产品分组">
+      <el-form-item label="产品分组" :rules="[{ required: true, message: '请选择产品分组'}]">
         <el-col :span="8">
           <el-select v-model="dataForm.tagList"
                     multiple

@@ -58,7 +58,7 @@
 	<view class="updata" v-if="updata">
 		<block v-for="(item, index) in taglist" :key="index">
 		  <!-- 每日上新 -->
-		  <view class="up-to-date" v-if="item.style==2">
+		  <view class="up-to-date" v-if="item.style==2 && item.prods && item.prods.length">
 		    <view class="title">
 		      <text>{{item.title}}</text>
 		      <view class="more-prod-cont" @tap="toClassifyPage" data-sts="0" :data-id="item.id" :data-title="item.title">
@@ -87,7 +87,7 @@
 		  </view>
 		
 		  <!-- 商城热卖 -->
-		  <view class="hot-sale" v-if="item.style==1">
+		  <view class="hot-sale" v-if="item.style==1 && item.prods && item.prods.length">
 		    <view class="title">
 		      <text>{{item.title}}</text>
 		      <view class="more-prod-cont" @tap="toClassifyPage" data-sts="0" :data-id="item.id" :data-title="item.title">
@@ -123,7 +123,7 @@
 		  </view>
 		
 		  <!-- 更多宝贝 -->
-		  <view class="more-prod" v-if="item.style==0">
+		  <view class="more-prod" v-if="item.style==0 && item.prods && item.prods.length">
 		    <view class="title">{{item.title}}</view>
 		    <view class="prod-show">
 		      <block v-for="(prod, index2) in item.prods" :key="index2">
