@@ -190,7 +190,7 @@ page {
 }
 
 .prod-item  .prod-foot {
-  padding: 20rpx 30rpx;
+  /* padding: 20rpx 30rpx; */
   border-top: 2rpx solid #e6e6e6;
 }
 
@@ -222,12 +222,17 @@ page {
 }
 
 .button {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
   margin-left: 10px;
   font-size: 26rpx;
   background: #fff;
   padding: 10rpx 30rpx;
   border-radius: 80rpx;
   border: 2rpx solid #e1e1e1;
+}
+.button:last-child {
+  margin-right: 10rpx;
 }
 
 .button.warn {
