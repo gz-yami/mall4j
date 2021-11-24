@@ -65,7 +65,7 @@
           </view>
         </view>
       </view> -->
-      <view class="prod-foot">
+      <!-- <view class="prod-foot">
         <view class="btn">
           <button v-if="status==1" class="button" @tap="onCancelOrder" :data-ordernum="orderNumber" hover-class="none">取消订单</button>
           <button v-if="status==1" class="button warn" @tap="onConfirmReceive" :data-ordernum="orderNumber" hover-class="none">再次购买</button>
@@ -73,7 +73,7 @@
           <button v-if="status==3 || status==5" class="button" @tap="toDeliveryPage" :data-ordernum="orderNumber" hover-class="none">查看物流</button>
           <button v-if="status==3" class="button warn" @tap="onConfirmReceive" :data-ordernum="orderNumber" hover-class="none">确认收货</button>
         </view>
-      </view>
+      </view> -->
     </view>
 
     <!-- 订单信息 -->
@@ -100,7 +100,7 @@
         </view>
         <view class="item">
           <text class="item-tit">订单备注：</text>
-          <text class="item-txt">{{remarks}}</text>
+          <text class="item-txt remarks">{{remarks}}</text>
         </view>
       </view>
     </view>
@@ -147,7 +147,7 @@
       <text class="dele-order" v-if="status==5||status==6">删除订单</text>
       <view class="footer-box">
         <text class="apply-service">联系客服</text>
-        <text class="buy-again">再次购买</text>
+        <!-- <text class="buy-again">再次购买</text> -->
       </view>
     </view>
 

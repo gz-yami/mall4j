@@ -79,7 +79,7 @@
         <view class="prod-foot">
           <view class="btn">
             <text v-if="item.status==1" class="button" @tap="onCancelOrder" :data-ordernum="item.orderNumber" hover-class="none">取消订单</text>
-            <text class="button warn" :data-ordernum="item.orderNumber" hover-class="none">再次购买</text>
+            <!-- <text class="button warn" :data-ordernum="item.orderNumber" hover-class="none">再次购买</text> -->
             <text v-if="item.status==1" class="button warn" @tap="normalPay" :data-ordernum="item.orderNumber" hover-class="none">付款</text>
             <text v-if="item.status==3 || item.status==5" class="button" @tap="toDeliveryPage" :data-ordernum="item.orderNumber" hover-class="none">查看物流</text>
             <text v-if="item.status==3" class="button warn" @tap="onConfirmReceive" :data-ordernum="item.orderNumber" hover-class="none">确认收货</text>
