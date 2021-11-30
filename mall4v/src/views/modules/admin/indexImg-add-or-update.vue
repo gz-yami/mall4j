@@ -5,8 +5,9 @@
                :visible.sync="visible">
       <el-form :model="dataForm"
                ref="dataForm"
+               :rules="dataRule"
                label-width="100px">
-        <el-form-item label="轮播图片">
+        <el-form-item label="轮播图片" prop="imgUrl">
           <pic-upload v-model="dataForm.imgUrl"></pic-upload>
         </el-form-item>
         <el-form-item label="顺序"
@@ -82,6 +83,11 @@ export default {
         type: -1,
         relation: null
       },
+      dataRule: {
+        imgUrl: [
+          {required: true, message: '轮播图片不能为空', trigger: 'blur'}
+        ]
+      },
       // 关联数据
       card: {
         id: 0,
@@ -136,6 +142,9 @@ export default {
     // 表单提交
     dataFormSubmit () {
       this.$refs['dataForm'].validate((valid) => {
+        if (!valid) {
+          return
+        }
         let param = this.dataForm
         this.$http({
           url: this.$http.adornUrl(`/admin/indexImg`),

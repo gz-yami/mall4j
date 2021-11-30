@@ -406,6 +406,20 @@ export default {
         },
         callBack: res => {
           //console.log(res);
+          if (!res) {
+            uni.hideLoading()
+            uni.showModal({
+              title: '提示',
+              content: '商品信息异常',
+              showCancel:  false,
+              confirmText: '确定',
+              success(res) {
+                // 返回上一页
+                uni.navigateBack()
+              }
+            });
+            return
+          }
           var imgStrs = res.imgs;
           var imgs = imgStrs.split(",");
           var content = util.formatHtml(res.content);
