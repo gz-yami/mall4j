@@ -376,7 +376,7 @@ export default {
     },
 
     /**
-     * 添加或者取消收藏商品 
+     * 添加或者取消收藏商品
      */
     addOrCannelCollection() {
       uni.showLoading();
@@ -405,6 +405,19 @@ export default {
 
         },
         callBack: res => {
+          if (!res) {
+            uni.hideLoading()
+            uni.showModal({
+              title: '提示',
+              content: '商品信息异常',
+              showCancel:  false,
+              confirmText: '确定',
+              success(res) {
+                // 返回上一页
+                uni.navigateBack()
+              }
+            });
+          }
           //console.log(res);
           var imgStrs = res.imgs;
           var imgs = imgStrs.split(",");
