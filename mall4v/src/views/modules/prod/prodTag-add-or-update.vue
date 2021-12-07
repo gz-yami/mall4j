@@ -32,7 +32,11 @@
 
       <el-form-item label="排序"
                     prop="seq">
-        <el-input v-model="dataForm.seq"></el-input>
+        <!-- <el-input v-model="dataForm.seq"></el-input> -->
+        <el-input-number v-model="dataForm.seq"
+                         controls-position="right"
+                         :min="0"
+                         label="排序号"></el-input-number>
       </el-form-item>
     </el-form>
     <span slot="footer"
