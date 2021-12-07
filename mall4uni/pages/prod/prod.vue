@@ -405,6 +405,7 @@ export default {
 
         },
         callBack: res => {
+          console.log('res:', res)
           if (!res) {
             uni.hideLoading()
             uni.showModal({
@@ -417,6 +418,7 @@ export default {
                 uni.navigateBack()
               }
             });
+            return
           }
           //console.log(res);
           var imgStrs = res.imgs;
