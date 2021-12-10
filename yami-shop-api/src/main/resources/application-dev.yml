@@ -16,5 +16,5 @@ spring:
     redisson:
       config: classpath:redisson.yml
 logging:
-  config: classpath:log4j2_dev.xml
+  config: classpath:logback-dev.xml
 

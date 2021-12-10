@@ -1,0 +1,38 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="PROJECT_PATH" value="/opt/projects/yami-b2b2c"/>
+    <property name="LOG_FILE_MAX_HISTORY" value="30"/>
+    <property name="LOG_FILE_MAX_SIZE" value="50MB"/>
+
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <appender name="DefaultFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <file>${PROJECT_PATH}/log/api.log</file>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${PROJECT_PATH}/log/api/%d{yyyy-MM}/api-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <!--<appender-ref ref="CONSOLE" />-->
+        <appender-ref ref="DefaultFile" />
+    </root>
+
+    <logger name="com.yami.shop" level="debug"/>
+    <logger name="springfox.documentation.swagger2" level="off"/>
+    <logger name="io.swagger.models.parameters" level="off"/>
+    <logger name="springfox.documentation.spring.web.readers.operation" level="off"/>
+</configuration>

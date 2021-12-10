@@ -6167,7 +6167,7 @@ CREATE TABLE `tz_user` (
   `nick_name` varchar(50) DEFAULT NULL COMMENT '用户昵称',
   `real_name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
   `user_mail` varchar(100) DEFAULT NULL COMMENT '用户邮箱',
-  `login_password` varchar(50) DEFAULT NULL COMMENT '登录密码',
+  `login_password` varchar(255) DEFAULT NULL COMMENT '登录密码',
   `pay_password` varchar(50) DEFAULT NULL COMMENT '支付密码',
   `user_mobile` varchar(50) DEFAULT NULL COMMENT '手机号码',
   `modify_time` datetime NOT NULL COMMENT '修改时间',
