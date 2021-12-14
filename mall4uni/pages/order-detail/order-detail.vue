@@ -35,8 +35,8 @@
               <text class="big-num">{{wxs.parsePrice(item.price)[0]}}</text>
               <text class="small-num">.{{wxs.parsePrice(item.price)[1]}}</text></text>
               <view class="btn-box">
-                <text class="btn" v-if="item.status!=1">申请售后</text>
-                <text class="btn">加购物车</text>
+                <!-- <text class="btn" v-if="item.status!=1">申请售后</text>
+                <text class="btn">加购物车</text> -->
               </view>
             </view>
           </view>
@@ -144,7 +144,7 @@
 
     <!-- 底部栏 -->
     <view class="order-detail-footer">
-      <text class="dele-order" v-if="status==5||status==6">删除订单</text>
+      <text class="dele-order" v-if="status==5||status==6" @tap="delOrderList">删除订单</text>
       <view class="footer-box">
         <text class="apply-service">联系客服</text>
         <!-- <text class="buy-again">再次购买</text> -->
@@ -276,7 +276,43 @@ export default {
           });
         }
       });
+    },
+
+    //删除已完成||已取消的订单
+    delOrderList: function () {
+      var ths = this;
+      uni.showModal({
+        title: '',
+        content: '确定要删除此订单吗？',
+        confirmColor: "#eb2444",
+        success(res) {
+          if (res.confirm) {
+            uni.showLoading();
+            var params = {
+              url: "/p/myOrder/" + ths.orderNumber,
+              method: "DELETE",
+              data: {},
+              callBack: function (res) {
+                uni.hideLoading();
+                uni.showToast({
+                  title: res ? res : '删除成功',
+                  icon: 'none'
+                });
+                setTimeout(() => {
+                  uni.redirectTo({
+                    url: '/pages/orderList/orderList'
+                  });
+                },1000)
+              }
+            };
+            http.request(params);
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        }
+      });
     }
+    
   }
 };
 </script>
