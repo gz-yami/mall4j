@@ -405,19 +405,11 @@ export default {
 
         },
         callBack: res => {
-          console.log('res:', res)
+          uni.hideLoading()
           if (!res) {
-            uni.hideLoading()
-            uni.showModal({
-              title: '提示',
-              content: '商品信息异常',
-              showCancel:  false,
-              confirmText: '确定',
-              success(res) {
-                // 返回上一页
-                uni.navigateBack()
-              }
-            });
+            setTimeout(() => {
+              uni.navigateBack()
+            }, 1000);
             return
           }
           //console.log(res);
