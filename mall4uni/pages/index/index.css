@@ -230,10 +230,10 @@ line-height:44rpx;
   margin: auto;
   height: auto;
   width: calc(100% - 40rpx);
-  padding:0 20rpx;
+  /* padding:0 20rpx; */
   display: flex;
   flex-wrap:wrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* padding: 10rpx 0 0 0; */
 }
 
@@ -253,6 +253,7 @@ line-height:44rpx;
   width: 220rpx;
   background: #fff;
   display: inline-block;
+  margin: 0 8rpx;
   margin-bottom:20rpx;
   box-shadow: 0rpx 6rpx 8rpx rgba(58,134,185,0.2);
 }

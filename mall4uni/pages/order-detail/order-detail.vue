@@ -312,7 +312,7 @@ export default {
         }
       });
     }
-    
+
   }
 };
 </script>

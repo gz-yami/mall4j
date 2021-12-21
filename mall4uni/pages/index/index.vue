@@ -43,7 +43,7 @@
     </view>
 
     <!-- 消息播放 -->
-    <view class="message-play" @tap="onNewsPage">
+    <view v-if="news && news.length" class="message-play" @tap="onNewsPage">
       <image src="/static/images/icon/horn.png" class="hornpng"></image>
       <swiper :vertical="true" :autoplay="true" :circular="true" duration="1000" class="swiper-cont">
         <block v-for="(item, index) in news" :key="index">

@@ -57,6 +57,9 @@ export default {
         isTop: 0
       },
       dataRule: {
+        title: [
+          {required: true, message: '公告标题不能为空', trigger: 'blur'}
+        ]
       }
     }
   },
