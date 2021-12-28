@@ -1,0 +1,14 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <logger name="com.yami.shop" level="debug"/>
+    <logger name="springfox.documentation.swagger2" level="off"/>
+    <logger name="io.swagger.models.parameters" level="off"/>
+    <logger name="springfox.documentation.spring.web.readers.operation" level="off"/>
+</configuration>

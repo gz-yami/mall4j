@@ -334,12 +334,12 @@ export default {
           this.setData({
             taglist: res
           });
-
           for (var i = 0; i < res.length; i++) {
 						this.updata = false
 						this.updata = true
             this.getTagProd(res[i].id, i);
           }
+          console.log('taglist:', this.taglist)
         }
       };
       http.request(params);

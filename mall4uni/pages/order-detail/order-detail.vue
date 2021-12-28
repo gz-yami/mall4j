@@ -35,8 +35,8 @@
               <text class="big-num">{{wxs.parsePrice(item.price)[0]}}</text>
               <text class="small-num">.{{wxs.parsePrice(item.price)[1]}}</text></text>
               <view class="btn-box">
-                <!-- <text class="btn" v-if="item.status!=1">申请售后</text>
-                <text class="btn">加购物车</text> -->
+                <!-- <text class="btn" v-if="item.status!=1">申请售后</text> -->
+                <!-- <text class="btn">加购物车</text> -->
               </view>
             </view>
           </view>
@@ -277,7 +277,6 @@ export default {
         }
       });
     },
-
     //删除已完成||已取消的订单
     delOrderList: function () {
       var ths = this;
@@ -310,9 +309,9 @@ export default {
             console.log('用户点击取消');
           }
         }
+
       });
     }
-
   }
 };
 </script>

@@ -18,4 +18,4 @@ spring:
     redisson:
       config: classpath:redisson-docker.yml
 logging:
-  config: classpath:log4j2_prod.xml
+  config: classpath:logback-prod.xml

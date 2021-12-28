@@ -183,6 +183,7 @@ page {
 }
 
 .order-msg .msg-item .item .item-tit {
+  min-width: 140rpx;
   color: #999;
   line-height: 48rpx;
 }
@@ -191,6 +192,7 @@ page {
   flex: 1;
   line-height: 48rpx;
 }
+
 .order-msg .msg-item .item .item-txt.remarks {
   max-width: 600rpx;
   white-space: nowrap;
