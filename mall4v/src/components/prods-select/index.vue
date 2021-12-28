@@ -51,8 +51,7 @@
                    layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
     <span slot="footer">
-      <el-button type="primary"
-                 @click="visible = false">取消</el-button>
+      <el-button @click="visible = false">取消</el-button>
       <el-button type="primary"
                  @click="submitProds()">确定</el-button>
     </span>
@@ -164,6 +163,15 @@ export default {
     },
     // 确定事件
     submitProds () {
+      if (!this.dataListSelections.length) {
+        this.$message({
+          message: '请选择商品',
+          type: 'error',
+          duration: 1000,
+          onClose: () => {}
+        })
+        return
+      }
       let prods = []
       this.dataListSelections.forEach(item => {
         let prodIndex = prods.findIndex((prod) => prod.prodId === item.prodId)
