@@ -92,6 +92,14 @@ export default {
         this.$message.error('规格项不能为空')
         return
       }
+      if (this.dataList[0].propName.length > 10) {
+        this.$message.error('属性名称长度不能大于10')
+        return
+      }
+      if (this.dataList[0].prodPropValues.find(el => el.propValue.length > 20)) {
+        this.$message.error('属性值长度不能大于20')
+        return
+      }
       this.$http({
         url: this.$http.adornUrl(`/prod/spec`),
         method: this.dataList[0].propId ? 'put' : 'post',
