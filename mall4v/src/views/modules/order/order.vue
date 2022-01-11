@@ -154,6 +154,8 @@
         </div>
       </div>
     </div>
+    <!-- 空 -->
+    <div class="empty-tips">暂无数据</div>
     <el-pagination @size-change="sizeChangeHandle"
                    @current-change="currentChangeHandle"
                    :current-page="page.pageIndex"
@@ -485,6 +487,13 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  .empty-tips {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+    color: #999;
   }
 }
 </style>
