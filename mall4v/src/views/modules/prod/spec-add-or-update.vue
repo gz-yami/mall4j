@@ -12,6 +12,8 @@
         <template slot-scope="scope">
           <el-input placeholder="请输入内容"
                     v-model="scope.row.propName"
+                    maxlength="10"
+                    show-word-limit
                     clearable></el-input>
         </template>
       </el-table-column>
@@ -26,6 +28,8 @@
             <el-input placeholder="请输入内容"
                       v-model="item.propValue"
                       @clear="clearProdPropValues"
+                      maxlength="20"
+                      show-word-limit
                       clearable></el-input>
           </el-col>
           <el-col :span="4">
@@ -87,6 +91,11 @@ export default {
         }
         this.dataList[0].prodPropValues = temp
       }
+      if (!this.dataList[0].propName.trim()) {
+        this.dataList[0].propName = ''
+        this.$message.error('属性名不能为空')
+        return
+      }
       if (this.dataList[0].prodPropValues.length < 1) {
         this.dataList[0].prodPropValues = [{ valueId: 0 }]
         this.$message.error('规格项不能为空')
@@ -94,6 +103,10 @@ export default {
       }
       if (this.dataList[0].propName.length > 10) {
         this.$message.error('属性名称长度不能大于10')
+        return
+      }
+      if (this.dataList[0].prodPropValues.find(el => !el.propValue.trim())) {
+        this.$message.error('属性值不能为空')
         return
       }
       if (this.dataList[0].prodPropValues.find(el => el.propValue.length > 20)) {

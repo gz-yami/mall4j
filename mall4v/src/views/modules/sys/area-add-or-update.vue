@@ -9,7 +9,7 @@
              label-width="100px">
       <el-form-item label="地区名称"
                     prop="areaName">
-        <el-input v-model="dataForm.areaName"></el-input>
+        <el-input v-model="dataForm.areaName" placeholder="请输入地区名称" maxlength="50" show-word-limit></el-input>
       </el-form-item>
       <el-form-item label="上级地区"
                     prop="parentId">
@@ -98,6 +98,11 @@ export default {
     dataFormSubmit () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
+          if (!this.dataForm.areaName.trim()) {
+            this.dataForm.areaName = ''
+            this.$message.error('地区名称不能为空')
+            return
+          }
           this.$http({
             url: this.$http.adornUrl('/admin/area'),
             method: this.dataForm.areaId ? 'put' : 'post',
