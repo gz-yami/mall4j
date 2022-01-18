@@ -138,7 +138,7 @@
 				// 	credentials: this.credentials,
 				// 	loginType: 0, //账号登录
 				// }
-				// // #endif				
+				// // #endif
 
 				if (this.principal.length == 0) {
 					this.setData({
@@ -164,9 +164,9 @@
 						},
 						callBack: res => {
 							console.log("login",res)
-							var loginResult = '';
-							uni.setStorageSync("loginResult",res);
-							uni.setStorageSync('token', 'bearer' + res.access_token);
+							// var loginResult = '';
+							// uni.setStorageSync("loginResult",res);
+							// uni.setStorageSync('token', 'bearer' + res.access_token);
 							// return
 							http.loginSuccess(res, () => {
 								uni.showToast({
@@ -179,7 +179,7 @@
 											url: '/pages/index/index'
 										});
 										},1000)
-										
+
 									}
 								})
 							})

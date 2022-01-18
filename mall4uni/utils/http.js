@@ -12,7 +12,7 @@ function request(params, isGetTonken) {
   //   globalData.requestQueue.push(params);
   //   return;
   // }
-	
+
 	if (Object.prototype.toString.call(params.data) == '[object Array]') {
 		params.data = JSON.stringify(params.data);
 	} else if (Object.prototype.toString.call(params.data) == '[object Number]') {
@@ -81,7 +81,7 @@ function request(params, isGetTonken) {
 										url = '/pages/accountLogin/accountLogin'
 									}
 									// #endif
-				
+
 									// #ifdef APP-PLUS
 									var url = '/pages/accountLogin/accountLogin'
 									// #endif
@@ -104,12 +104,12 @@ function request(params, isGetTonken) {
 							success: res => {
 								if (res.confirm) {
 									// 跳转登录页面
-									// #ifdef H5	
+									// #ifdef H5
 									uni.navigateTo({
 										url: uni.getStorageSync('appType') == AppType.MP ? '/pages/login/login' : '/pages/accountLogin/accountLogin'
 									})
 									// #endif
-													
+
 									// #ifdef MP-WEIXIN
 									uni.navigateTo({
 										url: '/pages/login/login'
@@ -123,12 +123,12 @@ function request(params, isGetTonken) {
 							}
 						})
 				// 		// 跳转登录页面
-				// 		// #ifdef H5	
+				// 		// #ifdef H5
 				// 		uni.navigateTo({
 				// 			url: uni.getStorageSync('appType') == AppType.MP ? '/pages/login/login' : '/pages/accountLogin/accountLogin'
 				// 		})
 				// 		// #endif
-				
+
 				// 		// #ifdef MP-WEIXIN
 				// 		uni.navigateTo({
 				// 			url: '/pages/login/login'
@@ -145,7 +145,7 @@ function request(params, isGetTonken) {
       } else {
         //如果有定义了params.errCallBack，则调用 params.errCallBack(res.data)
         if (params.errCallBack) {
-					
+
           params.errCallBack(res);
         }
 				uni.hideLoading();
@@ -247,6 +247,25 @@ var getToken = function (fn) {
  * @param {Object} fn		登录成功后的回调
  */
 function loginSuccess (result, fn) {
+	if (!result.enabled) {
+		uni.showModal({
+			showCancel: false,
+			title: "提示",
+			content: "您已被禁用，不能购买，请联系客服",
+			cancelText: "取消",
+			confirmText: "确定",
+			success: function (res) {
+        if (res.confirm) {
+					wx.switchTab({
+						url: '/pages/index/index'
+					});
+        }
+			}
+		})
+		wx.setStorageSync('token', '');
+		return
+	}
+
 	// 保存登陆信息
 	wx.setStorageSync('loginResult', result)
 	// 保存成功登录标识,token过期判断
@@ -255,18 +274,9 @@ function loginSuccess (result, fn) {
 	// if (!result.pic) {
 	// 	updateUserInfo();
 	// }
-	if (!result.enabled) {
-		uni.showModal({
-			showCancel: false,
-			title: "提示",
-			content: "您已被禁用，不能购买，请联系客服",
-			cancelText: "取消",
-			confirmText: "确定"
-		})
-		wx.setStorageSync('token', '');
-	} else {
-		wx.setStorageSync('token', 'bearer' + result.access_token); //把token存入缓存，请求接口数据时要用
-	}
+
+	wx.setStorageSync('token', 'bearer' + result.access_token); //把token存入缓存，请求接口数据时要用
+
 	if (result.userId) {
 		wx.setStorageSync('hadBindUser', true);
 		getCartCount()
