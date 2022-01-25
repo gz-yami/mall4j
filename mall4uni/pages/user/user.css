@@ -67,7 +67,14 @@ page {
 }
 .none-login .click-login{
   font-size:26rpx;
+  color: #777;
 }
+.none-login .unlogin,
+.none-login .click-login {
+  text-align: left;
+  padding: 0;
+}
+
 
 .binding-phone {
   position: relative;

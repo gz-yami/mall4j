@@ -30,12 +30,12 @@
 		</view>
 
 		<view class="userinfo-none" v-if="!isAuthInfo">
-			<view class="default-pic">
+			<view class="default-pic" @tap="toLogin">
 				<image src="../../static/images/icon/head04.png"></image>
 			</view>
-			<view class="none-login">
-				<button class="unlogin" @tap="toLogin">未登录</button>
-				<button class="click-login" @tap="toLogin">点击账号登录</button>
+			<view class="none-login" @tap="toLogin">
+				<button class="unlogin">未登录</button>
+				<button class="click-login">点击登录账号</button>
 			</view>
 		</view>
 		<!-- end 用户信息 -->
