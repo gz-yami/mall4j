@@ -87,7 +87,8 @@ export default {
       categoryTreeProps: {
         value: 'categoryId',
         label: 'categoryName'
-      }
+      },
+      isSubmit: false
     }
   },
   components: {
@@ -144,6 +145,10 @@ export default {
       }
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
+          if (this.isSubmit) {
+            return
+          }
+          this.isSubmit = true
           this.$http({
             url: this.$http.adornUrl(`/prod/category`),
             method: this.dataForm.categoryId ? 'put' : 'post',
@@ -160,8 +165,9 @@ export default {
             this.$message({
               message: '操作成功',
               type: 'success',
-              duration: 1500,
+              duration: 1000,
               onClose: () => {
+                this.isSubmit = false
                 this.visible = false
                 this.$emit('refreshDataList')
               }
