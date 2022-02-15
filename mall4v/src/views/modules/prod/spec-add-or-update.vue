@@ -49,6 +49,7 @@
   </el-dialog>
 </template>
 <script>
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -78,7 +79,7 @@ export default {
       this.visible = true
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       if (this.dataList[0].prodPropValues) {
         let temp = []
         for (const key in this.dataList[0].prodPropValues) {
@@ -132,7 +133,7 @@ export default {
           }
         })
       })
-    },
+    }),
     clearProdPropValues () {
       if (this.dataList[0].prodPropValues.length === 1) {
         return

@@ -204,6 +204,7 @@
 </template>
 
 <script>
+import { Debounce } from '@/utils/debounce'
 import AddOrUpdate from './transcity-add-or-update'
 export default {
   data () {
@@ -363,7 +364,7 @@ export default {
       return num < 0 ? 0 : num
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           for (let i = 1; i < this.dataForm.transfees.length; i++) {
@@ -408,7 +409,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

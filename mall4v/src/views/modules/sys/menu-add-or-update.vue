@@ -70,6 +70,7 @@
 <script>
   import { treeDataTranslate, idList } from '@/utils'
   import Icon from '@/icons'
+  import { Debounce } from '@/utils/debounce'
   export default {
     data () {
       var validateUrl = (rule, value, callback) => {
@@ -157,7 +158,7 @@
         this.dataForm.icon = iconName
       },
       // 表单提交
-      dataFormSubmit () {
+      dataFormSubmit: Debounce(function () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
@@ -186,7 +187,7 @@
             })
           }
         })
-      }
+      })
     }
   }
 </script>
