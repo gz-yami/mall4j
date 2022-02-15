@@ -91,6 +91,7 @@ import ProdTransport from './prod-transport'
 import SkuTag from './sku-tag'
 import SkuTable from './sku-table'
 import TinyMce from '@/components/tiny-mce'
+import { Debounce } from '@/utils/debounce'
 
 export default {
   data () {
@@ -186,7 +187,7 @@ export default {
       this.dataForm.categoryId = val[val.length - 1]
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (!valid) {
           return
@@ -229,7 +230,7 @@ export default {
           })
         })
       })
-    },
+    }),
     paramSetPriceAndStocks (param) {
       // 获取规格属性信息
       // param.skuList = this.$refs.prodSpec.getTableSpecData()

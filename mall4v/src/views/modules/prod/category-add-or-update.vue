@@ -60,6 +60,7 @@
 <script>
 import { treeDataTranslate, idList } from '@/utils'
 import PicUpload from '@/components/pic-upload'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -133,7 +134,7 @@ export default {
       this.dataForm.parentId = val[val.length - 1]
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       if (this.selectedCategory.length === 1) {
         this.dataForm.grade = 0
       }
@@ -175,7 +176,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

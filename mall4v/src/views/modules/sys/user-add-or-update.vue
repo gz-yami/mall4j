@@ -40,6 +40,7 @@
 
 <script>
   import { isEmail, isMobile } from '@/utils/validate'
+  import { Debounce } from '@/utils/debounce'
   export default {
     data () {
       var validatePassword = (rule, value, callback) => {
@@ -137,7 +138,7 @@
         })
       },
       // 表单提交
-      dataFormSubmit () {
+      dataFormSubmit: Debounce(function () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
@@ -165,7 +166,7 @@
             })
           }
         })
-      }
+      })
     }
   }
 </script>

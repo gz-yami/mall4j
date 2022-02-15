@@ -71,6 +71,7 @@
 <script>
 import PicUpload from '@/components/pic-upload'
 import ProdsSelect from '@/components/prods-select'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -140,7 +141,7 @@ export default {
       }
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (!valid) {
           return
@@ -162,7 +163,7 @@ export default {
           })
         })
       })
-    },
+    }),
     // 删除关联数据
     deleteRelation () {
       this.dataForm.relation = null

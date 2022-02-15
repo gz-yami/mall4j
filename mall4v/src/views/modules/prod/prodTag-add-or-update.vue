@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -86,7 +87,7 @@ export default {
       })
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.$http({
@@ -106,7 +107,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

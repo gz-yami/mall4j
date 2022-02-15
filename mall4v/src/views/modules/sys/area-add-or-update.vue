@@ -36,6 +36,7 @@
 
 <script>
 import { treeDataTranslate } from '@/utils'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -95,7 +96,7 @@ export default {
       })
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           if (!this.dataForm.areaName.trim()) {
@@ -120,7 +121,7 @@ export default {
           })
         }
       })
-    },
+    }),
     handleChange (val) {
       this.dataForm.parentId = val[val.length - 1]
     }
