@@ -52,6 +52,7 @@
       }
       var validateComfirmPassword = (rule, value, callback) => {
         if (!this.dataForm.id && !/\S/.test(value)) {
+          this.dataForm.password = ''
           callback(new Error('确认密码不能为空'))
         } else if (this.dataForm.password !== value) {
           callback(new Error('确认密码与密码输入不一致'))
@@ -88,7 +89,8 @@
         },
         dataRule: {
           userName: [
-            { required: true, message: '用户名不能为空', trigger: 'blur' }
+            { required: true, message: '用户名不能为空', trigger: 'blur' },
+            { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的用户名', trigger: 'blur' }
           ],
           password: [
             { validator: validatePassword, trigger: 'blur' }

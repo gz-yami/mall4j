@@ -11,7 +11,10 @@
           <pic-upload v-model="dataForm.imgUrl"></pic-upload>
         </el-form-item>
         <el-form-item label="顺序"
-                      prop="seq">
+                      prop="seq"
+                      :rules="[
+                        { required: false, pattern: /\s\S+|S+\s|\S/, message: '请输入正确的顺序', trigger: 'blur' }
+                      ]">
           <el-input v-model="dataForm.seq"></el-input>
         </el-form-item>
         <el-form-item label="状态"

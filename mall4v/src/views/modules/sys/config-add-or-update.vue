@@ -34,10 +34,12 @@
         },
         dataRule: {
           paramKey: [
-            { required: true, message: '参数名不能为空', trigger: 'blur' }
+            { required: true, message: '参数名不能为空', trigger: 'blur' },
+            { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的参数名', trigger: 'blur' }
           ],
           paramValue: [
-            { required: true, message: '参数值不能为空', trigger: 'blur' }
+            { required: true, message: '参数值不能为空', trigger: 'blur' },
+            { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的参数值', trigger: 'blur' }
           ]
         }
       }

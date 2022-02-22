@@ -77,7 +77,8 @@ export default {
       },
       dataRule: {
         categoryName: [
-          { required: true, message: '分类名称不能为空', trigger: 'blur' }
+          { required: true, message: '分类名称不能为空', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的分类名称', trigger: 'blur' }
         ],
         pic: [
           { required: true, message: '分类图片不能为空', trigger: 'blur' }
