@@ -55,7 +55,8 @@ export default {
       },
       dataRule: {
         areaName: [
-          { required: true, message: '区域名称不能为空', trigger: 'blur' }
+          { required: true, message: '区域名称不能为空', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的区域名称', trigger: 'blur' }
         ]
       },
       areaList: [],
@@ -99,11 +100,6 @@ export default {
     dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          if (!this.dataForm.areaName.trim()) {
-            this.dataForm.areaName = ''
-            this.$message.error('地区名称不能为空')
-            return
-          }
           this.$http({
             url: this.$http.adornUrl('/admin/area'),
             method: this.dataForm.areaId ? 'put' : 'post',

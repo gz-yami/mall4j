@@ -11,7 +11,10 @@
              label-width="80px">
       <el-form-item label="模板名称"
                     prop="transName"
-                    :rules="[{ required: true, message: '模板名称不能为空'}]">
+                    :rules="[
+                      { required: true, message: '模板名称不能为空'},
+                      { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的模板名称', trigger: 'blur' }
+                    ]">
         <el-input v-model="dataForm.transName"
                   placeholder="模板名称"></el-input>
       </el-form-item>

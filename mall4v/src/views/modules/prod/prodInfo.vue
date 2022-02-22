@@ -41,7 +41,10 @@
       </el-form-item>
       <el-form-item label="产品名称"
                     prop="prodName"
-                    :rules="[{ required: true, message: '产品名称不能为空'}]">
+                    :rules="[
+                      { required: true, message: '产品名称不能为空'},
+                      { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的产品名称', trigger: 'blur' }
+                    ]">
         <el-col :span="8">
           <el-input v-model="dataForm.prodName"
                     placeholder="产品名称"
@@ -49,7 +52,9 @@
         </el-col>
       </el-form-item>
       <el-form-item label="产品卖点"
-                    prop="brief">
+                    prop="brief":rules="[
+                      { required: false, pattern: /\s\S+|S+\s|\S/, message: '请输入正确的产品卖点', trigger: 'blur' }
+                    ]">
         <el-col :span="8">
           <el-input v-model="dataForm.brief"
                     type="textarea"

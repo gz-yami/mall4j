@@ -106,9 +106,13 @@ export default {
       },
       dataRule: {
         addrName: [
-          { required: true, message: '自提点名称不能为空', trigger: 'blur' }
+          { required: true, message: '自提点名称不能为空', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的自提点名称', trigger: 'blur' }
         ],
-        addr: [{ required: true, message: '地址不能为空', trigger: 'blur' }],
+        addr: [
+          { required: true, message: '地址不能为空', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的地址', trigger: 'blur' }
+        ],
         city: [{ required: true, message: '城市不能为空', trigger: 'blur' }],
         province: [
           { required: true, message: '省份不能为空', trigger: 'blur' }

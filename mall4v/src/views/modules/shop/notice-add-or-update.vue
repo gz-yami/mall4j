@@ -50,6 +50,7 @@ export default {
     var validateTitle = (rule, value, callback) => {
       if (!value.trim()) {
         this.dataForm.title = ''
+        callback(new Error('公告标题不能为空'))
       } else {
         callback()
       }

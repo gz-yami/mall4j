@@ -10,6 +10,7 @@
       <el-form-item label="标签名称"
                     :rules="[
                       { required: true, message: '标签名称不能为空', trigger: 'blur' },
+                      { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的标签名称', trigger: 'blur' }
                     ]"
                     prop="title">
         <el-input v-model="dataForm.title"></el-input>
