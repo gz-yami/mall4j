@@ -70,6 +70,7 @@
 <script>
   import { treeDataTranslate, idList } from '@/utils'
   import Icon from '@/icons'
+  import { Debounce } from '@/utils/debounce'
   export default {
     data () {
       var validateUrl = (rule, value, callback) => {
@@ -95,7 +96,8 @@
         },
         dataRule: {
           name: [
-            { required: true, message: '菜单名称不能为空', trigger: 'blur' }
+            { required: true, message: '菜单名称不能为空', trigger: 'blur' },
+            { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的菜单名称', trigger: 'blur' }
           ],
           url: [
             { validator: validateUrl, trigger: 'blur' }
@@ -157,7 +159,7 @@
         this.dataForm.icon = iconName
       },
       // 表单提交
-      dataFormSubmit () {
+      dataFormSubmit: Debounce(function () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
@@ -186,7 +188,7 @@
             })
           }
         })
-      }
+      })
     }
   }
 </script>

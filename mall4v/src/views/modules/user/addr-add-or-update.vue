@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -179,7 +180,7 @@ export default {
     },
 
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       for (let i = 0; i < this.provinceList.length; i++) {
         if (this.provinceList[i].areaId === this.dataForm.provinceId) {
           // 将省名字保存起来
@@ -218,7 +219,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

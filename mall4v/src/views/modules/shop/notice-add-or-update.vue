@@ -44,8 +44,17 @@
 
 <script>
 import TinyMce from '@/components/tiny-mce'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
+    var validateTitle = (rule, value, callback) => {
+      if (!value.trim()) {
+        this.dataForm.title = ''
+        callback(new Error('公告标题不能为空'))
+      } else {
+        callback()
+      }
+    }
     return {
       visible: false,
       roleList: [],
@@ -58,7 +67,8 @@ export default {
       },
       dataRule: {
         title: [
-          {required: true, message: '公告标题不能为空', trigger: 'blur'}
+          {required: true, message: '公告标题不能为空', trigger: 'blur'},
+          { validator: validateTitle, trigger: 'blur' }
         ]
       }
     }
@@ -84,7 +94,7 @@ export default {
       })
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.$http({
@@ -105,7 +115,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

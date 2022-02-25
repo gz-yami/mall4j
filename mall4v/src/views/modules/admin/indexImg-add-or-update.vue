@@ -11,7 +11,10 @@
           <pic-upload v-model="dataForm.imgUrl"></pic-upload>
         </el-form-item>
         <el-form-item label="顺序"
-                      prop="seq">
+                      prop="seq"
+                      :rules="[
+                        { required: false, pattern: /\s\S+|S+\s|\S/, message: '请输入正确的顺序', trigger: 'blur' }
+                      ]">
           <el-input v-model="dataForm.seq"></el-input>
         </el-form-item>
         <el-form-item label="状态"
@@ -71,6 +74,7 @@
 <script>
 import PicUpload from '@/components/pic-upload'
 import ProdsSelect from '@/components/prods-select'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -140,7 +144,7 @@ export default {
       }
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (!valid) {
           return
@@ -162,7 +166,7 @@ export default {
           })
         })
       })
-    },
+    }),
     // 删除关联数据
     deleteRelation () {
       this.dataForm.relation = null

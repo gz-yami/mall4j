@@ -247,6 +247,25 @@ var getToken = function (fn) {
  * @param {Object} fn		登录成功后的回调
  */
 function loginSuccess (result, fn) {
+	if (!result.enabled) {
+		uni.showModal({
+			showCancel: false,
+			title: "提示",
+			content: "您已被禁用，不能购买，请联系客服",
+			cancelText: "取消",
+			confirmText: "确定",
+			success: function (res) {
+        if (res.confirm) {
+					uni.switchTab({
+						url: '/pages/index/index'
+					});
+        }
+			}
+		})
+		wx.setStorageSync('token', '');
+		return
+	}
+
 	// 保存登陆信息
 	wx.setStorageSync('loginResult', result)
 	// 保存成功登录标识,token过期判断
@@ -255,18 +274,9 @@ function loginSuccess (result, fn) {
 	// if (!result.pic) {
 	// 	updateUserInfo();
 	// }
-	if (!result.enabled) {
-		uni.showModal({
-			showCancel: false,
-			title: "提示",
-			content: "您已被禁用，不能购买，请联系客服",
-			cancelText: "取消",
-			confirmText: "确定"
-		})
-		wx.setStorageSync('token', '');
-	} else {
-		wx.setStorageSync('token', 'bearer' + result.access_token); //把token存入缓存，请求接口数据时要用
-	}
+	
+	wx.setStorageSync('token', 'bearer' + result.access_token); //把token存入缓存，请求接口数据时要用
+
 	if (result.userId) {
 		wx.setStorageSync('hadBindUser', true);
 		getCartCount()

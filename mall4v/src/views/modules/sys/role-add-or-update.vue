@@ -29,6 +29,7 @@
 
 <script>
   import { treeDataTranslate } from '@/utils'
+  import { Debounce } from '@/utils/debounce'
   export default {
     data () {
       return {
@@ -45,7 +46,11 @@
         },
         dataRule: {
           roleName: [
-            { required: true, message: '角色名称不能为空', trigger: 'blur' }
+            { required: true, message: '角色名称不能为空', trigger: 'blur' },
+            { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的角色名称', trigger: 'blur' }
+          ],
+          remark: [
+            { required: false, pattern: /\s\S+|S+\s|\S/, message: '输入格式有误', trigger: 'blur' }
           ]
         },
         tempKey: -666666 // 临时key, 用于解决tree半选中状态项不能传给后台接口问题. # 待优化
@@ -86,7 +91,7 @@
         })
       },
       // 表单提交
-      dataFormSubmit () {
+      dataFormSubmit: Debounce(function () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
@@ -111,7 +116,7 @@
             })
           }
         })
-      }
+      })
     }
   }
 </script>
