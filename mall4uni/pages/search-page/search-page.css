@@ -123,3 +123,12 @@
   right: 10rpx;
   top: 30rpx;
 }
+
+.search-tit-empty {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  font-size: 24rpx;
+  color: #aaa;
+}
