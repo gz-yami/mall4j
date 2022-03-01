@@ -17,16 +17,17 @@
       <view class="title-text">
         热门搜索
       </view>
-      <view class="hot-search-tags">
+      <view v-if="hotSearchList && hotSearchList.length" class="hot-search-tags">
        <block v-for="(item, index) in hotSearchList" :key="index">
         <text class="tags" @tap="onHistSearch" :data-name="item.content">{{item.title}}</text>
         </block> 
       </view>
+      <view v-else class="search-tit-empty">暂无数据</view>
     
     </view>
 
     <!-- 搜索历史 -->
-    <view class="history-search">
+    <view v-if="recentSearch && recentSearch.length" class="history-search">
       <view class="title-text history-line">
         搜索历史
         <view class="clear-history">
