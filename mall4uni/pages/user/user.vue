@@ -81,12 +81,12 @@
 					<view v-else class="num">--</view>
 					<view class="tit">我的收藏</view>
 				</view>
-				<view class="col-item">
+				<view class="col-item" @tap="handleTips">
 					<view v-if="loginResult" class="num">5</view>
 					<view v-else class="num">--</view>
 					<view class="tit">我的消息</view>
 				</view>
-				<view class="col-item">
+				<view class="col-item" @tap="handleTips">
 					<view v-if="loginResult" class="num">3</view>
 					<view v-else class="num">--</view>
 					<view class="tit">我的足迹</view>
@@ -242,6 +242,12 @@
 				});
 			},
 			toMyCouponPage: function() {
+				uni.showToast({
+					icon: "none",
+					title: '该功能未开源'
+				});
+			},
+			handleTips: function() {
 				uni.showToast({
 					icon: "none",
 					title: '该功能未开源'

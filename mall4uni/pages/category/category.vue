@@ -21,13 +21,14 @@
           {{item.categoryName}}
         </view>
       </block>
+      <view v-if="!categoryList || !categoryList.length" class="ca-empty">暂无分类</view>
     </scroll-view>
     <!-- 左侧菜单end -->
 
     <!-- 右侧内容start -->
     <scroll-view scroll-y="true" class="rightcontent">
     <!-- <block wx:for='{{ productList}}' wx:key=''> -->
-      <view class="adver-map">
+      <view v-if="categoryImg" class="adver-map">
         <view class="item-a">
             <image :src="categoryImg" mode="widthFix"></image>
         </view>
@@ -49,7 +50,7 @@
          
         </block>
       </view>
-      <view v-if="!productList.length" class="cont-item empty">该分类下暂无商品</view>
+      <view v-if="!productList.length" class="cont-item empty">{{categoryList && categoryList.length ? '该分类下暂无商品' : '暂无商品'}}</view>
      <!-- </block> -->
     </scroll-view>
     <!-- 右侧内容end -->

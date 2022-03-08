@@ -256,8 +256,9 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 /* 购物车为空 */
 
 .empty {
-  font-size: 28rpx;
-  color: #666;
+  font-size: 26rpx;
+  color: #aaa;
+  padding-top: 200rpx;
 }
 
 .empty .txt {
