@@ -231,7 +231,14 @@ page {
 .cont-item.empty {
   display: block;
   font-size: 24rpx;
-  margin-top: 80rpx;
+  padding-top: 400rpx;
   color: #aaa;
   text-align: center;
+}
+
+.leftmenu .ca-empty {
+  padding-top: 400rpx;
+  text-align: center;
+  color: #aaa;
+  font-size: 24rpx;
 }
