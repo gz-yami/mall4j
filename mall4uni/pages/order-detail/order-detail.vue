@@ -111,8 +111,8 @@
           <view class="item-tit">订单总额：</view>
           <view class="item-txt price">
             <text class="symbol">￥</text>
-            <text class="big-num">{{wxs.parsePrice(productTotalAmount)[0]}}</text>
-            <text class="small-num">.{{wxs.parsePrice(productTotalAmount)[1]}}</text>
+            <text class="big-num">{{wxs.parsePrice(total)[0]}}</text>
+            <text class="small-num">.{{wxs.parsePrice(total)[1]}}</text>
           </view>
         </view>
         <view class="item">
@@ -174,8 +174,8 @@ export default {
       productTotalAmount: '',
       transfee: '',
       reduceAmount: '',
-      actualTotal: '',
-      prodid: ''
+      prodid: '',
+      total: 0, // 商品总额
     };
   },
 
@@ -256,7 +256,7 @@ export default {
             productTotalAmount: res.orderItemDtos[0].productTotalAmount,
             transfee: res.transfee,
             reduceAmount: res.reduceAmount,
-            actualTotal: res.actualTotal
+            total: res.total
           });
           uni.hideLoading();
 					console.log("orderDetail",this.userAddrDto)
