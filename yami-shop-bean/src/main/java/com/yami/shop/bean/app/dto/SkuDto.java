@@ -26,6 +26,8 @@ public class SkuDto implements Serializable {
     private Long skuId;
     @ApiModelProperty(value = "价格", required = true)
     private Double price;
+    @ApiModelProperty(value = "原价")
+    private Double oriPrice;
 
     @ApiModelProperty(value = "库存(-1表示无穷)", required = true)
     private Integer stocks;
