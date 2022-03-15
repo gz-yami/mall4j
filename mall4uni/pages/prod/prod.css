@@ -96,6 +96,12 @@ swiper image {
   font-weight: 400;
 }
 
+.ori-price {
+  font-size: 25rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
 .sales {
   color: #999;
 }
