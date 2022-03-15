@@ -31,3 +31,11 @@
   margin-top: 10rpx;
   margin-bottom: 20rpx;
 }
+
+.recent-news .empty {
+  display: block;
+  padding-top: 200rpx;
+  color: #999;
+  font-size: 26rpx;
+  text-align: center;
+}

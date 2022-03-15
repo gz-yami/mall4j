@@ -9,7 +9,7 @@
              label-width="100px">
       <el-form-item label="地区名称"
                     prop="areaName">
-        <el-input v-model="dataForm.areaName"></el-input>
+        <el-input v-model="dataForm.areaName" placeholder="请输入地区名称" maxlength="50" show-word-limit></el-input>
       </el-form-item>
       <el-form-item label="上级地区"
                     prop="parentId">
@@ -36,6 +36,7 @@
 
 <script>
 import { treeDataTranslate } from '@/utils'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -54,7 +55,8 @@ export default {
       },
       dataRule: {
         areaName: [
-          { required: true, message: '区域名称不能为空', trigger: 'blur' }
+          { required: true, message: '区域名称不能为空', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的区域名称', trigger: 'blur' }
         ]
       },
       areaList: [],
@@ -95,7 +97,7 @@ export default {
       })
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.$http({
@@ -115,7 +117,7 @@ export default {
           })
         }
       })
-    },
+    }),
     handleChange (val) {
       this.dataForm.parentId = val[val.length - 1]
     }

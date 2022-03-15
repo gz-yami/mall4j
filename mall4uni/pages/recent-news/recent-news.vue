@@ -10,6 +10,7 @@
       </view>
     </view>
    </block>
+   <view v-if="!news || !news.length" class="empty">暂无数据</view>
   </view>
 </view>
 </template>

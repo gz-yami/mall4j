@@ -8,6 +8,10 @@
              @keyup.enter.native="dataFormSubmit()"
              label-width="80px">
       <el-form-item label="标签名称"
+                    :rules="[
+                      { required: true, message: '标签名称不能为空', trigger: 'blur' },
+                      { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的标签名称', trigger: 'blur' }
+                    ]"
                     prop="title">
         <el-input v-model="dataForm.title"></el-input>
       </el-form-item>
@@ -29,7 +33,11 @@
 
       <el-form-item label="排序"
                     prop="seq">
-        <el-input v-model="dataForm.seq"></el-input>
+        <!-- <el-input v-model="dataForm.seq"></el-input> -->
+        <el-input-number v-model="dataForm.seq"
+                         controls-position="right"
+                         :min="0"
+                         label="排序号"></el-input-number>
       </el-form-item>
     </el-form>
     <span slot="footer"
@@ -42,6 +50,7 @@
 </template>
 
 <script>
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -79,7 +88,7 @@ export default {
       })
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.$http({
@@ -99,7 +108,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

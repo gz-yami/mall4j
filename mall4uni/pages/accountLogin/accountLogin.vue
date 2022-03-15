@@ -164,9 +164,9 @@
 						},
 						callBack: res => {
 							console.log("login",res)
-							var loginResult = '';
-							uni.setStorageSync("loginResult",res);
-							uni.setStorageSync('token', 'bearer' + res.access_token);
+							// var loginResult = '';
+							// uni.setStorageSync("loginResult",res);
+							// uni.setStorageSync('token', 'bearer' + res.access_token);
 							// return
 							http.loginSuccess(res, () => {
 								uni.showToast({

@@ -35,8 +35,8 @@
               <text class="big-num">{{wxs.parsePrice(item.price)[0]}}</text>
               <text class="small-num">.{{wxs.parsePrice(item.price)[1]}}</text></text>
               <view class="btn-box">
-                <text class="btn" v-if="item.status!=1">申请售后</text>
-                <text class="btn">加购物车</text>
+                <!-- <text class="btn" v-if="item.status!=1">申请售后</text> -->
+                <!-- <text class="btn">加购物车</text> -->
               </view>
             </view>
           </view>
@@ -65,7 +65,7 @@
           </view>
         </view>
       </view> -->
-      <view class="prod-foot">
+      <!-- <view class="prod-foot">
         <view class="btn">
           <button v-if="status==1" class="button" @tap="onCancelOrder" :data-ordernum="orderNumber" hover-class="none">取消订单</button>
           <button v-if="status==1" class="button warn" @tap="onConfirmReceive" :data-ordernum="orderNumber" hover-class="none">再次购买</button>
@@ -73,7 +73,7 @@
           <button v-if="status==3 || status==5" class="button" @tap="toDeliveryPage" :data-ordernum="orderNumber" hover-class="none">查看物流</button>
           <button v-if="status==3" class="button warn" @tap="onConfirmReceive" :data-ordernum="orderNumber" hover-class="none">确认收货</button>
         </view>
-      </view>
+      </view> -->
     </view>
 
     <!-- 订单信息 -->
@@ -100,7 +100,7 @@
         </view>
         <view class="item">
           <text class="item-tit">订单备注：</text>
-          <text class="item-txt">{{remarks}}</text>
+          <text class="item-txt remarks">{{remarks}}</text>
         </view>
       </view>
     </view>
@@ -144,10 +144,10 @@
 
     <!-- 底部栏 -->
     <view class="order-detail-footer">
-      <text class="dele-order" v-if="status==5||status==6">删除订单</text>
+      <text class="dele-order" v-if="status==5||status==6" @tap="delOrderList">删除订单</text>
       <view class="footer-box">
         <text class="apply-service">联系客服</text>
-        <text class="buy-again">再次购买</text>
+        <!-- <text class="buy-again">再次购买</text> -->
       </view>
     </view>
 
@@ -275,6 +275,41 @@ export default {
             title: '复制成功'
           });
         }
+      });
+    },
+    //删除已完成||已取消的订单
+    delOrderList: function () {
+      var ths = this;
+      uni.showModal({
+        title: '',
+        content: '确定要删除此订单吗？',
+        confirmColor: "#eb2444",
+        success(res) {
+          if (res.confirm) {
+            uni.showLoading();
+            var params = {
+              url: "/p/myOrder/" + ths.orderNumber,
+              method: "DELETE",
+              data: {},
+              callBack: function (res) {
+                uni.hideLoading();
+                uni.showToast({
+                  title: res ? res : '删除成功',
+                  icon: 'none'
+                });
+                setTimeout(() => {
+                  uni.redirectTo({
+                    url: '/pages/orderList/orderList'
+                  });
+                },1000)
+              }
+            };
+            http.request(params);
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        }
+
       });
     }
   }

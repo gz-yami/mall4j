@@ -173,6 +173,7 @@ page {
   display: flex;
   padding: 10rpx 0;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .order-msg .msg-item .item.payment {
@@ -182,6 +183,7 @@ page {
 }
 
 .order-msg .msg-item .item .item-tit {
+  min-width: 140rpx;
   color: #999;
   line-height: 48rpx;
 }
@@ -189,6 +191,13 @@ page {
 .order-msg .msg-item .item .item-txt {
   flex: 1;
   line-height: 48rpx;
+}
+
+.order-msg .msg-item .item .item-txt.remarks {
+  max-width: 600rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .order-msg .msg-item .item  .copy-btn {

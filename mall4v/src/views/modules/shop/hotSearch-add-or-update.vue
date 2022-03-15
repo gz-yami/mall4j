@@ -14,6 +14,8 @@
           <el-input v-model="dataForm.title"
                     controls-position="right"
                     :min="0"
+                    maxlength="50"
+                    show-word-limit
                     label="标题"></el-input>
         </el-form-item>
 
@@ -21,7 +23,10 @@
                       prop="content">
           <el-input v-model="dataForm.content"
                     controls-position="right"
+                    type="textarea"
                     :min="0"
+                    maxlength="255"
+                    show-word-limit
                     label="内容"></el-input>
         </el-form-item>
         <el-form-item label="排序号"
@@ -51,6 +56,7 @@
 </template>
 
 <script>
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -72,12 +78,14 @@ export default {
       resourcesUrl: window.SITE_CONFIG.resourcesUrl,
       dataRule: {
         title: [
-          { required: true, message: '不能为空', trigger: 'blur' },
-          { min: 1, max: 50, message: '长度在1到50个字符内', trigger: 'blur' }
+          { required: true, message: '标题不能为空', trigger: 'blur' },
+          { min: 1, max: 50, message: '长度在1到50个字符内', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '标题不能为空', trigger: 'blur' }
         ],
         content: [
-          { required: true, message: '不能为空', trigger: 'blur' },
-          { min: 1, max: 255, message: '长度在1到255个字符内', trigger: 'blur' }
+          { required: true, message: '内容不能为空', trigger: 'blur' },
+          { min: 1, max: 255, message: '长度在1到255个字符内', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '内容不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -101,7 +109,7 @@ export default {
       })
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate(valid => {
         if (valid) {
           let param = this.dataForm
@@ -122,7 +130,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

@@ -60,6 +60,7 @@
 <script>
 import { treeDataTranslate, idList } from '@/utils'
 import PicUpload from '@/components/pic-upload'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -76,7 +77,8 @@ export default {
       },
       dataRule: {
         categoryName: [
-          { required: true, message: '分类名称不能为空', trigger: 'blur' }
+          { required: true, message: '分类名称不能为空', trigger: 'blur' },
+          { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的分类名称', trigger: 'blur' }
         ],
         pic: [
           { required: true, message: '分类图片不能为空', trigger: 'blur' }
@@ -87,7 +89,8 @@ export default {
       categoryTreeProps: {
         value: 'categoryId',
         label: 'categoryName'
-      }
+      },
+      isSubmit: false
     }
   },
   components: {
@@ -132,7 +135,7 @@ export default {
       this.dataForm.parentId = val[val.length - 1]
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       if (this.selectedCategory.length === 1) {
         this.dataForm.grade = 0
       }
@@ -144,6 +147,10 @@ export default {
       }
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
+          if (this.isSubmit) {
+            return
+          }
+          this.isSubmit = true
           this.$http({
             url: this.$http.adornUrl(`/prod/category`),
             method: this.dataForm.categoryId ? 'put' : 'post',
@@ -160,8 +167,9 @@ export default {
             this.$message({
               message: '操作成功',
               type: 'success',
-              duration: 1500,
+              duration: 1000,
               onClose: () => {
+                this.isSubmit = false
                 this.visible = false
                 this.$emit('refreshDataList')
               }
@@ -169,7 +177,7 @@ export default {
           })
         }
       })
-    }
+    })
   }
 }
 </script>

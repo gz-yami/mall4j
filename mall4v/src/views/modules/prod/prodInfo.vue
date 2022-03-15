@@ -13,6 +13,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="产品分类"
+                    :rules="[{ required: true, message: '请选择产品分类'}]"
                     prop="categoryId">
         <el-col :span="8">
           <el-cascader expand-trigger="hover"
@@ -24,7 +25,7 @@
           </el-cascader>
         </el-col>
       </el-form-item>
-      <el-form-item label="产品分组">
+      <el-form-item label="产品分组" :rules="[{ required: true, message: '请选择产品分组'}]">
         <el-col :span="8">
           <el-select v-model="dataForm.tagList"
                     multiple
@@ -40,7 +41,10 @@
       </el-form-item>
       <el-form-item label="产品名称"
                     prop="prodName"
-                    :rules="[{ required: true, message: '产品名称不能为空'}]">
+                    :rules="[
+                      { required: true, message: '产品名称不能为空'},
+                      { pattern: /\s\S+|S+\s|\S/, message: '请输入正确的产品名称', trigger: 'blur' }
+                    ]">
         <el-col :span="8">
           <el-input v-model="dataForm.prodName"
                     placeholder="产品名称"
@@ -48,7 +52,9 @@
         </el-col>
       </el-form-item>
       <el-form-item label="产品卖点"
-                    prop="brief">
+                    prop="brief":rules="[
+                      { required: false, pattern: /\s\S+|S+\s|\S/, message: '请输入正确的产品卖点', trigger: 'blur' }
+                    ]">
         <el-col :span="8">
           <el-input v-model="dataForm.brief"
                     type="textarea"
@@ -90,6 +96,7 @@ import ProdTransport from './prod-transport'
 import SkuTag from './sku-tag'
 import SkuTable from './sku-table'
 import TinyMce from '@/components/tiny-mce'
+import { Debounce } from '@/utils/debounce'
 
 export default {
   data () {
@@ -185,7 +192,7 @@ export default {
       this.dataForm.categoryId = val[val.length - 1]
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
         if (!valid) {
           return
@@ -228,7 +235,7 @@ export default {
           })
         })
       })
-    },
+    }),
     paramSetPriceAndStocks (param) {
       // 获取规格属性信息
       // param.skuList = this.$refs.prodSpec.getTableSpecData()

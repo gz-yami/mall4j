@@ -5,12 +5,16 @@
                :visible.sync="visible">
       <el-form :model="dataForm"
                ref="dataForm"
+               :rules="dataRule"
                label-width="100px">
-        <el-form-item label="轮播图片">
+        <el-form-item label="轮播图片" prop="imgUrl">
           <pic-upload v-model="dataForm.imgUrl"></pic-upload>
         </el-form-item>
         <el-form-item label="顺序"
-                      prop="seq">
+                      prop="seq"
+                      :rules="[
+                        { required: false, pattern: /\s\S+|S+\s|\S/, message: '请输入正确的顺序', trigger: 'blur' }
+                      ]">
           <el-input v-model="dataForm.seq"></el-input>
         </el-form-item>
         <el-form-item label="状态"
@@ -70,6 +74,7 @@
 <script>
 import PicUpload from '@/components/pic-upload'
 import ProdsSelect from '@/components/prods-select'
+import { Debounce } from '@/utils/debounce'
 export default {
   data () {
     return {
@@ -81,6 +86,11 @@ export default {
         imgId: 0,
         type: -1,
         relation: null
+      },
+      dataRule: {
+        imgUrl: [
+          {required: true, message: '轮播图片不能为空', trigger: 'blur'}
+        ]
       },
       // 关联数据
       card: {
@@ -134,8 +144,11 @@ export default {
       }
     },
     // 表单提交
-    dataFormSubmit () {
+    dataFormSubmit: Debounce(function () {
       this.$refs['dataForm'].validate((valid) => {
+        if (!valid) {
+          return
+        }
         let param = this.dataForm
         this.$http({
           url: this.$http.adornUrl(`/admin/indexImg`),
@@ -153,7 +166,7 @@ export default {
           })
         })
       })
-    },
+    }),
     // 删除关联数据
     deleteRelation () {
       this.dataForm.relation = null

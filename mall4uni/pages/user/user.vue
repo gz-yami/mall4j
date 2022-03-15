@@ -20,7 +20,7 @@
 			<view class="userinfo-con">
 				<view class="userinfo-avatar">
 					<!-- <open-data type="userAvatarUrl"></open-data> -->
-					<image :src="loginResult.pic?loginResult.pic:'../../static/images/icon/head04.png'"></image>
+					<image :src="loginResult.pic ? (loginResult.pic.indexOf('http') === -1 ? picDomain + loginResult.pic : loginResult.pic) : '../../static/images/icon/head04.png'"></image>
 				</view>
 				<view class="userinfo-name">
 					<view>{{loginResult.nickName ? loginResult.nickName : "用户昵称"}}</view>
@@ -30,12 +30,12 @@
 		</view>
 
 		<view class="userinfo-none" v-if="!isAuthInfo">
-			<view class="default-pic">
+			<view class="default-pic" @tap="toLogin">
 				<image src="../../static/images/icon/head04.png"></image>
 			</view>
-			<view class="none-login">
-				<button class="unlogin" @tap="toLogin">未登录</button>
-				<button class="click-login" @tap="toLogin">点击账号登录</button>
+			<view class="none-login" @tap="toLogin">
+				<button class="unlogin">未登录</button>
+				<button class="click-login">点击登录账号</button>
 			</view>
 		</view>
 		<!-- end 用户信息 -->
@@ -81,12 +81,12 @@
 					<view v-else class="num">--</view>
 					<view class="tit">我的收藏</view>
 				</view>
-				<view class="col-item">
+				<view class="col-item" @tap="handleTips">
 					<view v-if="loginResult" class="num">5</view>
 					<view v-else class="num">--</view>
 					<view class="tit">我的消息</view>
 				</view>
-				<view class="col-item">
+				<view class="col-item" @tap="handleTips">
 					<view v-if="loginResult" class="num">3</view>
 					<view v-else class="num">--</view>
 					<view class="tit">我的足迹</view>
@@ -139,6 +139,7 @@
 	// pages/user/user.js
 	var http = require("../../utils/http.js");
 	var util = require("../../utils/util.js");
+	var config = require("../../utils/config.js");
 
 	export default {
 		data() {
@@ -148,6 +149,7 @@
 				collectionCount: 0,
 				isAuthInfo: false,
 				loginResult: '',
+				picDomain: config.picDomain
 			};
 		},
 
@@ -240,6 +242,12 @@
 				});
 			},
 			toMyCouponPage: function() {
+				uni.showToast({
+					icon: "none",
+					title: '该功能未开源'
+				});
+			},
+			handleTips: function() {
 				uni.showToast({
 					icon: "none",
 					title: '该功能未开源'

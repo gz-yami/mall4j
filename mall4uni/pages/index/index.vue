@@ -43,7 +43,7 @@
     </view>
 
     <!-- 消息播放 -->
-    <view class="message-play" @tap="onNewsPage">
+    <view v-if="news && news.length" class="message-play" @tap="onNewsPage">
       <image src="/static/images/icon/horn.png" class="hornpng"></image>
       <swiper :vertical="true" :autoplay="true" :circular="true" duration="1000" class="swiper-cont">
         <block v-for="(item, index) in news" :key="index">
@@ -58,7 +58,7 @@
 	<view class="updata" v-if="updata">
 		<block v-for="(item, index) in taglist" :key="index">
 		  <!-- 每日上新 -->
-		  <view class="up-to-date" v-if="item.style==2">
+		  <view class="up-to-date" v-if="item.style==2 && item.prods && item.prods.length">
 		    <view class="title">
 		      <text>{{item.title}}</text>
 		      <view class="more-prod-cont" @tap="toClassifyPage" data-sts="0" :data-id="item.id" :data-title="item.title">
@@ -87,7 +87,7 @@
 		  </view>
 		
 		  <!-- 商城热卖 -->
-		  <view class="hot-sale" v-if="item.style==1">
+		  <view class="hot-sale" v-if="item.style==1 && item.prods && item.prods.length">
 		    <view class="title">
 		      <text>{{item.title}}</text>
 		      <view class="more-prod-cont" @tap="toClassifyPage" data-sts="0" :data-id="item.id" :data-title="item.title">
@@ -123,7 +123,7 @@
 		  </view>
 		
 		  <!-- 更多宝贝 -->
-		  <view class="more-prod" v-if="item.style==0">
+		  <view class="more-prod" v-if="item.style==0 && item.prods && item.prods.length">
 		    <view class="title">{{item.title}}</view>
 		    <view class="prod-show">
 		      <block v-for="(prod, index2) in item.prods" :key="index2">
@@ -334,12 +334,12 @@ export default {
           this.setData({
             taglist: res
           });
-
           for (var i = 0; i < res.length; i++) {
 						this.updata = false
 						this.updata = true
             this.getTagProd(res[i].id, i);
           }
+          console.log('taglist:', this.taglist)
         }
       };
       http.request(params);
