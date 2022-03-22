@@ -17,6 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 @Configuration
 @EnableResourceServer
@@ -29,15 +30,12 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http
                 .addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                // Since we want the protected resources to be accessible in the UI as well we need
-                // session creation to be allowed (it's disabled by default in 2.0.6)
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .and()
-                .requestMatchers().anyRequest()
-                .and()
-                .anonymous()
-                .and()
-                .authorizeRequests()
+                .csrf().disable().cors()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                .and().requestMatchers().anyRequest()
+                .and().anonymous()
+                .and().authorizeRequests()
                 //配置/p访问控制，必须认证过后才可以访问
                 .antMatchers("/p/**").authenticated();
     }
