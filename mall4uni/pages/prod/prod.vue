@@ -24,6 +24,9 @@
     <view class="sales-p">{{brief}}</view>
     <view class="prod-price">
       <text v-if="defaultSku && defaultSku.price" class="price">￥<text class="price-num">{{wxs.parsePrice(defaultSku.price)[0]}}</text>.{{wxs.parsePrice(defaultSku.price)[1]}}</text>
+      <text v-if="defaultSku && defaultSku.oriPrice" class="ori-price">
+        ￥{{wxs.parsePrice(defaultSku.oriPrice)[0]}}.{{wxs.parsePrice(defaultSku.oriPrice)[1]}}
+      </text>
       <text class="sales"></text>
     </view>
     <!-- <button class="share-icon" open-type="share">
@@ -111,7 +114,7 @@
     <view class="btn cart" @tap="showSku">
       <text>加入购物车</text>
     </view>
-    <view class="btn buy" @tap="buyNow">
+    <view class="btn buy" @tap="showSku">
       <text>立即购买</text>
     </view>
   </view>

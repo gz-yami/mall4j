@@ -6,6 +6,7 @@ page {
 
 .order-detail {
   margin-bottom: 120rpx;
+  padding-bottom: 160rpx;
 }
 
 .order-detail .delivery-addr {

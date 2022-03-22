@@ -88,12 +88,18 @@ swiper image {
   color: #eb2444;
   font-size: 24rpx;
   font-weight: 600;
-  margin-right: 50rpx;
+  margin-right: 30rpx;
 }
 
 .price-num {
   font-size: 46rpx;
   font-weight: 400;
+}
+
+.ori-price {
+  font-size: 25rpx;
+  color: #999;
+  text-decoration: line-through;
 }
 
 .sales {
