@@ -26,6 +26,7 @@
 
 <script>
   import { clearLoginInfo } from '@/utils'
+  import { Debounce } from '@/utils/debounce'
   export default {
     data () {
       var validateConfirmPassword = (rule, value, callback) => {
@@ -74,7 +75,7 @@
         })
       },
       // 表单提交
-      dataFormSubmit () {
+      dataFormSubmit: Debounce(function () {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
@@ -101,7 +102,7 @@
             })
           }
         })
-      }
+      })
     }
   }
 </script>

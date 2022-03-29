@@ -17,7 +17,7 @@
   export default {
     data () {
       return {
-        resourcesUrl: window.SITE_CONFIG.resourcesUrl
+        resourcesUrl: process.env.VUE_APP_RESOURCES_URL
       }
     },
     props: {
@@ -41,7 +41,6 @@
         if (!isLt2M) {
           this.$message.error('上传图片大小不能超过 2MB!')
         }
-        return isLt2M
         return isLt2M && isJPG
       }
     }

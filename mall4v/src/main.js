@@ -11,7 +11,7 @@ import '@smallwei/avue/lib/index.css'
 import '@/assets/scss/index.scss'
 import httpRequest from '@/utils/httpRequest' // api: https://github.com/axios/axios
 import { isAuth } from '@/utils'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
 
 Vue.use(Avue)
 Vue.use(VueCookie)
@@ -23,13 +23,12 @@ Vue.prototype.$http = httpRequest // ajax请求方法
 Vue.prototype.isAuth = isAuth     // 权限方法
 
 // 保存整站vuex本地储存初始状态
-window.SITE_CONFIG['storeState'] = cloneDeep(store.state)
+// process.env.VUE_APP_RESOURCES_URL['storeState'] = cloneDeep(store.state)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  template: '<App/>',
-  components: { App }
+  render: h => h(App)
 })

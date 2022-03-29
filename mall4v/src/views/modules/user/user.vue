@@ -7,13 +7,13 @@
                @search-change="searchChange"
                @selection-change="selectionChange"
                @on-load="getDataList">
-      <template slot="menuLeft">
+<!--      <template slot="menuLeft">-->
 <!--        <el-button type="danger"-->
 <!--                   @click="deleteHandle()"-->
 <!--                   v-if="isAuth('admin:user:delete')"-->
 <!--                   size="small"-->
 <!--                   :disabled="dataListSelections.length <= 0">批量删除</el-button>-->
-      </template>
+<!--      </template>-->
 
       <template slot-scope="scope"
                 slot="status">

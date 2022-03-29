@@ -17,7 +17,7 @@
   export default {
     data () {
       return {
-        resourcesUrl: window.SITE_CONFIG.resourcesUrl
+        resourcesUrl: process.env.VUE_APP_RESOURCES_URL
       }
     },
     props: {

@@ -17,7 +17,7 @@ export default new Vuex.Store({
     // 重置vuex本地储存状态
     resetStore (state) {
       Object.keys(state).forEach((key) => {
-        state[key] = cloneDeep(window.SITE_CONFIG['storeState'][key])
+        state[key] = cloneDeep(process.env.VUE_APP_RESOURCES_URL['storeState'][key])
       })
     }
   },

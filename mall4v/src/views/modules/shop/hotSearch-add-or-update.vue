@@ -1,6 +1,6 @@
 <template>
   <div class="mod-hotSearch-add-or-update">
-    <el-dialog :title="!dataForm.id ? '新增' : '修改'"
+    <el-dialog :title="!dataForm.hotSearchId ? '新增' : '修改'"
                :close-on-click-modal="false"
                :visible.sync="visible">
       <el-form :model="dataForm"
@@ -75,7 +75,7 @@ export default {
       },
       addProdVisible: false,
       visible: false,
-      resourcesUrl: window.SITE_CONFIG.resourcesUrl,
+      resourcesUrl: process.env.VUE_APP_RESOURCES_URL,
       dataRule: {
         title: [
           { required: true, message: '标题不能为空', trigger: 'blur' },

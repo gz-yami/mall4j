@@ -53,7 +53,7 @@ export default {
         currentPage: 1, // 当前页数
         pageSize: 10 // 每页显示多少条
       },
-      resourcesUrl: window.SITE_CONFIG.resourcesUrl,
+      resourcesUrl: process.env.VUE_APP_RESOURCES_URL,
       dataRule: {
         nickName: [
           { required: true, message: '用户名不能为空', trigger: 'blur' }

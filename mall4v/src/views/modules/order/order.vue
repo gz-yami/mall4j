@@ -206,7 +206,7 @@ export default {
         value: 6,
         label: '失败'
       }],
-      resourcesUrl: window.SITE_CONFIG.resourcesUrl,
+      resourcesUrl: process.env.VUE_APP_RESOURCES_URL,
       dataList: [],
       page: {
         total: 0, // 总页数
@@ -488,6 +488,7 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
   .empty-tips {
     display: block;
     width: 100%;

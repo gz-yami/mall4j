@@ -80,7 +80,7 @@ export default {
       dataList: [],
       dataListLoading: false,
       addOrUpdateVisible: false,
-      resourcesUrl: window.SITE_CONFIG.resourcesUrl
+      resourcesUrl: process.env.VUE_APP_RESOURCES_URL
     }
   },
   components: {

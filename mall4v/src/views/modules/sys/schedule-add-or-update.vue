@@ -28,85 +28,85 @@
 </template>
 
 <script>
-import { Debounce } from '@/utils/debounce'
-export default {
-  data () {
-    return {
-      visible: false,
-      dataForm: {
-        id: 0,
-        beanName: '',
-        methodName: '',
-        params: '',
-        cronExpression: '',
-        remark: '',
-        status: 0
-      },
-      dataRule: {
-        beanName: [
+  import { Debounce } from '@/utils/debounce'
+  export default {
+    data () {
+      return {
+        visible: false,
+        dataForm: {
+          id: 0,
+          beanName: '',
+          methodName: '',
+          params: '',
+          cronExpression: '',
+          remark: '',
+          status: 0
+        },
+        dataRule: {
+          beanName: [
             { required: true, message: 'beanName不能为空', trigger: 'blur' }
-        ],
-        methodName: [
+          ],
+          methodName: [
             { required: true, message: '方法名称不能为空', trigger: 'blur' }
-        ],
-        cronExpression: [
+          ],
+          cronExpression: [
             { required: true, message: 'cron表达式不能为空', trigger: 'blur' }
-        ]
+          ]
+        }
       }
-    }
-  },
-  methods: {
-    init (id) {
-      this.dataForm.id = id || 0
-      this.visible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].resetFields()
-        if (this.dataForm.id) {
-          this.$http({
-            url: this.$http.adornUrl(`/sys/schedule/info/${this.dataForm.id}`),
-            method: 'get',
-            params: this.$http.adornParams()
-          }).then(({data}) => {
-            this.dataForm.beanName = data.beanName
-            this.dataForm.methodName = data.methodName
-            this.dataForm.params = data.params
-            this.dataForm.cronExpression = data.cronExpression
-            this.dataForm.remark = data.remark
-            this.dataForm.status = data.status
-          })
-        }
-      })
     },
+    methods: {
+      init (id) {
+        this.dataForm.id = id || 0
+        this.visible = true
+        this.$nextTick(() => {
+          this.$refs['dataForm'].resetFields()
+          if (this.dataForm.id) {
+            this.$http({
+              url: this.$http.adornUrl(`/sys/schedule/info/${this.dataForm.id}`),
+              method: 'get',
+              params: this.$http.adornParams()
+            }).then(({data}) => {
+              this.dataForm.beanName = data.beanName
+              this.dataForm.methodName = data.methodName
+              this.dataForm.params = data.params
+              this.dataForm.cronExpression = data.cronExpression
+              this.dataForm.remark = data.remark
+              this.dataForm.status = data.status
+            })
+          }
+        })
+      },
       // 表单提交
-    dataFormSubmit: Debounce(function () {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          this.$http({
-            url: this.$http.adornUrl(`/sys/schedule`),
-            method: this.dataForm.id ? 'put' : 'post',
-            data: this.$http.adornData({
-              'jobId': this.dataForm.id || undefined,
-              'beanName': this.dataForm.beanName,
-              'methodName': this.dataForm.methodName,
-              'params': this.dataForm.params,
-              'cronExpression': this.dataForm.cronExpression,
-              'remark': this.dataForm.remark,
-              'status': !this.dataForm.id ? undefined : this.dataForm.status
+      dataFormSubmit: Debounce(function () {
+        this.$refs['dataForm'].validate((valid) => {
+          if (valid) {
+            this.$http({
+              url: this.$http.adornUrl(`/sys/schedule`),
+              method: this.dataForm.id ? 'put' : 'post',
+              data: this.$http.adornData({
+                'jobId': this.dataForm.id || undefined,
+                'beanName': this.dataForm.beanName,
+                'methodName': this.dataForm.methodName,
+                'params': this.dataForm.params,
+                'cronExpression': this.dataForm.cronExpression,
+                'remark': this.dataForm.remark,
+                'status': !this.dataForm.id ? undefined : this.dataForm.status
+              })
+            }).then(({data}) => {
+              this.$message({
+                message: '操作成功',
+                type: 'success',
+                duration: 1500,
+                onClose: () => {
+                  this.visible = false
+                  this.$emit('refreshDataList')
+                }
+              })
             })
-          }).then(({data}) => {
-            this.$message({
-              message: '操作成功',
-              type: 'success',
-              duration: 1500,
-              onClose: () => {
-                this.visible = false
-                this.$emit('refreshDataList')
-              }
-            })
-          })
-        }
+          }
+        })
       })
-    })
+    }
   }
-}
 </script>

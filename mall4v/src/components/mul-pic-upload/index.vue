@@ -23,7 +23,7 @@
       return {
         dialogImageUrl: '',
         dialogVisible: false,
-        resourcesUrl: window.SITE_CONFIG.resourcesUrl
+        resourcesUrl: process.env.VUE_APP_RESOURCES_URL
       }
     },
     props: {
@@ -61,10 +61,8 @@
         }
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!')
           this.$message.error('上传图片大小不能超过 2MB!')
         }
-        // return isLt2M
         return isLt2M && isJPG
       },
       handleRemove (file, fileList) {

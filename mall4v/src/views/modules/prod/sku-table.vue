@@ -32,7 +32,7 @@
           prop="price"
           label="销售价">
           <template slot-scope="scope">
-            <el-input-number
+             <el-input-number
               size="small"
               v-model="scope.row.price"
               controls-position="right"
@@ -40,7 +40,7 @@
               :max="1000000000"
               :min="0.01"
               :disabled="!scope.row.status">
-            </el-input-number>
+          </el-input-number>
           </template>
         </el-table-column>
         <el-table-column
