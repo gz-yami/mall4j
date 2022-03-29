@@ -39,7 +39,7 @@
               <text class='small-num'>.{{wxs.parsePrice(item.price)[1]}}</text></text>
               <view class='btn-box'>
                 <text class='btn'>申请售后</text>
-                <text class='btn'>加购物车</text>
+                <text class='btn' data-index='{{index}}' catchtap='addToCart'>加购物车</text>
               </view>
             </view>
           </view>
