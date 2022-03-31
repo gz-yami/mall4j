@@ -27,6 +27,7 @@
 <script>
   import { clearLoginInfo } from '@/utils'
   import { Debounce } from '@/utils/debounce'
+  import { encrypt } from '@/utils/crypto'
   export default {
     data () {
       var validateConfirmPassword = (rule, value, callback) => {
@@ -82,8 +83,8 @@
               url: this.$http.adornUrl('/sys/user/password'),
               method: 'post',
               data: this.$http.adornData({
-                'password': this.dataForm.password,
-                'newPassword': this.dataForm.newPassword
+                'password': encrypt(this.dataForm.password),
+                'newPassword': encrypt(this.dataForm.newPassword)
               })
             }).then(({data}) => {
               this.$message({
