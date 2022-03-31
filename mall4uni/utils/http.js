@@ -19,9 +19,9 @@ function request(params, isGetTonken) {
 		params.data = params.data + '';
 	}
 	var needToken = false
-	if (params.url.indexOf("/p/") == 0 || params.url.indexOf("/user/registerOrBindUser") == 0) {
-		needToken = true
-	}
+	// if (params.url.indexOf("/p/") == 0 || params.url.indexOf("/user/registerOrBindUser") == 0) {
+	// 	needToken = true
+	// }
 
   wx.request({
     // url: config.domain + params.url,
@@ -31,7 +31,7 @@ function request(params, isGetTonken) {
     header: {
       // 'content-type': params.method == "GET" ? 'application/x-www-form-urlencoded' : 'application/json;charset=utf-8',
       // 'Authorization': params.login ? undefined : uni.getStorageSync('token')
-			'Authorization': !needToken ? undefined : uni.getStorageSync('token') || uni.getStorageSync('tempToken'),
+			'Authorization': uni.getStorageSync('token') ,
     },
     method: params.method == undefined ? "POST" : params.method,
     dataType: 'json',
@@ -247,24 +247,24 @@ var getToken = function (fn) {
  * @param {Object} fn		登录成功后的回调
  */
 function loginSuccess (result, fn) {
-	if (!result.enabled) {
-		uni.showModal({
-			showCancel: false,
-			title: "提示",
-			content: "您已被禁用，不能购买，请联系客服",
-			cancelText: "取消",
-			confirmText: "确定",
-			success: function (res) {
-        if (res.confirm) {
-					wx.switchTab({
-						url: '/pages/index/index'
-					});
-        }
-			}
-		})
-		wx.setStorageSync('token', '');
-		return
-	}
+	// if (!result.enabled) {
+	// 	uni.showModal({
+	// 		showCancel: false,
+	// 		title: "提示",
+	// 		content: "您已被禁用，不能购买，请联系客服",
+	// 		cancelText: "取消",
+	// 		confirmText: "确定",
+	// 		success: function (res) {
+  //       if (res.confirm) {
+	// 				wx.switchTab({
+	// 					url: '/pages/index/index'
+	// 				});
+  //       }
+	// 		}
+	// 	})
+	// 	wx.setStorageSync('token', '');
+	// 	return
+	// }
 
 	// 保存登陆信息
 	wx.setStorageSync('loginResult', result)
@@ -273,21 +273,53 @@ function loginSuccess (result, fn) {
 	// 没有获取到用户昵称，说明服务器没有保存用户的昵称，也就是用户授权的信息并没有传到服务器
 	// if (!result.pic) {
 	// 	updateUserInfo();
-	// }
+	// }  
+	const expiresTimeStamp = result.expiresIn * 1000 / 2 + new Date().getTime()
+  // 缓存token的过期时间
+  uni.setStorageSync('expiresTimeStamp', expiresTimeStamp)
 
-	wx.setStorageSync('token', 'bearer' + result.access_token); //把token存入缓存，请求接口数据时要用
+	wx.setStorageSync('token', result.accessToken); //把token存入缓存，请求接口数据时要用
 
-	if (result.userId) {
-		wx.setStorageSync('hadBindUser', true);
-		getCartCount()
-	} else {
-		wx.setStorageSync('hadBindUser', false);
-	}
-	// var globalData = getApp().globalData;
-	// globalData.isLanding = false;
-	// while (globalData.requestQueue.length) {
-	// 	request(globalData.requestQueue.pop());
-	// }
+  // const routeUrlAfterLogin = uni.getStorageSync('routeUrlAfterLogin')
+  // const pages = getCurrentPages()
+  // if (pages.length === 1) {
+  //   uni.reLaunch({
+  //     url: routeUrlAfterLogin
+  //   })
+  //   uni.removeStorageSync('routeUrlAfterLogin')
+  //   return
+  // }
+  // const prevPage = pages[pages.length - 2]
+  // if (!prevPage) {
+	// 	wx.switchTab({
+	// 		url: '/pages/index/index'
+	// 	});
+  //   return
+  // }
+  // // 判断上一页面是否为tabbar页面 (首页和分类页无需登录接口)
+  // const isTabbar = prevPage.route === 'pages/user/user' || prevPage.route === 'pages/basket/basket'
+  // if (isTabbar) {
+	// 	wx.switchTab({
+	// 		url: '/' + prevPage.route
+	// 	});
+  // } else {
+  //   // 非tabbar页面
+  //   let backDelata = 0
+  //   pages.forEach((page, index) => {
+  //     if (page.$page.fullPath === routeUrlAfterLogin) {
+  //       backDelata = pages.length - index - 1
+  //     }
+  //   })
+  //   if (backDelata) {
+  //     uni.navigateBack({
+  //       delta: backDelata
+  //     })
+  //   } else {
+	// 		wx.switchTab({
+	// 			url: '/pages/index/index'
+	// 		});
+  //   }
+  // }
 
 	if (fn) {
 		fn()

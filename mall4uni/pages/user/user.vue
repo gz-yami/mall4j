@@ -323,8 +323,8 @@
 			logout: function() {
 				// 请求退出登陆接口
 				http.request({
-					url: '/p/user/logout',
-					method: 'GET',
+					url: '/logOut',
+					method: 'post',
 					callBack: res => {
 						util.removeTabBadge()
 
@@ -336,7 +336,7 @@
 							title: "退出成功",
 							icon: "none"
 						})
-						
+
 						this.setData({
 							orderAmount: ''
 						});

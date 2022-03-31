@@ -8,22 +8,22 @@
 		onShow: function() {
 			// 判断浏览器环境
 			var ua = navigator.userAgent.toLowerCase();
-			if (ua.search(/MicroMessenger/i) > -1 && !uni.getStorageSync('appType')) {
-				// 微信环境
-				uni.setStorageSync('appType', 2)
-				http.mpAuthLogin()
-			}
-			const state = util.getUrlKey('state')
-			const code = util.getUrlKey('code')
-			if ((state == 'needCode' || state == 'unNeedCode') && code) {
-				let path = window.location.href
-				if (path.indexOf('code=') > 0 && path.indexOf('&state=unNeedCode') > -1) {
-					http.mpLogin(null, code)
-					path = path.substring(0, path.indexOf('code=') - 1)
-					history.replaceState({}, '', path)
-				}
+			// if (ua.search(/MicroMessenger/i) > -1 && !uni.getStorageSync('appType')) {
+			// 	// 微信环境
+			// 	uni.setStorageSync('appType', 2)
+			// 	http.mpAuthLogin()
+			// }
+			// const state = util.getUrlKey('state')
+			// const code = util.getUrlKey('code')
+			// if ((state == 'needCode' || state == 'unNeedCode') && code) {
+			// 	let path = window.location.href
+			// 	if (path.indexOf('code=') > 0 && path.indexOf('&state=unNeedCode') > -1) {
+			// 		http.mpLogin(null, code)
+			// 		path = path.substring(0, path.indexOf('code=') - 1)
+			// 		history.replaceState({}, '', path)
+			// 	}
 				http.getCartCount()
-			}
+			// }
 		},
 		globalData: {
 			// 定义全局请求队列

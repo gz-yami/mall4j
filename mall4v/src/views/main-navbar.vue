@@ -79,7 +79,7 @@
           type: 'warning'
         }).then(() => {
           this.$http({
-            url: this.$http.adornUrl('/sys/logout'),
+            url: this.$http.adornUrl('/logOut'),
             method: 'post',
             data: this.$http.adornData()
           }).then(({data}) => {

@@ -41,6 +41,7 @@
 <script>
   import { isEmail, isMobile } from '@/utils/validate'
   import { Debounce } from '@/utils/debounce'
+  import { encrypt } from '@/utils/crypto'
   export default {
     data () {
       var validatePassword = (rule, value, callback) => {
@@ -149,7 +150,7 @@
               data: this.$http.adornData({
                 'userId': this.dataForm.id || undefined,
                 'username': this.dataForm.userName,
-                'password': this.dataForm.password,
+                'password': encrypt(this.dataForm.password),
                 'email': this.dataForm.email,
                 'mobile': this.dataForm.mobile,
                 'status': this.dataForm.status,

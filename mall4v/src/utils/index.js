@@ -20,7 +20,7 @@ export function isAuth (key) {
   if (authorities.length) {
     for (const i in authorities) {
       const element = authorities[i]
-      if (element.authority === key) {
+      if (element === key) {
         return true
       }
     }

@@ -39,6 +39,7 @@
 	// pages/register/register.js
 	var http = require("../../utils/http");
 	var util = require("../../utils/util.js");
+	import { encrypt } from '../../utils/crypto.js'
 
 	export default {
 		data() {
@@ -143,11 +144,10 @@
 						data: {
 							// appType: 1,
 							// 应用类型 1小程序 2微信公众号 3 PC 4 H5
-							userMail: this.principal,
-							password: this.credentials,
+							userName: this.principal,
+							passWord: encrypt(this.credentials),
 						},
 						callBack: res => {
-							console.log("1111",res)
 							uni.hideLoading();
 							uni.showToast({
 								title: "注册成功，请登录",
