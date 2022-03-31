@@ -23,7 +23,7 @@ import com.yami.shop.bean.order.SubmitOrderOrder;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.Arith;
 import com.yami.shop.dao.*;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.UserAddrOrderService;

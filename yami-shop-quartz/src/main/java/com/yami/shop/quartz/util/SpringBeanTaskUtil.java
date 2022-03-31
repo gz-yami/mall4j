@@ -39,7 +39,7 @@ public class SpringBeanTaskUtil {
 				method.invoke(target);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("执行定时任务失败：", e);
 			throw new RuntimeException("执行定时任务失败", e);
 		}
 	}

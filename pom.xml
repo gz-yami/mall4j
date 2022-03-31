@@ -16,7 +16,6 @@
         <module>yami-shop-service</module>
         <module>yami-shop-security</module>
         <module>yami-shop-quartz</module>
-        <module>yami-shop-mp</module>
     </modules>
 
     <properties>
@@ -24,25 +23,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
-        <spring-boot.version>2.3.6.RELEASE</spring-boot.version>
-        <security.oauth.auto.version>2.3.4.RELEASE</security.oauth.auto.version>
+        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
         <java.version>1.8</java.version>
         <guava.version>28.2-jre</guava.version>
-        <hutool.version>4.5.0</hutool.version>
+        <hutool.version>5.7.15</hutool.version>
         <jsoup.version>1.11.3</jsoup.version>
         <poi.version>3.17</poi.version>
         <qiniu.version>7.2.18</qiniu.version>
         <weixin.version>3.5.0</weixin.version>
         <orika.version>1.5.4</orika.version>
         <swagger2.version>2.9.2</swagger2.version>
-        <swagger-bootstrap.version>1.9.3</swagger-bootstrap.version>
+        <swagger-bootstrap.version>1.9.6</swagger-bootstrap.version>
         <emoji.version>4.0.0</emoji.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
-        <redisson.version>3.10.6</redisson.version>
-        <fst.version>2.57</fst.version>
-
+        <redisson.version>3.12.5</redisson.version>
+        <kryo.version>4.0.2</kryo.version>
+        <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
         <log4j.version>2.17.1</log4j.version>
     </properties>
 
@@ -54,11 +52,6 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security.oauth.boot</groupId>
-                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-                <version>${security.oauth.auto.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.binarywang</groupId>
@@ -138,9 +131,9 @@
             </dependency>
             <!-- 用于序列化和反序列化-->
             <dependency>
-                <groupId>de.ruedigermoeller</groupId>
-                <artifactId>fst</artifactId>
-                <version>${fst.version}</version>
+                <groupId>com.esotericsoftware</groupId>
+                <artifactId>kryo</artifactId>
+                <version>${kryo.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -156,6 +149,11 @@
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
                 <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

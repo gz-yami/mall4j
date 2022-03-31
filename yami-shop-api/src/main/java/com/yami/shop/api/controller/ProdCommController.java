@@ -12,14 +12,12 @@ package com.yami.shop.api.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.common.util.PageParam;
 import com.yami.shop.bean.app.dto.ProdCommDataDto;
 import com.yami.shop.bean.app.dto.ProdCommDto;
 import com.yami.shop.bean.app.param.ProdCommParam;
 import com.yami.shop.bean.model.ProdComm;
-import com.yami.shop.common.util.Json;
 import com.yami.shop.common.util.PageParam;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.ProdCommService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

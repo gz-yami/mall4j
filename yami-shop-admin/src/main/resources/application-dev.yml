@@ -19,6 +19,6 @@ spring:
       cache-null-values: true
   redis:
     redisson:
-      config: classpath:redisson.yml
+      config: classpath:redisson/redisson.yml
 logging:
-  config: classpath:logback-dev.xml
+  config: classpath:logback/logback-dev.xml

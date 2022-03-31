@@ -233,28 +233,6 @@ CREATE TABLE `qrtz_triggers` (
 
 /*Data for the table `qrtz_triggers` */
 
-/*Table structure for table `tz_app_connect` */
-
-DROP TABLE IF EXISTS `tz_app_connect`;
-
-CREATE TABLE `tz_app_connect` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `user_id` varchar(36) NOT NULL COMMENT '本系统userId',
-  `app_id` tinyint(2) DEFAULT NULL COMMENT '第三方系统id 1：微信小程序',
-  `nick_name` varchar(64) DEFAULT NULL COMMENT '第三方系统昵称',
-  `image_url` varchar(500) DEFAULT NULL COMMENT '第三方系统头像',
-  `biz_user_id` varchar(255) DEFAULT NULL COMMENT '第三方系统userid',
-  `biz_unionid` varchar(255) DEFAULT NULL COMMENT '第三方系统unionid',
-  PRIMARY KEY (`id`),
-  KEY `user_app_id` (`user_id`,`app_id`) COMMENT '用户id和appid联合索引'
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tz_app_connect` */
-
-insert  into `tz_app_connect`(`id`,`user_id`,`app_id`,`nick_name`,`image_url`,`biz_user_id`,`biz_unionid`) values
-(48,'51540df5255e4d22903b0f83921095ff',1,NULL,NULL,'o-lgc5CUDIn2nkk8512hKumBnjMI','o92Yz1cLnHuo70epfneTG8SaRY0c'),
-(49,'5f159317be5b4dc4bf3188f1a3da0369',1,NULL,NULL,'o-lgc5IHLX-RuR1aw5qwP9bpGDuQ','o92Yz1bmhLV8CKMwQkuPk5C8lFfg');
-
 /*Table structure for table `tz_area` */
 
 DROP TABLE IF EXISTS `tz_area`;

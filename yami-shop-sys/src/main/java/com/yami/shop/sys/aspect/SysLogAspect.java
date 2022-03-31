@@ -10,32 +10,21 @@
 
 package com.yami.shop.sys.aspect;
 
-import java.lang.reflect.Method;
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-
-
+import cn.hutool.core.date.SystemClock;
 import com.yami.shop.common.util.IPHelper;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.common.util.Json;
+import com.yami.shop.security.admin.util.SecurityUtils;
+import com.yami.shop.sys.model.SysLog;
+import com.yami.shop.sys.service.SysLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.yami.shop.sys.service.SysLogService;
-import com.yami.shop.sys.model.SysLog;
-import com.yami.shop.common.util.Json;
-
-import cn.hutool.core.date.SystemClock;
-import cn.hutool.core.util.StrUtil;
+import java.util.Date;
 
 /**
  * @author lgh

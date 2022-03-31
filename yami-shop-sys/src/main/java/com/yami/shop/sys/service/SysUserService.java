@@ -13,6 +13,8 @@ package com.yami.shop.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.shop.sys.model.SysUser;
 
+import java.util.List;
+
 
 /**
  * 系统用户
@@ -59,5 +61,11 @@ public interface SysUserService extends IService<SysUser> {
 	 * @return
 	 */
 	SysUser getSysUserById(Long userId);
+
+	/**
+	 * 查询用户的所有权限
+	 * @param userId  用户ID
+	 */
+	List<String> queryAllPerms(Long userId);
 
 }

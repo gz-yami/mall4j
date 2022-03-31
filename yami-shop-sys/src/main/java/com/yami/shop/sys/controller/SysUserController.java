@@ -11,41 +11,32 @@
 package com.yami.shop.sys.controller;
 
 
-import java.util.List;
-import java.util.Objects;
-
-import javax.validation.Valid;
-
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yami.shop.common.annotation.SysLog;
+import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
+import com.yami.shop.security.admin.util.SecurityUtils;
+import com.yami.shop.security.common.enums.SysTypeEnum;
+import com.yami.shop.security.common.manager.PasswordManager;
+import com.yami.shop.security.common.manager.TokenStore;
 import com.yami.shop.sys.constant.Constant;
-import com.yami.shop.security.util.SecurityUtils;
-
-
 import com.yami.shop.sys.dto.UpdatePasswordDto;
 import com.yami.shop.sys.model.SysUser;
+import com.yami.shop.sys.service.SysRoleService;
+import com.yami.shop.sys.service.SysUserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.yami.shop.sys.service.SysRoleService;
-import com.yami.shop.sys.service.SysUserService;
-import com.yami.shop.common.annotation.SysLog;
-import com.yami.shop.common.exception.YamiShopBindException;
-
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.StrUtil;
-import io.swagger.annotations.ApiOperation;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 系统用户
@@ -58,21 +49,22 @@ public class SysUserController {
 	private SysUserService sysUserService;
 	@Autowired
 	private SysRoleService sysRoleService;
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordManager passwordManager;
+	@Autowired
+	private TokenStore tokenStore;
+
 	/**
 	 * 所有用户列表
 	 */
 	@GetMapping("/page")
 	@PreAuthorize("@pms.hasPermission('sys:user:page')")
 	public ResponseEntity<IPage<SysUser>> page(String username,PageParam<SysUser> page){
-
 		IPage<SysUser> sysUserPage = sysUserService.page(page, new LambdaQueryWrapper<SysUser>()
 				.eq(SysUser::getShopId, SecurityUtils.getSysUser().getShopId())
 				.like(StrUtil.isNotBlank(username), SysUser::getUsername, username));
-
-
 		return ResponseEntity.ok(sysUserPage);
 	}
 
@@ -99,13 +91,15 @@ public class SysUserController {
             throw new YamiShopBindException("禁止修改admin的账号密码");
         }
 		SysUser dbUser = sysUserService.getSysUserById(userId);
-		if (!passwordEncoder.matches(param.getPassword(), dbUser.getPassword())) {
+		String password = passwordManager.decryptPassword(param.getPassword());
+		if (!passwordEncoder.matches(password, dbUser.getPassword())) {
 			return ResponseEntity.badRequest().body("原密码不正确");
 		}
 		//新密码
-		String newPassword = passwordEncoder.encode(param.getNewPassword());
+		String newPassword = passwordEncoder.encode(passwordManager.decryptPassword(param.getNewPassword()));
 //		更新密码
 		sysUserService.updatePasswordByUserId(userId, newPassword);
+		tokenStore.deleteAllToken(String.valueOf(SysTypeEnum.ADMIN.value()),String.valueOf(userId));
 		return ResponseEntity.ok().build();
 	}
 
@@ -140,7 +134,7 @@ public class SysUserController {
 			return ResponseEntity.badRequest().body("该用户已存在");
 		}
 		user.setShopId(SecurityUtils.getSysUser().getShopId());
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(passwordManager.decryptPassword(user.getPassword())));
 		sysUserService.saveUserAndUserRole(user);
 		return ResponseEntity.ok().build();
 	}
@@ -152,7 +146,7 @@ public class SysUserController {
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys:user:update')")
 	public ResponseEntity<String> update(@Valid @RequestBody SysUser user){
-		String password = user.getPassword();
+		String password = passwordManager.decryptPassword(user.getPassword());
 		SysUser dbUser = sysUserService.getSysUserById(user.getUserId());
 
 		if (!Objects.equals(dbUser.getShopId(), SecurityUtils.getSysUser().getShopId())) {
@@ -201,6 +195,4 @@ public class SysUserController {
 		sysUserService.deleteBatch(userIds,SecurityUtils.getSysUser().getShopId());
 		return ResponseEntity.ok().build();
 	}
-
-
 }

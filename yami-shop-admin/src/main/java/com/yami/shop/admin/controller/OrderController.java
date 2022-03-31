@@ -10,34 +10,10 @@
 
 package com.yami.shop.admin.controller;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-
-import com.yami.shop.bean.param.OrderParam;
-import com.yami.shop.common.exception.YamiShopBindException;
-import com.yami.shop.security.util.SecurityUtils;
-import com.yami.shop.service.*;
-import org.apache.poi.ss.usermodel.Sheet;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
-import com.yami.shop.common.util.PageParam;
+import cn.hutool.core.io.IORuntimeException;
+import cn.hutool.core.io.IoUtil;
+import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.ExcelWriter;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.base.Objects;
 import com.yami.shop.bean.enums.OrderStatus;
@@ -45,14 +21,31 @@ import com.yami.shop.bean.model.Order;
 import com.yami.shop.bean.model.OrderItem;
 import com.yami.shop.bean.model.UserAddrOrder;
 import com.yami.shop.bean.param.DeliveryOrderParam;
+import com.yami.shop.bean.param.OrderParam;
+import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.util.PageParam;
+import com.yami.shop.security.admin.util.SecurityUtils;
+import com.yami.shop.service.*;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.poi.excel.ExcelUtil;
-import cn.hutool.poi.excel.ExcelWriter;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author lgh on 2018/09/15.
  */
+@Slf4j
 @Controller
 @RequestMapping("/order/order")
 public class OrderController {
@@ -282,16 +275,9 @@ public class OrderController {
             writer.flush(servletOutputStream);
             servletOutputStream.flush();
         } catch (IORuntimeException | IOException e) {
-            e.printStackTrace();
+            log.error("写出Excel错误：", e);
         } finally {
-            writer.close();
-            try {
-                if (servletOutputStream != null) {
-                    servletOutputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            IoUtil.close(writer);
         }
     }
 }

@@ -12,10 +12,10 @@ package com.yami.shop.admin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.common.util.PageParam;
 import com.yami.shop.bean.model.Notice;
 import com.yami.shop.common.annotation.SysLog;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.common.util.PageParam;
+import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.NoticeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

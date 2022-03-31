@@ -10,33 +10,25 @@
 
 package com.yami.shop.api.listener;
 
-import com.google.common.collect.Lists;
-import com.yami.shop.bean.app.dto.*;
+import com.yami.shop.bean.app.dto.ShopCartItemDto;
+import com.yami.shop.bean.app.dto.ShopCartOrderDto;
 import com.yami.shop.bean.app.param.OrderParam;
 import com.yami.shop.bean.event.ConfirmOrderEvent;
-import com.yami.shop.bean.event.ShopCartEvent;
 import com.yami.shop.bean.model.Product;
 import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.model.UserAddr;
 import com.yami.shop.bean.order.ConfirmOrderOrder;
-import com.yami.shop.bean.order.ShopCartEventOrder;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.Arith;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.TransportManagerService;
 import com.yami.shop.service.UserAddrService;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 确认订单信息时的默认操作

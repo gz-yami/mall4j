@@ -21,6 +21,9 @@ public enum YamiHttpStatus {
     UNAUTHORIZED(401, "未授权"),
 
     COUPONCANNOTUSETOGETHER(601, "优惠券不能共用"),
+
+    SOCIAL_ACCOUNT_NOT_BIND(475, "social account not bind"),
+    ACCOUNT_NOT_REGISTER(476, "account not register"),
     ;
 
 

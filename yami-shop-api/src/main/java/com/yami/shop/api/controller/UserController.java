@@ -10,32 +10,18 @@
 
 package com.yami.shop.api.controller;
 
-import cn.hutool.core.util.StrUtil;
-import com.yami.shop.common.util.CacheManagerUtil;
-import com.yami.shop.security.enums.App;
-import com.yami.shop.security.service.YamiUser;
-import com.yami.shop.security.util.SecurityUtils;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import cn.hutool.extra.emoji.EmojiUtil;
 import com.yami.shop.bean.app.dto.UserDto;
 import com.yami.shop.bean.app.param.UserInfoParam;
 import com.yami.shop.bean.model.User;
+import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.UserService;
-
-import cn.hutool.extra.emoji.EmojiUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/p/user")
@@ -46,10 +32,6 @@ public class UserController {
 	private final UserService userService;
 
 	private final MapperFacade mapperFacade;
-
-	private final CacheManagerUtil cacheManagerUtil;
-
-	private final ConsumerTokenServices consumerTokenServices;
 	/**
 	 * 查看用户接口
 	 */
@@ -71,18 +53,6 @@ public class UserController {
 		user.setPic(userInfoParam.getAvatarUrl());
 		user.setNickName(EmojiUtil.toAlias(userInfoParam.getNickName()));
 		userService.updateById(user);
-		String cacheKey = App.MINI.value() + StrUtil.COLON + SecurityUtils.getUser().getBizUserId();
-		cacheManagerUtil.evictCache("yami_user", cacheKey);
-		return ResponseEntity.ok(null);
-	}
-
-	/**
-	 * 退出登录,并清除redis中的token
-	 **/
-	@GetMapping("/logout")
-	public Boolean removeToken(HttpServletRequest httpRequest){
-		String authorization = httpRequest.getHeader("authorization");
-		String token = authorization.replace("bearer", "");
-		return consumerTokenServices.revokeToken(token);
+		return ResponseEntity.ok().build();
 	}
 }

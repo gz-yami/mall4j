@@ -14,7 +14,7 @@ spring:
       connection-test-query: select 1
   redis:
     redisson:
-      config: classpath:redisson.yml
+      config: classpath:redisson/redisson.yml
 logging:
-  config: classpath:logback-dev.xml
+  config: classpath:logback/logback-dev.xml
 

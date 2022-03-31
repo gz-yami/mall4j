@@ -25,6 +25,8 @@ public class YamiShopBindException extends RuntimeException{
 	 */
 	private Integer httpStatusCode;
 
+	private Object object;
+
 
 	/**
 	 * @param httpStatus http状态码
@@ -48,6 +50,11 @@ public class YamiShopBindException extends RuntimeException{
 		this.httpStatusCode = HttpStatus.BAD_REQUEST.value();
 	}
 
+	public YamiShopBindException(String msg, Object object) {
+		super(msg);
+		this.httpStatusCode = HttpStatus.BAD_REQUEST.value();
+		this.object = object;
+	}
 
 	public Integer getHttpStatusCode() {
 		return httpStatusCode;

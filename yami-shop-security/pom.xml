@@ -11,16 +11,12 @@
 
 	<artifactId>yami-shop-security</artifactId>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.yami.shop</groupId>
-			<artifactId>yami-shop-service</artifactId>
-			<version>${yami.shop.version}</version>
-		</dependency>
-		<!--security、oauth2-->
-		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-		</dependency>
-	</dependencies>
+	<description>商城安全模块</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>yami-shop-security-api</module>
+		<module>yami-shop-security-admin</module>
+		<module>yami-shop-security-common</module>
+	</modules>
 </project>

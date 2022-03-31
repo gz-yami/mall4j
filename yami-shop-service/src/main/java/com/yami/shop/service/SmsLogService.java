@@ -10,11 +10,11 @@
 
 package com.yami.shop.service;
 
-import java.util.Map;
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.shop.bean.enums.SmsType;
 import com.yami.shop.bean.model.SmsLog;
+
+import java.util.Map;
 
 /**
  *
@@ -22,7 +22,5 @@ import com.yami.shop.bean.model.SmsLog;
  */
 public interface SmsLogService extends IService<SmsLog> {
 
-	public void sendSms(SmsType smsType,String userId,String mobile,Map<String,String> params);
-	
-	public boolean checkValidCode(String mobile, String code,SmsType smsType);
+	void sendSms(SmsType smsType, String userId, String mobile, Map<String, String> params);
 }

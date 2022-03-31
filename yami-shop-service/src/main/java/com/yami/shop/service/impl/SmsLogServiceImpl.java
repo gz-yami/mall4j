@@ -11,7 +11,6 @@
 package com.yami.shop.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.aliyuncs.DefaultAcsClient;
@@ -26,17 +25,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yami.shop.bean.enums.SmsType;
 import com.yami.shop.bean.model.SmsLog;
 import com.yami.shop.common.bean.ALiDaYu;
-import com.yami.shop.common.enums.YamiHttpStatus;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.Json;
-import com.yami.shop.common.util.RedisUtil;
 import com.yami.shop.dao.SmsLogMapper;
 import com.yami.shop.service.SmsLogService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -123,47 +117,6 @@ public class SmsLogServiceImpl extends ServiceImpl<SmsLogMapper, SmsLog> impleme
         }
 
 
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public boolean checkValidCode(String mobile, String code, SmsType smsType) {
-        long checkValidCodeNum = RedisUtil.incr(CHECK_VALID_CODE_NUM_PREFIX + mobile, 1);
-        if (checkValidCodeNum == 0) {
-            // 半小时后失效
-            RedisUtil.expire(CHECK_VALID_CODE_NUM_PREFIX, 1800);
-        }
-        if (checkValidCodeNum >= TIMES_CHECK_VALID_CODE_NUM) {
-            throw new YamiShopBindException("验证码校验过频繁，请稍后再试");
-        }
-        SmsLog sms = new SmsLog();
-        sms.setUserPhone(mobile);
-        sms.setMobileCode(code);
-        sms.setStatus(1);
-        sms.setType(smsType.value());
-
-        SmsLog dbSms = smsLogMapper.selectOne(new LambdaQueryWrapper<SmsLog>()
-                .eq(SmsLog::getUserPhone, mobile)
-                .eq(SmsLog::getMobileCode, code)
-                .eq(SmsLog::getStatus, 1)
-                .eq(SmsLog::getType, smsType.value()));
-        // 没有找到当前的验证码
-        if (dbSms == null) {
-            RedisUtil.incr(CHECK_VALID_CODE_NUM_PREFIX + mobile, 1);
-            return false;
-        }
-        RedisUtil.del(CHECK_VALID_CODE_NUM_PREFIX + mobile);
-        // 标记为失效状态
-        dbSms.setStatus(0);
-        smsLogMapper.updateById(dbSms);
-        // 验证码已过期
-        DateTime offsetMinute = DateUtil.offsetMinute(dbSms.getRecDate(), 5);
-        if (offsetMinute.getTime() < System.currentTimeMillis()) {
-            RedisUtil.incr(CHECK_VALID_CODE_NUM_PREFIX + mobile, 1);
-            return false;
-        }
-
-        return true;
     }
 
     private void sendSms(String mobile, String templateCode, Map<String, String> params) throws ClientException {

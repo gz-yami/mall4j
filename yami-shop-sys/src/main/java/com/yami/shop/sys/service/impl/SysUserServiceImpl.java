@@ -18,12 +18,11 @@ import com.yami.shop.sys.dao.SysUserRoleMapper;
 import com.yami.shop.sys.model.SysUser;
 import com.yami.shop.sys.service.SysUserService;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -87,5 +86,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	@Override
 	public SysUser getSysUserById(Long userId) {
 		return sysUserMapper.selectById(userId);
+	}
+
+	@Override
+	public List<String> queryAllPerms(Long userId) {
+		return sysUserMapper.queryAllPerms(userId);
 	}
 }

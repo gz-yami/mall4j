@@ -1,0 +1,28 @@
+# 单节点设置
+singleServerConfig:
+  address: redis://${REDIS_HOST}:${REDIS_PORT}
+  database: ${REDIS_DATABASE}
+  password: ${REDIS_PASSWORD}
+  idleConnectionTimeout: 10000
+  connectTimeout: 10000
+  timeout: 3000
+  retryAttempts: 3
+  retryInterval: 1500
+  clientName: null
+  # 发布和订阅连接的最小空闲连接数 默认1
+  subscriptionConnectionMinimumIdleSize: 1
+  # 发布和订阅连接池大小 默认50
+  subscriptionConnectionPoolSize: 1
+  # 单个连接最大订阅数量 默认5
+  subscriptionsPerConnection: 1
+  # 最小空闲连接数 默认32，现在暂时不需要那么多的线程
+  connectionMinimumIdleSize: 2
+  # connectionPoolSize 默认64，现在暂时不需要那么多的线程
+  connectionPoolSize: 4
+# 这个线程池数量被所有RTopic对象监听器，RRemoteService调用者和RExecutorService任务共同共享。
+threads: 0
+# 这个线程池数量是在一个Redisson实例内，被其创建的所有分布式数据类型和服务，以及底层客户端所一同共享的线程池里保存的线程数量。
+nettyThreads: 0
+codec:
+  class: org.redisson.codec.KryoCodec
+transportMode: NIO

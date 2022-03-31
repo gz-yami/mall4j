@@ -25,7 +25,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 	 * 查询用户的所有权限
 	 * @param userId  用户ID
 	 */
-	List<String> queryAllPerms(Long userId);
+	List<String> queryAllPerms(@Param("userId") Long userId);
 	
 	/**
 	 * 根据用户id 批量删除用户
@@ -38,6 +38,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 	 * @param username
 	 * @return
 	 */
-	SysUser selectByUsername(String username);
+	SysUser selectByUsername(@Param("username") String username);
 
 }

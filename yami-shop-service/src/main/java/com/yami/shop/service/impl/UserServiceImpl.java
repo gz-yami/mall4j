@@ -46,23 +46,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userMapper.selectById(userId);
     }
 
-    @Override
-    public Boolean insertUser(UserRegisterParam uParam) {
-        User mail = userMapper.getUserByUserMail(uParam.getUserMail());
-        if (mail != null) {
-            throw new YamiShopBindException("账号已存在");
-        }
-        Date now = new Date();
-        User user = new User();
-        user.setUserId(IdUtil.simpleUUID());
-        user.setModifyTime(now);
-        user.setUserRegtime(now);
-        user.setStatus(1);
-        user.setNickName(uParam.getUserMail());
-        user.setUserMail(uParam.getUserMail());
-        user.setLoginPassword(uParam.getPassword());
-        return userMapper.insert(user) == 1;
-    }
     /**
      * 看看有没有校验验证码成功的标识
      * @param userRegisterParam
