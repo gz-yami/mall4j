@@ -20,12 +20,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yami.shop</groupId>
-			<artifactId>yami-shop-security</artifactId>
-			<version>${yami.shop.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yami.shop</groupId>
-			<artifactId>yami-shop-mp</artifactId>
+			<artifactId>yami-shop-security-api</artifactId>
 			<version>${yami.shop.version}</version>
 		</dependency>
 	</dependencies>

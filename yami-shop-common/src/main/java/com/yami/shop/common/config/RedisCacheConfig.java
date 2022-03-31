@@ -10,11 +10,7 @@
 
 package com.yami.shop.common.config;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.yami.shop.common.serializer.redis.FstRedisSerializer;
+import com.yami.shop.common.serializer.redis.KryoRedisSerializer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +20,13 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.*;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * redis 缓存配置，仅当配置文件中spring.cache.type = redis时生效
@@ -57,14 +59,11 @@ public class RedisCacheConfig  {
     }
 
     private RedisCacheConfiguration getRedisCacheConfigurationWithTtl(Integer seconds) {
-
-        FstRedisSerializer kryoRedisSerializer = new FstRedisSerializer();
-
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
         redisCacheConfiguration = redisCacheConfiguration.serializeValuesWith(
                 RedisSerializationContext
                         .SerializationPair
-                        .fromSerializer(kryoRedisSerializer)
+                        .fromSerializer(new KryoRedisSerializer<>())
         ).entryTtl(Duration.ofSeconds(seconds));
 
         return redisCacheConfiguration;
@@ -72,13 +71,23 @@ public class RedisCacheConfig  {
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        KryoRedisSerializer kryoRedisSerializer = new KryoRedisSerializer();
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new FstRedisSerializer());
-        redisTemplate.setHashValueSerializer(new FstRedisSerializer());
+        redisTemplate.setValueSerializer(kryoRedisSerializer);
+        redisTemplate.setHashValueSerializer(kryoRedisSerializer);
+        redisTemplate.setEnableTransactionSupport(false);
+
         redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+
+    @Bean
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory){
+        StringRedisTemplate redisTemplate = new StringRedisTemplate(redisConnectionFactory);
+        redisTemplate.setEnableTransactionSupport(false);
         return redisTemplate;
     }
 

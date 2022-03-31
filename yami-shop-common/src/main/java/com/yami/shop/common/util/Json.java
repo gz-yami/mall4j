@@ -11,23 +11,20 @@
 package com.yami.shop.common.util;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonGenerator.Feature;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.*;
-
+@Slf4j
 public class Json {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
@@ -80,7 +77,7 @@ public class Json {
 		try {
 			return objectMapper.writeValueAsString(object);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			log.error("对象转json错误：", e);
 		}
 		return null;
 	}
@@ -96,7 +93,7 @@ public class Json {
 		try {
 			result = objectMapper.readValue(json, clazz);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("对象转json错误：", e);
 		}
 		return result;
 	}
@@ -117,7 +114,7 @@ public class Json {
 		try {
 			result = objectMapper.readValue(json, clazz);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Json转换错误：", e);
 		}
 		if (result == null) {
 			return Collections.emptyList();
@@ -136,18 +133,8 @@ public class Json {
 		try {
 			jsonNode = objectMapper.readTree(jsonStr);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Json转换错误：", e);
 		}
 		return jsonNode;
 	}
-
-//	public static void main(String[] args){
-//		String arr = "[1.01,1.03,1.23]";
-//
-//		List<Double> doubles = parseArray(arr, Double[].class);
-//		for (Double aDouble : doubles) {
-//			System.out.println(aDouble);
-//		}
-//
-//	}
 }

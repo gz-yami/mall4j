@@ -12,24 +12,31 @@ package com.yami.shop.api.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ArrayUtil;
 import com.google.common.collect.Lists;
 import com.yami.shop.bean.app.dto.*;
 import com.yami.shop.bean.app.param.ChangeShopCartParam;
 import com.yami.shop.bean.app.param.ShopCartParam;
 import com.yami.shop.bean.event.ShopCartEvent;
-import com.yami.shop.bean.model.*;
+import com.yami.shop.bean.model.Basket;
+import com.yami.shop.bean.model.Product;
+import com.yami.shop.bean.model.Sku;
 import com.yami.shop.common.util.Arith;
-import com.yami.shop.security.util.SecurityUtils;
-import com.yami.shop.service.*;
-import io.swagger.annotations.*;
+import com.yami.shop.security.api.util.SecurityUtils;
+import com.yami.shop.service.BasketService;
+import com.yami.shop.service.ProductService;
+import com.yami.shop.service.SkuService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController

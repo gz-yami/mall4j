@@ -10,34 +10,21 @@
 
 package com.yami.shop.admin.controller;
 
-import javax.validation.Valid;
-import java.util.Date;
-import java.util.List;
-
-
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.yami.shop.security.util.SecurityUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yami.shop.bean.model.HotSearch;
+import com.yami.shop.common.util.PageParam;
+import com.yami.shop.security.admin.util.SecurityUtils;
+import com.yami.shop.service.HotSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.yami.shop.common.util.PageParam;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.web.bind.annotation.*;
 
-
-
-
-
-import com.yami.shop.service.HotSearchService;
-import com.yami.shop.bean.model.HotSearch;
+import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
 
 /**
  *

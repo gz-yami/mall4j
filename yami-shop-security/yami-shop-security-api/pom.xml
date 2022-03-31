@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>yami-shop-security</artifactId>
+        <groupId>com.yami.shop</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>yami-shop-security-api</artifactId>
+    <description>商城安全模块接口部分</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yami.shop</groupId>
+            <artifactId>yami-shop-security-common</artifactId>
+            <version>${yami.shop.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

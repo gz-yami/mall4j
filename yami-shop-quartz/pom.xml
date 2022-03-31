@@ -23,7 +23,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yami.shop</groupId>
-			<artifactId>yami-shop-security</artifactId>
+			<artifactId>yami-shop-security-admin</artifactId>
 			<version>${yami.shop.version}</version>
 		</dependency>
 	</dependencies>

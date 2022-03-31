@@ -19,7 +19,7 @@ import com.yami.shop.bean.model.Product;
 import com.yami.shop.bean.model.UserCollection;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.UserCollectionService;
 import io.swagger.annotations.Api;

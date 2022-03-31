@@ -24,15 +24,12 @@
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
 
-  <select id="getUserByBizUserId" resultMap="BaseResultMap">
-    select * from tz_user u where u.user_id =  (select user_id from tz_app_connect ac where ac.app_id = #{appId} and ac.biz_user_id = #{bizUserId})
-  </select>
-
   <select id="getUserByUserMail" resultType="com.yami.shop.bean.model.User">
     select *
     from tz_user u
     where u.user_mail = #{userMail}
   </select>
-
-
+  <select id="selectOneByUserName" resultType="com.yami.shop.bean.model.User">
+    select * from `tz_user` where binary nick_name = #{userName} limit 1
+  </select>
 </mapper>

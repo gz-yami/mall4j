@@ -10,39 +10,25 @@
 
 package com.yami.shop.sys.controller;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
-import javax.validation.Valid;
-
 import cn.hutool.core.map.MapUtil;
-import com.yami.shop.security.util.SecurityUtils;
-
+import cn.hutool.core.util.StrUtil;
+import com.yami.shop.common.annotation.SysLog;
+import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.sys.constant.Constant;
 import com.yami.shop.sys.constant.MenuType;
 import com.yami.shop.sys.model.SysMenu;
+import com.yami.shop.sys.service.SysMenuService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-
-import com.yami.shop.sys.service.SysMenuService;
-import com.yami.shop.common.annotation.SysLog;
-import com.yami.shop.common.exception.YamiShopBindException;
-
-import cn.hutool.core.util.StrUtil;
-import io.swagger.annotations.ApiOperation;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * 系统菜单
@@ -60,9 +46,8 @@ public class SysMenuController{
 	@ApiOperation(value="获取用户所拥有的菜单和权限", notes="通过登陆用户的userId获取用户所拥有的菜单和权限")
 	public ResponseEntity<Map<Object, Object>> nav(){
 		List<SysMenu> menuList = sysMenuService.listMenuByUserId(SecurityUtils.getSysUser().getUserId());
-		Collection<GrantedAuthority> authorities = SecurityUtils.getSysUser().getAuthorities();
 
-		return ResponseEntity.ok(MapUtil.builder().put("menuList", menuList).put("authorities", authorities).build());
+		return ResponseEntity.ok(MapUtil.builder().put("menuList", menuList).put("authorities", SecurityUtils.getSysUser().getAuthorities()).build());
 	}
 
 	/**

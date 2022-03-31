@@ -10,15 +10,21 @@
 
 package com.yami.shop.api.controller;
 
-import java.util.*;
-
-import javax.validation.Valid;
-
+import cn.hutool.core.collection.CollectionUtil;
 import com.yami.shop.bean.app.dto.*;
+import com.yami.shop.bean.app.param.OrderParam;
+import com.yami.shop.bean.app.param.OrderShopParam;
+import com.yami.shop.bean.app.param.SubmitOrderParam;
 import com.yami.shop.bean.event.ConfirmOrderEvent;
+import com.yami.shop.bean.model.Order;
+import com.yami.shop.bean.model.UserAddr;
 import com.yami.shop.common.exception.YamiShopBindException;
-import com.yami.shop.security.util.SecurityUtils;
+import com.yami.shop.common.util.Arith;
+import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
@@ -27,17 +33,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yami.shop.bean.app.param.OrderParam;
-import com.yami.shop.bean.app.param.OrderShopParam;
-import com.yami.shop.bean.app.param.SubmitOrderParam;
-import com.yami.shop.bean.model.Order;
-import com.yami.shop.bean.model.UserAddr;
-import com.yami.shop.common.util.Arith;
-
-import cn.hutool.core.collection.CollectionUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import ma.glasnost.orika.MapperFacade;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/p/order")
