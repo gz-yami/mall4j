@@ -1,5 +1,26 @@
 <!--pages/login/login.wxml-->
 <image src='http://img-test.gz-yami.com/mini/logo.jpg' class='c-logo'></image>
 <view class="title">mall4j</view>
-<view class="msg">申请获得你的公开信息（昵称、头像等）</view>
-<button color="#eb2444"  open-type="getUserInfo" lang = "zh_CN" bindgetuserinfo = "onGotUserInfo" class=''>微信授权</button>
+<view class="login-form">
+    <view class="item">
+        <view class="account">
+            <text class="input-item">用户名</text>
+            <input type="text" data-type="account" placeholder-class="inp-palcehoder" placeholder="请输入用户名" bindinput="getInputVal"></input>
+        </view>
+    </view>
+    <view class="item">
+        <view class="account">
+            <text class="input-item">密码</text>
+            <input type="password" data-type="password" placeholder-class="inp-palcehoder" placeholder="请输入密码" bindinput="getInputVal"></input>
+        </view>
+    </view>
+    <view>
+        <button class="authorized-btn" bindtap="handleLoginOrRegister">{{isRegister ? '注册': '登录'}}</button>
+        <button class="to-idx-btn" bindtap="goBack">回到首页</button>
+    </view>
+    <view class="operate">
+        <view class="to-register" bindtap="handleChangeShowType">
+            {{isRegister?'已有账号？去登录>' : '没有账号？去注册>'}}
+        </view>
+    </view>
+</view>

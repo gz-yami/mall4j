@@ -38,39 +38,40 @@ Page({
 	this.loadBasketData();
     http.getCartCount();//重新计算购物车总数量
   },
+  
   loadBasketData(){
-			wx.showLoading(); //加载购物车
-			
-			var params = {
-			  url: "/p/shopCart/info",
-			  method: "POST",
-			  data: {},
-			  callBack: res => {
-			    if (res.length > 0) {
-			      // 默认不选中
-			      var shopCartItemDiscounts = res[0].shopCartItemDiscounts;
-			      shopCartItemDiscounts.forEach(shopCartItemDiscount => {
-			        shopCartItemDiscount.shopCartItems.forEach(shopCartItem => {
-			          shopCartItem.checked = false;
-			        });
-			      });
-			      this.setData({
-			        shopCartItemDiscounts: shopCartItemDiscounts,
-			        allChecked: false
-			      });
-			    } else {
-			      this.setData({
-			        shopCartItemDiscounts: []
-			      });
-			    }
-			
-			    this.calTotalPrice(); //计算总价
-			
-			    wx.hideLoading();
-			  }
-			};
-			http.request(params);
-		},
+		wx.showLoading(); //加载购物车
+		
+		var params = {
+		  url: "/p/shopCart/info",
+		  method: "POST",
+		  data: {},
+		  callBack: res => {
+			if (res.length > 0) {
+			  // 默认不选中
+			  var shopCartItemDiscounts = res[0].shopCartItemDiscounts;
+			  shopCartItemDiscounts.forEach(shopCartItemDiscount => {
+				shopCartItemDiscount.shopCartItems.forEach(shopCartItem => {
+				  shopCartItem.checked = false;
+				});
+			  });
+			  this.setData({
+				shopCartItemDiscounts: shopCartItemDiscounts,
+				allChecked: false
+			  });
+			} else {
+			  this.setData({
+				shopCartItemDiscounts: []
+			  });
+			}
+		
+			this.calTotalPrice(); //计算总价
+		
+			wx.hideLoading();
+		  }
+		};
+		http.request(params);
+	},
 
   /**
    * 去结算

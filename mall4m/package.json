@@ -1,0 +1,18 @@
+{
+  "name": "mall4m",
+  "version": "1.0.0",
+  "description": "一个基于vue、element ui 的轻量级、前后端分离、拥有完整sku和下单流程的完全开源商城 小程序端",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/gz-yami/mall4m.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "^4.1.1"
+  }
+}

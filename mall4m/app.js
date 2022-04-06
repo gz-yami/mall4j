@@ -2,7 +2,7 @@
 var http = require("utils/http.js");
 App({
   onLaunch: function () {
-    http.getToken();
+    // http.getToken();
     // wx.getSetting({
     //   success(res) {
     //     if (!res.authSetting['scope.userInfo']) {

@@ -5,10 +5,10 @@ function request(params, isGetTonken) {
   // 全局变量
   var globalData = getApp().globalData;
   // 如果正在进行登陆，就将非登陆请求放在队列中等待登陆完毕后进行调用
-  if (!isGetTonken && globalData.isLanding) {
-    globalData.requestQueue.push(params);
-    return;
-  }
+  // if (!isGetTonken && globalData.isLanding) {
+  //   globalData.requestQueue.push(params);
+  //   return;
+  // }
   wx.request({
     url: config.domain + params.url, //接口请求地址
     data: params.data,
@@ -32,14 +32,17 @@ function request(params, isGetTonken) {
           icon: "none"
         });
       } else if (res.statusCode == 401) {
-        // 添加到请求队列
-        globalData.requestQueue.push(params);
-        // 是否正在登陆
-        if (!globalData.isLanding) {
-          globalData.isLanding = true
-          //重新获取token,再次请求接口
-          getToken();
-        }
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+        // // 添加到请求队列
+        // globalData.requestQueue.push(params);
+        // // 是否正在登陆
+        // if (!globalData.isLanding) {
+        //   globalData.isLanding = true
+        //   //重新获取token,再次请求接口
+        //   getToken();
+        // }
       } else if (res.statusCode == 400) {
         wx.showToast({
           title: res.data,

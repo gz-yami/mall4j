@@ -122,6 +122,12 @@ Page({
     }
   },
 
+  onRemarksInput: function (e) {
+    this.setData({
+      remarks: e.detail.value
+    });
+  },
+
   /**
    * 提交订单
    */

@@ -1,48 +1,62 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "postcss": true,
-    "minified": true,
-    "newFeature": true,
-    "nodeModules": false,
-    "autoAudits": false,
-		"checkInvalidKey": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.6.4",
-  "appid": "wx6fa71e69231a4fa4",
-  "projectname": "mall4j",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-			"current": -1,
-      "list": []
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
     },
-    "conversation": {
-			"current": -1,
-      "list": []
+    "setting": {
+        "urlCheck": true,
+        "scopeDataCheck": false,
+        "coverView": true,
+        "es6": false,
+        "postcss": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "autoAudits": false,
+        "newFeature": false,
+        "uglifyFileName": false,
+        "uploadWithSourceMap": true,
+        "useIsolateContext": false,
+        "nodeModules": false,
+        "enhance": true,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "showShadowRootInWxmlPanel": true,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "disableUseStrict": false,
+        "ignoreUploadUnusedFiles": true,
+        "minifyWXML": true
     },
-    "plugin": {
-			"current": -1,
-      "list": []
+    "compileType": "miniprogram",
+    "libVersion": "2.23.2",
+    "appid": "wx6fa71e69231a4fa4",
+    "projectname": "mall4m",
+    "debugOptions": {
+        "hidedInDevtools": []
     },
-    "game": {
-      "currentL": -1,
-      "list": []
-    },
-    "miniprogram": {
-			"current": 23,
-      "list": []
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "currentL": -1,
+            "list": []
+        },
+        "miniprogram": {
+            "list": []
+        }
     }
-  }
 }

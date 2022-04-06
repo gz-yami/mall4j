@@ -26,7 +26,6 @@ Page({
   },
   onLoad: function() {
     this.getAllData();
-
   },
 
   // 页面滚动到指定位置指定元素固定在顶部
@@ -80,17 +79,6 @@ Page({
   },
 
   onShow: function() {
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userInfo']) {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          })
-        }
-      }
-    })
-
-	http.getCartCount(); //重新计算购物车总数量
   },
   getAllData() {
     http.getCartCount(); //重新计算购物车总数量
