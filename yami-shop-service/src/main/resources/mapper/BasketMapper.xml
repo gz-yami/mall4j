@@ -58,7 +58,7 @@
         ON tb.prod_id = tp.prod_id
         LEFT JOIN tz_sku ts
         ON tb.sku_id = ts.sku_id
-        WHERE tp.status = 0 OR ts.status = 0 AND tb.user_id = 1) AS temp)
+        WHERE tp.status = 0 OR ts.status = 0 AND tb.user_id = #{userId}) AS temp)
   </delete>
 
     <select id="shopCartItemDtoList" resultType="com.yami.shop.bean.app.dto.ShopCartItemDto">
