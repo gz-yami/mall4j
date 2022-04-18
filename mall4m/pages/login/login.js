@@ -132,7 +132,7 @@ Page({
       },
       callBack: (res) => {
         wx.setStorageSync('token', res.accessToken)
-        wx.reLaunc({
+        wx.switchTab({
           url: '/pages/index/index',
         })
       }
