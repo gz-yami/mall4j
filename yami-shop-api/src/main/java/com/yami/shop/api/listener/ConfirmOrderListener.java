@@ -90,7 +90,7 @@ public class ConfirmOrderListener {
             }
 
             shopCartItem.setActualTotal(shopCartItem.getProductTotalAmount());
-            shopCartOrderDto.setActualTotal(Arith.sub(total, transfee));
+            shopCartOrderDto.setActualTotal(Arith.add(total, transfee));
             shopCartOrderDto.setTotal(total);
             shopCartOrderDto.setTotalCount(totalCount);
             shopCartOrderDto.setTransfee(transfee);

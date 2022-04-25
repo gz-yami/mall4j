@@ -48,9 +48,9 @@ import java.util.Map.Entry;
 @AllArgsConstructor
 public class SmsLogServiceImpl extends ServiceImpl<SmsLogMapper, SmsLog> implements SmsLogService {
 
-    private SmsLogMapper smsLogMapper;
+    private final SmsLogMapper smsLogMapper;
 
-    private ALiDaYu aLiDaYu;
+    private final ALiDaYu aLiDaYu;
 
     /**
      * 产品名称:云通信短信API产品,开发者无需替换

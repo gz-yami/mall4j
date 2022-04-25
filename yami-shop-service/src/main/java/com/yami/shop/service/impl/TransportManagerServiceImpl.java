@@ -10,34 +10,21 @@
 
 package com.yami.shop.service.impl;
 
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.yami.shop.bean.app.dto.ProductItemDto;
 import com.yami.shop.bean.enums.TransportChargeType;
+import com.yami.shop.bean.model.*;
+import com.yami.shop.common.util.Arith;
 import com.yami.shop.common.util.Json;
-import com.yami.shop.service.*;
-import org.apache.commons.lang3.StringUtils;
+import com.yami.shop.service.ProductService;
+import com.yami.shop.service.SkuService;
+import com.yami.shop.service.TransportManagerService;
+import com.yami.shop.service.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Service;
 
-import com.yami.shop.bean.app.dto.OrderItemDto;
-import com.yami.shop.bean.model.Area;
-import com.yami.shop.bean.model.Product;
-import com.yami.shop.bean.model.Sku;
-import com.yami.shop.bean.model.Transfee;
-import com.yami.shop.bean.model.TransfeeFree;
-import com.yami.shop.bean.model.Transport;
-import com.yami.shop.bean.model.UserAddr;
-import com.yami.shop.common.util.Arith;
-
-import cn.hutool.core.collection.CollectionUtil;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TransportManagerServiceImpl implements TransportManagerService {
@@ -58,7 +45,7 @@ public class TransportManagerServiceImpl implements TransportManagerService {
         Product.DeliveryModeVO deliveryModeVO = Json.parseObject(product.getDeliveryMode(), Product.DeliveryModeVO.class);
 
         // 没有店铺配送的方式
-        if (deliveryModeVO.getHasShopDelivery()) {
+        if (!deliveryModeVO.getHasShopDelivery()) {
             return 0.0;
         }
         if (product.getDeliveryTemplateId() == null) {
