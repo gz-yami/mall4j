@@ -10,6 +10,8 @@
 
 package com.yami.shop.admin.controller;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.poi.excel.ExcelUtil;
@@ -255,6 +257,9 @@ public class OrderController {
      * 如果需要合并的话，就合并
      */
     private void mergeIfNeed(ExcelWriter writer, int firstRow, int lastRow, int firstColumn, int lastColumn, Object content) {
+        if (content instanceof Date) {
+            content = DateUtil.format((Date) content, DatePattern.NORM_DATETIME_PATTERN);
+        }
         if (lastRow - firstRow > 0 || lastColumn - firstColumn > 0) {
             writer.merge(firstRow, lastRow, firstColumn, lastColumn, content, false);
         } else {
