@@ -24,6 +24,14 @@ img {
   max-width: 100%;
 }
 
+.el-cascader-menu {
+  .el-scrollbar__wrap {
+    overflow-y: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    overflow: auto !important;
+  }
+}
 
 /* Utils
 ------------------------------ */
