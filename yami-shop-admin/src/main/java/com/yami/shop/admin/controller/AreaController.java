@@ -12,8 +12,10 @@ package com.yami.shop.admin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.common.util.PageParam;
+import com.yami.shop.bean.enums.AreaLevelEnum;
 import com.yami.shop.bean.model.Area;
+import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author lgh on 2018/10/26.
@@ -95,6 +97,15 @@ public class AreaController {
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:area:update')")
     public ResponseEntity<Void> update(@Valid @RequestBody Area area) {
+        Area areaDb = areaService.getById(area.getAreaId());
+        // 判断当前省市区级别，如果是1级、2级则不能修改级别，不能修改成别人的下级
+        if(Objects.equals(areaDb.getLevel(), AreaLevelEnum.FIRST_LEVEL.value()) && !Objects.equals(area.getLevel(),AreaLevelEnum.FIRST_LEVEL.value())){
+            throw new YamiShopBindException("不能改变一级行政地区的级别");
+        }
+        if(Objects.equals(areaDb.getLevel(),AreaLevelEnum.SECOND_LEVEL.value()) && !Objects.equals(area.getLevel(),AreaLevelEnum.SECOND_LEVEL.value())){
+            throw new YamiShopBindException("不能改变二级行政地区的级别");
+        }
+        hasSameName(area);
         areaService.updateById(area);
         areaService.removeAreaCacheByParentId(area.getParentId());
         return ResponseEntity.ok().build();
@@ -112,4 +123,14 @@ public class AreaController {
         return ResponseEntity.ok().build();
     }
 
+    private void hasSameName(Area area) {
+        int count = areaService.count(new LambdaQueryWrapper<Area>()
+                .eq(Area::getParentId, area.getParentId())
+                .eq(Area::getAreaName, area.getAreaName())
+                .ne(Objects.nonNull(area.getAreaId()) && !Objects.equals(area.getAreaId(), 0L), Area::getAreaId, area.getAreaId())
+        );
+        if (count > 0) {
+            throw new YamiShopBindException("该地区已存在");
+        }
+    }
 }

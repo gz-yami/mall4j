@@ -72,7 +72,7 @@ public class ProdController {
 
         Product product = prodService.getProductByProdId(prodId);
         if (product == null) {
-            return ResponseEntity.ok(null);
+            return ResponseEntity.ok().build();
         }
 
         List<Sku> skuList = skuService.listByProdId(prodId);

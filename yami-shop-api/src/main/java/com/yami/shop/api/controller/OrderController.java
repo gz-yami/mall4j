@@ -94,7 +94,6 @@ public class OrderController {
         double total = 0.0;
         int totalCount = 0;
         double orderReduce = 0.0;
-//        List<CouponOrderDto> coupons = new ArrayList<>();
         for (ShopCartDto shopCart : shopCarts) {
 
             // 每个店铺的订单信息
