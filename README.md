@@ -98,9 +98,10 @@ https://gitee.com/gz-yami/mall4j/wikis
 - Mall4j官网 https://www.mall4j.com
 
 
-- mall4j开源技术QQ群：722835385
+- mall4j开源技术QQ群：722835385（3000人群）
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/110919_835cf484_5094767.jpeg "mall4j群.jpg")
+- 商务微信
+![输入图片说明](https://19838323.s21i.faiusr.com/4/4/ABUIABAEGAAgksmNlAYojomK2gIwrAI4rAI.png)
 
 
 ## 特别鸣谢
