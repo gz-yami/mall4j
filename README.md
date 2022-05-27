@@ -89,21 +89,15 @@ https://gitee.com/gz-yami/mall4j/wikis
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/145209_2ec1ad04_5094767.png "开源移动端截图.png")
 
 
-### 3. 软著截图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/110940_a9b72c43_5094767.png "Mall4j商城系统V1.0.png")
-
-
 
 ## 提交反馈
 - Mall4j官网 https://www.mall4j.com
 
 
-- mall4j开源技术QQ群：722835385（3000人群）
-
-- 商务微信
+- Mall4j官方技术QQ群：722835385（3000人群）
+- 如需购买商业版源码，请联系商务微信
 
 ![输入图片说明](https://19838323.s21i.faiusr.com/4/4/ABUIABAEGAAgksmNlAYojomK2gIwrAI4rAI!160x160.png)
-
 
 ## 特别鸣谢
 
@@ -112,7 +106,4 @@ https://gitee.com/gz-yami/mall4j/wikis
 ## mall4cloud微服务版本已上线
 https://gitee.com/gz-yami/mall4cloud
 
-## 你的点赞鼓励，是我们前进的动力~
-## 你的点赞鼓励，是我们前进的动力~
-## 你的点赞鼓励，是我们前进的动力~
-
+## 更多信息请查看官网 <https://www.mall4j.com>
