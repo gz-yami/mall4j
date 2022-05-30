@@ -5,13 +5,13 @@
     <view class="item">
         <view class="account">
             <text class="input-item">用户名</text>
-            <input type="text" data-type="account" placeholder-class="inp-palcehoder" placeholder="请输入用户名" bindinput="getInputVal"></input>
+            <input type="text" data-type="account" placeholder-class="inp-palcehoder" value="{{userName}}" placeholder="请输入用户名" bindinput="getInputVal"></input>
         </view>
     </view>
     <view class="item">
         <view class="account">
             <text class="input-item">密码</text>
-            <input type="password" data-type="password" placeholder-class="inp-palcehoder" placeholder="请输入密码" bindinput="getInputVal"></input>
+            <input type="password" data-type="password" placeholder-class="inp-palcehoder" value="{{password}}" placeholder="请输入密码" bindinput="getInputVal"></input>
         </view>
     </view>
     <view>

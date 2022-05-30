@@ -109,6 +109,7 @@ Page({
    * 注册/登录按钮
    */
   handleLoginOrRegister() {
+    const that = this
     if (!this.data.userName.trim()) {
       wx.showToast({
         title: '请输入用户名',
@@ -132,9 +133,22 @@ Page({
       },
       callBack: (res) => {
         wx.setStorageSync('token', res.accessToken)
-        wx.switchTab({
-          url: '/pages/index/index',
-        })
+        if(this.data.isRegister) {
+          that.setData({
+            userName: '',
+            password: '',
+            isRegister: !that.data.isRegister
+          })
+          wx.showToast({
+            title: '注册成功，请登录',
+            icon: 'none'
+          })
+        }else {
+          wx.switchTab({
+            url: '/pages/index/index',
+          })          
+        }
+
       }
     };
     http.request(params);
