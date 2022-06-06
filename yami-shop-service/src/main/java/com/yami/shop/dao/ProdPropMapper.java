@@ -19,7 +19,7 @@ import java.util.List;
 
 public interface ProdPropMapper extends BaseMapper<ProdProp> {
 
-    List<ProdProp> listPropAndValue(@Param("com.yami.shop.security.common.adapter") PageAdapter adapter, @Param("prodProp") ProdProp prodProp);
+    List<ProdProp> listPropAndValue(@Param("adapter") PageAdapter adapter, @Param("prodProp") ProdProp prodProp);
 
     long countPropAndValue(@Param("prodProp") ProdProp prodProp);
 
