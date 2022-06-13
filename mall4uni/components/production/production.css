@@ -1,9 +1,9 @@
 
 .prod-items {
-  width: 360rpx;
-  float: left;
+  width: 43%;
+  /* float: left; */
   background: #fff;
-  padding-bottom: 20rpx;
+  margin-bottom: 40rpx;
   box-sizing: border-box;
 }
 
@@ -16,8 +16,8 @@ prod:nth-child(2n) .prod-items {
 }
 
 .hot-imagecont .hotsaleimg {
- width:345rpx;
-height:345rpx;
+ width:100%;
+  height:345rpx;
 
 }
 
@@ -26,6 +26,7 @@ height:345rpx;
   font-size: 28rpx;
   display: -webkit-box;
   word-break: break-all;
+  padding: 0 20rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -47,6 +48,7 @@ height:345rpx;
 .prod-items .hot-text .prod-info {
   font-size: 20rpx;
   color: #777;
+  padding: 0 20rpx;
   margin-top: 8rpx;
 }
 
@@ -59,6 +61,7 @@ height:345rpx;
 
 .prod-items .hot-text .prod-text-info .price {
   color: #eb2444;
+  padding-left: 20rpx;
 }
 .deadline-price{
   font-size: 22rpx;

@@ -6,7 +6,7 @@
   <view class="fixed-box">
     <view class="search-bar">
       <view class="search-box">
-        <input class="sear-input" :value="prodName" @input="getSearchContent" confirm-type="search" @confirm="toSearchConfirm"></input>
+        <input placeholder="输入关键字搜索" class="sear-input" :value="prodName" @input="getSearchContent" confirm-type="search" @confirm="toSearchConfirm"></input>
         <image src="/static/images/icon/search.png" class="search-img"></image>
       </view>
       <view class="search-list-img" @tap="changeShowType">

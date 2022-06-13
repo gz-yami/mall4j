@@ -113,22 +113,32 @@ page {
 
 .prod-show {
   background: #fff;
-  margin-top: 160rpx;
+  padding-top: 240rpx;
 }
 
 .prod-show .prod-items {
-  width: 375rpx;
+  /* width: 375rpx; */
   float: left;
   background: #fff;
   padding-bottom: 20rpx;
   box-sizing: border-box;
 }
 
+.prod-items {
+  margin: 0 20rpx;
+}
+
+.hotsale-item-cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /* 纵向列表 */
 
 .prod-list .cont-item {
   padding: 0 20rpx 20rpx 20rpx;
-  margin-top: 180rpx;
+  margin-top: 230rpx;
 }
 
 .prod-list .cont-item .show-item .more-prod-pic {

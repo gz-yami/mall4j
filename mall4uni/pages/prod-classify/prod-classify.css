@@ -22,6 +22,12 @@ page {
   background: #f4f4f4;
 }
 
+.prod-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /* 空 */
 .empty {
   display: block;
