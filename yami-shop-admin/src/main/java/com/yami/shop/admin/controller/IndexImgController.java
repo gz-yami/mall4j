@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yami.shop.bean.model.IndexImg;
 import com.yami.shop.bean.model.Product;
+import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.IndexImgService;
@@ -79,6 +80,7 @@ public class IndexImgController {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         indexImg.setShopId(shopId);
         indexImg.setUploadTime(new Date());
+        checkProdStatus(indexImg);
         indexImgService.save(indexImg);
         indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
@@ -90,7 +92,8 @@ public class IndexImgController {
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:indexImg:update')")
     public ResponseEntity<Void> update(@RequestBody @Valid IndexImg indexImg) {
-        indexImgService.updateById(indexImg);
+        checkProdStatus(indexImg);
+        indexImgService.saveOrUpdate(indexImg);
         indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
     }
@@ -104,5 +107,21 @@ public class IndexImgController {
         indexImgService.deleteIndexImgsByIds(ids);
         indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
+    }
+
+    private void checkProdStatus(IndexImg indexImg) {
+        if (!Objects.equals(indexImg.getType(), 0)) {
+            return;
+        }
+        if (Objects.isNull(indexImg.getRelation())) {
+            throw new YamiShopBindException("请选择商品");
+        }
+        Product product = productService.getById(indexImg.getRelation());
+        if (Objects.isNull(product)) {
+            throw new YamiShopBindException("商品信息不存在");
+        }
+        if (!Objects.equals(product.getStatus(), 1)) {
+            throw new YamiShopBindException("该商品未上架，请选择别的商品");
+        }
     }
 }
