@@ -8,7 +8,7 @@
       <prod item="{{item}}" ></prod>
     </block>
   </view>
-  <view wx:if="!prodList.length" class="empty-list">
+  <view wx:if="{{!prodList.length}}" class="empty-list">
     暂无商品
   </view>
 </view>

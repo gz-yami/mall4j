@@ -77,6 +77,14 @@ Page({
       url: '/pages/recent-news/recent-news',
     })
   },
+  
+  //跳转限时特惠页面
+  toLimitedTimeOffer: function(e) {
+    wx.showToast({
+      icon:"none",
+      title: '该功能未开源'
+    })
+  },
 
   onShow: function() {
   },

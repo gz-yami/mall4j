@@ -27,7 +27,7 @@
         <image src='../../images/icon/newProd.png'></image>
         <text>新品推荐</text>
       </view>
-      <view class='item' bindtap='toClassifyPage' data-sts="2">
+      <view class='item' bindtap='toLimitedTimeOffer' data-sts="2">
         <image src='../../images/icon/timePrice.png'></image>
         <text>限时特惠</text>
       </view>
