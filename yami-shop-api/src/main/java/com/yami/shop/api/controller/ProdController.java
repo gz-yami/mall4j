@@ -36,6 +36,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author lgh on 2018/11/26.
+ */
 @RestController
 @RequestMapping("/prod")
 @Api(tags = "商品接口")
@@ -61,8 +64,8 @@ public class ProdController {
     })
     public ResponseEntity<IPage<ProductDto>> prodList(
             @RequestParam(value = "categoryId") Long categoryId,PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoIPage = prodService.pageByCategoryId(page, categoryId);
-        return ResponseEntity.ok(productDtoIPage);
+        IPage<ProductDto> productPage = prodService.pageByCategoryId(page, categoryId);
+        return ResponseEntity.ok(productPage);
     }
 
     @GetMapping("/prodInfo")
@@ -98,8 +101,8 @@ public class ProdController {
     @ApiImplicitParams({
     })
     public ResponseEntity<IPage<ProductDto>> lastedProdPage(PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoIPage = prodService.pageByPutawayTime(page);
-        return ResponseEntity.ok(productDtoIPage);
+        IPage<ProductDto> productPage = prodService.pageByPutawayTime(page);
+        return ResponseEntity.ok(productPage);
     }
 
     @GetMapping("/prodListByTagId")
@@ -109,16 +112,16 @@ public class ProdController {
     })
     public ResponseEntity<IPage<ProductDto>> prodListByTagId(
             @RequestParam(value = "tagId") Long tagId,PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoIPage = prodService.pageByTagId(page, tagId);
-        return ResponseEntity.ok(productDtoIPage);
+        IPage<ProductDto> productPage = prodService.pageByTagId(page, tagId);
+        return ResponseEntity.ok(productPage);
     }
 
     @GetMapping("/moreBuyProdList")
     @ApiOperation(value = "每日疯抢", notes = "获取销量最多的商品列表")
     @ApiImplicitParams({})
     public ResponseEntity<IPage<ProductDto>> moreBuyProdList(PageParam<ProductDto> page) {
-        IPage<ProductDto> productDtoIPage = prodService.moreBuyProdList(page);
-        return ResponseEntity.ok(productDtoIPage);
+        IPage<ProductDto> productPage = prodService.moreBuyProdList(page);
+        return ResponseEntity.ok(productPage);
     }
 
     @GetMapping("/tagProdList")

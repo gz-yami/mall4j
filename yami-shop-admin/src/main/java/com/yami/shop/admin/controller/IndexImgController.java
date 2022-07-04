@@ -48,11 +48,11 @@ public class IndexImgController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:indexImg:page')")
     public ResponseEntity<IPage<IndexImg>> page(IndexImg indexImg, PageParam<IndexImg> page) {
-        IPage<IndexImg> indexImgIPage = indexImgService.page(page,
+        IPage<IndexImg> indexImgPage = indexImgService.page(page,
                 new LambdaQueryWrapper<IndexImg>()
                         .eq(indexImg.getStatus() != null, IndexImg::getStatus, indexImg.getStatus())
                         .orderByDesc(IndexImg::getSeq));
-        return ResponseEntity.ok(indexImgIPage);
+        return ResponseEntity.ok(indexImgPage);
     }
 
     /**
