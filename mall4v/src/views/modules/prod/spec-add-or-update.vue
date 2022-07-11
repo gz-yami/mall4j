@@ -27,6 +27,7 @@
                   :key="item.valueId">
             <el-input placeholder="请输入内容"
                       v-model="item.propValue"
+                      class="prop-value-input"
                       @clear="clearProdPropValues"
                       maxlength="20"
                       show-word-limit
@@ -34,6 +35,7 @@
           </el-col>
           <el-col :span="4">
             <el-button type="primary"
+            class="add-input"
                        icon="el-icon-circle-plus"
                        @click="addInput()"></el-button>
           </el-col>
@@ -154,3 +156,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.prop-value-input {
+  padding: 3px;
+}
+
+.add-input {
+  margin: 3px;
+}
+</style>

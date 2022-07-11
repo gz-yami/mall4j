@@ -22,8 +22,11 @@
 
       <template slot-scope="scope"
                 slot="prodPropValues">
-        <el-tag v-for="item in scope.row.prodPropValues"
-                :key="item.valueId">{{item.propValue}}</el-tag>
+        <div v-for="item in scope.row.prodPropValues"
+                  :key="item.valueId" class="prop-value">
+          <el-tag>{{item.propValue}}</el-tag>          
+        </div>
+
       </template>
 
       <template slot-scope="scope"
@@ -145,3 +148,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.prop-value {
+  display: inline-block;
+  margin: 0 3px 3px 0;
+}
+</style>
