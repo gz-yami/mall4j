@@ -19,6 +19,7 @@
 - mall4j：j代表java，java项目，这里面包含了小程序/后台vue连接需要的接口。
 - mall4v：v代表vue项目，是后台管理员界面使用的前端项目，因为前后端分离的
 - mall4m：m代表mini，小程序项目，这里的项目是小程序的项目
+- mall4uni：uni代表uniapp，H5项目，这里的项目是H5的项目
 - jvm：java虚拟机啦~
 
 
@@ -113,6 +114,12 @@ cnpm i
 
 ```bash
 npm run dev
+```
+
+运行dev环境(H5)：
+
+```bash
+npm run dev:h5
 ```
 
 ## 4.文档
