@@ -48,6 +48,7 @@ public class HotSearchController {
 			.like(StrUtil.isNotBlank(hotSearch.getContent()), HotSearch::getContent,hotSearch.getContent())
 				.like(StrUtil.isNotBlank(hotSearch.getTitle()), HotSearch::getTitle,hotSearch.getTitle())
 			.eq(hotSearch.getStatus()!=null, HotSearch::getStatus,hotSearch.getStatus())
+				.orderByAsc(HotSearch::getSeq)
 		);
 		return ResponseEntity.ok(hotSearchs);
 	}

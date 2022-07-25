@@ -51,7 +51,7 @@ public class IndexImgController {
         IPage<IndexImg> indexImgPage = indexImgService.page(page,
                 new LambdaQueryWrapper<IndexImg>()
                         .eq(indexImg.getStatus() != null, IndexImg::getStatus, indexImg.getStatus())
-                        .orderByDesc(IndexImg::getSeq));
+                        .orderByAsc(IndexImg::getSeq));
         return ResponseEntity.ok(indexImgPage);
     }
 
