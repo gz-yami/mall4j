@@ -88,24 +88,14 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm i
 ```
 
-修改`config/index.js` 里面的`target`为服务器域名端口
+修改文件`.env.production`（生产环境）/ `.env.development`（开发环境） 
+里面的`VUE_APP_BASE_API`为api接口请求地址， `VUE_APP_RESOURCES_URL`为静态资源文件url
 
 ```json
-'/proxyApi': {
-    target: 'http://localhost:8087/',
-    changeOrigin: true,
-    pathRewrite: {
-    '^/proxyApi': '/'
-}
-```
-
-修改`config/index.js` 里面的`host`以便于内网联调
-
-```json
-    // Various Dev Server settings
-    host: '192.168.1.120', // can be overwritten by process.env.HOST
-    port: 8002, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: true,
+    // api接口请求地址
+    VUE_APP_BASE_API = 'http://192.168.1.120:8002'
+    // 静态资源文件url
+    VUE_APP_RESOURCES_URL = 'https://img.mall4j.com/'
 ```
 
 
