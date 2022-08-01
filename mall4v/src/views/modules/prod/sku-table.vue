@@ -30,7 +30,8 @@
         </el-table-column>
         <el-table-column
           prop="price"
-          label="销售价">
+          label="销售价"
+          width="160">
           <template slot-scope="scope">
              <el-input-number
               size="small"
@@ -45,7 +46,8 @@
         </el-table-column>
         <el-table-column
           prop="oriPrice"
-          label="市场价">
+          label="市场价"
+          width="160">
           <template slot-scope="scope">
             <el-input-number
               size="small"
@@ -60,23 +62,26 @@
         </el-table-column>
         <el-table-column
           prop="stocks"
-          label="库存">
+          label="库存"
+          width="160">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.stocks" type="number" :disabled="!scope.row.status"></el-input>
+            <el-input-number size="small" :min="0" controls-position="right" v-model="scope.row.stocks" type="number" :disabled="!scope.row.status"></el-input-number>
           </template>
         </el-table-column>
         <el-table-column
           prop="weight"
-          label="商品重量(kg)">
+          label="商品重量(kg)"
+          width="210">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.weight" :disabled="!scope.row.status"></el-input>
+            <el-input-number :precision="2" :min="0" controls-position="right" v-model="scope.row.weight" :disabled="!scope.row.status"></el-input-number>
           </template>
         </el-table-column>
         <el-table-column
           prop="volume"
-          label="商品体积(m³)">
+          label="商品体积(m³)"
+          width="210">
           <template slot-scope="scope">
-            <el-input v-model="scope.row.volume" :disabled="!scope.row.status"></el-input>
+            <el-input-number :precision="2" :min="0" controls-position="right" v-model="scope.row.volume" :disabled="!scope.row.status"></el-input-number>
           </template>
         </el-table-column>
         <el-table-column
