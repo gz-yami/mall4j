@@ -32,8 +32,6 @@
         <qiniu.version>7.2.18</qiniu.version>
         <weixin.version>3.5.0</weixin.version>
         <orika.version>1.5.4</orika.version>
-        <swagger2.version>2.9.2</swagger2.version>
-        <swagger-bootstrap.version>1.9.6</swagger-bootstrap.version>
         <emoji.version>4.0.0</emoji.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
@@ -72,16 +70,6 @@
                 <groupId>ma.glasnost.orika</groupId>
                 <artifactId>orika-core</artifactId>
                 <version>${orika.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>swagger-bootstrap-ui</artifactId>
-                <version>${swagger-bootstrap.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>
@@ -182,6 +170,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
         </dependency>
     </dependencies>
 

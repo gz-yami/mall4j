@@ -36,8 +36,9 @@ public class SwaggerConfiguration {
 	 public Docket createRestApi() {
 	     return new Docket(DocumentationType.SWAGGER_2)
 	     .apiInfo(apiInfo())
+		 .groupName("基础版")
 	     .select()
-	     .apis(RequestHandlerSelectors.basePackage("com.yami"))
+	     .apis(RequestHandlerSelectors.basePackage("com.yami.shop.admin"))
 	     .paths(PathSelectors.any())
 	     .build();
 	 }
