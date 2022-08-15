@@ -46,7 +46,7 @@
                        align="center"
                        label="排序号">
       </el-table-column>
-      <el-table-column fixed="right"
+      <el-table-column 
                        header-align="center"
                        align="center"
                        label="操作">

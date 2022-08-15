@@ -24,7 +24,10 @@
 
       <template slot-scope="scope"
                 slot="imgUrl">
-        <img :src="resourcesUrl + scope.row.imgUrl"
+        <img v-if="scope.row.imgUrl" :src="scope.row.imgUrl"
+             width="100"
+             height="100" />
+        <img v-else src="~@/assets/img/def.png"
              width="100"
              height="100" />
       </template>
@@ -94,6 +97,9 @@ export default {
           )
         )
       }).then(({ data }) => {
+        data.records.forEach(item => {
+          item.imgUrl = item.imgUrl ? this.resourcesUrl + item.imgUrl : ''
+        })
         this.dataList = data.records
         this.page.total = data.total
         this.dataListLoading = false
