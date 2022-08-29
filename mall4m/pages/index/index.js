@@ -71,18 +71,18 @@ Page({
     })
   },
 
-  //跳转公告列表页面
-  onNewsPage: function() {
-    wx.navigateTo({
-      url: '/pages/recent-news/recent-news',
-    })
-  },
-  
   //跳转限时特惠页面
   toLimitedTimeOffer: function(e) {
     wx.showToast({
       icon:"none",
       title: '该功能未开源'
+    })
+  },
+
+  //跳转公告列表页面
+  onNewsPage: function() {
+    wx.navigateTo({
+      url: '/pages/recent-news/recent-news',
     })
   },
 
@@ -120,6 +120,47 @@ Page({
         this.setData({
           news: res,
         });
+      }
+    };
+    http.request(params);
+  },
+
+  /**
+   * 加入购物车
+   */
+   addToCart(e) {
+    const prodId = e.currentTarget.dataset.prodid
+    const ths = this
+    wx.showLoading();
+    var params = {
+      url: "/prod/prodInfo",
+      method: "GET",
+      data: {
+        prodId
+      },
+      callBack: (res) => {
+        var params = {
+          url: "/p/shopCart/changeItem",
+          method: "POST",
+          data: {
+            basketId: 0,
+            count: 1,
+            prodId: res.prodId,
+            shopId: res.shopId,
+            skuId: res.skuList[0].skuId
+          },
+          callBack: function(res) {
+            ths.setData({
+              totalCartNum: ths.data.totalCartNum + ths.data.prodNum
+            });
+            wx.hideLoading();
+            wx.showToast({
+              title: "加入购物车成功",
+              icon: "none"
+            })
+          }
+        };
+        http.request(params);
       }
     };
     http.request(params);

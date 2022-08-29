@@ -139,7 +139,7 @@
                   <text class='small-num'>.{{wxs.parsePrice(prod.price)[1]}}</text>
                 </view>
                 <!-- <view class='go-to-buy'>立即购买</view> -->
-                <image src='../../images/tabbar/basket-sel.png' class='basket-img'></image>
+                <image src='../../images/tabbar/basket-sel.png' class='basket-img' data-prodid="{{prod.prodId}}" catchtap="addToCart"></image>
               </view>
             </view>
           </view>
