@@ -154,6 +154,7 @@ Page({
               totalCartNum: ths.data.totalCartNum + ths.data.prodNum
             });
             wx.hideLoading();
+            http.getCartCount(); //重新计算购物车总数量
             wx.showToast({
               title: "加入购物车成功",
               icon: "none"
