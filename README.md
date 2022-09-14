@@ -36,14 +36,9 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 
 ## 演示地址
 
- **由于我们并不希望小程序的数据被弄混乱，我们弄了两个数据库。因此，您修改了后台的商品信息，小程序并不能看到！** 
+ 商业版小程序演示
 
-后台：<http://mall4j-admin.mall4j.com>  账号：admin/123456
-
-小程序：扫描二维码
-
-![小程序](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
-
+![小程序](screenshot/33333333333333333333.png)
 
 ## 技术选型
 
