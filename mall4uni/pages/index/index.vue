@@ -141,7 +141,7 @@
 		                <text class="small-num">.{{wxs.parsePrice(prod.price)[1]}}</text>
 		              </view>
 		              <!-- <view class='go-to-buy'>立即购买</view> -->
-		              <image src="/static/images/tabbar/basket-sel.png" class="basket-img"></image>
+		              <image src="/static/images/tabbar/basket-sel.png" @tap.stop="addToCart(prod)" class="basket-img"></image>
 		            </view>
 		          </view>
 		        </view>
@@ -251,6 +251,42 @@ export default {
         });
       }
     },
+    // 加入购物车
+    addToCart: function (item) {
+      uni.showLoading({
+        mask: true
+      });
+      var params = {
+        url: "/prod/prodInfo",
+        method: "GET",
+        data: {
+          prodId: item.prodId
+        },
+        callBack: res => {
+          var params1 = {
+            url: "/p/shopCart/changeItem",
+            method: "POST",
+            data: {
+              basketId: 0,
+              count: 1,
+              prodId: res.prodId,
+              shopId: res.shopId,
+              skuId: res.skuList[0].skuId
+            },
+            callBack: res => {
+              //console.log(res);
+              uni.hideLoading();
+              uni.showToast({
+                title: "加入购物车成功",
+                icon: "none"
+              });
+            }
+          };
+          http.request(params1);
+        }
+      };
+      http.request(params);
+    },
     toCouponCenter: function () {
       uni.showToast({
         icon: "none",
@@ -334,12 +370,12 @@ export default {
           this.setData({
             taglist: res
           });
+
           for (var i = 0; i < res.length; i++) {
 						this.updata = false
 						this.updata = true
             this.getTagProd(res[i].id, i);
           }
-          console.log('taglist:', this.taglist)
         }
       };
       http.request(params);
