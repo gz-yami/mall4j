@@ -10,7 +10,7 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
-    <result column="staus" jdbcType="TINYINT" property="staus" />
+    <result column="status" jdbcType="TINYINT" property="status" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
     <result column="reply" jdbcType="LONGVARCHAR" property="reply" />
   </resultMap>
