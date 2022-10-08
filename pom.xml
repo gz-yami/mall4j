@@ -28,7 +28,7 @@
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.7.22</hutool.version>
         <jsoup.version>1.11.3</jsoup.version>
-        <poi.version>5.0.0</poi.version>
+        <poi.version>5.2.2</poi.version>
         <qiniu.version>7.2.18</qiniu.version>
         <weixin.version>3.5.0</weixin.version>
         <orika.version>1.5.4</orika.version>
