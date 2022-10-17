@@ -276,6 +276,7 @@ export default {
             callBack: res => {
               //console.log(res);
               uni.hideLoading();
+              http.getCartCount(); //重新计算购物车总数量
               uni.showToast({
                 title: "加入购物车成功",
                 icon: "none"
