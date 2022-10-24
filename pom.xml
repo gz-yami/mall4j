@@ -39,7 +39,8 @@
         <redisson.version>3.12.5</redisson.version>
         <kryo.version>4.0.2</kryo.version>
         <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
-        <log4j.version>2.17.1</log4j.version>
+        <log4j.version>2.17.2</log4j.version>
+        <knife4j.version>3.0.3</knife4j.version>
     </properties>
 
     <dependencyManagement>
@@ -174,7 +175,7 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>3.0.3</version>
+            <version>${knife4j.version}</version>
         </dependency>
     </dependencies>
 
