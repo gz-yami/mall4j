@@ -28,6 +28,13 @@
 <script>
   export default {
     data () {
+      var validDvyFlowId = (rule, value, callback) => {
+        if (!value.trim()) {
+          callback(new Error('不能为空'))
+        } else {
+          callback()
+        }
+      }
       return {
         visible: false,
         dataForm: {
@@ -38,7 +45,8 @@
         },
         dataRule: {
           dvyFlowId: [
-            { required: true, message: '不能为空', trigger: 'blur' }
+            { required: true, message: '不能为空', trigger: 'blur' },
+            { validator: validDvyFlowId, trigger: 'blur' }
           ]
         }
       }
