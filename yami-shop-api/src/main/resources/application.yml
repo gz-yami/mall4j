@@ -12,26 +12,8 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   mvc:
-    formcontent:
-      filter:
-        enabled: false
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration,\
-      org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration,\
-      org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
-      org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration,\
-      org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration,\
-      org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration,\
-      org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration,\
-      org.springframework.boot.autoconfigure.websocket.WebSocketMessagingAutoConfiguration,\
-      org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration,\
-      org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration,\
-      org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration,\
-      org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration,\
-      org.springframework.boot.autoconfigure.mail.MailSenderValidatorAutoConfiguration,\
-      org.springframework.boot.actuate.autoconfigure.TraceRepositoryAutoConfiguration,\
-      org.springframework.boot.actuate.autoconfigure.TraceWebFilterAutoConfiguration,\
-      org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
 # mybaits-plus配置
 mybatis-plus:
   # MyBatis Mapper所对应的XML文件位置

@@ -12,8 +12,10 @@ package com.yami.shop.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RedisUtil {
     private static RedisTemplate<String, Object> redisTemplate = SpringContextUtils.getBean("redisTemplate", RedisTemplate.class);
+
+    public static final StringRedisTemplate STRING_REDIS_TEMPLATE = SpringContextUtils.getBean("stringRedisTemplate",StringRedisTemplate.class);
 
     //=============================common============================
 
@@ -50,7 +54,7 @@ public class RedisUtil {
      * @param key 键 不能为null
      * @return 时间(秒) 返回0代表为永久有效 失效时间为负数，说明该主键未设置失效时间（失效时间默认为-1）
      */
-    public static long getExpire(String key) {
+    public static Long getExpire(String key) {
         return redisTemplate.getExpire(key, TimeUnit.SECONDS);
     }
 
@@ -60,7 +64,7 @@ public class RedisUtil {
      * @param key 键
      * @return true 存在 false 不存在
      */
-    public static boolean hasKey(String key) {
+    public static Boolean hasKey(String key) {
         try {
             return redisTemplate.hasKey(key);
         } catch (Exception e) {
@@ -80,7 +84,7 @@ public class RedisUtil {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
             } else {
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
+                redisTemplate.delete(Arrays.asList(key));
             }
         }
     }
@@ -145,11 +149,11 @@ public class RedisUtil {
      * @param delta 要增加几(大于0)
      * @return
      */
-    public static long incr(String key, long delta) {
+    public static Long incr(String key, long delta) {
         if (delta < 0) {
             throw new RuntimeException("递增因子必须大于0");
         }
-        return redisTemplate.opsForValue().increment(key, delta);
+        return STRING_REDIS_TEMPLATE.opsForValue().increment(key, delta);
     }
 
     /**
@@ -159,10 +163,10 @@ public class RedisUtil {
      * @param delta 要减少几(小于0)
      * @return
      */
-    public static long decr(String key, long delta) {
+    public static Long decr(String key, long delta) {
         if (delta < 0) {
             throw new RuntimeException("递减因子必须大于0");
         }
-        return redisTemplate.opsForValue().increment(key, -delta);
+        return STRING_REDIS_TEMPLATE.opsForValue().increment(key, -delta);
     }
 }

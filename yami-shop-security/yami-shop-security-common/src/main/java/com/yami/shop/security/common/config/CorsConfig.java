@@ -21,8 +21,8 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.addAllowedOriginPattern("*");
-        configuration.addAllowedOrigin("*");
+        configuration.addAllowedOriginPattern("*");
+//        configuration.addAllowedOrigin("*");
         //修改为添加而不是设置
         configuration.addAllowedMethod("*");
         //这里很重要，起码需要允许 Access-Control-Allow-Origin
