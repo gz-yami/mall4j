@@ -143,12 +143,12 @@
     </view>
 
     <!-- 底部栏 -->
-    <view class="order-detail-footer">
+    <view class="order-detail-footer" v-if="status==5||status==6">
       <text class="dele-order" v-if="status==5||status==6" @tap="delOrderList">删除订单</text>
-      <view class="footer-box">
-        <text class="apply-service">联系客服</text>
+      <!-- <view class="footer-box"> -->
+        <!-- <text class="apply-service">联系客服</text> -->
         <!-- <text class="buy-again">再次购买</text> -->
-      </view>
+      <!-- </view> -->
     </view>
 
   </view>

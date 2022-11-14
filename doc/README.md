@@ -88,10 +88,8 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm i
 ```
 
-修改文件`.env.production`（生产环境）/ `.env.development`（开发环境） 
-里面的`VUE_APP_BASE_API`为api接口请求地址， `VUE_APP_RESOURCES_URL`为静态资源文件url
-注意！！如果启动uni项目或者小程序，默认后台api服务端口号为8086，
-如果启动后台项目，默认后台admin服务端口号为8085，请对照仔细填写后再启动，如遇401状态码，仔细检查端口号是否配置正确！
+平台端修改文件`.env.production`（生产环境）/ `.env.development`（开发环境）
+里面的`VUE_APP_BASE_API`为api接口请求地址， `VUE_APP_RESOURCES_URL`为静态资源文件url 
 
 ```json
     // api接口请求地址
@@ -99,6 +97,13 @@ cnpm i
     // 静态资源文件url
     VUE_APP_RESOURCES_URL = 'https://img.mall4j.com/'
 ```
+
+移动端修改文件`utils\config.js`
+里面的`domain`为api接口请求地址， `picDomain`为静态资源文件url 
+
+注意！！如果启动uni项目或者小程序，默认后台api服务端口号为8086，
+如果启动后台项目，默认后台admin服务端口号为8085，请对照仔细填写后再启动，如遇401状态码，仔细检查端口号是否配置正确！
+
 
 
 
