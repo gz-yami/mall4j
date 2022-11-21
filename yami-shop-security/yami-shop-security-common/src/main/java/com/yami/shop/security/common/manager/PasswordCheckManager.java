@@ -47,7 +47,7 @@ public class PasswordCheckManager {
             count = RedisUtil.get(checkPrefix + userNameOrMobile);
         }
         if(count > TIMES_CHECK_INPUT_PASSWORD_NUM){
-            throw new YamiShopBindException("半小时内密码输入错误十次，已限制登录30分钟");
+            throw new YamiShopBindException("密码输入错误十次，已限制登录30分钟");
         }
         // 半小时后失效
         RedisUtil.set(checkPrefix + userNameOrMobile,count,1800);
