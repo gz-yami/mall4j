@@ -146,12 +146,12 @@
     </view>
 
     <!-- 底部栏 -->
-    <view class='order-detail-footer'>
-      <text class='dele-order' wx:if="{{status==5||status==6}}">删除订单</text>
-      <view class='footer-box'>
-        <text class='apply-service'>联系客服</text>
-        <text class='buy-again'>再次购买</text>
-      </view>
+    <view class='order-detail-footer' wx:if="{{status==5||status==6}}">
+      <text class='dele-order'>删除订单</text>
+      <!-- <view class='footer-box'> -->
+        <!-- <text class='apply-service'>联系客服</text> -->
+        <!-- <text class='buy-again'>再次购买</text> -->
+      <!-- </view> -->
     </view>
 
   </view>
