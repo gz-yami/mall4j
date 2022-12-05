@@ -34,6 +34,10 @@ CREATE TABLE `qrtz_blob_triggers` (
 
 /*Data for the table `qrtz_blob_triggers` */
 
+insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values
+('clusteredScheduler','TASK_14','DEFAULT','0 * * * * ?','Asia/Shanghai'),
+('clusteredScheduler','TASK_16','DEFAULT','0 0/5 * * * ?','Asia/Shanghai');
+
 /*Table structure for table `qrtz_calendars` */
 
 DROP TABLE IF EXISTS `qrtz_calendars`;
@@ -114,6 +118,10 @@ CREATE TABLE `qrtz_job_details` (
 
 /*Data for the table `qrtz_job_details` */
 
+insert  into `qrtz_job_details`(`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`JOB_CLASS_NAME`,`IS_DURABLE`,`IS_NONCONCURRENT`,`IS_UPDATE_DATA`,`REQUESTS_RECOVERY`,`JOB_DATA`) values
+('clusteredScheduler','TASK_14','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0',''),
+('clusteredScheduler','TASK_16','DEFAULT',NULL,'com.yami.shop.quartz.config.QuartzJob','0','1','0','0','');
+
 /*Table structure for table `qrtz_locks` */
 
 DROP TABLE IF EXISTS `qrtz_locks`;
@@ -125,6 +133,10 @@ CREATE TABLE `qrtz_locks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_locks` */
+
+insert  into `qrtz_locks`(`SCHED_NAME`,`LOCK_NAME`) values
+('clusteredScheduler','STATE_ACCESS'),
+('clusteredScheduler','TRIGGER_ACCESS');
 
 /*Table structure for table `qrtz_paused_trigger_grps` */
 
@@ -232,6 +244,10 @@ CREATE TABLE `qrtz_triggers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_triggers` */
+
+insert  into `qrtz_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`JOB_NAME`,`JOB_GROUP`,`DESCRIPTION`,`NEXT_FIRE_TIME`,`PREV_FIRE_TIME`,`PRIORITY`,`TRIGGER_STATE`,`TRIGGER_TYPE`,`START_TIME`,`END_TIME`,`CALENDAR_NAME`,`MISFIRE_INSTR`,`JOB_DATA`) values
+('clusteredScheduler','TASK_14','DEFAULT','TASK_14','DEFAULT',NULL,1669166100000,1669166040000,5,'WAITING','CRON',1653270825000,0,NULL,1,''),
+('clusteredScheduler','TASK_16','DEFAULT','TASK_16','DEFAULT',NULL,1669166100000,1669165800000,5,'WAITING','CRON',1653270869000,0,NULL,1,'');
 
 /*Table structure for table `tz_area` */
 
