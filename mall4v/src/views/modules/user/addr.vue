@@ -64,7 +64,7 @@ export default {
     AddOrUpdate
   },
   methods: {
-    getDataList (page, params) {
+    getDataList (page, params, done) {
       this.dataListLoading = true
       this.$http({
         url: this.$http.adornUrl('/user/addr/page'),
@@ -77,6 +77,9 @@ export default {
         this.dataList = data.records
         this.page.total = data.total
         this.dataListLoading = false
+        if (done) {
+          done()
+        }
       })
     },
     // 新增 / 修改
@@ -114,8 +117,8 @@ export default {
     refreshChange () {
       this.getDataList(this.page)
     },
-    searchChange (params) {
-      this.getDataList(this.page, params)
+    searchChange (params, done) {
+      this.getDataList(this.page, params, done)
     }
   }
 }

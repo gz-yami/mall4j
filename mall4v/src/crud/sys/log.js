@@ -1,4 +1,6 @@
 export const tableOption = {
+  searchMenuSpan: 6,
+  columnBtn: false,
   border: true,
   menu: false, // 移除操作栏
   selection: true,

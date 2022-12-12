@@ -1,4 +1,6 @@
 export const tableOption = {
+  searchMenuSpan: 6,
+  columnBtn: false,
   border: true,
   index: true,
   indexLabel: '序号',

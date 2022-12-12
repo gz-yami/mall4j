@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "@smallwei/avue": "2.0.2",
+    "@smallwei/avue": "2.8.27",
     "axios": "0.18.1",
     "core-js": "3.6.5",
     "crypto-js": "^4.1.1",

@@ -228,7 +228,7 @@ export default {
   },
   methods: {
     // 获取数据列表
-    getDataList (page, params) {
+    getDataList (page, params, done) {
       page = (page === undefined ? this.page : page)
       this.dataListLoading = true
       this.$http({
@@ -251,6 +251,9 @@ export default {
         this.dataList = data.records
         this.page.total = data.total
         this.dataListLoading = false
+        if (done) {
+          done()
+        }
       })
     },
     // 清除数据

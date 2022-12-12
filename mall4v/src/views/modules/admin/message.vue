@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     // 获取数据列表
-    getDataList (page, params) {
+    getDataList (page, params, done) {
       this.dataListLoading = true
       this.$http({
         url: this.$http.adornUrl('/admin/message/page'),
@@ -108,6 +108,9 @@ export default {
         this.dataList = data.records
         this.page.total = data.total
         this.dataListLoading = false
+        if (done) {
+          done()
+        }
       })
     },
 
@@ -193,8 +196,8 @@ export default {
         .catch(() => { })
     },
     // 条件查询
-    searchChange (params) {
-      this.getDataList(this.page, params)
+    searchChange (params, done) {
+      this.getDataList(this.page, params, done)
     },
     // 多选变化
     selectionChange (val) {

@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     // 获取数据列表
-    getDataList (page, params) {
+    getDataList (page, params, done) {
       this.dataListLoading = true
       this.$http({
         url: this.$http.adornUrl('/admin/hotSearch/page'),
@@ -96,6 +96,9 @@ export default {
         this.page.currentPage = data.current
         this.dataList = data.records
         this.dataListLoading = false
+        if (done) {
+          done()
+        }
       })
     },
     // 多选回调
@@ -110,8 +113,8 @@ export default {
       })
     },
     // 点击查询
-    searchChange (params) {
-      this.getDataList(this.page, params)
+    searchChange (params, done) {
+      this.getDataList(this.page, params, done)
     },
     // 删除
     deleteHandle (row, index) {

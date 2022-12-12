@@ -85,7 +85,7 @@ export default {
     }
   },
   methods: {
-    getDataList (page, params) {
+    getDataList (page, params, done) {
       this.$http({
         url: this.$http.adornUrl('/admin/area/list'),
         method: 'get',

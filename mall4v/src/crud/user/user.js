@@ -1,4 +1,6 @@
 export const tableOption = {
+  searchMenuSpan: 6,
+  columnBtn: false,
   border: true,
   // selection: true,
   index: false,
