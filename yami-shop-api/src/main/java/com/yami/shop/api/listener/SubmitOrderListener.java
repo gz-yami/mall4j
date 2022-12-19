@@ -175,7 +175,7 @@ public class SubmitOrderListener {
             order.setDeleteStatus(0);
             order.setProductNums(shopCartOrderDto.getTotalCount());
             order.setAddrOrderId(addrOrderId);
-            order.setReduceAmount(Arith.sub(shopCartOrderDto.getTotal(), shopCartOrderDto.getActualTotal()));
+            order.setReduceAmount(Arith.sub(Arith.add(shopCartOrderDto.getTotal(), shopCartOrderDto.getTransfee()), shopCartOrderDto.getActualTotal()));
             order.setFreightAmount(shopCartOrderDto.getTransfee());
             order.setRemarks(shopCartOrderDto.getRemarks());
 
