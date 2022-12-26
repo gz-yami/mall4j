@@ -3,12 +3,12 @@
     <el-form :inline="true"
              :model="dataForm"
              @keyup.enter.native="getDataList(this.page)">
-      <el-form-item>
+      <el-form-item label="订单编号:">
         <el-input v-model="dataForm.orderNumber"
                   placeholder="订单编号"
                   clearable></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item label="下单时间:">
         <el-date-picker v-model="dateRange"
                         type="datetimerange"
                         range-separator="至"
@@ -17,7 +17,7 @@
                         end-placeholder="结束日期">
         </el-date-picker>
       </el-form-item>
-      <el-form-item>
+      <el-form-item label="订单状态:">
         <template>
           <el-select v-model="dataForm.status"
                      clearable
