@@ -200,3 +200,25 @@ page {
 .prod-col .col-item .tit{
   line-height: 34px;
 }
+
+/* 退出登录 */
+.log-out{
+	padding:20rpx;
+	text-align: center;
+	margin-top:20rpx;
+}
+.log-out-n{
+	font-size: 30rpx;
+	margin: auto;
+	width:200rpx;
+	padding:20rpx;
+	border-radius: 10rpx;
+	background: #e43130;
+	color:#ffffff;
+}
+button.memu-btn.memu-item {
+  background-color: #fff;
+} 
+button.memu-btn.memu-item:after {
+  border: 0;
+}

@@ -1,6 +1,7 @@
 // pages/user/user.js
 
 var http = require("../../utils/http.js");
+var util = require("../../utils/util.js");
 Page({
 
   /**
@@ -116,6 +117,38 @@ Page({
   toBindingPhone: function() {
     wx.navigateTo({
       url: '/pages/binding-phone/binding-phone',
+    })
+  },
+
+  /**
+ * 退出登录
+ */
+  logout: function() {
+    // 请求退出登陆接口
+    http.request({
+      url: '/logOut',
+      method: 'post',
+      callBack: res => {
+        util.removeTabBadge()
+
+        wx.removeStorageSync('loginResult');
+        wx.removeStorageSync('token');
+
+        // this.$Router.pushTab('/pages/index/index')
+        wx.showToast({
+          title: "退出成功",
+          icon: "none"
+        })
+        
+        this.setData({
+          orderAmount: ''
+        });
+        setTimeout(() => {
+          wx.switchTab({
+            url: "/pages/index/index"
+          })
+        }, 1000)
+      }
     })
   },
 

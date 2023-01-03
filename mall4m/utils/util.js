@@ -23,7 +23,17 @@ const formatHtml = content => {
   return content;
 }
 
+/**
+ * 移除购物车Tabbar的数字
+ */
+const removeTabBadge = () => {
+	wx.removeTabBarBadge({
+		index: 2
+	})
+}
+
 module.exports = {
   formatTime: formatTime,
-  formatHtml: formatHtml
+  formatHtml: formatHtml,
+	removeTabBadge: removeTabBadge
 }

@@ -9,10 +9,10 @@
       <open-data type="userNickName"></open-data>
     </view>
   </view>
-  <view class='binding-phone'>
+  <!-- <view class='binding-phone'>
     <text class='show-tip'>绑定手机号后可查看订单和领取优惠券，</text>
     <text class='gotobinding' bindtap='toBindingPhone'>去绑定</text>
-  </view>
+  </view> -->
   <!-- end 用户信息 -->
 
   <view class='list-cont'>
@@ -96,6 +96,12 @@
       </view>
     </view>
     <!--end 列表项 -->
+  </view>
+
+  <view class="log-out" bindtap="logout" wx:if="isAuthInfo">
+    <view class="log-out-n">
+      <text>退出登录</text>
+    </view>
   </view>
 
 </view>
