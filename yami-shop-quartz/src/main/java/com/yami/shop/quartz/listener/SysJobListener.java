@@ -26,6 +26,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -43,6 +44,9 @@ public class SysJobListener {
 	@EventListener(ScheduleJobEvent.class)
 	public void scheduleJobEventListener(ScheduleJobEvent event) {
 		ScheduleJob scheduleJob = event.getScheduleJob();
+		if (Objects.isNull(scheduleJob)) {
+			return;
+		}
 		//数据库保存执行记录
 		ScheduleJobLog jobLog = new ScheduleJobLog();
 		jobLog.setJobId(scheduleJob.getJobId());

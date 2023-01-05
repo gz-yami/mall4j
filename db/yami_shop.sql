@@ -4,7 +4,7 @@ MySQL - 5.7.23 : Database - yami_shops
 *********************************************************************
 */
 
-create database IF NOT EXISTS `yami_shops` default character set utf8 collate utf8_general_ci;
+create database IF NOT EXISTS `yami_shops` default character set utf8mb4 collate utf8mb4_general_ci;
 
 USE yami_shops;
 
@@ -34,10 +34,6 @@ CREATE TABLE `qrtz_blob_triggers` (
 
 /*Data for the table `qrtz_blob_triggers` */
 
-insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values
-('clusteredScheduler','TASK_14','DEFAULT','0 * * * * ?','Asia/Shanghai'),
-('clusteredScheduler','TASK_16','DEFAULT','0 0/5 * * * ?','Asia/Shanghai');
-
 /*Table structure for table `qrtz_calendars` */
 
 DROP TABLE IF EXISTS `qrtz_calendars`;
@@ -66,6 +62,10 @@ CREATE TABLE `qrtz_cron_triggers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `qrtz_cron_triggers` */
+
+insert  into `qrtz_cron_triggers`(`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`CRON_EXPRESSION`,`TIME_ZONE_ID`) values
+('clusteredScheduler','TASK_14','DEFAULT','0 * * * * ?','Asia/Shanghai'),
+('clusteredScheduler','TASK_16','DEFAULT','0 0/5 * * * ?','Asia/Shanghai');
 
 /*Table structure for table `qrtz_fired_triggers` */
 
