@@ -55,7 +55,7 @@ public class ProdTagController {
                 page, new LambdaQueryWrapper<ProdTag>()
                         .eq(prodTag.getStatus() != null, ProdTag::getStatus, prodTag.getStatus())
                         .like(prodTag.getTitle() != null, ProdTag::getTitle, prodTag.getTitle())
-                        .orderByDesc(ProdTag::getSeq));
+                        .orderByDesc(ProdTag::getSeq, ProdTag::getCreateTime));
         return ResponseEntity.ok(tagIPage);
 
     }
