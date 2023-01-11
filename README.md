@@ -16,7 +16,7 @@ gitee：https://gitee.com/gz-yami/mall4j/tree/master/doc
 
 **开发环境搭建视频（推荐先看下文档再看视频）：https://www.bilibili.com/video/BV1eW4y1V7c1** 
 
-如果视频对你有用，记得点赞投币噢。
+本来是一个小姐姐录制的带声音的，后来小姐姐害羞，就删除声音了。如果视频对你有用，记得点赞投币噢。
 
 ## 授权
 
@@ -73,7 +73,8 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 **开发环境搭建视频（推荐先看下文档再看视频）：https://www.bilibili.com/video/BV1eW4y1V7c1** 
 
-如果视频对你有用，记得点赞投币噢。
+本来是一个小姐姐录制的带声音的，后来小姐姐害羞，就删除声音了。如果视频对你有用，记得点赞投币噢。
+
 
 
 ## 相关截图
