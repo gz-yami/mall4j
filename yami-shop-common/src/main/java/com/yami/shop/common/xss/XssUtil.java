@@ -12,7 +12,7 @@ package com.yami.shop.common.xss;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 /**
  * 描述: 过滤 HTML 标签中 XSS 代码
  * @author lgh
@@ -21,7 +21,7 @@ public class XssUtil {
     /**
      * 使用自带的 basicWithImages 白名单
      */
-    private static final Whitelist WHITE_LIST = Whitelist.relaxed();
+    private static final Safelist WHITE_LIST = Safelist.relaxed();
     /** 配置过滤化参数, 不对代码进行格式化 */
     private static final Document.OutputSettings OUTPUT_SETTINGS = new Document.OutputSettings().prettyPrint(false);
     static {
