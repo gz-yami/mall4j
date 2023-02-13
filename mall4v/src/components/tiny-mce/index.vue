@@ -208,7 +208,9 @@ export default {
       }
     },
     setContent (value) {
-      window.tinymce.get(this.tinymceId).setContent(value)
+      if (window.tinymce) {
+        window.tinymce.get(this.tinymceId).setContent(value)
+      }
     },
     getContent () {
       window.tinymce.get(this.tinymceId).getContent()
