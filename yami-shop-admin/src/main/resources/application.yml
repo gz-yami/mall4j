@@ -11,7 +11,9 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
 # mybaits-plus配置
 mybatis-plus:
   # MyBatis Mapper所对应的XML文件位置
