@@ -22,8 +22,8 @@ import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.Arith;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -40,7 +40,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/p/order")
-@Api(tags = "订单接口")
+@Tag(name = "订单接口")
 public class OrderController {
 
     @Autowired
@@ -63,7 +63,7 @@ public class OrderController {
      * 生成订单
      */
     @PostMapping("/confirm")
-    @ApiOperation(value = "结算，生成订单信息", notes = "传入下单所需要的参数进行下单")
+    @Operation(summary = "结算，生成订单信息" , description = "传入下单所需要的参数进行下单")
     public ResponseEntity<ShopCartOrderMergerDto> confirm(@Valid @RequestBody OrderParam orderParam) {
         String userId = SecurityUtils.getUser().getUserId();
 
@@ -139,7 +139,7 @@ public class OrderController {
      * 购物车/立即购买  提交订单,根据店铺拆单
      */
     @PostMapping("/submit")
-    @ApiOperation(value = "提交订单，返回支付流水号", notes = "根据传入的参数判断是否为购物车提交订单，同时对购物车进行删除，用户开始进行支付")
+    @Operation(summary = "提交订单，返回支付流水号" , description = "根据传入的参数判断是否为购物车提交订单，同时对购物车进行删除，用户开始进行支付")
     public ResponseEntity<OrderNumbersDto> submitOrders(@Valid @RequestBody SubmitOrderParam submitOrderParam) {
         String userId = SecurityUtils.getUser().getUserId();
         ShopCartOrderMergerDto mergerOrder = orderService.getConfirmOrderCache(userId);

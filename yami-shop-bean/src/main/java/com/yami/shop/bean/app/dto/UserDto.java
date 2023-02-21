@@ -10,14 +10,14 @@
 
 package com.yami.shop.bean.app.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class UserDto {
 
 
-	@ApiModelProperty(value = "用户状态：0禁用 1正常",required=true)
+	@Schema(description = "用户状态：0禁用 1正常" ,required=true)
 	private Integer status;
-	@ApiModelProperty(value = "token",required=true)
+	@Schema(description = "token" ,required=true)
 	private String token;
 	
 	public Integer getStatus() {

@@ -13,9 +13,9 @@ package com.yami.shop.api.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.v3.oas.annotations.Hidden;
 
-@ApiIgnore
+@Hidden
 @RestController
 @RequestMapping("/notice/pay")
 @AllArgsConstructor

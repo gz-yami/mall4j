@@ -10,7 +10,7 @@
 
 package com.yami.shop.bean.app.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,24 +23,24 @@ import java.util.List;
 @Data
 public class ShopCartOrderMergerDto implements Serializable{
 
-    @ApiModelProperty(value = "实际总值", required = true)
+    @Schema(description = "实际总值" , required = true)
     private Double actualTotal;
 
-    @ApiModelProperty(value = "商品总值", required = true)
+    @Schema(description = "商品总值" , required = true)
     private Double total;
 
-    @ApiModelProperty(value = "商品总数", required = true)
+    @Schema(description = "商品总数" , required = true)
     private Integer totalCount;
 
-    @ApiModelProperty(value = "订单优惠金额(所有店铺优惠金额相加)", required = true)
+    @Schema(description = "订单优惠金额(所有店铺优惠金额相加)" , required = true)
     private Double orderReduce;
 
-    @ApiModelProperty(value = "地址Dto", required = true)
+    @Schema(description = "地址Dto" , required = true)
     private UserAddrDto userAddr;
 
-    @ApiModelProperty(value = "每个店铺的购物车信息", required = true)
+    @Schema(description = "每个店铺的购物车信息" , required = true)
     private List<ShopCartOrderDto> shopCartOrders;
 
-    @ApiModelProperty(value = "整个订单可以使用的优惠券列表", required = true)
+    @Schema(description = "整个订单可以使用的优惠券列表" , required = true)
     private List<CouponOrderDto> coupons;
 }

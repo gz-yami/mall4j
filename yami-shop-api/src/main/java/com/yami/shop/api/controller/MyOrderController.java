@@ -22,10 +22,10 @@ import com.yami.shop.common.util.Arith;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/p/myOrder")
-@Api(tags = "我的订单接口")
+@Tag(name = "我的订单接口")
 @AllArgsConstructor
 public class MyOrderController {
 
@@ -62,8 +62,8 @@ public class MyOrderController {
      * 订单详情信息接口
      */
     @GetMapping("/orderDetail")
-    @ApiOperation(value = "订单详情信息", notes = "根据订单号获取订单详情信息")
-    @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String")
+    @Operation(summary = "订单详情信息" , description = "根据订单号获取订单详情信息")
+    @Parameter(name = "orderNumber", description = "订单号" , required = true)
     public ResponseEntity<OrderShopDto> orderDetail(@RequestParam(value = "orderNumber", required = true) String orderNumber) {
 
         String userId = SecurityUtils.getUser().getUserId();
@@ -112,9 +112,9 @@ public class MyOrderController {
      * 订单列表接口
      */
     @GetMapping("/myOrder")
-    @ApiOperation(value = "订单列表信息", notes = "根据订单状态获取订单列表信息，状态为0时获取所有订单")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "status", value = "订单状态 1:待付款 2:待发货 3:待收货 4:待评价 5:成功 6:失败", required = false, dataType = "Integer")
+    @Operation(summary = "订单列表信息" , description = "根据订单状态获取订单列表信息，状态为0时获取所有订单")
+    @Parameters({
+            @Parameter(name = "status", description = "订单状态 1:待付款 2:待发货 3:待收货 4:待评价 5:成功 6:失败")
     })
     public ResponseEntity<IPage<MyOrderDto>> myOrder(@RequestParam(value = "status") Integer status,PageParam<MyOrderDto> page) {
 
@@ -127,8 +127,8 @@ public class MyOrderController {
      * 取消订单
      */
     @PutMapping("/cancel/{orderNumber}")
-    @ApiOperation(value = "根据订单号取消订单", notes = "根据订单号取消订单")
-    @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String")
+    @Operation(summary = "根据订单号取消订单" , description = "根据订单号取消订单")
+    @Parameter(name = "orderNumber", description = "订单号" , required = true)
     public ResponseEntity<String> cancel(@PathVariable("orderNumber") String orderNumber) {
         String userId = SecurityUtils.getUser().getUserId();
         Order order = orderService.getOrderByOrderNumber(orderNumber);
@@ -156,7 +156,7 @@ public class MyOrderController {
      * 确认收货
      */
     @PutMapping("/receipt/{orderNumber}")
-    @ApiOperation(value = "根据订单号确认收货", notes = "根据订单号确认收货")
+    @Operation(summary = "根据订单号确认收货" , description = "根据订单号确认收货")
     public ResponseEntity<String> receipt(@PathVariable("orderNumber") String orderNumber) {
         String userId = SecurityUtils.getUser().getUserId();
         Order order = orderService.getOrderByOrderNumber(orderNumber);
@@ -182,8 +182,8 @@ public class MyOrderController {
      * 删除订单
      */
     @DeleteMapping("/{orderNumber}")
-    @ApiOperation(value = "根据订单号删除订单", notes = "根据订单号删除订单")
-    @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String")
+    @Operation(summary = "根据订单号删除订单" , description = "根据订单号删除订单")
+    @Parameter(name = "orderNumber", description = "订单号" , required = true)
     public ResponseEntity<String> delete(@PathVariable("orderNumber") String orderNumber) {
         String userId = SecurityUtils.getUser().getUserId();
 
@@ -208,7 +208,7 @@ public class MyOrderController {
      * 获取我的订单订单数量
      */
     @GetMapping("/orderCount")
-    @ApiOperation(value = "获取我的订单订单数量", notes = "获取我的订单订单数量")
+    @Operation(summary = "获取我的订单订单数量" , description = "获取我的订单订单数量")
     public ResponseEntity<OrderCountData> getOrderCount() {
         String userId = SecurityUtils.getUser().getUserId();
         OrderCountData orderCountMap = orderService.getOrderCount(userId);

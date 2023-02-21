@@ -13,8 +13,8 @@ import com.yami.shop.security.common.manager.PasswordManager;
 import com.yami.shop.security.common.manager.TokenStore;
 import com.yami.shop.security.common.vo.TokenInfoVO;
 import com.yami.shop.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +30,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/user")
-@Api(tags = "用户注册相关接口")
+@Tag(name = "用户注册相关接口")
 @AllArgsConstructor
 public class UserRegisterController {
 
@@ -43,7 +43,7 @@ public class UserRegisterController {
     private final PasswordManager passwordManager;
 
     @PostMapping("/register")
-    @ApiOperation(value = "注册", notes = "用户注册或绑定手机号接口")
+    @Operation(summary = "注册" , description = "用户注册或绑定手机号接口")
     public ResponseEntity<TokenInfoVO> register(@Valid @RequestBody UserRegisterParam userRegisterParam) {
         if (StrUtil.isBlank(userRegisterParam.getNickName())) {
             userRegisterParam.setNickName(userRegisterParam.getUserName());
@@ -76,7 +76,7 @@ public class UserRegisterController {
 
 
     @PutMapping("/updatePwd")
-    @ApiOperation(value = "修改密码", notes = "修改密码")
+    @Operation(summary = "修改密码" , description = "修改密码")
     public ResponseEntity<Void> updatePwd(@Valid @RequestBody UserRegisterParam userPwdUpdateParam) {
         User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getNickName, userPwdUpdateParam.getNickName()));
         if (user == null) {

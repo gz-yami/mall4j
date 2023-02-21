@@ -15,8 +15,8 @@ import com.yami.shop.bean.app.param.SendSmsParam;
 import com.yami.shop.bean.enums.SmsType;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.SmsLogService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/p/sms")
-@Api(tags="发送验证码接口")
+@Tag(name = "发送验证码接口")
 public class SmsController {
 
 	@Autowired
@@ -35,7 +35,7 @@ public class SmsController {
      * 发送验证码接口
      */
     @PostMapping("/send")
-    @ApiOperation(value="发送验证码", notes="用户的发送验证码")
+    @Operation(summary = "发送验证码" , description = "用户的发送验证码")
     public ResponseEntity<Void> audit(@RequestBody SendSmsParam sendSmsParam) {
 		String userId = SecurityUtils.getUser().getUserId();
 		smsLogService.sendSms(SmsType.VALID, userId, sendSmsParam.getMobile(),Maps.newHashMap());

@@ -11,42 +11,56 @@
 package com.yami.shop.common.util;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.annotations.ApiParam;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.springdoc.api.annotations.ParameterObject;
 
+import java.util.Collections;
 import java.util.List;
+@Schema
+@ParameterObject
 public class PageParam<T> extends Page<T> {
 
-    /**
-     * 查询数据列表
-     */
-    @ApiParam(hidden = true)
-    private List<T> records;
-    /**
-     * 总数
-     */
-    @ApiParam(hidden = true)
-    private long total = 0;
 
     /**
      * 每页显示条数，默认 10
      */
-    @ApiParam(value = "每页大小，默认10",required = false, defaultValue = "10")
+    @Schema(description = "每页大小，默认10")
     private long size = 10;
 
     /**
      * 当前页
      */
-    @ApiParam(value = "当前页，默认1",required = false,defaultValue = "1")
+    @Schema(description = "当前页，默认1")
     private long current = 1;
+
+    /**
+     * 查询数据列表
+     */
+    @Hidden
+    private List<T> records;
+    /**
+     * 总数
+     */
+    @Hidden
+    private long total = 0;
+
 
     /**
      * 是否进行 count 查询
      */
-    @ApiParam(hidden = true)
+    @JsonIgnore
     private boolean isSearchCount = true;
 
+    @JsonIgnore
+    private String countId;
+    @JsonIgnore
+    private Long maxLimit;
+    @JsonIgnore
+    private boolean optimizeCountSql;
+
     @Override
-    @ApiParam(hidden = true)
     public List<T> getRecords() {
         return this.records;
     }
@@ -68,7 +82,7 @@ public class PageParam<T> extends Page<T> {
         return this;
     }
 
-    @ApiParam(hidden = true)
+    @JsonIgnore
     public boolean getSearchCount() {
         if (total < 0) {
             return false;
@@ -77,7 +91,6 @@ public class PageParam<T> extends Page<T> {
     }
 
     @Override
-    @ApiParam(hidden = true)
     public boolean isSearchCount() {
         if (total < 0) {
             return false;
@@ -98,7 +111,11 @@ public class PageParam<T> extends Page<T> {
 
     @Override
     public Page<T> setSize(long size) {
-        this.size = size;
+        if (size > 100) {
+            this.size = 100;
+        } else {
+            this.size = size;
+        }
         return this;
     }
 
@@ -112,4 +129,24 @@ public class PageParam<T> extends Page<T> {
         this.current = current;
         return this;
     }
+
+    /** @deprecated */
+    @Deprecated
+    public String getCountId() {
+        return this.countId;
+    }
+
+    /** @deprecated */
+    @Deprecated
+    public Long getMaxLimit() {
+        return this.maxLimit;
+    }
+
+
+    /** @deprecated */
+    @Deprecated
+    public boolean isOptimizeCountSql() {
+        return this.optimizeCountSql;
+    }
+
 }

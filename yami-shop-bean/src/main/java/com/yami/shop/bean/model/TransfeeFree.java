@@ -16,7 +16,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -27,39 +27,39 @@ public class TransfeeFree implements Serializable {
      * 指定条件包邮项id
      */
     @TableId
-    @ApiModelProperty(value = "指定条件包邮项id",required=true)
+    @Schema(description = "指定条件包邮项id" ,required=true)
     private Long transfeeFreeId;
 
     /**
      * 运费模板id
      */
 
-    @ApiModelProperty(value = "运费模板id",required=true)
+    @Schema(description = "运费模板id" ,required=true)
     private Long transportId;
 
     /**
      * 包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）
      */
 
-    @ApiModelProperty(value = "包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）",required=true)
+    @Schema(description = "包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）" ,required=true)
     private Integer freeType;
 
     /**
      * 需满金额
      */
-    @ApiModelProperty(value = "需满金额",required=true)
+    @Schema(description = "需满金额" ,required=true)
     private Double amount;
 
     /**
      * 包邮x件/重量/体积
      */
-    @ApiModelProperty(value = "包邮x件/重量/体积",required=true)
+    @Schema(description = "包邮x件/重量/体积" ,required=true)
     private Double piece;
 
     /**
      * 指定条件包邮城市项
      */
     @TableField(exist=false)
-    @ApiModelProperty(value = "指定条件包邮城市项",required=true)
+    @Schema(description = "指定条件包邮城市项" ,required=true)
     private List<Area> freeCityList;
 }

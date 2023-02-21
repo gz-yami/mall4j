@@ -21,10 +21,10 @@ import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.TransportService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.Operation;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/prod")
-@Api(tags = "商品接口")
+@Tag(name = "商品接口")
 public class ProdController {
 
     @Autowired
@@ -58,9 +58,9 @@ public class ProdController {
 
 
     @GetMapping("/pageProd")
-    @ApiOperation(value = "通过分类id商品列表信息", notes = "根据分类ID获取该分类下所有的商品列表信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryId", value = "分类ID", required = true, dataType = "Long"),
+    @Operation(summary = "通过分类id商品列表信息" , description = "根据分类ID获取该分类下所有的商品列表信息")
+    @Parameters({
+            @Parameter(name = "categoryId", description = "分类ID" , required = true),
     })
     public ResponseEntity<IPage<ProductDto>> prodList(
             @RequestParam(value = "categoryId") Long categoryId,PageParam<ProductDto> page) {
@@ -69,8 +69,8 @@ public class ProdController {
     }
 
     @GetMapping("/prodInfo")
-    @ApiOperation(value = "商品详情信息", notes = "根据商品ID（prodId）获取商品信息")
-    @ApiImplicitParam(name = "prodId", value = "商品ID", required = true, dataType = "Long")
+    @Operation(summary = "商品详情信息" , description = "根据商品ID（prodId）获取商品信息")
+    @Parameter(name = "prodId", description = "商品ID" , required = true)
     public ResponseEntity<ProductDto> prodInfo(Long prodId) {
 
         Product product = prodService.getProductByProdId(prodId);
@@ -97,8 +97,8 @@ public class ProdController {
     }
 
     @GetMapping("/lastedProdPage")
-    @ApiOperation(value = "新品推荐", notes = "获取新品推荐商品列表")
-    @ApiImplicitParams({
+    @Operation(summary = "新品推荐" , description = "获取新品推荐商品列表")
+    @Parameters({
     })
     public ResponseEntity<IPage<ProductDto>> lastedProdPage(PageParam<ProductDto> page) {
         IPage<ProductDto> productPage = prodService.pageByPutawayTime(page);
@@ -106,9 +106,9 @@ public class ProdController {
     }
 
     @GetMapping("/prodListByTagId")
-    @ApiOperation(value = "通过分组标签获取商品列表", notes = "通过分组标签id（tagId）获取商品列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "tagId", value = "当前页，默认为1", required = true, dataType = "Long"),
+    @Operation(summary = "通过分组标签获取商品列表" , description = "通过分组标签id（tagId）获取商品列表")
+    @Parameters({
+            @Parameter(name = "tagId", description = "当前页，默认为1" , required = true),
     })
     public ResponseEntity<IPage<ProductDto>> prodListByTagId(
             @RequestParam(value = "tagId") Long tagId,PageParam<ProductDto> page) {
@@ -117,15 +117,15 @@ public class ProdController {
     }
 
     @GetMapping("/moreBuyProdList")
-    @ApiOperation(value = "每日疯抢", notes = "获取销量最多的商品列表")
-    @ApiImplicitParams({})
+    @Operation(summary = "每日疯抢" , description = "获取销量最多的商品列表")
+    @Parameters({})
     public ResponseEntity<IPage<ProductDto>> moreBuyProdList(PageParam<ProductDto> page) {
         IPage<ProductDto> productPage = prodService.moreBuyProdList(page);
         return ResponseEntity.ok(productPage);
     }
 
     @GetMapping("/tagProdList")
-    @ApiOperation(value = "首页所有标签商品接口", notes = "获取首页所有标签商品接口")
+    @Operation(summary = "首页所有标签商品接口" , description = "获取首页所有标签商品接口")
     public ResponseEntity<List<TagProductDto>> getTagProdList() {
         List<TagProductDto> productDtoList = prodService.tagProdList();
         return ResponseEntity.ok(productDtoList);

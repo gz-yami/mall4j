@@ -9,7 +9,7 @@
  */
 package com.yami.shop.security.common.vo;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -21,12 +21,12 @@ import lombok.Data;
 @Data
 public class TokenInfoVO {
 
-    @ApiModelProperty("accessToken")
+    @Schema(description = "accessToken" )
     private String accessToken;
 
-    @ApiModelProperty("refreshToken")
+    @Schema(description = "refreshToken" )
     private String refreshToken;
 
-    @ApiModelProperty("在多少秒后过期")
+    @Schema(description = "在多少秒后过期" )
     private Integer expiresIn;
 }

@@ -13,7 +13,7 @@ import com.yami.shop.security.common.bo.TokenInfoBO;
 import com.yami.shop.security.common.dto.RefreshTokenDTO;
 import com.yami.shop.security.common.manager.TokenStore;
 import com.yami.shop.security.common.vo.TokenInfoVO;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ import javax.validation.Valid;
  * @date 2022/3/25 17:33
  */
 @RestController
-@Api(tags = "token")
+@Tag(name = "token")
 public class TokenController {
 
     @Autowired

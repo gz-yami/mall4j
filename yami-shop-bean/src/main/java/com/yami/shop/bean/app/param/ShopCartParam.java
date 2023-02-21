@@ -10,17 +10,16 @@
 
 package com.yami.shop.bean.app.param;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@ApiModel(value= "购物车参数")
+@Schema(description = "购物车参数")
 @Data
 public class ShopCartParam {
 
-    @ApiModelProperty(value = "购物项id")
+    @Schema(description = "购物项id" )
     private Long basketId;
 
-    @ApiModelProperty(value = "活动id,传0则不参与该活动")
+    @Schema(description = "活动id,传0则不参与该活动" )
     private Long discountId;
 }

@@ -23,14 +23,14 @@ import com.yami.shop.bean.app.dto.CategoryDto;
 import com.yami.shop.bean.model.Category;
 import com.yami.shop.service.CategoryService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Operation;
 import ma.glasnost.orika.MapperFacade;
 
 @RestController
 @RequestMapping("/category")
-@Api(tags = "分类接口")
+@Tag(name = "分类接口")
 public class CategoryController {
 
     @Autowired
@@ -43,8 +43,8 @@ public class CategoryController {
      * 分类信息列表接口
      */
     @GetMapping("/categoryInfo")
-    @ApiOperation(value = "分类信息列表", notes = "获取所有的产品分类信息，顶级分类的parentId为0,默认为顶级分类")
-    @ApiImplicitParam(name = "parentId", value = "分类ID", required = false, dataType = "Long")
+    @Operation(summary = "分类信息列表" , description = "获取所有的产品分类信息，顶级分类的parentId为0,默认为顶级分类")
+    @Parameter(name = "parentId", description = "分类ID", required = false)
     public ResponseEntity<List<CategoryDto>> categoryInfo(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
         List<Category> categories = categoryService.listByParentId(parentId);
         List<CategoryDto> categoryDtos = mapperFacade.mapAsList(categories, CategoryDto.class);

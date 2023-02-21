@@ -10,18 +10,18 @@
 
 package com.yami.shop.bean.app.param;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class OrderShopParam {
 
 	/** 店铺ID **/
-	@ApiModelProperty(value = "店铺id",required=true)
+	@Schema(description = "店铺id" ,required=true)
 	private Long shopId;
 	
 	/**
 	 * 订单备注信息
 	 */
-	@ApiModelProperty(value = "订单备注信息",required=true)
+	@Schema(description = "订单备注信息" ,required=true)
 	private String remarks;
 
 	public Long getShopId() {

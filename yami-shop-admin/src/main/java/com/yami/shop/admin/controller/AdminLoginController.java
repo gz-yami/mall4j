@@ -27,8 +27,8 @@ import com.yami.shop.sys.model.SysMenu;
 import com.yami.shop.sys.model.SysUser;
 import com.yami.shop.sys.service.SysMenuService;
 import com.yami.shop.sys.service.SysUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
  * @date 2020/6/30
  */
 @RestController
-@Api(tags = "登录")
+@Tag(name = "登录")
 public class AdminLoginController {
 
     @Autowired
@@ -69,7 +69,7 @@ public class AdminLoginController {
     private PasswordManager passwordManager;
 
     @PostMapping("/adminLogin")
-    @ApiOperation(value = "账号密码 + 验证码登录(用于后台登录)", notes = "通过账号/手机号/用户名密码登录")
+    @Operation(summary = "账号密码 + 验证码登录(用于后台登录)" , description = "通过账号/手机号/用户名密码登录")
     public ResponseEntity<?> login(
             @Valid @RequestBody CaptchaAuthenticationDTO captchaAuthenticationDTO) {
         // 登陆后台登录需要再校验一遍验证码

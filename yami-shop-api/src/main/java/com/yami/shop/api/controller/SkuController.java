@@ -14,9 +14,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yami.shop.bean.app.dto.SkuDto;
 import com.yami.shop.bean.model.Sku;
 import com.yami.shop.service.SkuService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sku")
-@Api(tags = "sku规格接口")
+@Tag(name = "sku规格接口")
 @AllArgsConstructor
 public class SkuController {
 
@@ -37,8 +37,8 @@ public class SkuController {
     private final MapperFacade mapperFacade;
 
     @GetMapping("/getSkuList")
-    @ApiOperation(value = "通过prodId获取商品全部规格列表", notes = "通过prodId获取商品全部规格列表")
-    @ApiImplicitParam(name = "prodId", value = "商品id", dataType = "Long")
+    @Operation(summary = "通过prodId获取商品全部规格列表" , description = "通过prodId获取商品全部规格列表")
+    @Parameter(name = "prodId", description = "商品id" )
     public ResponseEntity<List<SkuDto>> getSkuListByProdId(Long prodId) {
         List<Sku> skus = skuService.list(new LambdaQueryWrapper<Sku>()
                 .eq(Sku::getStatus, 1)

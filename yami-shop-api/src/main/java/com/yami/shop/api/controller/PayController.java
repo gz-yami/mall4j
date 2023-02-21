@@ -16,8 +16,8 @@ import com.yami.shop.bean.pay.PayInfoDto;
 import com.yami.shop.security.api.model.YamiUser;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.PayService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/p/order")
-@Api(tags = "订单接口")
+@Tag(name = "订单接口")
 @AllArgsConstructor
 public class PayController {
 
@@ -38,7 +38,7 @@ public class PayController {
      * 支付接口
      */
     @PostMapping("/pay")
-    @ApiOperation(value = "根据订单号进行支付", notes = "根据订单号进行支付")
+    @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
     @SneakyThrows
     public ResponseEntity<WxPayMpOrderResult> pay(@RequestBody PayParam payParam) {
         YamiUser user = SecurityUtils.getUser();
@@ -54,7 +54,7 @@ public class PayController {
      * 普通支付接口
      */
     @PostMapping("/normalPay")
-    @ApiOperation(value = "根据订单号进行支付", notes = "根据订单号进行支付")
+    @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
     @SneakyThrows
     public ResponseEntity<Boolean> normalPay(@RequestBody PayParam payParam) {
 

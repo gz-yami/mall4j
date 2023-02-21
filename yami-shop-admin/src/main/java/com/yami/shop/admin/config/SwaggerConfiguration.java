@@ -10,18 +10,12 @@
 
 package com.yami.shop.admin.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import org.springframework.context.annotation.Profile;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger文档，只有在测试环境才会使用
@@ -29,28 +23,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 //@Profile("dev")
 @Configuration
-@EnableSwagger2
 public class SwaggerConfiguration {
 
-	 @Bean
-	 public Docket createRestApi() {
-	     return new Docket(DocumentationType.SWAGGER_2)
-	     .apiInfo(apiInfo())
-		 .groupName("基础版")
-	     .select()
-	     .apis(RequestHandlerSelectors.basePackage("com.yami.shop.admin"))
-	     .paths(PathSelectors.any())
-	     .build();
-	 }
+	@Bean
+	public GroupedOpenApi baseRestApi() {
+		return GroupedOpenApi.builder()
+				.group("基础版")
+				.packagesToScan("com.yami.shop.api")
+				.build();
+	}
 
-	 @Bean
-	 public ApiInfo apiInfo() {
-	     return new ApiInfoBuilder()
-	     .title("mall4j管理系统接口文档")
-	     .description("mall4j商城接口文档Swagger版")
-	     .termsOfServiceUrl("https://www.mall4j.com/")
-	     .contact(new Contact("广州市蓝海创新科技有限公司","https://www.mall4j.com/", ""))
-	     .version("1.0")
-	     .build();
-	 }
+
+	@Bean
+	public OpenAPI springShopOpenAPI() {
+		return new OpenAPI()
+				.info(new Info().title("Mall4j接口文档")
+						.description("Mall4j接口文档，openapi3.0 接口，用于前端对接")
+						.version("v0.0.1")
+						.license(new License().name("使用请遵守AGPL3.0授权协议").url("https://www.mall4j.com")));
+	}
 }

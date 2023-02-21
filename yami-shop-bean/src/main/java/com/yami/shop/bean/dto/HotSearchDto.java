@@ -11,23 +11,22 @@
 package com.yami.shop.bean.dto;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
 
-@ApiModel("热搜数据")
+@Schema(description = "热搜数据")
 @Data
 public class HotSearchDto implements Serializable {
 
-    @ApiModelProperty("热搜id")
+    @Schema(description = "热搜id" )
     private Long hotSearchId;
 
-    @ApiModelProperty("标题")
+    @Schema(description = "标题" )
     private String title;
 
-    @ApiModelProperty("内容")
+    @Schema(description = "内容" )
     private String content;
 
 }

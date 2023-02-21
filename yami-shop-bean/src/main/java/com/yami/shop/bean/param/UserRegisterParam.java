@@ -10,41 +10,40 @@
 
 package com.yami.shop.bean.param;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
  * @author lh
  */
 @Data
-@ApiModel(value= "设置用户信息")
+@Schema(description = "设置用户信息")
 public class UserRegisterParam {
 
-	@ApiModelProperty(value = "密码")
+	@Schema(description = "密码" )
 	private String passWord;
 
-	@ApiModelProperty(value = "邮箱")
+	@Schema(description = "邮箱" )
 	private String userMail;
 
-	@ApiModelProperty(value = "昵称")
+	@Schema(description = "昵称" )
 	private String nickName;
 
-	@ApiModelProperty(value = "用户名")
+	@Schema(description = "用户名" )
 	private String userName;
 
-	@ApiModelProperty(value = "手机号")
+	@Schema(description = "手机号" )
 	private String mobile;
 
-	@ApiModelProperty(value = "头像")
+	@Schema(description = "头像" )
 	private String img;
 
-	@ApiModelProperty(value = "校验登陆注册验证码成功的标识")
+	@Schema(description = "校验登陆注册验证码成功的标识" )
 	private String checkRegisterSmsFlag;
 
-	@ApiModelProperty(value = "当账户未绑定时，临时的uid")
+	@Schema(description = "当账户未绑定时，临时的uid" )
 	private String tempUid;
 
-	@ApiModelProperty(value = "用户id")
+	@Schema(description = "用户id" )
 	private Long userId;
 }

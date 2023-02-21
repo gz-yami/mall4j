@@ -24,13 +24,13 @@ import com.yami.shop.common.util.Json;
 import com.yami.shop.service.DeliveryService;
 
 import cn.hutool.http.HttpUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/delivery")
-@Api(tags="查看物流接口")
+@Tag(name = "查看物流接口")
 public class DeliveryController {
 
 	@Autowired
@@ -42,8 +42,8 @@ public class DeliveryController {
      * 查看物流接口
      */
     @GetMapping("/check")
-    @ApiOperation(value="查看物流", notes="根据订单号查看物流")
-    @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String")
+    @Operation(summary = "查看物流" , description = "根据订单号查看物流")
+    @Parameter(name = "orderNumber", description = "订单号" , required = true)
     public ResponseEntity<DeliveryDto> checkDelivery(String orderNumber) {
 
     	Order order = orderService.getOrderByOrderNumber(orderNumber);

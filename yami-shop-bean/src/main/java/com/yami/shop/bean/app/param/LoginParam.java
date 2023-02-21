@@ -10,17 +10,16 @@
 
 package com.yami.shop.bean.app.param;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiModel(value= "登陆参数")
+@Schema(description = "登陆参数")
 public class LoginParam {
 
-	@ApiModelProperty(value = "小程序登陆时返回的code(使用code登陆必填)",required=true)
+	@Schema(description = "小程序登陆时返回的code(使用code登陆必填)" ,required=true)
 	private String code;
-	@ApiModelProperty(value = "登陆时的用户名(账号密码登陆必填)",required=true)
+	@Schema(description = "登陆时的用户名(账号密码登陆必填)" ,required=true)
 	private String mobile;
-	@ApiModelProperty(value = "登陆时的密码(账号密码登陆必填)",required=true)
+	@Schema(description = "登陆时的密码(账号密码登陆必填)" ,required=true)
 	private String password;
 
 	public String getCode() {

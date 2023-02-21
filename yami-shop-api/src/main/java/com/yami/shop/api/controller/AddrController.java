@@ -17,9 +17,9 @@ import com.yami.shop.bean.model.UserAddr;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.UserAddrService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/p/address")
-@Api(tags = "地址接口")
+@Tag(name = "地址接口")
 @AllArgsConstructor
 public class AddrController {
 
@@ -46,7 +46,7 @@ public class AddrController {
      * 选择订单配送地址
      */
     @GetMapping("/list")
-    @ApiOperation(value = "用户地址列表", notes = "获取用户的所有地址信息")
+    @Operation(summary = "用户地址列表" , description = "获取用户的所有地址信息")
     public ResponseEntity<List<UserAddrDto>> dvyList() {
         String userId = SecurityUtils.getUser().getUserId();
         List<UserAddr> userAddrs = userAddrService.list(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId).orderByDesc(UserAddr::getCommonAddr).orderByDesc(UserAddr::getUpdateTime));
@@ -54,7 +54,7 @@ public class AddrController {
     }
 
     @PostMapping("/addAddr")
-    @ApiOperation(value = "新增用户地址", notes = "新增用户地址")
+    @Operation(summary = "新增用户地址" , description = "新增用户地址")
     public ResponseEntity<String> addAddr(@Valid @RequestBody AddrParam addrParam) {
         String userId = SecurityUtils.getUser().getUserId();
 
@@ -85,7 +85,7 @@ public class AddrController {
      * 修改订单配送地址
      */
     @PutMapping("/updateAddr")
-    @ApiOperation(value = "修改订单用户地址", notes = "修改用户地址")
+    @Operation(summary = "修改订单用户地址" , description = "修改用户地址")
     public ResponseEntity<String> updateAddr(@Valid @RequestBody AddrParam addrParam) {
         String userId = SecurityUtils.getUser().getUserId();
 
@@ -109,8 +109,8 @@ public class AddrController {
      * 删除订单配送地址
      */
     @DeleteMapping("/deleteAddr/{addrId}")
-    @ApiOperation(value = "删除订单用户地址", notes = "根据地址id，删除用户地址")
-    @ApiImplicitParam(name = "addrId", value = "地址ID", required = true, dataType = "Long")
+    @Operation(summary = "删除订单用户地址" , description = "根据地址id，删除用户地址")
+    @Parameter(name = "addrId", description = "地址ID" , required = true)
     public ResponseEntity<String> deleteDvy(@PathVariable("addrId") Long addrId) {
         String userId = SecurityUtils.getUser().getUserId();
         UserAddr userAddr = userAddrService.getUserAddrByUserId(addrId, userId);
@@ -129,7 +129,7 @@ public class AddrController {
      * 设置默认地址
      */
     @PutMapping("/defaultAddr/{addrId}")
-    @ApiOperation(value = "设置默认地址", notes = "根据地址id，设置默认地址")
+    @Operation(summary = "设置默认地址" , description = "根据地址id，设置默认地址")
     public ResponseEntity<String> defaultAddr(@PathVariable("addrId") Long addrId) {
         String userId = SecurityUtils.getUser().getUserId();
 
@@ -144,8 +144,8 @@ public class AddrController {
      * 获取地址信息订单配送地址
      */
     @GetMapping("/addrInfo/{addrId}")
-    @ApiOperation(value = "获取地址信息", notes = "根据地址id，获取地址信息")
-    @ApiImplicitParam(name = "addrId", value = "地址ID", required = true, dataType = "Long")
+    @Operation(summary = "获取地址信息" , description = "根据地址id，获取地址信息")
+    @Parameter(name = "addrId", description = "地址ID" , required = true)
     public ResponseEntity<UserAddrDto> addrInfo(@PathVariable("addrId") Long addrId) {
         String userId = SecurityUtils.getUser().getUserId();
         UserAddr userAddr = userAddrService.getUserAddrByUserId(addrId, userId);

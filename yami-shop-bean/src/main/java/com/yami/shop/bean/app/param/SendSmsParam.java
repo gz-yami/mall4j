@@ -12,13 +12,12 @@ package com.yami.shop.bean.app.param;
 
 import javax.validation.constraints.Pattern;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiModel(value= "发送验证码参数")
+@Schema(description = "发送验证码参数")
 public class SendSmsParam {
 	
-	@ApiModelProperty(value = "手机号")
+	@Schema(description = "手机号" )
 	@Pattern(regexp="1[0-9]{10}",message = "请输入正确的手机号")
 	private String mobile;
 

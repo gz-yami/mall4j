@@ -12,8 +12,8 @@ import com.yami.shop.security.common.manager.PasswordCheckManager;
 import com.yami.shop.security.common.manager.PasswordManager;
 import com.yami.shop.security.common.manager.TokenStore;
 import com.yami.shop.security.common.vo.TokenInfoVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,7 @@ import javax.validation.Valid;
  * @date 2022/3/28 15:20
  */
 @RestController
-@Api(tags = "登录")
+@Tag(name = "登录")
 public class LoginController {
     @Autowired
     private TokenStore tokenStore;
@@ -42,7 +42,7 @@ public class LoginController {
     private PasswordManager passwordManager;
 
     @PostMapping("/login")
-    @ApiOperation(value = "账号密码(用于前端登录)", notes = "通过账号/手机号/用户名密码登录，还要携带用户的类型，也就是用户所在的系统")
+    @Operation(summary = "账号密码(用于前端登录)" , description = "通过账号/手机号/用户名密码登录，还要携带用户的类型，也就是用户所在的系统")
     public ResponseEntity<TokenInfoVO> login(
             @Valid @RequestBody AuthenticationDTO authenticationDTO) {
         String mobileOrUserName = authenticationDTO.getUserName();

@@ -10,7 +10,7 @@
 
 package com.yami.shop.bean.app.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -22,42 +22,42 @@ import java.util.List;
 @Data
 public class ShopCartOrderDto implements Serializable{
 
-    @ApiModelProperty(value = "店铺id", required = true)
+    @Schema(description = "店铺id" , required = true)
     private Long shopId;
 
-    @ApiModelProperty(value = "店铺名称", required = true)
+    @Schema(description = "店铺名称" , required = true)
     private String shopName;
 
-    @ApiModelProperty(value = "实际总值", required = true)
+    @Schema(description = "实际总值" , required = true)
     private Double actualTotal;
 
-    @ApiModelProperty(value = "商品总值", required = true)
+    @Schema(description = "商品总值" , required = true)
     private Double total;
 
-    @ApiModelProperty(value = "商品总数", required = true)
+    @Schema(description = "商品总数" , required = true)
     private Integer totalCount;
 
-    @ApiModelProperty(value = "运费", required = true)
+    @Schema(description = "运费" , required = true)
     private Double transfee;
 
-    @ApiModelProperty(value = "促销活动优惠金额", required = true)
+    @Schema(description = "促销活动优惠金额" , required = true)
     private Double discountReduce;
 
-    @ApiModelProperty(value = "优惠券优惠金额", required = true)
+    @Schema(description = "优惠券优惠金额" , required = true)
     private Double couponReduce;
 
-    @ApiModelProperty(value = "店铺优惠金额(促销活动 + 优惠券 + 其他)", required = true)
+    @Schema(description = "店铺优惠金额(促销活动 + 优惠券 + 其他)" , required = true)
     private Double shopReduce = 0.0;
 
-    @ApiModelProperty(value = "订单备注信息", required = true)
+    @Schema(description = "订单备注信息" , required = true)
     private String remarks;
 
-    @ApiModelProperty(value = "购物车商品", required = true)
+    @Schema(description = "购物车商品" , required = true)
     private List<ShopCartItemDiscountDto> shopCartItemDiscounts;
 
-    @ApiModelProperty(value = "整个店铺可以使用的优惠券列表", required = true)
+    @Schema(description = "整个店铺可以使用的优惠券列表" , required = true)
     private List<CouponOrderDto> coupons;
 
-    @ApiModelProperty(value = "订单编号", required = true)
+    @Schema(description = "订单编号" , required = true)
     private String orderNumber;
 }

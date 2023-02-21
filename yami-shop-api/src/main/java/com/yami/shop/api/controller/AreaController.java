@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yami.shop.bean.model.Area;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Operation;
 
 /**
  *
@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/p/area")
-@Api(tags="省市区接口")
+@Tag(name = "省市区接口")
 public class AreaController {
 
     @Autowired
@@ -41,8 +41,8 @@ public class AreaController {
 	 * 分页获取
 	 */
     @GetMapping("/listByPid")
-    @ApiOperation(value="获取省市区信息", notes="根据省市区的pid获取地址信息")
-    @ApiImplicitParam(name = "pid", value = "省市区的pid(pid为0获取所有省份)", required = true, dataType = "String")
+    @Operation(summary = "获取省市区信息" , description = "根据省市区的pid获取地址信息")
+    @Parameter(name = "pid", description = "省市区的pid(pid为0获取所有省份)" , required = true)
 	public ResponseEntity<List<Area>> listByPid(Long pid){
 		List<Area> list = areaService.listByPid(pid);
 		return ResponseEntity.ok(list);

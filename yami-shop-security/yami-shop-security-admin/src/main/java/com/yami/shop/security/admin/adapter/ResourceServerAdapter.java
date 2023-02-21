@@ -15,7 +15,7 @@ public class ResourceServerAdapter extends DefaultAuthConfigAdapter {
     public static final List<String> EXCLUDE_PATH = Arrays.asList(
             "/webjars/**",
             "/swagger/**",
-            "/v2/api-docs",
+            "/v3/api-docs/**",
             "/doc.html",
             "/swagger-ui.html",
             "/swagger-resources/**",

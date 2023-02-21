@@ -12,7 +12,7 @@ package com.yami.shop.bean.app.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,24 +29,24 @@ import java.util.List;
 public class ShopCartItemDto extends ProductItemDto implements Serializable {
     private static final long serialVersionUID = -8284981156242930909L;
 
-    @ApiModelProperty(value = "购物车ID", required = true)
+    @Schema(description = "购物车ID" , required = true)
     private Long basketId;
 
-    @ApiModelProperty(value = "店铺ID", required = true)
+    @Schema(description = "店铺ID" , required = true)
     private Long shopId;
 
-    @ApiModelProperty(value = "规格名称", required = true)
+    @Schema(description = "规格名称" , required = true)
     private String skuName;
 
-    @ApiModelProperty(value = "店铺名称", required = true)
+    @Schema(description = "店铺名称" , required = true)
     private String shopName;
 
-    @ApiModelProperty(value = "商品原价", required = true)
+    @Schema(description = "商品原价" , required = true)
     private Double oriPrice;
 
-    @ApiModelProperty(value = "推广员使用的推销卡号")
+    @Schema(description = "推广员使用的推销卡号" )
     private String distributionCardNo;
 
-    @ApiModelProperty(value = "加入购物车的时间")
+    @Schema(description = "加入购物车的时间" )
     private Date basketDate;
 }

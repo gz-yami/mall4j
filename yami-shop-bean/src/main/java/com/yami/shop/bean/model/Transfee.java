@@ -15,7 +15,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.*;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -26,46 +26,46 @@ public class Transfee implements Serializable {
      * 运费项id
      */
     @TableId
-    @ApiModelProperty(value = "运费项id",required=true)
+    @Schema(description = "运费项id" ,required=true)
     private Long transfeeId;
 
     /**
      * 运费模板id
      */
 
-    @ApiModelProperty(value = "运费模板id",required=true)
+    @Schema(description = "运费模板id" ,required=true)
     private Long transportId;
 
     /**
      * 续件数量
      */
 
-    @ApiModelProperty(value = "续件数量",required=true)
+    @Schema(description = "续件数量" ,required=true)
     private Double continuousPiece;
 
     /**
      * 首件数量
      */
 
-    @ApiModelProperty(value = "首件数量",required=true)
+    @Schema(description = "首件数量" ,required=true)
     private Double firstPiece;
 
     /**
      * 续件费用
      */
 
-    @ApiModelProperty(value = "续件费用",required=true)
+    @Schema(description = "续件费用" ,required=true)
     private Double continuousFee;
 
     /**
      * 首件费用
      */
 
-    @ApiModelProperty(value = "首件费用",required=true)
+    @Schema(description = "首件费用" ,required=true)
     private Double firstFee;
 
     @TableField(exist=false)
-    @ApiModelProperty(value = "指定条件运费城市项",required=true)
+    @Schema(description = "指定条件运费城市项" ,required=true)
     private List<Area> cityList;
 
 }

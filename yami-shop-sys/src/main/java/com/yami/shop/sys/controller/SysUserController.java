@@ -27,7 +27,7 @@ import com.yami.shop.sys.dto.UpdatePasswordDto;
 import com.yami.shop.sys.model.SysUser;
 import com.yami.shop.sys.service.SysRoleService;
 import com.yami.shop.sys.service.SysUserService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -81,7 +81,7 @@ public class SysUserController {
 	 */
 	@SysLog("修改密码")
 	@PostMapping("/password")
-	@ApiOperation(value="修改密码", notes="修改当前登陆用户的密码")
+	@Operation(summary = "修改密码" , description = "修改当前登陆用户的密码")
 	public ResponseEntity<String> password(@RequestBody @Valid UpdatePasswordDto param){
 		Long userId = SecurityUtils.getSysUser().getUserId();
 

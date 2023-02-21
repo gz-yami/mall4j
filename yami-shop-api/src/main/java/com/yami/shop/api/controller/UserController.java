@@ -16,8 +16,8 @@ import com.yami.shop.bean.app.param.UserInfoParam;
 import com.yami.shop.bean.model.User;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/p/user")
-@Api(tags="用户接口")
+@Tag(name = "用户接口")
 @AllArgsConstructor
 public class UserController {
 
@@ -36,7 +36,7 @@ public class UserController {
 	 * 查看用户接口
 	 */
 	@GetMapping("/userInfo")
-	@ApiOperation(value="查看用户信息", notes="根据用户ID（userId）获取用户信息")
+	@Operation(summary = "查看用户信息" , description = "根据用户ID（userId）获取用户信息")
 	public ResponseEntity<UserDto> userInfo() {
 		String userId = SecurityUtils.getUser().getUserId();
 		User user = userService.getById(userId);
@@ -45,7 +45,7 @@ public class UserController {
 	}
 
 	@PutMapping("/setUserInfo")
-	@ApiOperation(value="设置用户信息", notes="设置用户信息")
+	@Operation(summary = "设置用户信息" , description = "设置用户信息")
 	public ResponseEntity<Void> setUserInfo(@RequestBody UserInfoParam userInfoParam) {
 		String userId = SecurityUtils.getUser().getUserId();
 		User user = new User();

@@ -25,8 +25,8 @@ import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.BasketService;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/p/shopCart")
-@Api(tags = "购物车接口")
+@Tag(name = "购物车接口")
 @AllArgsConstructor
 public class ShopCartController {
 
@@ -60,7 +60,7 @@ public class ShopCartController {
      * @return
      */
     @PostMapping("/info")
-    @ApiOperation(value = "获取用户购物车信息", notes = "获取用户购物车信息，参数为用户选中的活动项数组,以购物车id为key")
+    @Operation(summary = "获取用户购物车信息" , description = "获取用户购物车信息，参数为用户选中的活动项数组,以购物车id为key")
     public ResponseEntity<List<ShopCartDto>> info(@RequestBody Map<Long, ShopCartParam> basketIdShopCartParamMap) {
         String userId = SecurityUtils.getUser().getUserId();
 
@@ -76,7 +76,7 @@ public class ShopCartController {
     }
 
     @DeleteMapping("/deleteItem")
-    @ApiOperation(value = "删除用户购物车物品", notes = "通过购物车id删除用户购物车物品")
+    @Operation(summary = "删除用户购物车物品" , description = "通过购物车id删除用户购物车物品")
     public ResponseEntity<Void> deleteItem(@RequestBody List<Long> basketIds) {
         String userId = SecurityUtils.getUser().getUserId();
         basketService.deleteShopCartItemsByBasketIds(userId, basketIds);
@@ -84,7 +84,7 @@ public class ShopCartController {
     }
 
     @DeleteMapping("/deleteAll")
-    @ApiOperation(value = "清空用户购物车所有物品", notes = "清空用户购物车所有物品")
+    @Operation(summary = "清空用户购物车所有物品" , description = "清空用户购物车所有物品")
     public ResponseEntity<String> deleteAll() {
         String userId = SecurityUtils.getUser().getUserId();
         basketService.deleteAllShopCartItems(userId);
@@ -92,7 +92,7 @@ public class ShopCartController {
     }
 
     @PostMapping("/changeItem")
-    @ApiOperation(value = "添加、修改用户购物车物品", notes = "通过商品id(prodId)、skuId、店铺Id(shopId),添加/修改用户购物车商品，并传入改变的商品个数(count)，" +
+    @Operation(summary = "添加、修改用户购物车物品", description = "通过商品id(prodId)、skuId、店铺Id(shopId),添加/修改用户购物车商品，并传入改变的商品个数(count)，" +
             "当count为正值时，增加商品数量，当count为负值时，将减去商品的数量，当最终count值小于0时，会将商品从购物车里面删除")
     public ResponseEntity<String> addItem(@Valid @RequestBody ChangeShopCartParam param) {
 
@@ -145,7 +145,7 @@ public class ShopCartController {
     }
 
     @GetMapping("/prodCount")
-    @ApiOperation(value = "获取购物车商品数量", notes = "获取所有购物车商品数量")
+    @Operation(summary = "获取购物车商品数量" , description = "获取所有购物车商品数量")
     public ResponseEntity<Integer> prodCount() {
         String userId = SecurityUtils.getUser().getUserId();
         List<ShopCartItemDto> shopCartItems = basketService.getShopCartItems(userId);
@@ -157,7 +157,7 @@ public class ShopCartController {
     }
 
     @GetMapping("/expiryProdList")
-    @ApiOperation(value = "获取购物车失效商品信息", notes = "获取购物车失效商品列表")
+    @Operation(summary = "获取购物车失效商品信息" , description = "获取购物车失效商品列表")
     public ResponseEntity<List<ShopCartExpiryItemDto>> expiryProdList() {
         String userId = SecurityUtils.getUser().getUserId();
         List<ShopCartItemDto> shopCartItems = basketService.getShopCartExpiryItems(userId);
@@ -183,7 +183,7 @@ public class ShopCartController {
     }
 
     @DeleteMapping("/cleanExpiryProdList")
-    @ApiOperation(value = "清空用户失效商品", notes = "清空用户失效商品")
+    @Operation(summary = "清空用户失效商品" , description = "清空用户失效商品")
     public ResponseEntity<Void> cleanExpiryProdList() {
         String userId = SecurityUtils.getUser().getUserId();
         basketService.cleanExpiryProdList(userId);
@@ -191,7 +191,7 @@ public class ShopCartController {
     }
 
     @PostMapping("/totalPay")
-    @ApiOperation(value = "获取选中购物项总计、选中的商品数量", notes = "获取选中购物项总计、选中的商品数量,参数为购物车id数组")
+    @Operation(summary = "获取选中购物项总计、选中的商品数量" , description = "获取选中购物项总计、选中的商品数量,参数为购物车id数组")
     public ResponseEntity<ShopCartAmountDto> getTotalPay(@RequestBody List<Long> basketIds) {
 
         // 拿到购物车的所有item

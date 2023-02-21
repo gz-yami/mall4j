@@ -15,7 +15,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.*;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -23,16 +23,16 @@ import lombok.Data;
 public class Area implements Serializable {
     private static final long serialVersionUID = -6013320537436191451L;
     @TableId
-    @ApiModelProperty(value = "地区id",required=true)
+    @Schema(description = "地区id" ,required=true)
     private Long areaId;
 
-    @ApiModelProperty(value = "地区名称",required=true)
+    @Schema(description = "地区名称" ,required=true)
     private String areaName;
 
-    @ApiModelProperty(value = "地区上级id",required=true)
+    @Schema(description = "地区上级id" ,required=true)
     private Long parentId;
 
-    @ApiModelProperty(value = "地区层级",required=true)
+    @Schema(description = "地区层级" ,required=true)
     private Integer level;
 
     @TableField(exist=false)

@@ -11,8 +11,8 @@ package com.yami.shop.security.common.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.yami.shop.security.common.manager.TokenStore;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,14 +25,14 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2022/3/25 17:33
  */
 @RestController
-@Api(tags = "注销")
+@Tag(name = "注销")
 public class LogoutController {
 
     @Autowired
     private TokenStore tokenStore;
 
     @PostMapping("/logOut")
-    @ApiOperation(value = "退出登陆", notes = "点击退出登陆，清除token，清除菜单缓存")
+    @Operation(summary = "退出登陆" , description = "点击退出登陆，清除token，清除菜单缓存")
     public ResponseEntity<Void> logOut(HttpServletRequest request) {
         String accessToken = request.getHeader("Authorization");
         if (StrUtil.isBlank(accessToken)) {

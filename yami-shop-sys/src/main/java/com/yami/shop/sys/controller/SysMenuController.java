@@ -19,7 +19,7 @@ import com.yami.shop.sys.constant.Constant;
 import com.yami.shop.sys.constant.MenuType;
 import com.yami.shop.sys.model.SysMenu;
 import com.yami.shop.sys.service.SysMenuService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -43,7 +43,7 @@ public class SysMenuController{
 
 
 	@GetMapping("/nav")
-	@ApiOperation(value="获取用户所拥有的菜单和权限", notes="通过登陆用户的userId获取用户所拥有的菜单和权限")
+	@Operation(summary = "获取用户所拥有的菜单和权限" , description = "通过登陆用户的userId获取用户所拥有的菜单和权限")
 	public ResponseEntity<Map<Object, Object>> nav(){
 		List<SysMenu> menuList = sysMenuService.listMenuByUserId(SecurityUtils.getSysUser().getUserId());
 
@@ -64,7 +64,7 @@ public class SysMenuController{
 	 * 所有菜单列表(用于新建、修改角色时 获取菜单的信息)
 	 */
 	@GetMapping("/list")
-	@ApiOperation(value="获取用户所拥有的菜单(不包括按钮)", notes="通过登陆用户的userId获取用户所拥有的菜单和权限")
+	@Operation(summary = "获取用户所拥有的菜单(不包括按钮)" , description = "通过登陆用户的userId获取用户所拥有的菜单和权限")
 	public ResponseEntity<List<SysMenu>> list(){
 		List<SysMenu> sysMenuList= sysMenuService.listSimpleMenuNoButton();
 		return ResponseEntity.ok(sysMenuList);
