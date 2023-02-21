@@ -13,6 +13,7 @@ package com.yami.shop.admin.task;
 import java.util.Date;
 import java.util.List;
 
+import com.xxl.job.core.handler.annotation.XxlJob;
 import com.yami.shop.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,11 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 
 
-
+/**
+ * @author FrozenWatermelon
+ * 定时任务的配置，请查看xxl-job的java配置文件。
+ * @see com.yami.shop.admin.config.XxlJobConfig
+ */
 @Component("orderTask")
 public class OrderTask {
 
@@ -43,6 +48,7 @@ public class OrderTask {
     @Autowired
     private SkuService skuService;
 
+    @XxlJob("cancelOrder")
     public void cancelOrder(){
         Date now = new Date();
         logger.info("取消超时未支付订单。。。");
@@ -64,6 +70,7 @@ public class OrderTask {
     /**
      * 确认收货
      */
+    @XxlJob("confirmOrder")
     public void confirmOrder(){
         Date now = new Date();
         logger.info("系统自动确认收货订单。。。");

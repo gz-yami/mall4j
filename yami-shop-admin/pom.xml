@@ -32,9 +32,12 @@
             <version>${yami.shop.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.yami.shop</groupId>
-            <artifactId>yami-shop-quartz</artifactId>
-            <version>${yami.shop.version}</version>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-commons</artifactId>
         </dependency>
     </dependencies>
 

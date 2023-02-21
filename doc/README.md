@@ -30,12 +30,13 @@
 
 以下版本是最低要求的！！！ 提问问题前请注意开发环境！！
 
-| 工具   | 版本   |
-| ------ |------|
-| jdk    | 1.8+ |
-| mysql  | 5.7+ |
-| redis  | 4.0+ |
-| nodejs | 8-12 |
+| 工具      | 版本    |
+|---------|-------|
+| jdk     | 1.8+  |
+| mysql   | 5.7+  |
+| redis   | 4.0+  |
+| nodejs  | 14-16 |
+| xxl-job | 2.3.1 |
 
 
 ### 1.2 安装jdk + mysql + redis + maven
@@ -54,11 +55,15 @@
 
 - 推荐使用idea，安装lombok插件后，使用idea导入maven项目
 - 将yami_shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
-- 将mysql配置为不区分表名大小写
 - 通过修改`shop.properties` 修改七牛云、阿里大于等信息
 - 修改`api.properties` 修改当前接口所在域名，用于支付回调
 - 启动redis，端口6379
 - 通过`WebApplication`启动项目后台接口，`ApiApplication` 启动项目前端接口
+- xxl-job定时任务，通过github或者gitee下载xxl-job的已经打包好的源码，把
+
+
+
+
 
 ## 3.vue开发环境安装
 
