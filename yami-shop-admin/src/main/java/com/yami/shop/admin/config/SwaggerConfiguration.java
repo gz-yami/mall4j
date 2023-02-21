@@ -16,13 +16,12 @@ import io.swagger.v3.oas.models.info.License;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 /**
  * Swagger文档，只有在测试环境才会使用
  * @author LGH
  */
-@Profile("dev")
+//@Profile("dev")
 @Configuration
 public class SwaggerConfiguration {
 
