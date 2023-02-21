@@ -1,8 +1,10 @@
 package com.yami.shop.security.common.adapter;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsUtils;
 
@@ -12,14 +14,16 @@ import org.springframework.web.cors.CorsUtils;
  * @date 2022/3/25 17:33
  */
 @Component
-public class MallWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors() // We don't need CSRF for token based authentication
+@EnableWebSecurity
+public class MallWebSecurityConfigurerAdapter {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        return http.csrf().disable().cors() // We don't need CSRF for token based authentication
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .and()
                 .authorizeRequests().antMatchers(
-                "/**").permitAll();
+                        "/**").permitAll().and().build();
     }
+
 }
