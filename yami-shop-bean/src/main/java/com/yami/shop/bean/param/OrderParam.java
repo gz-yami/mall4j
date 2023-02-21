@@ -10,12 +10,14 @@
 
 package com.yami.shop.bean.param;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class OrderParam {
     /**

@@ -45,6 +45,7 @@ public interface SysUserService extends IService<SysUser> {
 	/**
 	 * 根据用户id 批量删除用户
 	 * @param userIds
+	 * @param shopId
 	 */
 	void deleteBatch(Long[] userIds,Long shopId);
 
@@ -65,6 +66,7 @@ public interface SysUserService extends IService<SysUser> {
 	/**
 	 * 查询用户的所有权限
 	 * @param userId  用户ID
+	 * @return
 	 */
 	List<String> queryAllPerms(Long userId);
 

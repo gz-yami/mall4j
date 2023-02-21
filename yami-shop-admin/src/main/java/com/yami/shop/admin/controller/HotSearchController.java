@@ -72,7 +72,7 @@ public class HotSearchController {
 		hotSearch.setShopId(SecurityUtils.getSysUser().getShopId());
 		hotSearchService.save(hotSearch);
 		//清除缓存
-		hotSearchService.removeHotSearchDtoCacheByshopId(SecurityUtils.getSysUser().getShopId());
+		hotSearchService.removeHotSearchDtoCacheByShopId(SecurityUtils.getSysUser().getShopId());
 		return ResponseEntity.ok().build();
 	}
 	
@@ -84,7 +84,7 @@ public class HotSearchController {
 	public ResponseEntity<Void> update(@RequestBody @Valid HotSearch hotSearch){
 		hotSearchService.updateById(hotSearch);
 		//清除缓存
-		hotSearchService.removeHotSearchDtoCacheByshopId(SecurityUtils.getSysUser().getShopId());
+		hotSearchService.removeHotSearchDtoCacheByShopId(SecurityUtils.getSysUser().getShopId());
 		return ResponseEntity.ok().build();
 	}
 
@@ -96,7 +96,7 @@ public class HotSearchController {
 	public ResponseEntity<Void> delete(@RequestBody List<Long> ids){
 		hotSearchService.removeByIds(ids);
 		//清除缓存
-		hotSearchService.removeHotSearchDtoCacheByshopId(SecurityUtils.getSysUser().getShopId());
+		hotSearchService.removeHotSearchDtoCacheByShopId(SecurityUtils.getSysUser().getShopId());
 		return ResponseEntity.ok().build();
 	}
 }

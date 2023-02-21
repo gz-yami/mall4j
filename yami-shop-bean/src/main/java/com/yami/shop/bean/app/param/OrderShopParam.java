@@ -12,6 +12,9 @@ package com.yami.shop.bean.app.param;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+/**
+ * @author lanhai
+ */
 public class OrderShopParam {
 
 	/** 店铺ID **/

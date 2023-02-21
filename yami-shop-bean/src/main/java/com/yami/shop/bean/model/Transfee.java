@@ -10,14 +10,17 @@
 
 package com.yami.shop.bean.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-import com.baomidou.mybatisplus.annotation.*;
-
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.List;
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_transfee")
 public class Transfee implements Serializable {

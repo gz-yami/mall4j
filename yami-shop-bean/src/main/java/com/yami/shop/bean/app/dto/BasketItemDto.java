@@ -19,6 +19,9 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class BasketItemDto implements Serializable {
 

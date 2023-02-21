@@ -101,7 +101,7 @@ public class ProdController {
     @Parameters({
     })
     public ResponseEntity<IPage<ProductDto>> lastedProdPage(PageParam<ProductDto> page) {
-        IPage<ProductDto> productPage = prodService.pageByPutawayTime(page);
+        IPage<ProductDto> productPage = prodService.pageByPutAwayTime(page);
         return ResponseEntity.ok(productPage);
     }
 

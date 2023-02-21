@@ -13,7 +13,9 @@ package com.yami.shop.bean.app.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-
+/**
+ * @author lanhai
+ */
 @Schema(description = "商品评论数据")
 @Data
 public class ProdCommDataDto {

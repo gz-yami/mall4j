@@ -10,14 +10,11 @@
 
 package com.yami.shop.service.impl;
 
-import java.util.Date;
-
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
@@ -29,15 +26,14 @@ import com.yami.shop.common.bean.Qiniu;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.dao.AttachFileMapper;
 import com.yami.shop.service.AttachFileService;
-
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.RandomUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
- *
- * Created by lgh on 2018/07/27.
+ * @author lanhai
  */
 @Service
 public class AttachFileServiceImpl extends ServiceImpl<AttachFileMapper, AttachFile> implements AttachFileService {

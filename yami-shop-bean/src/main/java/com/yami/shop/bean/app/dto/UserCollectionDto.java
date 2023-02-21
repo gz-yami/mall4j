@@ -14,7 +14,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.Date;
-
+/**
+ * @author lanhai
+ */
 @Schema(description = "收藏对象")
 @Data
 public class UserCollectionDto {

@@ -12,6 +12,7 @@ package com.yami.shop.sys.constant;
 
 /**
  * 常量
+ * @author lanhai
  */
 public class Constant {
 	/** 超级管理员ID */

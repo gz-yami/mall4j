@@ -10,10 +10,13 @@
 
 package com.yami.shop.bean.param;
 
-import javax.validation.constraints.NotBlank;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.validation.constraints.NotBlank;
+
+/**
+ * @author lanhai
+ */
 public class DeliveryOrderParam {
 	
 	@NotBlank(message="订单号不能为空")

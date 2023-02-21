@@ -39,6 +39,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * @author lanhai
+ */
 @RestController
 @RequestMapping("/p/shopCart")
 @Tag(name = "购物车接口")

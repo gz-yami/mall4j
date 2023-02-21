@@ -19,6 +19,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class ProductParam {
 

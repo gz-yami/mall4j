@@ -15,6 +15,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_transcity")
 public class Transcity implements Serializable {

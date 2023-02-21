@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * 系统配置信息
+ * @author lanhai
  */
 @Data
 @TableName("tz_sys_config")

@@ -17,6 +17,9 @@ import com.yami.shop.bean.bo.SmsInfoBo;
 
 import cn.hutool.core.collection.CollectionUtil;
 
+/**
+ * @author lanhai
+ */
 public class SmsInfoContext {
 
 	/** The request holder. */

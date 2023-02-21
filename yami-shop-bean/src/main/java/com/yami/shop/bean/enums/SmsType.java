@@ -10,6 +10,9 @@
 
 package com.yami.shop.bean.enums;
 
+/**
+ * @author lanhai
+ */
 public enum SmsType {
 
 	/**

@@ -28,10 +28,5 @@ public class PickAddrServiceImpl extends ServiceImpl<PickAddrMapper, PickAddr> i
     @Autowired
     private PickAddrMapper pickAddrMapper;
 
-	@Override
-	public void deleteByIds(Long[] ids) {
-		pickAddrMapper.deleteByIds(ids);
-	}
-
 
 }

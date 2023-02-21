@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * 多个店铺订单合并在一起的合并类
  * "/confirm" 使用
+ * @author lanhai
  */
 @Data
 public class ShopCartOrderMergerDto implements Serializable{

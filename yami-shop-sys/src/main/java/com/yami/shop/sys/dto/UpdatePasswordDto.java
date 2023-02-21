@@ -15,7 +15,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
+/**
+ * @author lanhai
+ */
 @Data
 @Schema(description = "更新密码参数")
 public class UpdatePasswordDto {

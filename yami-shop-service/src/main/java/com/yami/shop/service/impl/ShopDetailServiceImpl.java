@@ -69,20 +69,7 @@ public class ShopDetailServiceImpl extends ServiceImpl<ShopDetailMapper, ShopDet
 	@Transactional(rollbackFor=Exception.class)
 	@CacheEvict(cacheNames = "shop_detail", key = "#shopId")
 	public void deleteShopDetailByShopId(Long shopId) {
-		// 先删除数据库中的信息，再删除图片
 		shopDetailMapper.deleteById(shopId);
-		
-//		ShopDetail shopDetail = shopDetailMapper.selectById(shopId);
-		// 删除logo
-//		attachFileService.deleteFile(shopDetail.getShopLogo());
-//		// 删除店铺图片
-//		String shopPhotos = shopDetail.getShopPhotos();
-//		if (StrUtil.isNotBlank(shopPhotos)) {
-//			String[] shopPhotoArray = shopPhotos.split(",");
-//			for (String shopPhoto : shopPhotoArray) {
-//				attachFileService.deleteFile(shopPhoto);
-//			}
-//		}
 	}
 
 	@Override

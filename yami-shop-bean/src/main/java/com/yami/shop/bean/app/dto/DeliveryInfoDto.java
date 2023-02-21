@@ -13,6 +13,9 @@ package com.yami.shop.bean.app.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class DeliveryInfoDto {
 	

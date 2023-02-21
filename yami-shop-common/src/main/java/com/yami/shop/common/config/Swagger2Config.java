@@ -42,8 +42,12 @@ public class Swagger2Config {
                 optionalWebConversionServiceProvider,objectMapperProvider);
     }
 
-    // 解决@ParameterObject和@Hidden, JsonIgnore同时使用不生效的问题
-    private Optional<DelegatingMethodParameterCustomizer> delegatingMethodParameterCustomizer() { // NOSONAR
+    /**
+     * 解决@ParameterObject和@Hidden, JsonIgnore同时使用不生效的问题
+     * @return
+     */
+    private Optional<DelegatingMethodParameterCustomizer> delegatingMethodParameterCustomizer() {
+        // NOSONAR
         return Optional.of((originalMethodParam, methodParam) -> {
             // 这个方法类拥有的注解
             Annotation[] annotations = originalMethodParam.getParameterType().getAnnotations();
@@ -53,9 +57,8 @@ public class Swagger2Config {
                 typeContainParameterObject = annotationTypes.contains(ParameterObject.class);
             }
 
-
-            if (typeContainParameterObject
-                    || (originalMethodParam.hasParameterAnnotations() && originalMethodParam.hasParameterAnnotation(ParameterObject.class))) {
+            boolean hasParameterAnnotations = (originalMethodParam.hasParameterAnnotations() && originalMethodParam.hasParameterAnnotation(ParameterObject.class));
+            if (typeContainParameterObject || hasParameterAnnotations) {
                 try {
                     if (isParameterIgnore(originalMethodParam, methodParam)) {
                         Field field = FieldUtils.getDeclaredField(DelegatingMethodParameter.class, "additionalParameterAnnotations", true);
@@ -78,11 +81,12 @@ public class Swagger2Config {
     }
 
     private boolean isParameterIgnore(MethodParameter originalMethodParam, MethodParameter methodParam) throws NoSuchFieldException, SecurityException {
+        String searchCount = "searchCount";
         String parameterName = StrUtil.isBlank(methodParam.getParameterName())? "":methodParam.getParameterName();
         String fieldName = parameterName.indexOf('.') == -1 ? parameterName : parameterName.substring(0, parameterName.indexOf('.'));
         // 解决mybatis-plus返回的查询参数污染的问题
         if (originalMethodParam.getParameterType().isAssignableFrom(PageParam.class)) {
-            if ("searchCount".equals(fieldName)) {
+            if (searchCount.equals(fieldName)) {
                 return true;
             }
         }

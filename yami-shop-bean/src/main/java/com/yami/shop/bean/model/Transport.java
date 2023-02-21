@@ -22,7 +22,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_transport")
 public class Transport implements Serializable {

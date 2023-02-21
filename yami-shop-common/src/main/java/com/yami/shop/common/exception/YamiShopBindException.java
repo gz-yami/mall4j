@@ -12,7 +12,9 @@ package com.yami.shop.common.exception;
 
 import com.yami.shop.common.enums.YamiHttpStatus;
 import org.springframework.http.HttpStatus;
-
+/**
+ * @author lanhai
+ */
 public class YamiShopBindException extends RuntimeException{
 
 	/**

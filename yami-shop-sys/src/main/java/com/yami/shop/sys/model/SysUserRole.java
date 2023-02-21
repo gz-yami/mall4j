@@ -19,6 +19,7 @@ import java.io.Serializable;
 
 /**
  * 用户与角色对应关系
+ * @author lanhai
  */
 @Data
 @TableName("tz_sys_user_role")

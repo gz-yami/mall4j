@@ -57,18 +57,18 @@ public class IdUtil {
      * @return
      */
     public static String encode(long id) {
-        StringBuilder shortURL = new StringBuilder();
+        StringBuilder shortUrl = new StringBuilder();
         while (id > 0) {
             int r = (int) (id % SEED);
-            shortURL.insert(0, CHARS[r]);
+            shortUrl.insert(0, CHARS[r]);
             id = id / SEED;
         }
-        int len = shortURL.length();
+        int len = shortUrl.length();
         while (len < ID_MIN_LENGTH) {
-            shortURL.insert(0, CHARS[0]);
+            shortUrl.insert(0, CHARS[0]);
             len++;
         }
-        return shortURL.toString();
+        return shortUrl.toString();
     }
 
     /**

@@ -75,8 +75,8 @@ public class OrderController {
     public ResponseEntity<IPage<Order>> page(OrderParam orderParam,PageParam<Order> page) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         orderParam.setShopId(shopId);
-        IPage<Order> orderIPage = orderService.pageOrdersDetialByOrderParam(page, orderParam);
-        return ResponseEntity.ok(orderIPage);
+        IPage<Order> orderPage = orderService.pageOrdersDetailByOrderParam(page, orderParam);
+        return ResponseEntity.ok(orderPage);
 
 
     }
@@ -145,7 +145,7 @@ public class OrderController {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         order.setShopId(shopId);
         order.setStatus(OrderStatus.PADYED.value());
-        List<Order> orders = orderService.listOrdersDetialByOrder(order, startTime, endTime);
+        List<Order> orders = orderService.listOrdersDetailByOrder(order, startTime, endTime);
 
         //通过工具类创建writer
         ExcelWriter writer = ExcelUtil.getWriter();
@@ -199,7 +199,7 @@ public class OrderController {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         order.setShopId(shopId);
         order.setIsPayed(1);
-        List<Order> orders = orderService.listOrdersDetialByOrder(order, startTime, endTime);
+        List<Order> orders = orderService.listOrdersDetailByOrder(order, startTime, endTime);
 
         //通过工具类创建writer
         ExcelWriter writer = ExcelUtil.getWriter();

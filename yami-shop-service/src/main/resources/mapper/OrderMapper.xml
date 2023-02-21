@@ -177,7 +177,7 @@
   </select>
 
     <update id="cancelOrders">
-        update tz_order set `status`=6,cancel_time = NOW() where order_id in
+        update tz_order set `status`=6,cancel_time = NOW() where is_payed = 0 and order_id in
         <foreach collection="orders" item="order" open="(" close=")" separator=",">
             #{order.orderId}
         </foreach>
@@ -197,7 +197,7 @@
     </foreach>
   </update>
 
-    <select id="listOrdersDetialByOrder" resultMap="orderAndOrderItemAndUserAddrMap">
+    <select id="listOrdersDetailByOrder" resultMap="orderAndOrderItemAndUserAddrMap">
         select o.*,oi.*,oi.prod_name as item_prod_name,uao.* from tz_order o
         left join tz_order_item oi on o.order_number = oi.order_number
         left join tz_user_addr_order uao on o.addr_order_id = uao.addr_order_id
@@ -229,7 +229,7 @@
         AS limittable) ORDER BY o.create_time DESC
     </select>
 
-    <select id="listOrdersDetialByOrderParam" resultMap="orderAndOrderItemAndUserAddrMap">
+    <select id="listOrdersDetailByOrderParam" resultMap="orderAndOrderItemAndUserAddrMap">
         SELECT *,oi.sku_name as item_sku_name,oi.prod_name as item_prod_name FROM
         (
         SELECT * FROM tz_order
@@ -263,7 +263,7 @@
         ON o.addr_order_id = uao.addr_order_id
     </select>
 
-    <select id="countOrderDetial" resultType="long">
+    <select id="countOrderDetail" resultType="long">
         SELECT COUNT(0) FROM tz_order
         <where>
             <if test="orderParam.orderNumber != null and orderParam.orderNumber != ''">

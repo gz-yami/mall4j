@@ -16,6 +16,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author lanhai
+ */
 @Schema(description = "热搜数据")
 @Data
 public class HotSearchDto implements Serializable {

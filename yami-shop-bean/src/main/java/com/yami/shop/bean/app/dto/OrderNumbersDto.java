@@ -13,6 +13,9 @@ package com.yami.shop.bean.app.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class OrderNumbersDto {
 
@@ -22,4 +25,5 @@ public class OrderNumbersDto {
 	public OrderNumbersDto(String orderNumbers) {
 		this.orderNumbers = orderNumbers;
 	}
+	public OrderNumbersDto(){}
 }

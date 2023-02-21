@@ -13,6 +13,9 @@ package com.yami.shop.bean.app.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author lanhai
+ */
 @Data
 @Schema(description = "购物车合计")
 public class ShopCartAmountDto {

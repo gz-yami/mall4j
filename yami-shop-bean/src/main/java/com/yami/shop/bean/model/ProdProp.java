@@ -10,16 +10,19 @@
 
 package com.yami.shop.bean.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_prod_prop")
 public class ProdProp implements Serializable {

@@ -44,8 +44,8 @@ public class AttributeController {
 	public ResponseEntity<IPage<ProdProp>> page(ProdProp prodProp,PageParam<ProdProp> page){
     	prodProp.setRule(ProdPropRule.ATTRIBUTE.value());
     	prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
-		IPage<ProdProp> prodPropIPage = prodPropService.pagePropAndValue(prodProp,page);
-		return ResponseEntity.ok(prodPropIPage);
+		IPage<ProdProp> prodPropPage = prodPropService.pagePropAndValue(prodProp,page);
+		return ResponseEntity.ok(prodPropPage);
 	}
 
     /**

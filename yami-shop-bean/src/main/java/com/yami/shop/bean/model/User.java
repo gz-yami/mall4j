@@ -21,7 +21,9 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_user")
 public class User implements Serializable {

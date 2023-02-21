@@ -10,12 +10,15 @@
 
 package com.yami.shop.bean.app.param;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+/**
+ * @author lanhai
+ */
 @Data
 @Schema(description = "购物车物品参数")
 public class OrderItemParam {

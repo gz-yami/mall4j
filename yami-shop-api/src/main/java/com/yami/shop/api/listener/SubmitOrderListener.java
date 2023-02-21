@@ -20,6 +20,7 @@ import com.yami.shop.bean.enums.OrderStatus;
 import com.yami.shop.bean.event.SubmitOrderEvent;
 import com.yami.shop.bean.model.*;
 import com.yami.shop.bean.order.SubmitOrderOrder;
+import com.yami.shop.common.constants.Constant;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.Arith;
 import com.yami.shop.dao.*;
@@ -82,9 +83,9 @@ public class SubmitOrderListener {
         List<ShopCartOrderDto> shopCartOrders = mergerOrder.getShopCartOrders();
 
         List<Long> basketIds = new ArrayList<>();
-        // 商品skuid为key 需要更新的sku为value的map
+        // 商品skuId为key 需要更新的sku为value的map
         Map<Long, Sku> skuStocksMap = new HashMap<>(16);
-        // 商品productid为key 需要更新的product为value的map
+        // 商品productId为key 需要更新的product为value的map
         Map<Long, Product> prodStocksMap = new HashMap<>(16);
 
         // 把订单地址保存到数据库
@@ -102,95 +103,7 @@ public class SubmitOrderListener {
 
         // 每个店铺生成一个订单
         for (ShopCartOrderDto shopCartOrderDto : shopCartOrders) {
-            // 使用雪花算法生成的订单号
-            String orderNumber = String.valueOf(snowflake.nextId());
-            shopCartOrderDto.setOrderNumber(orderNumber);
-
-            Long shopId = shopCartOrderDto.getShopId();
-
-            // 订单商品名称
-            StringBuilder orderProdName = new StringBuilder(100);
-
-            List<OrderItem> orderItems = new ArrayList<>();
-
-            List<ShopCartItemDiscountDto> shopCartItemDiscounts = shopCartOrderDto.getShopCartItemDiscounts();
-            for (ShopCartItemDiscountDto shopCartItemDiscount : shopCartItemDiscounts) {
-                List<ShopCartItemDto> shopCartItems = shopCartItemDiscount.getShopCartItems();
-                for (ShopCartItemDto shopCartItem : shopCartItems) {
-                    Sku sku = checkAndGetSku(shopCartItem.getSkuId(), shopCartItem, skuStocksMap);
-                    Product product = checkAndGetProd(shopCartItem.getProdId(), shopCartItem, prodStocksMap);
-
-                    OrderItem orderItem = new OrderItem();
-                    orderItem.setShopId(shopId);
-                    orderItem.setOrderNumber(orderNumber);
-                    orderItem.setProdId(sku.getProdId());
-                    orderItem.setSkuId(sku.getSkuId());
-                    orderItem.setSkuName(sku.getSkuName());
-                    orderItem.setProdCount(shopCartItem.getProdCount());
-                    orderItem.setProdName(sku.getProdName());
-                    orderItem.setPic(StrUtil.isBlank(sku.getPic()) ? product.getPic() : sku.getPic());
-                    orderItem.setPrice(shopCartItem.getPrice());
-                    orderItem.setUserId(userId);
-                    orderItem.setProductTotalAmount(shopCartItem.getProductTotalAmount());
-                    orderItem.setRecTime(now);
-                    orderItem.setCommSts(0);
-                    orderItem.setBasketDate(shopCartItem.getBasketDate());
-                    orderProdName.append(orderItem.getProdName()).append(",");
-                    //推广员卡号
-                    orderItem.setDistributionCardNo(shopCartItem.getDistributionCardNo());
-
-                    orderItems.add(orderItem);
-
-                    if (shopCartItem.getBasketId() != null && shopCartItem.getBasketId() != 0) {
-                        basketIds.add(shopCartItem.getBasketId());
-                    }
-                }
-
-            }
-
-
-            orderProdName.subSequence(0, Math.min(orderProdName.length() - 1, 100));
-            if (orderProdName.lastIndexOf(",") == orderProdName.length() - 1) {
-                orderProdName.deleteCharAt(orderProdName.length() - 1);
-            }
-
-
-            // 订单信息
-            com.yami.shop.bean.model.Order order = new com.yami.shop.bean.model.Order();
-
-            order.setShopId(shopId);
-            order.setOrderNumber(orderNumber);
-            // 订单商品名称
-            order.setProdName(orderProdName.toString());
-            // 用户id
-            order.setUserId(userId);
-            // 商品总额
-            order.setTotal(shopCartOrderDto.getTotal());
-            // 实际总额
-            order.setActualTotal(shopCartOrderDto.getActualTotal());
-            order.setStatus(OrderStatus.UNPAY.value());
-            order.setUpdateTime(now);
-            order.setCreateTime(now);
-            order.setIsPayed(0);
-            order.setDeleteStatus(0);
-            order.setProductNums(shopCartOrderDto.getTotalCount());
-            order.setAddrOrderId(addrOrderId);
-            order.setReduceAmount(Arith.sub(Arith.add(shopCartOrderDto.getTotal(), shopCartOrderDto.getTransfee()), shopCartOrderDto.getActualTotal()));
-            order.setFreightAmount(shopCartOrderDto.getTransfee());
-            order.setRemarks(shopCartOrderDto.getRemarks());
-
-            order.setOrderItems(orderItems);
-            event.getOrders().add(order);
-            // 插入订单结算表
-            OrderSettlement orderSettlement = new OrderSettlement();
-            orderSettlement.setUserId(userId);
-            orderSettlement.setIsClearing(0);
-            orderSettlement.setCreateTime(now);
-            orderSettlement.setOrderNumber(orderNumber);
-            orderSettlement.setPayAmount(order.getActualTotal());
-            orderSettlement.setPayStatus(0);
-            orderSettlement.setVersion(0);
-            orderSettlementMapper.insert(orderSettlement);
+            createOrder(event, now, userId, basketIds, skuStocksMap, prodStocksMap, addrOrderId, shopCartOrderDto);
 
         }
 
@@ -219,6 +132,108 @@ public class SubmitOrderListener {
             }
         });
 
+    }
+
+    private void createOrder(SubmitOrderEvent event, Date now, String userId, List<Long> basketIds, Map<Long, Sku> skuStocksMap, Map<Long, Product> prodStocksMap, Long addrOrderId, ShopCartOrderDto shopCartOrderDto) {
+        // 使用雪花算法生成的订单号
+        String orderNumber = String.valueOf(snowflake.nextId());
+        shopCartOrderDto.setOrderNumber(orderNumber);
+
+        Long shopId = shopCartOrderDto.getShopId();
+
+        // 订单商品名称
+        StringBuilder orderProdName = new StringBuilder(100);
+
+        List<OrderItem> orderItems = new ArrayList<>();
+
+        List<ShopCartItemDiscountDto> shopCartItemDiscounts = shopCartOrderDto.getShopCartItemDiscounts();
+        for (ShopCartItemDiscountDto shopCartItemDiscount : shopCartItemDiscounts) {
+            List<ShopCartItemDto> shopCartItems = shopCartItemDiscount.getShopCartItems();
+            for (ShopCartItemDto shopCartItem : shopCartItems) {
+                Sku sku = checkAndGetSku(shopCartItem.getSkuId(), shopCartItem, skuStocksMap);
+                Product product = checkAndGetProd(shopCartItem.getProdId(), shopCartItem, prodStocksMap);
+
+                OrderItem orderItem = getOrderItem(now, userId, orderNumber, shopId, orderProdName, shopCartItem, sku, product);
+
+                orderItems.add(orderItem);
+
+                if (shopCartItem.getBasketId() != null && shopCartItem.getBasketId() != 0) {
+                    basketIds.add(shopCartItem.getBasketId());
+                }
+            }
+
+        }
+
+
+        orderProdName.subSequence(0, Math.min(orderProdName.length() - 1, 100));
+        if (orderProdName.lastIndexOf(Constant.COMMA) == orderProdName.length() - 1) {
+            orderProdName.deleteCharAt(orderProdName.length() - 1);
+        }
+
+
+        // 订单信息
+        com.yami.shop.bean.model.Order order = getOrder(now, userId, addrOrderId, shopCartOrderDto, orderNumber, shopId, orderProdName, orderItems);
+        event.getOrders().add(order);
+        // 插入订单结算表
+        OrderSettlement orderSettlement = new OrderSettlement();
+        orderSettlement.setUserId(userId);
+        orderSettlement.setIsClearing(0);
+        orderSettlement.setCreateTime(now);
+        orderSettlement.setOrderNumber(orderNumber);
+        orderSettlement.setPayAmount(order.getActualTotal());
+        orderSettlement.setPayStatus(0);
+        orderSettlement.setVersion(0);
+        orderSettlementMapper.insert(orderSettlement);
+    }
+
+    private com.yami.shop.bean.model.Order getOrder(Date now, String userId, Long addrOrderId, ShopCartOrderDto shopCartOrderDto, String orderNumber, Long shopId, StringBuilder orderProdName, List<OrderItem> orderItems) {
+        com.yami.shop.bean.model.Order order = new com.yami.shop.bean.model.Order();
+
+        order.setShopId(shopId);
+        order.setOrderNumber(orderNumber);
+        // 订单商品名称
+        order.setProdName(orderProdName.toString());
+        // 用户id
+        order.setUserId(userId);
+        // 商品总额
+        order.setTotal(shopCartOrderDto.getTotal());
+        // 实际总额
+        order.setActualTotal(shopCartOrderDto.getActualTotal());
+        order.setStatus(OrderStatus.UNPAY.value());
+        order.setUpdateTime(now);
+        order.setCreateTime(now);
+        order.setIsPayed(0);
+        order.setDeleteStatus(0);
+        order.setProductNums(shopCartOrderDto.getTotalCount());
+        order.setAddrOrderId(addrOrderId);
+        order.setReduceAmount(Arith.sub(Arith.add(shopCartOrderDto.getTotal(), shopCartOrderDto.getTransfee()), shopCartOrderDto.getActualTotal()));
+        order.setFreightAmount(shopCartOrderDto.getTransfee());
+        order.setRemarks(shopCartOrderDto.getRemarks());
+
+        order.setOrderItems(orderItems);
+        return order;
+    }
+
+    private OrderItem getOrderItem(Date now, String userId, String orderNumber, Long shopId, StringBuilder orderProdName, ShopCartItemDto shopCartItem, Sku sku, Product product) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setShopId(shopId);
+        orderItem.setOrderNumber(orderNumber);
+        orderItem.setProdId(sku.getProdId());
+        orderItem.setSkuId(sku.getSkuId());
+        orderItem.setSkuName(sku.getSkuName());
+        orderItem.setProdCount(shopCartItem.getProdCount());
+        orderItem.setProdName(sku.getProdName());
+        orderItem.setPic(StrUtil.isBlank(sku.getPic()) ? product.getPic() : sku.getPic());
+        orderItem.setPrice(shopCartItem.getPrice());
+        orderItem.setUserId(userId);
+        orderItem.setProductTotalAmount(shopCartItem.getProductTotalAmount());
+        orderItem.setRecTime(now);
+        orderItem.setCommSts(0);
+        orderItem.setBasketDate(shopCartItem.getBasketDate());
+        orderProdName.append(orderItem.getProdName()).append(",");
+        //推广员卡号
+        orderItem.setDistributionCardNo(shopCartItem.getDistributionCardNo());
+        return orderItem;
     }
 
     @SuppressWarnings({"Duplicates"})

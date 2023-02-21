@@ -104,7 +104,7 @@ public class IndexImgController {
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('admin:indexImg:delete')")
     public ResponseEntity<Void> delete(@RequestBody Long[] ids) {
-        indexImgService.deleteIndexImgsByIds(ids);
+        indexImgService.deleteIndexImgByIds(ids);
         indexImgService.removeIndexImgCache();
         return ResponseEntity.ok().build();
     }

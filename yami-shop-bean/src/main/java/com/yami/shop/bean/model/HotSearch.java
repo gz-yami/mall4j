@@ -10,14 +10,17 @@
 
 package com.yami.shop.bean.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.*;
 
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_hot_search")
 public class HotSearch implements Serializable {

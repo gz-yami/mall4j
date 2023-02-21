@@ -11,10 +11,10 @@
 package com.yami.shop.sys.service;
 
 
-import java.util.List;
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.shop.sys.model.SysMenu;
+
+import java.util.List;
 
 
 /**
@@ -62,5 +62,9 @@ public interface SysMenuService extends IService<SysMenu> {
 	 */
 	List<SysMenu> listChildrenMenuByParentId(Long parentId);
 
+	/**
+	 * 获取菜单和按钮列表
+	 * @return
+	 */
 	List<SysMenu> listMenuAndBtn();
 }

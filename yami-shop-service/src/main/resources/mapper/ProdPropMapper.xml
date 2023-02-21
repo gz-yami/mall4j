@@ -48,12 +48,6 @@
 		delete from tz_prod_prop where prop_id = #{propId} and rule = #{rule} and shop_id = #{shopId}
 	</delete>
 
-    <select id="listByCategoryId" resultMap="BaseResultMap">
-		select pp.prop_id ,pp.prop_name from tz_prod_prop pp
-		left join tz_category_prop cp on pp.prop_id = cp.prop_id
-		where cp.category_id = #{categoryId}
-	</select>
-
     <select id="getProdPropByPropNameAndShopId" resultType="com.yami.shop.bean.model.ProdProp">
 	   select * from tz_prod_prop where prop_name = #{propName} and shop_id = #{shopId} and rule = #{rule}
 	</select>

@@ -11,7 +11,6 @@
 package com.yami.shop.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -40,9 +39,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * @author lanhai
+ */
 @Service
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
 
@@ -78,11 +79,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
         productMapper.updateById(product);
         List<Long> dbSkuIds = dbProduct.getSkuList().stream().map(Sku::getSkuId).collect(Collectors.toList());
-        // 2019/04/c0244be79909484fb67bc6d5f70cae18.jpg
-//        if (!Objects.equals(dbProduct.getPic(), product.getPic()) && StrUtil.isNotBlank(dbProduct.getPic())) {
-//            // 删除数据库中的商品图片
-//            attachFileService.deleteFile(dbProduct.getPic());
-//        }
         // 将所有该商品的sku标记为已删除状态
         skuMapper.deleteByProdId(product.getProdId());
 
@@ -160,8 +156,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public IPage<ProductDto> pageByPutawayTime(IPage<ProductDto> page) {
-        return productMapper.pageByPutawayTime(page);
+    public IPage<ProductDto> pageByPutAwayTime(IPage<ProductDto> page) {
+        return productMapper.pageByPutAwayTime(page);
     }
 
     @Override
@@ -177,11 +173,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public IPage<ProductDto> pageByCategoryId(Page<ProductDto> page, Long categoryId) {
         return productMapper.pageByCategoryId(page, categoryId);
-    }
-
-    @Override
-    public List<Product> listProdByCategoryId(Long categoryId) {
-        return productMapper.listProdByCategoryId(categoryId);
     }
 
     @Override

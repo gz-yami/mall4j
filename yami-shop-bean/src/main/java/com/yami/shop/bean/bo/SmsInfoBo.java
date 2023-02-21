@@ -10,10 +10,13 @@
 
 package com.yami.shop.bean.bo;
 
-import java.util.Map;
-
 import com.yami.shop.bean.enums.SmsType;
 
+import java.util.Map;
+
+/**
+ * @author lanhai
+ */
 public class SmsInfoBo {
 	
 	private SmsType smsType;

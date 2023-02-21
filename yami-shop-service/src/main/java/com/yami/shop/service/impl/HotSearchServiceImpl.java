@@ -36,13 +36,13 @@ public class HotSearchServiceImpl extends ServiceImpl<HotSearchMapper, HotSearch
 
     @Override
     @Cacheable(cacheNames = "HotSearchDto", key = "#shopId")
-    public List<HotSearchDto> getHotSearchDtoByshopId(Long shopId) {
+    public List<HotSearchDto> getHotSearchDtoByShopId(Long shopId) {
         return hotSearchMapper.getHotSearchDtoByShopId(shopId);
     }
 
     @Override
     @CacheEvict(cacheNames = "HotSearchDto", key = "#shopId")
-    public void removeHotSearchDtoCacheByshopId(Long shopId) {
+    public void removeHotSearchDtoCacheByShopId(Long shopId) {
 
     }
 }

@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class OrderRefundExpressParam {
 

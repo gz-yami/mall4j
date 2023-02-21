@@ -11,7 +11,7 @@ package com.yami.shop.security.common.manager;
 
 import cn.hutool.core.util.StrUtil;
 import com.yami.shop.common.exception.YamiShopBindException;
-import com.yami.shop.common.util.IPHelper;
+import com.yami.shop.common.util.IpHelper;
 import com.yami.shop.common.util.RedisUtil;
 import com.yami.shop.security.common.enums.SysTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class PasswordCheckManager {
     private static final String CHECK_VALID_CODE_NUM_PREFIX = "checkUserInputErrorPassword_";
     public void checkPassword(SysTypeEnum sysTypeEnum,String userNameOrMobile, String rawPassword, String encodedPassword) {
 
-        String checkPrefix = sysTypeEnum.value() + CHECK_VALID_CODE_NUM_PREFIX + IPHelper.getIpAddr();
+        String checkPrefix = sysTypeEnum.value() + CHECK_VALID_CODE_NUM_PREFIX + IpHelper.getIpAddr();
 
         int count = 0;
         if(RedisUtil.hasKey(checkPrefix + userNameOrMobile)){

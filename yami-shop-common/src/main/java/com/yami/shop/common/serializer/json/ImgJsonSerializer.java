@@ -20,6 +20,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * @author lanhai
+ */
 @Component
 public class ImgJsonSerializer extends JsonSerializer<String> {
 

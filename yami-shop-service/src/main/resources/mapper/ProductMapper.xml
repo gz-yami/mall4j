@@ -70,15 +70,6 @@
 		update tz_prod set total_stocks = total_stocks - #{prod.totalStocks} ,version = version + 1 where prod_id = #{prod.prodId} and #{prod.totalStocks} &lt;= total_stocks
 	</update>
 
-    <select id="listProdByCategoryId" resultType="com.yami.shop.bean.model.Product">
-        select tp.*,tc.category_name,tsd.shop_name from tz_prod tp
-        left join tz_category tc on tp.category_id = tc.category_id
-        left join tz_shop_detail tsd on tp.shop_id = tsd.shop_id
-        <if test="categoryId != null">
-            where tp.category_id = #{categoryId}
-        </if>
-    </select>
-
     <select id="pageByCategoryId" resultType="com.yami.shop.bean.app.dto.ProductDto">
         select tp.*,tc.category_name,tsd.shop_name from tz_prod tp
         left join tz_category tc on tp.category_id = tc.category_id
@@ -115,7 +106,7 @@
         ORDER BY p.`update_time` DESC
     </select>
 
-    <select id="pageByPutawayTime" resultType="com.yami.shop.bean.app.dto.ProductDto">
+    <select id="pageByPutAwayTime" resultType="com.yami.shop.bean.app.dto.ProductDto">
         SELECT
         <include refid="prodAndShopNameWithNoContent_SQL"/>
         FROM tz_prod p

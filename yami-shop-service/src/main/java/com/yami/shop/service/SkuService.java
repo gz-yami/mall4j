@@ -10,11 +10,10 @@
 
 package com.yami.shop.service;
 
-import java.util.List;
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.shop.bean.model.Sku;
-import org.springframework.cache.annotation.CacheEvict;
+
+import java.util.List;
 
 /**
  *
@@ -36,5 +35,10 @@ public interface SkuService extends IService<Sku> {
 	 */
 	Sku getSkuBySkuId(Long skuId);
 
+	/**
+	 * 根据商品id和skuId删除缓存
+	 * @param skuId
+	 * @param prodId
+	 */
 	void removeSkuCacheBySkuId(Long skuId,Long prodId);
 }

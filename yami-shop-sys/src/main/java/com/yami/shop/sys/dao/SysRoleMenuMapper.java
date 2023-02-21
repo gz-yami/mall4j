@@ -17,12 +17,15 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
+ * @author lanhai
  * 角色与菜单对应关系
  */
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
 	
 	/**
 	 * 根据角色ID数组，批量删除
+	 * @param roleIds
+	 * @return
 	 */
 	int deleteBatch(Long[] roleIds);
 

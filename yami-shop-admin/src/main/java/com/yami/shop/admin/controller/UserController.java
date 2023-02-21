@@ -10,32 +10,20 @@
 
 package com.yami.shop.admin.controller;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
-
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.emoji.EmojiUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yami.shop.bean.model.User;
+import com.yami.shop.common.util.PageParam;
+import com.yami.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-
-import com.yami.shop.common.util.PageParam;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yami.shop.bean.model.User;
-import com.yami.shop.service.UserService;
-
-import cn.hutool.extra.emoji.EmojiUtil;
+import java.util.Arrays;
+import java.util.Date;
 
 
 /**
@@ -54,13 +42,13 @@ public class UserController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:user:page')")
     public ResponseEntity<IPage<User>> page(User user,PageParam<User> page) {
-        IPage<User> userIPage = userService.page(page, new LambdaQueryWrapper<User>()
+        IPage<User> userPage = userService.page(page, new LambdaQueryWrapper<User>()
                 .like(StrUtil.isNotBlank(user.getNickName()), User::getNickName, user.getNickName())
                 .eq(user.getStatus() != null, User::getStatus, user.getStatus()));
-        for (User userResult : userIPage.getRecords()) {
+        for (User userResult : userPage.getRecords()) {
             userResult.setNickName(EmojiUtil.toUnicode(userResult.getNickName() == null ? "" : userResult.getNickName()));
         }
-        return ResponseEntity.ok(userIPage);
+        return ResponseEntity.ok(userPage);
     }
 
     /**

@@ -10,16 +10,26 @@
 
 package com.yami.shop.dao;
 
-import java.util.List;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yami.shop.bean.model.IndexImg;
 import org.apache.ibatis.annotations.Param;
 
-import com.yami.shop.bean.model.IndexImg;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import java.util.List;
 
+/**
+ * @author lanhai
+ */
 public interface IndexImgMapper extends BaseMapper<IndexImg> {
 
-	void deleteIndexImgsByIds(@Param("ids") Long[] ids);
+	/**
+	 * 根据id列表删除图片
+	 * @param ids
+	 */
+	void deleteIndexImgByIds(@Param("ids") Long[] ids);
 
-	List<IndexImg> listIndexImgs();
+	/**
+	 * 获取图片列表
+	 * @return
+	 */
+	List<IndexImg> listIndexImg();
 }

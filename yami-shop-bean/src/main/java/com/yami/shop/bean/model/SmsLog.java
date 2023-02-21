@@ -10,10 +10,15 @@
 
 package com.yami.shop.bean.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.util.Date;
+
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_sms_log")
 public class SmsLog {

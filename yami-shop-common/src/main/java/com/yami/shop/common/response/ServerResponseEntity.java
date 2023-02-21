@@ -12,6 +12,9 @@ package com.yami.shop.common.response;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author lanhai
+ */
 @Slf4j
 public class ServerResponseEntity {
 

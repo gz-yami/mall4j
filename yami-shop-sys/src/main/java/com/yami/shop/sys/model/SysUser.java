@@ -28,6 +28,7 @@ import java.util.List;
 
 /**
  * 系统用户
+ * @author lanhai
  */
 @Data
 @TableName("tz_sys_user")

@@ -10,15 +10,13 @@
 
 package com.yami.shop.bean.app.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class CouponOrderDto implements Serializable {
 

@@ -10,14 +10,14 @@
 
 package com.yami.shop.bean.app.param;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @Data
 @Schema(description = "添加评论信息")
 public class ProdCommParam {

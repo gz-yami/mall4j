@@ -18,7 +18,8 @@ import org.springframework.web.cors.CorsUtils;
 public class MallWebSecurityConfigurerAdapter {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        return http.csrf().disable().cors() // We don't need CSRF for token based authentication
+        // We don't need CSRF for token based authentication
+        return http.csrf().disable().cors()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .and()

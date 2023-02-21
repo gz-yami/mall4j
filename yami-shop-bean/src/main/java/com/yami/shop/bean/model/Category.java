@@ -19,6 +19,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_category")
 public class Category implements Serializable {

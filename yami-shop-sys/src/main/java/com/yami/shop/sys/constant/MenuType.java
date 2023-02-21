@@ -2,6 +2,7 @@ package com.yami.shop.sys.constant;
 
 /**
  * 菜单类型
+ * @author lanhai
  */
 public enum MenuType {
     /**

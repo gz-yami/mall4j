@@ -18,11 +18,14 @@ import java.util.List;
 
 /**
  * 用户与角色对应关系
+ * @author lanhai
  */
 public interface SysUserRoleMapper  extends BaseMapper<SysUserRole> {
 	
 	/**
 	 * 根据角色ID数组，批量删除
+	 * @param roleIds
+	 * @return
 	 */
 	int deleteBatch(@Param("roleIds") Long[] roleIds);
 

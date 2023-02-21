@@ -75,7 +75,7 @@ public class CategoryController {
 		if(categoryName != null){
 			throw new YamiShopBindException("类目名称已存在！");
 		}
-		categoryService.saveCategroy(category);
+		categoryService.saveCategory(category);
 		return ResponseEntity.ok().build();
 	}
 
@@ -95,16 +95,16 @@ public class CategoryController {
 		if(categoryName != null){
 			throw new YamiShopBindException("类目名称已存在！");
 		}
-		Category categoryDB = categoryService.getById(category.getCategoryId());
+		Category categoryDb = categoryService.getById(category.getCategoryId());
 		// 如果从下线改成正常，则需要判断上级的状态
-		if (Objects.equals(categoryDB.getStatus(),0) && Objects.equals(category.getStatus(),1) && !Objects.equals(category.getParentId(),0L)){
+		if (Objects.equals(categoryDb.getStatus(),0) && Objects.equals(category.getStatus(),1) && !Objects.equals(category.getParentId(),0L)){
 			Category parentCategory = categoryService.getOne(new LambdaQueryWrapper<Category>().eq(Category::getCategoryId, category.getParentId()));
 			if(Objects.isNull(parentCategory) || Objects.equals(parentCategory.getStatus(),0)){
 				// 修改失败，上级分类不存在或者不为正常状态
 				throw new YamiShopBindException("修改失败，上级分类不存在或者不为正常状态");
 			}
 		}
-		categoryService.updateCategroy(category);
+		categoryService.updateCategory(category);
 		return ResponseEntity.ok().build();
 	}
 
@@ -118,7 +118,7 @@ public class CategoryController {
 		if (categoryService.count(new LambdaQueryWrapper<Category>().eq(Category::getParentId,categoryId)) >0) {
 			return ResponseEntity.badRequest().body("请删除子分类，再删除该分类");
 		}
-		categoryService.deleteCategroy(categoryId);
+		categoryService.deleteCategory(categoryId);
 		return ResponseEntity.ok().build();
 	}
 

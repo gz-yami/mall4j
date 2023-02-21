@@ -10,11 +10,15 @@
 
 package com.yami.shop.bean.model;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
+
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_prod_prop_value")
 public class ProdPropValue implements Serializable{

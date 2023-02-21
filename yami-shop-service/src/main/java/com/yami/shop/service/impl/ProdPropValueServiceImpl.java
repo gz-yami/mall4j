@@ -19,8 +19,7 @@ import com.yami.shop.dao.ProdPropValueMapper;
 import com.yami.shop.service.ProdPropValueService;
 
 /**
- *
- * Created by lgh on 2018/07/06.
+ * @author lanhai
  */
 @Service
 public class ProdPropValueServiceImpl extends ServiceImpl<ProdPropValueMapper, ProdPropValue> implements ProdPropValueService {

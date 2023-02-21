@@ -38,6 +38,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author lanhai
+ */
 @RestController
 @RequestMapping("/p/order")
 @Tag(name = "订单接口")
@@ -130,7 +133,7 @@ public class OrderController {
         shopCartOrderMergerDto.setShopCartOrders(shopCartOrders);
         shopCartOrderMergerDto.setOrderReduce(orderReduce);
 
-        orderService.putConfirmOrderCache(userId,shopCartOrderMergerDto);
+        shopCartOrderMergerDto = orderService.putConfirmOrderCache(userId, shopCartOrderMergerDto);
 
         return ResponseEntity.ok(shopCartOrderMergerDto);
     }

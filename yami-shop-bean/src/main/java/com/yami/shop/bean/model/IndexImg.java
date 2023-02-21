@@ -10,14 +10,19 @@
 
 package com.yami.shop.bean.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_index_img")
 public class IndexImg implements Serializable {

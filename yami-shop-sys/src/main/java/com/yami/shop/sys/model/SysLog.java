@@ -12,7 +12,6 @@ package com.yami.shop.sys.model;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -21,6 +20,7 @@ import java.util.Date;
 
 /**
  * 系统日志
+ * @author lanhai
  */
 @Data
 @TableName("tz_sys_log")

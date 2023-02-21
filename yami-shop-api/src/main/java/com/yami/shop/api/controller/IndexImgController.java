@@ -13,18 +13,19 @@ package com.yami.shop.api.controller;
 import com.yami.shop.bean.app.dto.IndexImgDto;
 import com.yami.shop.bean.model.IndexImg;
 import com.yami.shop.service.IndexImgService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @RestController
 @Tag(name = "首页轮播图接口")
 public class IndexImgController {
@@ -40,7 +41,7 @@ public class IndexImgController {
     @GetMapping("/indexImgs")
     @Operation(summary = "首页轮播图" , description = "获取首页轮播图列表信息")
     public ResponseEntity<List<IndexImgDto>> indexImgs() {
-        List<IndexImg> indexImgList = indexImgService.listIndexImgs();
+        List<IndexImg> indexImgList = indexImgService.listIndexImg();
         List<IndexImgDto> indexImgDtos = mapperFacade.mapAsList(indexImgList, IndexImgDto.class);
         return ResponseEntity.ok(indexImgDtos);
     }

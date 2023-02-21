@@ -23,6 +23,10 @@ import java.util.List;
  * @date 2019-04-18 16:28:01
  */
 public interface ProdTagReferenceService extends IService<ProdTagReference> {
-
+    /**
+     * 根据id获取标签id列表
+     * @param prodId
+     * @return
+     */
     List<Long> listTagIdByProdId(Long prodId);
 }

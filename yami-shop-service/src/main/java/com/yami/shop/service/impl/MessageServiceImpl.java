@@ -28,9 +28,4 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
     @Autowired
     private MessageMapper messageMapper;
 
-	@Override
-	public void deleteByIds(Long[] ids) {
-		messageMapper.deleteByIds(ids);
-	}
-
 }

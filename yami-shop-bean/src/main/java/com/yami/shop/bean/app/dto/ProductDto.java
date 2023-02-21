@@ -10,15 +10,17 @@
 
 package com.yami.shop.bean.app.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.bean.model.Transport;
-
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.util.List;
+
+/**
+ * @author lanhai
+ */
 @Data
 public class ProductDto {
     /**

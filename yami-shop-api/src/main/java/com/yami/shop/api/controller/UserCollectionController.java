@@ -31,7 +31,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.Objects;
-
+/**
+ * @author lanhai
+ */
 @RestController
 @RequestMapping("/p/user/collection")
 @Tag(name = "收藏接口")
@@ -98,8 +100,8 @@ public class UserCollectionController {
     @Operation(summary = "获取用户收藏商品列表" , description = "获取用户收藏商品列表")
     public ResponseEntity<IPage<ProductDto>> collectionProds(PageParam page) {
         String userId = SecurityUtils.getUser().getUserId();
-        IPage<ProductDto> productDtoIPage = productService.collectionProds(page, userId);
-        return ResponseEntity.ok(productDtoIPage);
+        IPage<ProductDto> productDtoPage = productService.collectionProds(page, userId);
+        return ResponseEntity.ok(productDtoPage);
     }
 
 }

@@ -52,15 +52,4 @@
   <select id="tableCategory" resultType="com.yami.shop.bean.model.Category">
   	select category_id ,parent_id ,category_name,pic,seq,status from tz_category where shop_id = #{shopId} order by seq
   </select>
-
-  <select id="listCategoryAndProdByShopId" resultMap="categoryProdMap">
-  	select c.category_id,c.category_name,
-  	p.prod_id,p.price,p.pic as prod_pic,p.stocks ,p.has_prop,p.brief,p.prod_name,p.category_id as prod_category_id,p.spec_list_str,
-  	s.sku_id, s.price as sPrice,s.stocks as sStocks,s.name as sName
-  	from tz_category c
-  	left join tz_prod p on p.category_id = c.category_id AND p.status = 1
-  	left join tz_sku s on s.prod_id = p.prod_id
-  	where c.shop_id = #{shopId} and c.status = 1
-  	order by c.seq
-  </select>
 </mapper>

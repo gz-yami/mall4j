@@ -30,11 +30,9 @@ import com.yami.shop.dao.ProductMapper;
 import com.yami.shop.dao.SkuMapper;
 import com.yami.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -163,14 +161,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public List<Order> listOrdersDetialByOrder(Order order, Date startTime, Date endTime) {
-        return orderMapper.listOrdersDetialByOrder(order, startTime, endTime);
+    public List<Order> listOrdersDetailByOrder(Order order, Date startTime, Date endTime) {
+        return orderMapper.listOrdersDetailByOrder(order, startTime, endTime);
     }
 
     @Override
-    public IPage<Order> pageOrdersDetialByOrderParam(Page<Order> page, OrderParam orderParam) {
-        page.setRecords(orderMapper.listOrdersDetialByOrderParam(new PageAdapter(page), orderParam));
-        page.setTotal(orderMapper.countOrderDetial(orderParam));
+    public IPage<Order> pageOrdersDetailByOrderParam(Page<Order> page, OrderParam orderParam) {
+        page.setRecords(orderMapper.listOrdersDetailByOrderParam(new PageAdapter(page), orderParam));
+        page.setTotal(orderMapper.countOrderDetail(orderParam));
         return page;
     }
 

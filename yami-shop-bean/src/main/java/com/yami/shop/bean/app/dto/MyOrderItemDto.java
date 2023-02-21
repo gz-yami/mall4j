@@ -15,6 +15,9 @@ import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author lanhai
+ */
 @Schema(description = "我的订单-订单项")
 @Data
 public class MyOrderItemDto {

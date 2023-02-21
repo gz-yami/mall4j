@@ -19,8 +19,7 @@ import com.yami.shop.dao.CategoryPropMapper;
 import com.yami.shop.service.CategoryPropService;
 
 /**
- *
- * Created by lgh on 2018/07/13.
+ * @author lanhai
  */
 @Service
 public class CategoryPropServiceImpl extends ServiceImpl<CategoryPropMapper, CategoryProp> implements CategoryPropService {

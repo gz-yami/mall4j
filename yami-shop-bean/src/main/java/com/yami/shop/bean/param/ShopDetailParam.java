@@ -11,9 +11,11 @@
 package com.yami.shop.bean.param;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * @author lanhai
+ */
 public class ShopDetailParam {
 	
 

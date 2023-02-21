@@ -17,7 +17,7 @@ import lombok.Data;
  * @author LGH
  */
 @Data
-public class ALiDaYu {
+public class AliDaYu {
 
 	private String accessKeyId;
 	

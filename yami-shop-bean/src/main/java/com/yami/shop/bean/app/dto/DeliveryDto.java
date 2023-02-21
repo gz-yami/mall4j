@@ -10,11 +10,14 @@
 
 package com.yami.shop.bean.app.dto;
 
-import java.util.List;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.util.List;
+
+/**
+ * @author lanhai
+ */
 @Data
 public class DeliveryDto {
 

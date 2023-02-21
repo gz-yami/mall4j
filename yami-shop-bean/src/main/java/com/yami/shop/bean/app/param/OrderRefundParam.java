@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class OrderRefundParam {
 
@@ -17,17 +20,11 @@ public class OrderRefundParam {
     @NotNull(message = "申请类型不能为空")
     private Integer applyType;
 
-//    @Schema(description = "订单金额" , required = true)
-//    @NotNull(message = "订单金额不能为空")
-//    private Double orderAmount;
 
     @Schema(description = "订单项id(全部退款是0)" , required = true)
     @NotNull(message = "订单项id不能为空")
     private Long orderItemId;
 
-//    @Schema(description = "退款金额" , required = true)
-//    @NotNull(message = "退款金额不能为空")
-//    private BigDecimal refundAmount;
 
     @Schema(description = "凭证图片列表" , required = true)
     private String photoFiles;

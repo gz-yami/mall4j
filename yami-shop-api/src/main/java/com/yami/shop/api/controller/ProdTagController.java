@@ -10,12 +10,11 @@
 
 package com.yami.shop.api.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yami.shop.bean.app.dto.ProdTagDto;
 import com.yami.shop.bean.model.ProdTag;
 import com.yami.shop.service.ProdTagService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @RestController
 @RequestMapping("/prod/tag")
 @Tag(name = "商品分组标签接口")

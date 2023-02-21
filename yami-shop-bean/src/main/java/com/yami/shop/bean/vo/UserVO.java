@@ -11,7 +11,9 @@
 package com.yami.shop.bean.vo;
 
 import lombok.Data;
-
+/**
+ * @author lanhai
+ */
 @Data
 public class UserVO {
 

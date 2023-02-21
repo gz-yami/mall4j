@@ -19,6 +19,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author lanhai
+ */
 @Data
 @TableName("tz_sku")
 public class Sku implements Serializable {

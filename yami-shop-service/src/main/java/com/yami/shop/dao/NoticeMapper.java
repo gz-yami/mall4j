@@ -24,5 +24,10 @@ import com.yami.shop.bean.model.Notice;
  */
 public interface NoticeMapper extends BaseMapper<Notice> {
 
+    /**
+     * 分页获取公布的公告
+     * @param page
+     * @return
+     */
     Page<NoticeDto> pageNotice(Page<NoticeDto> page);
 }

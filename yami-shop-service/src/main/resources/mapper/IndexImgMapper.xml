@@ -17,14 +17,14 @@
         <result column="type" jdbcType="INTEGER" property="type"/>
     </resultMap>
 
-    <delete id="deleteIndexImgsByIds">
+    <delete id="deleteIndexImgByIds">
         delete from tz_index_img where img_id in
         <foreach collection="ids" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>
 
-    <select id="listIndexImgs" resultType="com.yami.shop.bean.model.IndexImg">
+    <select id="listIndexImg" resultType="com.yami.shop.bean.model.IndexImg">
         SELECT *
         FROM tz_index_img
         where `status` = 1

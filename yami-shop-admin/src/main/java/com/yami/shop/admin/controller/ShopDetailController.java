@@ -51,7 +51,6 @@ public class ShopDetailController {
 	 * 修改分销开关
 	 */
 	@PutMapping("/isDistribution")
-	//@PreAuthorize("@pms.hasPermission('shop:shopDetail:update')")
 	public ResponseEntity<Void> updateIsDistribution(@RequestParam Integer isDistribution){
 		ShopDetail shopDetail=new ShopDetail();
 		shopDetail.setShopId(SecurityUtils.getSysUser().getShopId());

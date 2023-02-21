@@ -42,7 +42,7 @@ public class XssWrapper extends HttpServletRequestWrapper {
         int count = values.length;
         String[] encodedValues = new String[count];
         for (int i = 0; i < count; i++) {
-            encodedValues[i] = cleanXSS(values[i]);
+            encodedValues[i] = cleanXss(values[i]);
         }
         return encodedValues;
     }
@@ -56,7 +56,7 @@ public class XssWrapper extends HttpServletRequestWrapper {
         if (StrUtil.isBlank(value)) {
             return value;
         }
-        return cleanXSS(value);
+        return cleanXss(value);
     }
 
     /**
@@ -66,7 +66,7 @@ public class XssWrapper extends HttpServletRequestWrapper {
     public Object getAttribute(String name) {
         Object value = super.getAttribute(name);
         if (value instanceof String && StrUtil.isNotBlank((String) value)) {
-            return cleanXSS((String) value);
+            return cleanXss((String) value);
         }
         return value;
     }
@@ -80,10 +80,10 @@ public class XssWrapper extends HttpServletRequestWrapper {
         if (StrUtil.isBlank(value)) {
             return value;
         }
-        return cleanXSS(value);
+        return cleanXss(value);
     }
 
-    private String cleanXSS(String value) {
+    private String cleanXss(String value) {
         return XssUtil.clean(value);
     }
 }

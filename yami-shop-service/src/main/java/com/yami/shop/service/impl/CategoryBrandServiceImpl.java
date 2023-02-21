@@ -19,8 +19,7 @@ import com.yami.shop.dao.CategoryBrandMapper;
 import com.yami.shop.service.CategoryBrandService;
 
 /**
- *
- * Created by lgh on 2018/07/13.
+ * @author lanhai
  */
 @Service
 public class CategoryBrandServiceImpl extends ServiceImpl<CategoryBrandMapper, CategoryBrand> implements CategoryBrandService {

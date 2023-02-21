@@ -17,6 +17,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author lanhai
+ */
 @Data
 public class SkuDto implements Serializable {
 

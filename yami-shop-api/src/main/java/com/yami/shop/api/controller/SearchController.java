@@ -16,7 +16,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.bean.dto.HotSearchDto;
 import com.yami.shop.bean.dto.SearchProdDto;
-import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.HotSearchService;
 import com.yami.shop.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,6 +31,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author lanhai
+ */
 @RestController
 @RequestMapping("/search")
 @Tag(name = "搜索接口")
@@ -50,7 +52,7 @@ public class SearchController {
             @Parameter(name = "sort", description = "是否按照顺序(0 否 1是)"),
     })
     public ResponseEntity<List<HotSearchDto>> hotSearchByShopId(Long shopId,Integer number,Integer sort) {
-        List<HotSearchDto> list = hotSearchService.getHotSearchDtoByshopId(shopId);
+        List<HotSearchDto> list = hotSearchService.getHotSearchDtoByShopId(shopId);
 
         return getListResponseEntity(number, sort, list);
     }
@@ -62,7 +64,7 @@ public class SearchController {
             @Parameter(name = "sort", description = "是否按照顺序(0 否 1是)", required = false ),
     })
     public ResponseEntity<List<HotSearchDto>> hotSearch(Integer number,Integer sort) {
-        List<HotSearchDto> list = hotSearchService.getHotSearchDtoByshopId(0L);
+        List<HotSearchDto> list = hotSearchService.getHotSearchDtoByShopId(0L);
         return getListResponseEntity(number, sort, list);
     }
 

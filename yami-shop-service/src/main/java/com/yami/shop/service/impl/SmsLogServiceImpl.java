@@ -24,7 +24,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yami.shop.bean.enums.SmsType;
 import com.yami.shop.bean.model.SmsLog;
-import com.yami.shop.common.bean.ALiDaYu;
+import com.yami.shop.common.bean.AliDaYu;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.dao.SmsLogMapper;
@@ -50,7 +50,7 @@ public class SmsLogServiceImpl extends ServiceImpl<SmsLogMapper, SmsLog> impleme
 
     private final SmsLogMapper smsLogMapper;
 
-    private final ALiDaYu aLiDaYu;
+    private final AliDaYu aLiDaYu;
 
     /**
      * 产品名称:云通信短信API产品,开发者无需替换

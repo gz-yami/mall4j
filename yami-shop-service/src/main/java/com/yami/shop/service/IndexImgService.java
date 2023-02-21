@@ -21,9 +21,20 @@ import java.util.List;
  */
 public interface IndexImgService extends IService<IndexImg> {
 
-	void deleteIndexImgsByIds(Long[] ids);
+    /**
+     * 根据id列表删除图片
+     * @param ids
+     */
+	void deleteIndexImgByIds(Long[] ids);
 
-    List<IndexImg> listIndexImgs();
+    /**
+     * 获取全部图片列表
+     * @return
+     */
+    List<IndexImg> listIndexImg();
 
+    /**
+     * 删除图片缓存
+     */
     void removeIndexImgCache();
 }

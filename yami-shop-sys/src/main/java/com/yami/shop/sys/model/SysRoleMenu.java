@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * 角色与菜单对应关系
- * 
+ * @author lanhai
  */
 @Data
 @TableName("tz_sys_role_menu")

@@ -27,11 +27,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by lgh on 2018/07/06.
+ * @author lanhai
  */
 @Service
 public class ProdPropServiceImpl extends ServiceImpl<ProdPropMapper, ProdProp> implements ProdPropService {
@@ -98,10 +97,5 @@ public class ProdPropServiceImpl extends ServiceImpl<ProdPropMapper, ProdProp> i
         if (ProdPropRule.ATTRIBUTE.value().equals(propRule)) {
             categoryPropMapper.deleteByPropId(propId);
         }
-    }
-
-    @Override
-    public List<ProdProp> listByCategoryId(Long categoryId) {
-        return prodPropMapper.listByCategoryId(categoryId);
     }
 }

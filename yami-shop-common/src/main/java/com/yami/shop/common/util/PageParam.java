@@ -16,8 +16,10 @@ import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springdoc.api.annotations.ParameterObject;
 
-import java.util.Collections;
 import java.util.List;
+/**
+ * @author lanhai
+ */
 @Schema
 @ParameterObject
 public class PageParam<T> extends Page<T> {
@@ -111,8 +113,9 @@ public class PageParam<T> extends Page<T> {
 
     @Override
     public Page<T> setSize(long size) {
-        if (size > 100) {
-            this.size = 100;
+        int maxSize = 100;
+        if (size > maxSize) {
+            this.size = maxSize;
         } else {
             this.size = size;
         }

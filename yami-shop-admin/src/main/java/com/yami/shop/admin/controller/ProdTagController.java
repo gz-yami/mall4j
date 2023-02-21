@@ -51,12 +51,12 @@ public class ProdTagController {
      */
     @GetMapping("/page")
     public ResponseEntity<IPage<ProdTag>> getProdTagPage(PageParam<ProdTag> page, ProdTag prodTag) {
-        IPage<ProdTag> tagIPage = prodTagService.page(
+        IPage<ProdTag> tagPage = prodTagService.page(
                 page, new LambdaQueryWrapper<ProdTag>()
                         .eq(prodTag.getStatus() != null, ProdTag::getStatus, prodTag.getStatus())
                         .like(prodTag.getTitle() != null, ProdTag::getTitle, prodTag.getTitle())
                         .orderByDesc(ProdTag::getSeq, ProdTag::getCreateTime));
-        return ResponseEntity.ok(tagIPage);
+        return ResponseEntity.ok(tagPage);
 
     }
 

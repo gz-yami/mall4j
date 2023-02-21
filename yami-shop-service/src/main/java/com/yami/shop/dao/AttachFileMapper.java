@@ -10,12 +10,12 @@
 
 package com.yami.shop.dao;
 
-import org.apache.ibatis.annotations.Param;
-
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yami.shop.bean.model.AttachFile;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-
+/**
+ * @author lanhai
+ */
 public interface AttachFileMapper extends BaseMapper<AttachFile> {
 
 }

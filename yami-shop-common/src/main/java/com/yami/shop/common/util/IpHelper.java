@@ -10,15 +10,13 @@
 
 package com.yami.shop.common.util;
 
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * IP帮助工具
+ * @author lanhai
  */
-public class IPHelper {
+public class IpHelper {
     private static final String UNKNOWN = "unknown";
 
     /**

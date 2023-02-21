@@ -20,12 +20,15 @@ import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.TransportManagerService;
 import com.yami.shop.service.TransportService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-
+/**
+ * @author lanhai
+ */
 @Service
 public class TransportManagerServiceImpl implements TransportManagerService {
 
@@ -62,20 +65,7 @@ public class TransportManagerServiceImpl implements TransportManagerService {
         Sku sku = skuService.getSkuBySkuId(productItem.getSkuId());
 
         // 用于计算运费的件数
-        Double piece = 0.0;
-
-        if (Objects.equals(TransportChargeType.COUNT.value(), transport.getChargeType())) {
-            // 按件数计算运费
-            piece = Double.valueOf(productItem.getProdCount());
-        } else if (Objects.equals(TransportChargeType.WEIGHT.value(), transport.getChargeType())) {
-            // 按重量计算运费
-            double weight = sku.getWeight() == null ? 0 : sku.getWeight();
-            piece = Arith.mul(weight, productItem.getProdCount());
-        } else if (Objects.equals(TransportChargeType.VOLUME.value(), transport.getChargeType())) {
-            // 按体积计算运费
-            double volume = sku.getVolume() == null ? 0 : sku.getVolume();
-            piece = Arith.mul(volume, productItem.getProdCount());
-        }
+        Double piece = getPiece(productItem, transport, sku);
 
 
         //如果有包邮的条件
@@ -89,9 +79,10 @@ public class TransportManagerServiceImpl implements TransportManagerService {
                         continue;
                     }
                     //包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）
-                    if ((transfeeFree.getFreeType() == 0 && piece >= transfeeFree.getPiece()) ||
+                    boolean isFree = (transfeeFree.getFreeType() == 0 && piece >= transfeeFree.getPiece()) ||
                             (transfeeFree.getFreeType() == 1 && productItem.getProductTotalAmount() >= transfeeFree.getAmount()) ||
-                            (transfeeFree.getFreeType() == 2 && piece >= transfeeFree.getPiece() && productItem.getProductTotalAmount() >= transfeeFree.getAmount())) {
+                            (transfeeFree.getFreeType() == 2 && piece >= transfeeFree.getPiece() && productItem.getProductTotalAmount() >= transfeeFree.getAmount());
+                    if (isFree) {
                         return 0.0;
                     }
                 }
@@ -137,6 +128,25 @@ public class TransportManagerServiceImpl implements TransportManagerService {
             fee = Arith.add(fee, continuousFee);
         }
         return fee;
+    }
+
+    @NotNull
+    private Double getPiece(ProductItemDto productItem, Transport transport, Sku sku) {
+        Double piece = 0.0;
+
+        if (Objects.equals(TransportChargeType.COUNT.value(), transport.getChargeType())) {
+            // 按件数计算运费
+            piece = Double.valueOf(productItem.getProdCount());
+        } else if (Objects.equals(TransportChargeType.WEIGHT.value(), transport.getChargeType())) {
+            // 按重量计算运费
+            double weight = sku.getWeight() == null ? 0 : sku.getWeight();
+            piece = Arith.mul(weight, productItem.getProdCount());
+        } else if (Objects.equals(TransportChargeType.VOLUME.value(), transport.getChargeType())) {
+            // 按体积计算运费
+            double volume = sku.getVolume() == null ? 0 : sku.getVolume();
+            piece = Arith.mul(volume, productItem.getProdCount());
+        }
+        return piece;
     }
 
 

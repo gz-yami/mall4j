@@ -10,10 +10,13 @@
 
 package com.yami.shop.bean.app.param;
 
-import javax.validation.constraints.Pattern;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.validation.constraints.Pattern;
+
+/**
+ * @author lanhai
+ */
 @Schema(description = "发送验证码参数")
 public class SendSmsParam {
 	

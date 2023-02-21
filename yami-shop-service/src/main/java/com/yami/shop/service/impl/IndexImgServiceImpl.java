@@ -33,14 +33,14 @@ public class IndexImgServiceImpl extends ServiceImpl<IndexImgMapper, IndexImg> i
     private IndexImgMapper indexImgMapper;
 
 	@Override
-	public void deleteIndexImgsByIds(Long[] ids) {
-		indexImgMapper.deleteIndexImgsByIds(ids);
+	public void deleteIndexImgByIds(Long[] ids) {
+		indexImgMapper.deleteIndexImgByIds(ids);
 	}
 
     @Override
     @Cacheable(cacheNames = "indexImg", key = "'indexImg'")
-    public List<IndexImg> listIndexImgs() {
-        return indexImgMapper.listIndexImgs();
+    public List<IndexImg> listIndexImg() {
+        return indexImgMapper.listIndexImg();
     }
 
     @Override

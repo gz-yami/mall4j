@@ -10,31 +10,29 @@
 
 package com.yami.shop.service.impl;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.google.common.collect.Lists;
-import com.yami.shop.bean.app.dto.CategoryDto;
 import com.yami.shop.bean.model.Category;
 import com.yami.shop.dao.CategoryBrandMapper;
 import com.yami.shop.dao.CategoryMapper;
 import com.yami.shop.dao.CategoryPropMapper;
 import com.yami.shop.service.AttachFileService;
 import com.yami.shop.service.CategoryService;
-
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
 import ma.glasnost.orika.MapperFacade;
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+/**
+ * @author lanhai
+ */
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService{
 
@@ -65,7 +63,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void saveCategroy(Category category) {
+	public void saveCategory(Category category) {
 		category.setRecTime(new Date());
 		// 保存分类信息
 		categoryMapper.insert(category);
@@ -75,7 +73,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void updateCategroy(Category category) {
+	public void updateCategory(Category category) {
 		Category dbCategory = categoryMapper.selectById(category.getCategoryId());
 		category.setUpdateTime(new Date());
 		// 保存分类信息
@@ -91,7 +89,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 	
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void deleteCategroy(Long categoryId) {
+	public void deleteCategory(Long categoryId) {
 		Category category = categoryMapper.selectById(categoryId);
 		categoryMapper.deleteById(categoryId);
 		
@@ -149,12 +147,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 			// 处理下 下一层级
 			transformCategoryTree(nextList, categoryMap);
 		}
-	}
-
-	@Override
-	public List<CategoryDto> listCategoryDtoByShopId(Long shopId) {
-		List<Category> categoryList = categoryMapper.listCategoryAndProdByShopId(shopId);
-		return mapperFacade.mapAsList(categoryList, CategoryDto.class);
 	}
 
 }

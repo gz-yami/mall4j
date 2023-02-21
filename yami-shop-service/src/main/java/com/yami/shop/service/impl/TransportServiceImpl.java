@@ -180,4 +180,10 @@ public class TransportServiceImpl extends ServiceImpl<TransportMapper, Transport
 		transport.setTransfeeFrees(transfeeFrees);
 		return transport;
 	}
+
+	@Override
+	@CacheEvict(cacheNames = "TransportAndAllItems", key = "#transportId")
+	public void removeTransportAndAllItemsCache(Long transportId) {
+
+	}
 }

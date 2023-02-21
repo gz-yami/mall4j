@@ -15,6 +15,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author lanhai
+ */
 public class HttpContextUtils {
 
 	public static HttpServletRequest getHttpServletRequest() {

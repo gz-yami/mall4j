@@ -11,7 +11,7 @@
 package com.yami.shop.sys.aspect;
 
 import cn.hutool.core.date.SystemClock;
-import com.yami.shop.common.util.IPHelper;
+import com.yami.shop.common.util.IpHelper;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.sys.model.SysLog;
@@ -62,7 +62,7 @@ public class SysLogAspect {
 		sysLogEntity.setParams(params);
 
 		//设置IP地址
-		sysLogEntity.setIp(IPHelper.getIpAddr());
+		sysLogEntity.setIp(IpHelper.getIpAddr());
 
 		//用户名
 		String username = SecurityUtils.getSysUser().getUsername();

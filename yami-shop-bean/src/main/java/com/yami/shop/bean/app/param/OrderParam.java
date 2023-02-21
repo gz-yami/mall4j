@@ -10,15 +10,15 @@
 
 package com.yami.shop.bean.app.param;
 
-import java.util.List;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import com.yami.shop.bean.enums.OrderEntry;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
+/**
+ * @author lanhai
+ */
 @Data
 @Schema(description = "订单参数")
 public class OrderParam {

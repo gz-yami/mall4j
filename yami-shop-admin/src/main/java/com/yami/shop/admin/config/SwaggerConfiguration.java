@@ -16,26 +16,27 @@ import io.swagger.v3.oas.models.info.License;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * Swagger文档，只有在测试环境才会使用
  * @author LGH
  */
-//@Profile("dev")
+@Profile("dev")
 @Configuration
 public class SwaggerConfiguration {
 
 	@Bean
 	public GroupedOpenApi baseRestApi() {
 		return GroupedOpenApi.builder()
-				.group("基础版")
-				.packagesToScan("com.yami.shop.api")
+				.group("接口文档")
+				.packagesToScan("com.yami")
 				.build();
 	}
 
 
 	@Bean
-	public OpenAPI springShopOpenAPI() {
+	public OpenAPI springShopOpenApi() {
 		return new OpenAPI()
 				.info(new Info().title("Mall4j接口文档")
 						.description("Mall4j接口文档，openapi3.0 接口，用于前端对接")
