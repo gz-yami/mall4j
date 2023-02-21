@@ -14,9 +14,9 @@ import toolbar from './toolbar'
 import load from './dynamicLoadScript'
 
 // why use this cdn, detail see https://github.com/PanJiaChen/tinymce-all-in-one
-const resourceCdn1 = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
-const resourceCdn2 = 'https://unpkg.zhimg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
-const resourceCdn3 = 'https://unpkg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
+const resourceCdn2 = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
+const resourceCdn3 = 'https://unpkg.zhimg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
+const resourceCdn1 = 'https://unpkg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
 
 export default {
   name: 'Tinymce',
