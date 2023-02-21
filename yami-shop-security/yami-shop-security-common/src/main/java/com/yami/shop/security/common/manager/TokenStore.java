@@ -18,7 +18,6 @@ import cn.hutool.crypto.symmetric.AES;
 import com.yami.shop.common.constants.OauthCacheNames;
 import com.yami.shop.common.enums.YamiHttpStatus;
 import com.yami.shop.common.exception.YamiShopBindException;
-import com.yami.shop.common.serializer.redis.KryoRedisSerializer;
 import com.yami.shop.common.util.PrincipalUtil;
 import com.yami.shop.security.common.bo.TokenInfoBO;
 import com.yami.shop.security.common.bo.UserInfoInTokenBO;
@@ -30,6 +29,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
@@ -62,11 +62,12 @@ public class TokenStore {
     private final StringRedisTemplate stringRedisTemplate;
 
     public TokenStore(RedisTemplate<String, Object> redisTemplate,
-                      StringRedisTemplate stringRedisTemplate) {
+                      StringRedisTemplate stringRedisTemplate, GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer) {
         this.redisTemplate = redisTemplate;
-        this.redisSerializer = new KryoRedisSerializer<>();
+        this.redisSerializer = genericJackson2JsonRedisSerializer;
         this.stringRedisTemplate = stringRedisTemplate;
     }
+
 
     /**
      * 将用户的部分信息存储在token中，并返回token信息

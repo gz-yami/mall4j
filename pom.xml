@@ -36,7 +36,6 @@
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
         <redisson.version>3.12.5</redisson.version>
-        <kryo.version>4.0.2</kryo.version>
         <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
         <log4j.version>2.17.2</log4j.version>
         <knife4j.version>3.0.3</knife4j.version>
@@ -118,12 +117,6 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
-            </dependency>
-            <!-- 用于序列化和反序列化-->
-            <dependency>
-                <groupId>com.esotericsoftware</groupId>
-                <artifactId>kryo</artifactId>
-                <version>${kryo.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>

@@ -1,7 +1,5 @@
 server:
   port: 8112
-  undertow:
-    worker-threads: 200
 
 spring:
   datasource:
@@ -15,7 +13,8 @@ spring:
       maximum-pool-size: 20
       connection-test-query: select 1
   redis:
-    redisson:
-      config: classpath:redisson/redisson.yml
+    host: 127.0.0.1
+    port: 6379
+    database: ${REDIS_DATABASE:0}
 logging:
   config: classpath:logback/logback-prod.xml

@@ -14,12 +14,13 @@ spring:
       auto-commit: true
       connection-test-query: SELECT 1
   redis:
-    redisson:
-      config: classpath:redisson/redisson-docker.yml
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    database: ${REDIS_DATABASE:0}
 logging:
   config: classpath:logback/logback-prod.xml
 xxl-job:
-  accessToken: default_token
-  logPath: /data/applogs/xxl-job/jobhandler
+  accessToken: ${XXL_JOB_ACCESS_TOKEN:default_token}
+  logPath: ${XXL_JOB_LOG_PATH:/data/applogs/xxl-job/jobhandler}
   admin:
-    addresses: http://localhost:8080/xxl-job-admin
+    addresses: ${XXL_JOB_ADDRESS:http://mall4j-job:8080/xxl-job-admin}

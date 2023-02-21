@@ -74,10 +74,6 @@
             <artifactId>emoji-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.esotericsoftware</groupId>
-            <artifactId>kryo</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-pay</artifactId>
         </dependency>

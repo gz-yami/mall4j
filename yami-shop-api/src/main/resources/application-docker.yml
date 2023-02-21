@@ -13,7 +13,8 @@ spring:
       maximum-pool-size: 20
       connection-test-query: select 1
   redis:
-    redisson:
-      config: classpath:redisson/redisson-docker.yml
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    database: ${REDIS_DATABASE:0}
 logging:
   config: classpath:logback/logback-prod.xml

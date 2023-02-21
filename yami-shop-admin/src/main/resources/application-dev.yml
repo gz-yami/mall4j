@@ -18,8 +18,9 @@ spring:
     redis:
       cache-null-values: true
   redis:
-    redisson:
-      config: classpath:redisson/redisson.yml
+    host: 127.0.0.1
+    port: 6379
+    database: 0
 logging:
   config: classpath:logback/logback-dev.xml
 xxl-job:
