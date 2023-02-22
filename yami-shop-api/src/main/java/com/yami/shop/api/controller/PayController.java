@@ -42,7 +42,6 @@ public class PayController {
      */
     @PostMapping("/pay")
     @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
-    @SneakyThrows
     public ResponseEntity<WxPayMpOrderResult> pay(@RequestBody PayParam payParam) {
         YamiUser user = SecurityUtils.getUser();
         String userId = user.getUserId();
@@ -58,7 +57,6 @@ public class PayController {
      */
     @PostMapping("/normalPay")
     @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
-    @SneakyThrows
     public ResponseEntity<Boolean> normalPay(@RequestBody PayParam payParam) {
 
         YamiUser user = SecurityUtils.getUser();

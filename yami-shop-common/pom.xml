@@ -70,10 +70,6 @@
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.vdurmont</groupId>
-            <artifactId>emoji-java</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-pay</artifactId>
         </dependency>

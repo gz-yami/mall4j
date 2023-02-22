@@ -10,14 +10,13 @@
 
 package com.yami.shop.api.controller;
 
-import cn.hutool.extra.emoji.EmojiUtil;
 import com.yami.shop.bean.app.dto.UserDto;
 import com.yami.shop.bean.app.param.UserInfoParam;
 import com.yami.shop.bean.model.User;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +52,7 @@ public class UserController {
 		User user = new User();
 		user.setUserId(userId);
 		user.setPic(userInfoParam.getAvatarUrl());
-		user.setNickName(EmojiUtil.toAlias(userInfoParam.getNickName()));
+		user.setNickName(userInfoParam.getNickName());
 		userService.updateById(user);
 		return ResponseEntity.ok().build();
 	}

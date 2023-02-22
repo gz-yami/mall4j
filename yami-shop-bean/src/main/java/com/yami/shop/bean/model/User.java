@@ -10,17 +10,14 @@
 
 package com.yami.shop.bean.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.*;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.yami.shop.common.serializer.json.EmojiJsonSerializer;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.io.Serializable;
+import java.util.Date;
 /**
  * @author lanhai
  */
@@ -37,7 +34,6 @@ public class User implements Serializable {
     /**
      * 用户昵称
      */
-    @JsonSerialize(using =  EmojiJsonSerializer.class)
     private String nickName;
 
     /**

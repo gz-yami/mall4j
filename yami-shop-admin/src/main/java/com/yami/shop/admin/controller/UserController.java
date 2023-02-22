@@ -11,7 +11,6 @@
 package com.yami.shop.admin.controller;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.emoji.EmojiUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yami.shop.bean.model.User;
@@ -46,7 +45,7 @@ public class UserController {
                 .like(StrUtil.isNotBlank(user.getNickName()), User::getNickName, user.getNickName())
                 .eq(user.getStatus() != null, User::getStatus, user.getStatus()));
         for (User userResult : userPage.getRecords()) {
-            userResult.setNickName(EmojiUtil.toUnicode(userResult.getNickName() == null ? "" : userResult.getNickName()));
+            userResult.setNickName(userResult.getNickName() == null ? "" : userResult.getNickName());
         }
         return ResponseEntity.ok(userPage);
     }
@@ -58,7 +57,7 @@ public class UserController {
     @PreAuthorize("@pms.hasPermission('admin:user:info')")
     public ResponseEntity<User> info(@PathVariable("userId") String userId) {
         User user = userService.getById(userId);
-        user.setNickName(EmojiUtil.toUnicode(user.getNickName() == null ? "" : user.getNickName()));
+        user.setNickName(user.getNickName() == null ? "" : user.getNickName());
         return ResponseEntity.ok(user);
     }
 
@@ -69,7 +68,7 @@ public class UserController {
     @PreAuthorize("@pms.hasPermission('admin:user:update')")
     public ResponseEntity<Void> update(@RequestBody User user) {
         user.setModifyTime(new Date());
-        user.setNickName(EmojiUtil.toAlias(user.getNickName() == null ? "" : user.getNickName()));
+        user.setNickName(user.getNickName() == null ? "" : user.getNickName());
         userService.updateById(user);
         return ResponseEntity.ok().build();
     }

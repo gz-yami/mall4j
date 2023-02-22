@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Configuration;
  * Swagger文档，只有在测试环境才会使用
  * @author LGH
  */
-//@Profile("dev")
 @Configuration
 public class SwaggerConfiguration {
 

@@ -12,7 +12,6 @@ package com.yami.shop.bean.app.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.yami.shop.common.serializer.json.EmojiJsonSerializer;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -63,7 +62,6 @@ public class ProdCommDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date replyTime;
 
-    @JsonSerialize(using = EmojiJsonSerializer.class)
     @Schema(description = "用户昵称" )
     private String nickName;
 

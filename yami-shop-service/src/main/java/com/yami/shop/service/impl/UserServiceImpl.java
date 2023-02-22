@@ -10,25 +10,19 @@
 
 package com.yami.shop.service.impl;
 
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.emoji.EmojiUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yami.shop.bean.model.User;
 import com.yami.shop.bean.param.UserRegisterParam;
-import com.yami.shop.bean.vo.UserVO;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.RedisUtil;
 import com.yami.shop.dao.UserMapper;
 import com.yami.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * @author lgh on 2018/09/11.
