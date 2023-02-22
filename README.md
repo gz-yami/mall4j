@@ -62,6 +62,9 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 | knife4j              | 4.0.0  | 基于swagger，更便于国人使用的swagger ui |
 
 
+通过阿里的代码规范扫描工具（Alibaba Java Coding Guidelines plugin），扫描无异常：
+
+![规约扫描结果](screenshot/规约.png)
 
 ## 部署教程
 
