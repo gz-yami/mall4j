@@ -1,6 +1,18 @@
 <template>
   <div :class="{fullscreen:fullscreen}" class="tinymce-container" :style="{width:containerWidth}">
     <textarea :id="tinymceId" class="tinymce-textarea" />
+    <div class="editor-custom-btn-container">
+      <el-upload
+        class="upload-demo"
+        list-type="picture"
+        :action="$http.adornUrl('/admin/file/upload/element')"
+        :headers="{Authorization: $cookie.get('Authorization')}"
+        :on-success="imageSuccessCBK"
+        :show-file-list="false"
+        :before-upload="beforeAvatarUpload">
+        <el-button size="small" type="primary">点击上传图片</el-button>
+      </el-upload>
+    </div>
   </div>
 </template>
 
@@ -9,17 +21,19 @@
  * docs:
  * https://panjiachen.github.io/vue-element-admin-site/feature/component/rich-editor.html#tinymce
  */
+import mulPicUpload from '@/components/mul-pic-upload'
 import plugins from './plugins'
 import toolbar from './toolbar'
 import load from './dynamicLoadScript'
 
 // why use this cdn, detail see https://github.com/PanJiaChen/tinymce-all-in-one
-const resourceCdn2 = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
-const resourceCdn3 = 'https://unpkg.zhimg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
-const resourceCdn1 = 'https://unpkg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
+const resourceCdn1 = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
+const resourceCdn2 = 'https://unpkg.zhimg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
+const resourceCdn3 = 'https://unpkg.com/tinymce-all-in-one@4.9.3/tinymce.min.js'
 
 export default {
   name: 'Tinymce',
+  components: { mulPicUpload },
   props: {
     id: {
       type: String,
@@ -58,7 +72,8 @@ export default {
       hasChange: false,
       hasInit: false,
       tinymceId: this.id,
-      fullscreen: false
+      fullscreen: false,
+      resourcesUrl: process.env.VUE_APP_RESOURCES_URL
     }
   },
   computed: {
@@ -215,10 +230,22 @@ export default {
     getContent () {
       window.tinymce.get(this.tinymceId).getContent()
     },
-    imageSuccessCBK (arr) {
+    // 限制图片上传大小
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif' || file.type === 'image/jpg'
+      if (!isJPG) {
+        this.$message.error('上传图片只能是jpeg/jpg/png/gif 格式!')
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2
+      if (!isLt2M) {
+        this.$message.error('上传图片大小不能超过 2MB!')
+      }
+      return isLt2M && isJPG
+    },
+    imageSuccessCBK (response, file, fileList) {
       const _this = this
-      arr.forEach(v => {
-        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v}" >`)
+      fileList.forEach(v => {
+        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${this.resourcesUrl + v.response}" >`)
       })
     }
   }
