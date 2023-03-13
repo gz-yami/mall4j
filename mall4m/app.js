@@ -2,6 +2,7 @@
 var http = require("utils/http.js");
 App({
   onLaunch: function () {
+    console.log('mall4j.v230313')
     // http.getToken();
     // wx.getSetting({
     //   success(res) {
