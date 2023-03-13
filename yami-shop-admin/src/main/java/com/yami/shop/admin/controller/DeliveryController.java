@@ -13,7 +13,7 @@ package com.yami.shop.admin.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,10 +36,10 @@ public class DeliveryController {
 	 * 分页获取
 	 */
     @GetMapping("/list")
-	public ResponseEntity<List<Delivery>> page(){
+	public ServerResponseEntity<List<Delivery>> page(){
 		
 		List<Delivery> list = deliveryService.list();
-		return ResponseEntity.ok(list);
+		return ServerResponseEntity.success(list);
 	}
 
 }

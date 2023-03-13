@@ -7,7 +7,6 @@
  *
  * 版权所有，侵权必究！
  */
-
 package com.yami.shop.common.response;
 
 /**
@@ -16,6 +15,5 @@ package com.yami.shop.common.response;
 public interface ResponseCode {
 
     int SUCCESS = 1;
-
     int FAIL = -1;
 }

@@ -16,18 +16,18 @@ import com.yami.shop.bean.app.dto.TagProductDto;
 import com.yami.shop.bean.model.Product;
 import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.model.Transport;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.TransportService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,20 +62,20 @@ public class ProdController {
     @Parameters({
             @Parameter(name = "categoryId", description = "分类ID" , required = true),
     })
-    public ResponseEntity<IPage<ProductDto>> prodList(
+    public ServerResponseEntity<IPage<ProductDto>> prodList(
             @RequestParam(value = "categoryId") Long categoryId,PageParam<ProductDto> page) {
         IPage<ProductDto> productPage = prodService.pageByCategoryId(page, categoryId);
-        return ResponseEntity.ok(productPage);
+        return ServerResponseEntity.success(productPage);
     }
 
     @GetMapping("/prodInfo")
     @Operation(summary = "商品详情信息" , description = "根据商品ID（prodId）获取商品信息")
     @Parameter(name = "prodId", description = "商品ID" , required = true)
-    public ResponseEntity<ProductDto> prodInfo(Long prodId) {
+    public ServerResponseEntity<ProductDto> prodInfo(Long prodId) {
 
         Product product = prodService.getProductByProdId(prodId);
         if (product == null) {
-            return ResponseEntity.ok().build();
+            return ServerResponseEntity.success();
         }
 
         List<Sku> skuList = skuService.listByProdId(prodId);
@@ -93,16 +93,16 @@ public class ProdController {
             productDto.setTransport(transportAndAllItems);
         }
 
-        return ResponseEntity.ok(productDto);
+        return ServerResponseEntity.success(productDto);
     }
 
     @GetMapping("/lastedProdPage")
     @Operation(summary = "新品推荐" , description = "获取新品推荐商品列表")
     @Parameters({
     })
-    public ResponseEntity<IPage<ProductDto>> lastedProdPage(PageParam<ProductDto> page) {
+    public ServerResponseEntity<IPage<ProductDto>> lastedProdPage(PageParam<ProductDto> page) {
         IPage<ProductDto> productPage = prodService.pageByPutAwayTime(page);
-        return ResponseEntity.ok(productPage);
+        return ServerResponseEntity.success(productPage);
     }
 
     @GetMapping("/prodListByTagId")
@@ -110,27 +110,24 @@ public class ProdController {
     @Parameters({
             @Parameter(name = "tagId", description = "当前页，默认为1" , required = true),
     })
-    public ResponseEntity<IPage<ProductDto>> prodListByTagId(
+    public ServerResponseEntity<IPage<ProductDto>> prodListByTagId(
             @RequestParam(value = "tagId") Long tagId,PageParam<ProductDto> page) {
         IPage<ProductDto> productPage = prodService.pageByTagId(page, tagId);
-        return ResponseEntity.ok(productPage);
+        return ServerResponseEntity.success(productPage);
     }
 
     @GetMapping("/moreBuyProdList")
     @Operation(summary = "每日疯抢" , description = "获取销量最多的商品列表")
     @Parameters({})
-    public ResponseEntity<IPage<ProductDto>> moreBuyProdList(PageParam<ProductDto> page) {
+    public ServerResponseEntity<IPage<ProductDto>> moreBuyProdList(PageParam<ProductDto> page) {
         IPage<ProductDto> productPage = prodService.moreBuyProdList(page);
-        return ResponseEntity.ok(productPage);
+        return ServerResponseEntity.success(productPage);
     }
 
     @GetMapping("/tagProdList")
     @Operation(summary = "首页所有标签商品接口" , description = "获取首页所有标签商品接口")
-    public ResponseEntity<List<TagProductDto>> getTagProdList() {
+    public ServerResponseEntity<List<TagProductDto>> getTagProdList() {
         List<TagProductDto> productDtoList = prodService.tagProdList();
-        return ResponseEntity.ok(productDtoList);
+        return ServerResponseEntity.success(productDtoList);
     }
-
-
-
 }

@@ -9,6 +9,7 @@
  */
 package com.yami.shop.security.common.controller;
 
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.security.common.bo.TokenInfoBO;
 import com.yami.shop.security.common.dto.RefreshTokenDTO;
 import com.yami.shop.security.common.manager.TokenStore;
@@ -16,7 +17,6 @@ import com.yami.shop.security.common.vo.TokenInfoVO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,11 +38,11 @@ public class TokenController {
     private MapperFacade mapperFacade;
 
     @PostMapping("/token/refresh")
-    public ResponseEntity<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {
+    public ServerResponseEntity<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {
         TokenInfoBO tokenInfoServerResponseEntity = tokenStore
                 .refreshToken(refreshTokenDTO.getRefreshToken());
-        return ResponseEntity
-                .ok(mapperFacade.map(tokenInfoServerResponseEntity, TokenInfoVO.class));
+        return ServerResponseEntity
+                .success(mapperFacade.map(tokenInfoServerResponseEntity, TokenInfoVO.class));
     }
 
 }

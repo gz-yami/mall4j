@@ -10,11 +10,11 @@
 package com.yami.shop.security.common.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.security.common.manager.TokenStore;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,13 +33,13 @@ public class LogoutController {
 
     @PostMapping("/logOut")
     @Operation(summary = "退出登陆" , description = "点击退出登陆，清除token，清除菜单缓存")
-    public ResponseEntity<Void> logOut(HttpServletRequest request) {
+    public ServerResponseEntity<Void> logOut(HttpServletRequest request) {
         String accessToken = request.getHeader("Authorization");
         if (StrUtil.isBlank(accessToken)) {
-            return ResponseEntity.ok().build();
+            return ServerResponseEntity.success();
         }
         // 删除该用户在该系统当前的token
         tokenStore.deleteCurrentToken(accessToken);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 }

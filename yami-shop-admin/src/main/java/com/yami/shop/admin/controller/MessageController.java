@@ -16,7 +16,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,11 +52,11 @@ public class MessageController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:message:page')")
-    public ResponseEntity<IPage<Message>> page(Message message,PageParam<Message> page) {
+    public ServerResponseEntity<IPage<Message>> page(Message message,PageParam<Message> page) {
         IPage<Message> messages = messageService.page(page, new LambdaQueryWrapper<Message>()
                 .like(StrUtil.isNotBlank(message.getUserName()), Message::getUserName, message.getUserName())
                 .eq(message.getStatus() != null, Message::getStatus, message.getStatus()));
-        return ResponseEntity.ok(messages);
+        return ServerResponseEntity.success(messages);
     }
 
     /**
@@ -64,9 +64,9 @@ public class MessageController {
      */
     @GetMapping("/info/{id}")
     @PreAuthorize("@pms.hasPermission('admin:message:info')")
-    public ResponseEntity<Message> info(@PathVariable("id") Long id) {
+    public ServerResponseEntity<Message> info(@PathVariable("id") Long id) {
         Message message = messageService.getById(id);
-        return ResponseEntity.ok(message);
+        return ServerResponseEntity.success(message);
     }
 
     /**
@@ -74,9 +74,9 @@ public class MessageController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin:message:save')")
-    public ResponseEntity<Void> save(@RequestBody Message message) {
+    public ServerResponseEntity<Void> save(@RequestBody Message message) {
         messageService.save(message);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -84,9 +84,9 @@ public class MessageController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:message:update')")
-    public ResponseEntity<Void> update(@RequestBody Message message) {
+    public ServerResponseEntity<Void> update(@RequestBody Message message) {
         messageService.updateById(message);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -94,12 +94,12 @@ public class MessageController {
      */
     @PutMapping("/release/{id}")
     @PreAuthorize("@pms.hasPermission('admin:message:release')")
-    public ResponseEntity<Void> release(@PathVariable("id") Long id) {
+    public ServerResponseEntity<Void> release(@PathVariable("id") Long id) {
         Message message = new Message();
         message.setId(id);
         message.setStatus(MessageStatus.RELEASE.value());
         messageService.updateById(message);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -107,12 +107,12 @@ public class MessageController {
      */
     @PutMapping("/cancel/{id}")
     @PreAuthorize("@pms.hasPermission('admin:message:cancel')")
-    public ResponseEntity<Void> cancel(@PathVariable("id") Long id) {
+    public ServerResponseEntity<Void> cancel(@PathVariable("id") Long id) {
         Message message = new Message();
         message.setId(id);
         message.setStatus(MessageStatus.CANCEL.value());
         messageService.updateById(message);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -120,8 +120,8 @@ public class MessageController {
      */
     @DeleteMapping("/{ids}")
     @PreAuthorize("@pms.hasPermission('admin:message:delete')")
-    public ResponseEntity<Void> delete(@PathVariable Long[] ids) {
+    public ServerResponseEntity<Void> delete(@PathVariable Long[] ids) {
         messageService.removeByIds(Arrays.asList(ids));
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 }

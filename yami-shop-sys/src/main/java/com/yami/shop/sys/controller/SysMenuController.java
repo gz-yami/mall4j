@@ -21,7 +21,7 @@ import com.yami.shop.sys.model.SysMenu;
 import com.yami.shop.sys.service.SysMenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,10 +44,10 @@ public class SysMenuController{
 
 	@GetMapping("/nav")
 	@Operation(summary = "获取用户所拥有的菜单和权限" , description = "通过登陆用户的userId获取用户所拥有的菜单和权限")
-	public ResponseEntity<Map<Object, Object>> nav(){
+	public ServerResponseEntity<Map<Object, Object>> nav(){
 		List<SysMenu> menuList = sysMenuService.listMenuByUserId(SecurityUtils.getSysUser().getUserId());
 
-		return ResponseEntity.ok(MapUtil.builder().put("menuList", menuList).put("authorities", SecurityUtils.getSysUser().getAuthorities()).build());
+		return ServerResponseEntity.success(MapUtil.builder().put("menuList", menuList).put("authorities", SecurityUtils.getSysUser().getAuthorities()).build());
 	}
 
 	/**
@@ -55,9 +55,9 @@ public class SysMenuController{
 	 * @return
 	 */
 	@GetMapping("/table")
-	public ResponseEntity<List<SysMenu>> table(){
+	public ServerResponseEntity<List<SysMenu>> table(){
 		List<SysMenu> sysMenuList = sysMenuService.listMenuAndBtn();
-		return ResponseEntity.ok(sysMenuList);
+		return ServerResponseEntity.success(sysMenuList);
 	}
 
 	/**
@@ -65,31 +65,31 @@ public class SysMenuController{
 	 */
 	@GetMapping("/list")
 	@Operation(summary = "获取用户所拥有的菜单(不包括按钮)" , description = "通过登陆用户的userId获取用户所拥有的菜单和权限")
-	public ResponseEntity<List<SysMenu>> list(){
+	public ServerResponseEntity<List<SysMenu>> list(){
 		List<SysMenu> sysMenuList= sysMenuService.listSimpleMenuNoButton();
-		return ResponseEntity.ok(sysMenuList);
+		return ServerResponseEntity.success(sysMenuList);
 	}
 
 	/**
 	 * 选择菜单
 	 */
 	@GetMapping("/listRootMenu")
-	public ResponseEntity<List<SysMenu>> listRootMenu(){
+	public ServerResponseEntity<List<SysMenu>> listRootMenu(){
 		//查询列表数据
 		List<SysMenu> menuList = sysMenuService.listRootMenu();
 
-		return ResponseEntity.ok(menuList);
+		return ServerResponseEntity.success(menuList);
 	}
 
 	/**
 	 * 选择子菜单
 	 */
 	@GetMapping("/listChildrenMenu")
-	public ResponseEntity<List<SysMenu>> listChildrenMenu(Long parentId){
+	public ServerResponseEntity<List<SysMenu>> listChildrenMenu(Long parentId){
 		//查询列表数据
 		List<SysMenu> menuList = sysMenuService.listChildrenMenuByParentId(parentId);
 
-		return ResponseEntity.ok(menuList);
+		return ServerResponseEntity.success(menuList);
 	}
 
 	/**
@@ -97,9 +97,9 @@ public class SysMenuController{
 	 */
 	@GetMapping("/info/{menuId}")
 	@PreAuthorize("@pms.hasPermission('sys:menu:info')")
-	public ResponseEntity<SysMenu> info(@PathVariable("menuId") Long menuId){
+	public ServerResponseEntity<SysMenu> info(@PathVariable("menuId") Long menuId){
 		SysMenu menu = sysMenuService.getById(menuId);
-		return ResponseEntity.ok(menu);
+		return ServerResponseEntity.success(menu);
 	}
 
 	/**
@@ -108,11 +108,11 @@ public class SysMenuController{
 	@SysLog("保存菜单")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys:menu:save')")
-	public ResponseEntity<Void> save(@Valid @RequestBody SysMenu menu){
+	public ServerResponseEntity<Void> save(@Valid @RequestBody SysMenu menu){
 		//数据校验
 		verifyForm(menu);
 		sysMenuService.save(menu);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -121,18 +121,18 @@ public class SysMenuController{
 	@SysLog("修改菜单")
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys:menu:update')")
-	public ResponseEntity<String> update(@Valid @RequestBody SysMenu menu){
+	public ServerResponseEntity<String> update(@Valid @RequestBody SysMenu menu){
 		//数据校验
 		verifyForm(menu);
 
 		if(menu.getType() == MenuType.MENU.getValue()){
 			if(StrUtil.isBlank(menu.getUrl())){
-				return ResponseEntity.badRequest().body("菜单URL不能为空");
+				return ServerResponseEntity.showFailMsg("菜单URL不能为空");
 			}
 		}
 		sysMenuService.updateById(menu);
 
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -141,19 +141,19 @@ public class SysMenuController{
 	@SysLog("删除菜单")
 	@DeleteMapping("/{menuId}")
 	@PreAuthorize("@pms.hasPermission('sys:menu:delete')")
-	public ResponseEntity<String> delete(@PathVariable Long menuId){
+	public ServerResponseEntity<String> delete(@PathVariable Long menuId){
 		if(menuId <= Constant.SYS_MENU_MAX_ID){
-			return ResponseEntity.badRequest().body("系统菜单，不能删除");
+			return ServerResponseEntity.showFailMsg("系统菜单，不能删除");
 		}
 		//判断是否有子菜单或按钮
 		List<SysMenu> menuList = sysMenuService.listChildrenMenuByParentId(menuId);
 		if(menuList.size() > 0){
-			return ResponseEntity.badRequest().body("请先删除子菜单或按钮");
+			return ServerResponseEntity.showFailMsg("请先删除子菜单或按钮");
 		}
 
 		sysMenuService.deleteMenuAndRoleMenu(menuId);
 
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**

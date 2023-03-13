@@ -17,7 +17,7 @@ import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,18 +45,18 @@ public class CategoryController {
 	 */
 	@GetMapping("/table")
 	@PreAuthorize("@pms.hasPermission('prod:category:page')")
-	public ResponseEntity<List<Category>> table(){
+	public ServerResponseEntity<List<Category>> table(){
 		List<Category> categoryMenuList = categoryService.tableCategory(SecurityUtils.getSysUser().getShopId());
-		return ResponseEntity.ok(categoryMenuList);
+		return ServerResponseEntity.success(categoryMenuList);
 	}
 
 	/**
 	 * 获取分类信息
 	 */
 	@GetMapping("/info/{categoryId}")
-	public ResponseEntity<Category> info(@PathVariable("categoryId") Long categoryId){
+	public ServerResponseEntity<Category> info(@PathVariable("categoryId") Long categoryId){
 		Category category = categoryService.getById(categoryId);
-		return ResponseEntity.ok(category);
+		return ServerResponseEntity.success(category);
 	}
 
 
@@ -67,7 +67,7 @@ public class CategoryController {
 	@SysLog("保存分类")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('prod:category:save')")
-	public ResponseEntity<Void> save(@RequestBody Category category){
+	public ServerResponseEntity<Void> save(@RequestBody Category category){
 		category.setShopId(SecurityUtils.getSysUser().getShopId());
 		category.setRecTime(new Date());
 		Category categoryName = categoryService.getOne(new LambdaQueryWrapper<Category>().eq(Category::getCategoryName,category.getCategoryName())
@@ -76,7 +76,7 @@ public class CategoryController {
 			throw new YamiShopBindException("类目名称已存在！");
 		}
 		categoryService.saveCategory(category);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -85,10 +85,10 @@ public class CategoryController {
 	@SysLog("更新分类")
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('prod:category:update')")
-	public ResponseEntity<String> update(@RequestBody Category category){
+	public ServerResponseEntity<String> update(@RequestBody Category category){
 		category.setShopId(SecurityUtils.getSysUser().getShopId());
 		if (Objects.equals(category.getParentId(),category.getCategoryId())) {
-			return ResponseEntity.badRequest().body("分类的上级不能是自己本身");
+			return ServerResponseEntity.showFailMsg("分类的上级不能是自己本身");
 		}
 		Category categoryName = categoryService.getOne(new LambdaQueryWrapper<Category>().eq(Category::getCategoryName,category.getCategoryName())
 				.eq(Category::getShopId,category.getShopId()).ne(Category::getCategoryId,category.getCategoryId()));
@@ -105,7 +105,7 @@ public class CategoryController {
 			}
 		}
 		categoryService.updateCategory(category);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -114,21 +114,21 @@ public class CategoryController {
 	@SysLog("删除分类")
 	@DeleteMapping("/{categoryId}")
 	@PreAuthorize("@pms.hasPermission('prod:category:delete')")
-	public ResponseEntity<String> delete(@PathVariable("categoryId") Long categoryId){
+	public ServerResponseEntity<String> delete(@PathVariable("categoryId") Long categoryId){
 		if (categoryService.count(new LambdaQueryWrapper<Category>().eq(Category::getParentId,categoryId)) >0) {
-			return ResponseEntity.badRequest().body("请删除子分类，再删除该分类");
+			return ServerResponseEntity.showFailMsg("请删除子分类，再删除该分类");
 		}
 		categoryService.deleteCategory(categoryId);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
 	 * 所有的
 	 */
 	@GetMapping("/listCategory")
-	public ResponseEntity<List<Category>> listCategory(){
+	public ServerResponseEntity<List<Category>> listCategory(){
 
-		return ResponseEntity.ok(categoryService.list(new LambdaQueryWrapper<Category>()
+		return ServerResponseEntity.success(categoryService.list(new LambdaQueryWrapper<Category>()
 														.le(Category::getGrade, 2)
 														.eq(Category::getShopId, SecurityUtils.getSysUser().getShopId())
 														.orderByAsc(Category::getSeq)));
@@ -138,8 +138,8 @@ public class CategoryController {
 	 * 所有的产品分类
 	 */
 	@GetMapping("/listProdCategory")
-	public ResponseEntity<List<Category>> listProdCategory(){
+	public ServerResponseEntity<List<Category>> listProdCategory(){
     	List<Category> categories = categoryService.treeSelect(SecurityUtils.getSysUser().getShopId(),2);
-		return ResponseEntity.ok(categories);
+		return ServerResponseEntity.success(categories);
 	}
 }

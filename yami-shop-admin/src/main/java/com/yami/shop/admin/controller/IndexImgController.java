@@ -20,7 +20,7 @@ import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.IndexImgService;
 import com.yami.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,12 +47,12 @@ public class IndexImgController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:indexImg:page')")
-    public ResponseEntity<IPage<IndexImg>> page(IndexImg indexImg, PageParam<IndexImg> page) {
+    public ServerResponseEntity<IPage<IndexImg>> page(IndexImg indexImg, PageParam<IndexImg> page) {
         IPage<IndexImg> indexImgPage = indexImgService.page(page,
                 new LambdaQueryWrapper<IndexImg>()
                         .eq(indexImg.getStatus() != null, IndexImg::getStatus, indexImg.getStatus())
                         .orderByAsc(IndexImg::getSeq));
-        return ResponseEntity.ok(indexImgPage);
+        return ServerResponseEntity.success(indexImgPage);
     }
 
     /**
@@ -60,7 +60,7 @@ public class IndexImgController {
      */
     @GetMapping("/info/{imgId}")
     @PreAuthorize("@pms.hasPermission('admin:indexImg:info')")
-    public ResponseEntity<IndexImg> info(@PathVariable("imgId") Long imgId) {
+    public ServerResponseEntity<IndexImg> info(@PathVariable("imgId") Long imgId) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         IndexImg indexImg = indexImgService.getOne(new LambdaQueryWrapper<IndexImg>().eq(IndexImg::getShopId, shopId).eq(IndexImg::getImgId, imgId));
         if (Objects.nonNull(indexImg.getRelation())) {
@@ -68,7 +68,7 @@ public class IndexImgController {
             indexImg.setPic(product.getPic());
             indexImg.setProdName(product.getProdName());
         }
-        return ResponseEntity.ok(indexImg);
+        return ServerResponseEntity.success(indexImg);
     }
 
     /**
@@ -76,14 +76,14 @@ public class IndexImgController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin:indexImg:save')")
-    public ResponseEntity<Void> save(@RequestBody @Valid IndexImg indexImg) {
+    public ServerResponseEntity<Void> save(@RequestBody @Valid IndexImg indexImg) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         indexImg.setShopId(shopId);
         indexImg.setUploadTime(new Date());
         checkProdStatus(indexImg);
         indexImgService.save(indexImg);
         indexImgService.removeIndexImgCache();
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -91,11 +91,11 @@ public class IndexImgController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:indexImg:update')")
-    public ResponseEntity<Void> update(@RequestBody @Valid IndexImg indexImg) {
+    public ServerResponseEntity<Void> update(@RequestBody @Valid IndexImg indexImg) {
         checkProdStatus(indexImg);
         indexImgService.saveOrUpdate(indexImg);
         indexImgService.removeIndexImgCache();
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -103,10 +103,10 @@ public class IndexImgController {
      */
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('admin:indexImg:delete')")
-    public ResponseEntity<Void> delete(@RequestBody Long[] ids) {
+    public ServerResponseEntity<Void> delete(@RequestBody Long[] ids) {
         indexImgService.deleteIndexImgByIds(ids);
         indexImgService.removeIndexImgCache();
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     private void checkProdStatus(IndexImg indexImg) {

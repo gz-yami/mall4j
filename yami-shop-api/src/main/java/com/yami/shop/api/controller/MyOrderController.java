@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -67,7 +67,7 @@ public class MyOrderController {
     @GetMapping("/orderDetail")
     @Operation(summary = "订单详情信息" , description = "根据订单号获取订单详情信息")
     @Parameter(name = "orderNumber", description = "订单号" , required = true)
-    public ResponseEntity<OrderShopDto> orderDetail(@RequestParam(value = "orderNumber", required = true) String orderNumber) {
+    public ServerResponseEntity<OrderShopDto> orderDetail(@RequestParam(value = "orderNumber", required = true) String orderNumber) {
 
         String userId = SecurityUtils.getUser().getUserId();
         OrderShopDto orderShopDto = new OrderShopDto();
@@ -107,7 +107,7 @@ public class MyOrderController {
         orderShopDto.setTotal(total);
         orderShopDto.setTotalNum(totalNum);
 
-        return ResponseEntity.ok(orderShopDto);
+        return ServerResponseEntity.success(orderShopDto);
     }
 
 
@@ -119,11 +119,11 @@ public class MyOrderController {
     @Parameters({
             @Parameter(name = "status", description = "订单状态 1:待付款 2:待发货 3:待收货 4:待评价 5:成功 6:失败")
     })
-    public ResponseEntity<IPage<MyOrderDto>> myOrder(@RequestParam(value = "status") Integer status,PageParam<MyOrderDto> page) {
+    public ServerResponseEntity<IPage<MyOrderDto>> myOrder(@RequestParam(value = "status") Integer status,PageParam<MyOrderDto> page) {
 
         String userId = SecurityUtils.getUser().getUserId();
         IPage<MyOrderDto> myOrderDtoIpage = myOrderService.pageMyOrderByUserIdAndStatus(page, userId, status);
-        return ResponseEntity.ok(myOrderDtoIpage);
+        return ServerResponseEntity.success(myOrderDtoIpage);
     }
 
     /**
@@ -132,7 +132,7 @@ public class MyOrderController {
     @PutMapping("/cancel/{orderNumber}")
     @Operation(summary = "根据订单号取消订单" , description = "根据订单号取消订单")
     @Parameter(name = "orderNumber", description = "订单号" , required = true)
-    public ResponseEntity<String> cancel(@PathVariable("orderNumber") String orderNumber) {
+    public ServerResponseEntity<String> cancel(@PathVariable("orderNumber") String orderNumber) {
         String userId = SecurityUtils.getUser().getUserId();
         Order order = orderService.getOrderByOrderNumber(orderNumber);
         if (!Objects.equals(order.getUserId(), userId)) {
@@ -151,7 +151,7 @@ public class MyOrderController {
             productService.removeProductCacheByProdId(orderItem.getProdId());
             skuService.removeSkuCacheBySkuId(orderItem.getSkuId(),orderItem.getProdId());
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
 
@@ -160,7 +160,7 @@ public class MyOrderController {
      */
     @PutMapping("/receipt/{orderNumber}")
     @Operation(summary = "根据订单号确认收货" , description = "根据订单号确认收货")
-    public ResponseEntity<String> receipt(@PathVariable("orderNumber") String orderNumber) {
+    public ServerResponseEntity<String> receipt(@PathVariable("orderNumber") String orderNumber) {
         String userId = SecurityUtils.getUser().getUserId();
         Order order = orderService.getOrderByOrderNumber(orderNumber);
         if (!Objects.equals(order.getUserId(), userId)) {
@@ -178,7 +178,7 @@ public class MyOrderController {
             productService.removeProductCacheByProdId(orderItem.getProdId());
             skuService.removeSkuCacheBySkuId(orderItem.getSkuId(),orderItem.getProdId());
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -187,7 +187,7 @@ public class MyOrderController {
     @DeleteMapping("/{orderNumber}")
     @Operation(summary = "根据订单号删除订单" , description = "根据订单号删除订单")
     @Parameter(name = "orderNumber", description = "订单号" , required = true)
-    public ResponseEntity<String> delete(@PathVariable("orderNumber") String orderNumber) {
+    public ServerResponseEntity<String> delete(@PathVariable("orderNumber") String orderNumber) {
         String userId = SecurityUtils.getUser().getUserId();
 
         Order order = orderService.getOrderByOrderNumber(orderNumber);
@@ -204,7 +204,7 @@ public class MyOrderController {
         // 删除订单
         orderService.deleteOrders(Arrays.asList(order));
 
-        return ResponseEntity.ok("删除成功");
+        return ServerResponseEntity.success("删除成功");
     }
 
     /**
@@ -212,10 +212,10 @@ public class MyOrderController {
      */
     @GetMapping("/orderCount")
     @Operation(summary = "获取我的订单订单数量" , description = "获取我的订单订单数量")
-    public ResponseEntity<OrderCountData> getOrderCount() {
+    public ServerResponseEntity<OrderCountData> getOrderCount() {
         String userId = SecurityUtils.getUser().getUserId();
         OrderCountData orderCountMap = orderService.getOrderCount(userId);
-        return ResponseEntity.ok(orderCountMap);
+        return ServerResponseEntity.success(orderCountMap);
     }
 
 

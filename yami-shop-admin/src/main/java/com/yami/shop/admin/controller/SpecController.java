@@ -21,7 +21,7 @@ import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.ProdPropService;
 import com.yami.shop.service.ProdPropValueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,11 +48,11 @@ public class SpecController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('prod:spec:page')")
-    public ResponseEntity<IPage<ProdProp>> page(ProdProp prodProp,PageParam<ProdProp> page) {
+    public ServerResponseEntity<IPage<ProdProp>> page(ProdProp prodProp,PageParam<ProdProp> page) {
         prodProp.setRule(ProdPropRule.SPEC.value());
         prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
         IPage<ProdProp> list = prodPropService.pagePropAndValue(prodProp, page);
-        return ResponseEntity.ok(list);
+        return ServerResponseEntity.success(list);
     }
 
 
@@ -60,18 +60,18 @@ public class SpecController {
      * 获取所有的规格
      */
     @GetMapping("/list")
-    public ResponseEntity<List<ProdProp>> list() {
+    public ServerResponseEntity<List<ProdProp>> list() {
         List<ProdProp> list = prodPropService.list(new LambdaQueryWrapper<ProdProp>().eq(ProdProp::getRule, ProdPropRule.SPEC.value()).eq(ProdProp::getShopId, SecurityUtils.getSysUser().getShopId()));
-        return ResponseEntity.ok(list);
+        return ServerResponseEntity.success(list);
     }
 
     /**
      * 根据规格id获取规格值
      */
     @GetMapping("/listSpecValue/{specId}")
-    public ResponseEntity<List<ProdPropValue>> listSpecValue(@PathVariable("specId") Long specId) {
+    public ServerResponseEntity<List<ProdPropValue>> listSpecValue(@PathVariable("specId") Long specId) {
         List<ProdPropValue> list = prodPropValueService.list(new LambdaQueryWrapper<ProdPropValue>().eq(ProdPropValue::getPropId, specId));
-        return ResponseEntity.ok(list);
+        return ServerResponseEntity.success(list);
     }
 
     /**
@@ -79,11 +79,11 @@ public class SpecController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('prod:spec:save')")
-    public ResponseEntity<Void> save(@Valid @RequestBody ProdProp prodProp) {
+    public ServerResponseEntity<Void> save(@Valid @RequestBody ProdProp prodProp) {
         prodProp.setRule(ProdPropRule.SPEC.value());
         prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
         prodPropService.saveProdPropAndValues(prodProp);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -91,7 +91,7 @@ public class SpecController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('prod:spec:update')")
-    public ResponseEntity<Void> update(@Valid @RequestBody ProdProp prodProp) {
+    public ServerResponseEntity<Void> update(@Valid @RequestBody ProdProp prodProp) {
         ProdProp dbProdProp = prodPropService.getById(prodProp.getPropId());
         if (!Objects.equals(dbProdProp.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("没有权限获取该商品规格信息");
@@ -99,7 +99,7 @@ public class SpecController {
         prodProp.setRule(ProdPropRule.SPEC.value());
         prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
         prodPropService.updateProdPropAndValues(prodProp);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -107,19 +107,19 @@ public class SpecController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('prod:spec:delete')")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ServerResponseEntity<Void> delete(@PathVariable Long id) {
         prodPropService.deleteProdPropAndValues(id, ProdPropRule.SPEC.value(), SecurityUtils.getSysUser().getShopId());
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
      * 根据获取规格值最大的自增id
      */
     @GetMapping("/listSpecMaxValueId")
-    public ResponseEntity<Long> listSpecMaxValueId() {
+    public ServerResponseEntity<Long> listSpecMaxValueId() {
         ProdPropValue propValue = prodPropValueService.getOne(new LambdaQueryWrapper<ProdPropValue>()
                 .orderByDesc(ProdPropValue::getValueId).last("limit 1"));
-        return ResponseEntity.ok(Objects.isNull(propValue) ? 0L : propValue.getValueId());
+        return ServerResponseEntity.success(Objects.isNull(propValue) ? 0L : propValue.getValueId());
     }
 
 }

@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +51,7 @@ public class SearchController {
             @Parameter(name = "number", description = "取数" , required = true),
             @Parameter(name = "sort", description = "是否按照顺序(0 否 1是)"),
     })
-    public ResponseEntity<List<HotSearchDto>> hotSearchByShopId(Long shopId,Integer number,Integer sort) {
+    public ServerResponseEntity<List<HotSearchDto>> hotSearchByShopId(Long shopId,Integer number,Integer sort) {
         List<HotSearchDto> list = hotSearchService.getHotSearchDtoByShopId(shopId);
 
         return getListResponseEntity(number, sort, list);
@@ -63,19 +63,19 @@ public class SearchController {
             @Parameter(name = "number", description = "取数" , required = true),
             @Parameter(name = "sort", description = "是否按照顺序(0 否 1是)", required = false ),
     })
-    public ResponseEntity<List<HotSearchDto>> hotSearch(Integer number,Integer sort) {
+    public ServerResponseEntity<List<HotSearchDto>> hotSearch(Integer number,Integer sort) {
         List<HotSearchDto> list = hotSearchService.getHotSearchDtoByShopId(0L);
         return getListResponseEntity(number, sort, list);
     }
 
-    private ResponseEntity<List<HotSearchDto>> getListResponseEntity(Integer number, Integer sort, List<HotSearchDto> list) {
+    private ServerResponseEntity<List<HotSearchDto>> getListResponseEntity(Integer number, Integer sort, List<HotSearchDto> list) {
         if(sort == null || sort == 0){
             Collections.shuffle(list);
         }
         if(!CollectionUtil.isNotEmpty(list) || list.size()< number){
-            return ResponseEntity.ok(list);
+            return ServerResponseEntity.success(list);
         }
-        return ResponseEntity.ok(list.subList(0, number));
+        return ServerResponseEntity.success(list.subList(0, number));
     }
 
     @GetMapping("/searchProdPage")
@@ -86,9 +86,9 @@ public class SearchController {
             @Parameter(name = "orderBy", description = "排序(0升序 1降序)"),
             @Parameter(name = "shopId", description = "店铺id" , required = true),
     })
-    public ResponseEntity<IPage<SearchProdDto>> searchProdPage(PageParam page, String prodName, Integer sort, Integer orderBy, Long shopId) {
+    public ServerResponseEntity<IPage<SearchProdDto>> searchProdPage(PageParam page, String prodName, Integer sort, Integer orderBy, Long shopId) {
 
-        return ResponseEntity.ok(productService.getSearchProdDtoPageByProdName(page,prodName,sort,orderBy));
+        return ServerResponseEntity.success(productService.getSearchProdDtoPageByProdName(page,prodName,sort,orderBy));
     }
 
 

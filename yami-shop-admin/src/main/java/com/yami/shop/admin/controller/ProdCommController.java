@@ -22,7 +22,7 @@ import javax.validation.Valid;
 
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,8 +54,8 @@ public class ProdCommController {
      */
     @GetMapping("/page" )
     @PreAuthorize("@pms.hasPermission('prod:prodComm:page')" )
-    public ResponseEntity<IPage<ProdComm>> getProdCommPage(PageParam page, ProdComm prodComm) {
-        return ResponseEntity.ok(prodCommService.getProdCommPage(page,prodComm));
+    public ServerResponseEntity<IPage<ProdComm>> getProdCommPage(PageParam page, ProdComm prodComm) {
+        return ServerResponseEntity.success(prodCommService.getProdCommPage(page,prodComm));
     }
 
 
@@ -66,8 +66,8 @@ public class ProdCommController {
      */
     @GetMapping("/info/{prodCommId}" )
     @PreAuthorize("@pms.hasPermission('prod:prodComm:info')" )
-    public ResponseEntity<ProdComm> getById(@PathVariable("prodCommId" ) Long prodCommId) {
-        return ResponseEntity.ok(prodCommService.getById(prodCommId));
+    public ServerResponseEntity<ProdComm> getById(@PathVariable("prodCommId" ) Long prodCommId) {
+        return ServerResponseEntity.success(prodCommService.getById(prodCommId));
     }
 
     /**
@@ -78,8 +78,8 @@ public class ProdCommController {
     @SysLog("新增商品评论" )
     @PostMapping
     @PreAuthorize("@pms.hasPermission('prod:prodComm:save')" )
-    public ResponseEntity<Boolean> save(@RequestBody @Valid ProdComm prodComm) {
-        return ResponseEntity.ok(prodCommService.save(prodComm));
+    public ServerResponseEntity<Boolean> save(@RequestBody @Valid ProdComm prodComm) {
+        return ServerResponseEntity.success(prodCommService.save(prodComm));
     }
 
     /**
@@ -90,9 +90,9 @@ public class ProdCommController {
     @SysLog("修改商品评论" )
     @PutMapping
     @PreAuthorize("@pms.hasPermission('prod:prodComm:update')" )
-    public ResponseEntity<Boolean> updateById(@RequestBody @Valid ProdComm prodComm) {
+    public ServerResponseEntity<Boolean> updateById(@RequestBody @Valid ProdComm prodComm) {
         prodComm.setReplyTime(new Date());
-        return ResponseEntity.ok(prodCommService.updateById(prodComm));
+        return ServerResponseEntity.success(prodCommService.updateById(prodComm));
     }
 
     /**
@@ -103,8 +103,8 @@ public class ProdCommController {
     @SysLog("删除商品评论" )
     @DeleteMapping("/{prodCommId}" )
     @PreAuthorize("@pms.hasPermission('prod:prodComm:delete')" )
-    public ResponseEntity<Boolean> removeById(@PathVariable Long prodCommId) {
-        return ResponseEntity.ok(prodCommService.removeById(prodCommId));
+    public ServerResponseEntity<Boolean> removeById(@PathVariable Long prodCommId) {
+        return ServerResponseEntity.success(prodCommService.removeById(prodCommId));
     }
 
 }

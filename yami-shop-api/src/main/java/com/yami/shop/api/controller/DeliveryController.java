@@ -12,7 +12,7 @@ package com.yami.shop.api.controller;
 
 import com.yami.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,7 +47,7 @@ public class DeliveryController {
     @GetMapping("/check")
     @Operation(summary = "查看物流" , description = "根据订单号查看物流")
     @Parameter(name = "orderNumber", description = "订单号" , required = true)
-    public ResponseEntity<DeliveryDto> checkDelivery(String orderNumber) {
+    public ServerResponseEntity<DeliveryDto> checkDelivery(String orderNumber) {
 
     	Order order = orderService.getOrderByOrderNumber(orderNumber);
     	Delivery delivery = deliveryService.getById(order.getDvyId());
@@ -58,6 +58,6 @@ public class DeliveryController {
     	deliveryDto.setDvyFlowId(order.getDvyFlowId());
     	deliveryDto.setCompanyHomeUrl(delivery.getCompanyHomeUrl());
     	deliveryDto.setCompanyName(delivery.getDvyName());
-        return ResponseEntity.ok(deliveryDto);
+        return ServerResponseEntity.success(deliveryDto);
     }
 }

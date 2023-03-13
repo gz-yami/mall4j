@@ -29,7 +29,7 @@ import com.yami.shop.sys.service.SysRoleService;
 import com.yami.shop.sys.service.SysUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -61,19 +61,19 @@ public class SysUserController {
 	 */
 	@GetMapping("/page")
 	@PreAuthorize("@pms.hasPermission('sys:user:page')")
-	public ResponseEntity<IPage<SysUser>> page(String username,PageParam<SysUser> page){
+	public ServerResponseEntity<IPage<SysUser>> page(String username,PageParam<SysUser> page){
 		IPage<SysUser> sysUserPage = sysUserService.page(page, new LambdaQueryWrapper<SysUser>()
 				.eq(SysUser::getShopId, SecurityUtils.getSysUser().getShopId())
 				.like(StrUtil.isNotBlank(username), SysUser::getUsername, username));
-		return ResponseEntity.ok(sysUserPage);
+		return ServerResponseEntity.success(sysUserPage);
 	}
 
 	/**
 	 * 获取登录的用户信息
 	 */
 	@GetMapping("/info")
-	public ResponseEntity<SysUser> info(){
-		return ResponseEntity.ok(sysUserService.getSysUserById(SecurityUtils.getSysUser().getUserId()));
+	public ServerResponseEntity<SysUser> info(){
+		return ServerResponseEntity.success(sysUserService.getSysUserById(SecurityUtils.getSysUser().getUserId()));
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class SysUserController {
 	@SysLog("修改密码")
 	@PostMapping("/password")
 	@Operation(summary = "修改密码" , description = "修改当前登陆用户的密码")
-	public ResponseEntity<String> password(@RequestBody @Valid UpdatePasswordDto param){
+	public ServerResponseEntity<String> password(@RequestBody @Valid UpdatePasswordDto param){
 		Long userId = SecurityUtils.getSysUser().getUserId();
 
         // 开源版代码，禁止用户修改admin 的账号密码
@@ -93,14 +93,14 @@ public class SysUserController {
 		SysUser dbUser = sysUserService.getSysUserById(userId);
 		String password = passwordManager.decryptPassword(param.getPassword());
 		if (!passwordEncoder.matches(password, dbUser.getPassword())) {
-			return ResponseEntity.badRequest().body("原密码不正确");
+			return ServerResponseEntity.showFailMsg("原密码不正确");
 		}
 		//新密码
 		String newPassword = passwordEncoder.encode(passwordManager.decryptPassword(param.getNewPassword()));
 //		更新密码
 		sysUserService.updatePasswordByUserId(userId, newPassword);
 		tokenStore.deleteAllToken(String.valueOf(SysTypeEnum.ADMIN.value()),String.valueOf(userId));
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class SysUserController {
 	 */
 	@GetMapping("/info/{userId}")
 	@PreAuthorize("@pms.hasPermission('sys:user:info')")
-	public ResponseEntity<SysUser> info(@PathVariable("userId") Long userId){
+	public ServerResponseEntity<SysUser> info(@PathVariable("userId") Long userId){
 		SysUser user = sysUserService.getSysUserById(userId);
 		user.setUserId(null);
 		if (!Objects.equals(user.getShopId(), SecurityUtils.getSysUser().getShopId())) {
@@ -117,7 +117,7 @@ public class SysUserController {
 		//获取用户所属的角色列表
 		List<Long> roleIdList = sysRoleService.listRoleIdByUserId(userId);
 		user.setRoleIdList(roleIdList);
-		return ResponseEntity.ok(user);
+		return ServerResponseEntity.success(user);
 	}
 
 	/**
@@ -126,17 +126,17 @@ public class SysUserController {
 	@SysLog("保存用户")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys:user:save')")
-	public ResponseEntity<String> save(@Valid @RequestBody SysUser user){
+	public ServerResponseEntity<String> save(@Valid @RequestBody SysUser user){
 		String username = user.getUsername();
 		SysUser dbUser = sysUserService.getOne(new LambdaQueryWrapper<SysUser>()
 				.eq(SysUser::getUsername, username));
 		if (dbUser!=null) {
-			return ResponseEntity.badRequest().body("该用户已存在");
+			return ServerResponseEntity.showFailMsg("该用户已存在");
 		}
 		user.setShopId(SecurityUtils.getSysUser().getShopId());
 		user.setPassword(passwordEncoder.encode(passwordManager.decryptPassword(user.getPassword())));
 		sysUserService.saveUserAndUserRole(user);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class SysUserController {
 	@SysLog("修改用户")
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys:user:update')")
-	public ResponseEntity<String> update(@Valid @RequestBody SysUser user){
+	public ServerResponseEntity<String> update(@Valid @RequestBody SysUser user){
 		String password = passwordManager.decryptPassword(user.getPassword());
 		SysUser dbUser = sysUserService.getSysUserById(user.getUserId());
 
@@ -155,7 +155,7 @@ public class SysUserController {
 		SysUser dbUserNameInfo = sysUserService.getByUserName(user.getUsername());
 
 		if (dbUserNameInfo != null && !Objects.equals(dbUserNameInfo.getUserId(),user.getUserId())) {
-			return ResponseEntity.badRequest().body("该用户已存在");
+			return ServerResponseEntity.showFailMsg("该用户已存在");
 		}
 		if (StrUtil.isBlank(password)) {
 			user.setPassword(null);
@@ -173,7 +173,7 @@ public class SysUserController {
 			throw new YamiShopBindException("admin用户不可以被禁用");
 		}
 		sysUserService.updateUserAndUserRole(user);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -182,17 +182,17 @@ public class SysUserController {
 	@SysLog("删除用户")
 	@DeleteMapping
 	@PreAuthorize("@pms.hasPermission('sys:user:delete')")
-	public ResponseEntity<String> delete(@RequestBody Long[] userIds){
+	public ServerResponseEntity<String> delete(@RequestBody Long[] userIds){
 		if (userIds.length == 0) {
-			return ResponseEntity.badRequest().body("请选择需要删除的用户");
+			return ServerResponseEntity.showFailMsg("请选择需要删除的用户");
 		}
 		if(ArrayUtil.contains(userIds, Constant.SUPER_ADMIN_ID)){
-			return ResponseEntity.badRequest().body("系统管理员不能删除");
+			return ServerResponseEntity.showFailMsg("系统管理员不能删除");
 		}
 		if(ArrayUtil.contains(userIds, SecurityUtils.getSysUser().getUserId())){
-			return ResponseEntity.badRequest().body("当前用户不能删除");
+			return ServerResponseEntity.showFailMsg("当前用户不能删除");
 		}
 		sysUserService.deleteBatch(userIds,SecurityUtils.getSysUser().getShopId());
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 }

@@ -18,7 +18,7 @@ import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.NoticeService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,12 +46,12 @@ public class NoticeController {
      * @return 分页数据
      */
     @GetMapping("/page")
-    public ResponseEntity<IPage<Notice>> getNoticePage(PageParam<Notice> page, Notice notice) {
+    public ServerResponseEntity<IPage<Notice>> getNoticePage(PageParam<Notice> page, Notice notice) {
         IPage<Notice> noticePage = noticeService.page(page, new LambdaQueryWrapper<Notice>()
                 .eq(notice.getStatus() != null, Notice::getStatus, notice.getStatus())
                 .eq(notice.getIsTop()!=null,Notice::getIsTop,notice.getIsTop())
                 .like(notice.getTitle() != null, Notice::getTitle, notice.getTitle()).orderByDesc(Notice::getUpdateTime));
-        return ResponseEntity.ok(noticePage);
+        return ServerResponseEntity.success(noticePage);
     }
 
 
@@ -62,8 +62,8 @@ public class NoticeController {
      * @return 单个数据
      */
     @GetMapping("/info/{id}")
-    public ResponseEntity<Notice> getById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(noticeService.getById(id));
+    public ServerResponseEntity<Notice> getById(@PathVariable("id") Long id) {
+        return ServerResponseEntity.success(noticeService.getById(id));
     }
 
     /**
@@ -75,14 +75,14 @@ public class NoticeController {
     @SysLog("新增公告管理")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('shop:notice:save')")
-    public ResponseEntity<Boolean> save(@RequestBody @Valid Notice notice) {
+    public ServerResponseEntity<Boolean> save(@RequestBody @Valid Notice notice) {
         notice.setShopId(SecurityUtils.getSysUser().getShopId());
         if (notice.getStatus() == 1) {
             notice.setPublishTime(new Date());
         }
         notice.setUpdateTime(new Date());
         noticeService.removeNoticeList();
-        return ResponseEntity.ok(noticeService.save(notice));
+        return ServerResponseEntity.success(noticeService.save(notice));
     }
 
     /**
@@ -94,7 +94,7 @@ public class NoticeController {
     @SysLog("修改公告管理")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('shop:notice:update')")
-    public ResponseEntity<Boolean> updateById(@RequestBody @Valid Notice notice) {
+    public ServerResponseEntity<Boolean> updateById(@RequestBody @Valid Notice notice) {
         Notice oldNotice = noticeService.getById(notice.getId());
         if (oldNotice.getStatus() == 0 && notice.getStatus() == 1) {
             notice.setPublishTime(new Date());
@@ -102,7 +102,7 @@ public class NoticeController {
         notice.setUpdateTime(new Date());
         noticeService.removeNoticeList();
         noticeService.removeNoticeById(notice.getId());
-        return ResponseEntity.ok(noticeService.updateById(notice));
+        return ServerResponseEntity.success(noticeService.updateById(notice));
     }
 
     /**
@@ -114,10 +114,10 @@ public class NoticeController {
     @SysLog("删除公告管理")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('shop:notice:delete')")
-    public ResponseEntity<Boolean> removeById(@PathVariable Long id) {
+    public ServerResponseEntity<Boolean> removeById(@PathVariable Long id) {
         noticeService.removeNoticeList();
         noticeService.removeNoticeById(id);
-        return ResponseEntity.ok(noticeService.removeById(id));
+        return ServerResponseEntity.success(noticeService.removeById(id));
     }
 
 }

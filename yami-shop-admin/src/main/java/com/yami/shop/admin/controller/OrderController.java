@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +48,7 @@ import java.util.List;
  * @author lgh on 2018/09/15.
  */
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/order/order")
 public class OrderController {
 
@@ -72,11 +72,11 @@ public class OrderController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('order:order:page')")
-    public ResponseEntity<IPage<Order>> page(OrderParam orderParam,PageParam<Order> page) {
+    public ServerResponseEntity<IPage<Order>> page(OrderParam orderParam,PageParam<Order> page) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         orderParam.setShopId(shopId);
         IPage<Order> orderPage = orderService.pageOrdersDetailByOrderParam(page, orderParam);
-        return ResponseEntity.ok(orderPage);
+        return ServerResponseEntity.success(orderPage);
 
 
     }
@@ -86,7 +86,7 @@ public class OrderController {
      */
     @GetMapping("/orderInfo/{orderNumber}")
     @PreAuthorize("@pms.hasPermission('order:order:info')")
-    public ResponseEntity<Order> info(@PathVariable("orderNumber") String orderNumber) {
+    public ServerResponseEntity<Order> info(@PathVariable("orderNumber") String orderNumber) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         Order order = orderService.getOrderByOrderNumber(orderNumber);
         if (!Objects.equal(shopId, order.getShopId())) {
@@ -96,7 +96,7 @@ public class OrderController {
         order.setOrderItems(orderItems);
         UserAddrOrder userAddrOrder = userAddrOrderService.getById(order.getAddrOrderId());
         order.setUserAddrOrder(userAddrOrder);
-        return ResponseEntity.ok(order);
+        return ServerResponseEntity.success(order);
     }
 
     /**
@@ -104,7 +104,7 @@ public class OrderController {
      */
     @PutMapping("/delivery")
     @PreAuthorize("@pms.hasPermission('order:order:delivery')")
-    public ResponseEntity<Void> delivery(@RequestBody DeliveryOrderParam deliveryOrderParam) {
+    public ServerResponseEntity<Void> delivery(@RequestBody DeliveryOrderParam deliveryOrderParam) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         Order order = orderService.getOrderByOrderNumber(deliveryOrderParam.getOrderNumber());
         if (!Objects.equal(shopId, order.getShopId())) {
@@ -126,7 +126,7 @@ public class OrderController {
             productService.removeProductCacheByProdId(orderItem.getProdId());
             skuService.removeSkuCacheBySkuId(orderItem.getSkuId(),orderItem.getProdId());
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**

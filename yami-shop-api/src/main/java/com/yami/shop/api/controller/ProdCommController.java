@@ -24,7 +24,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -43,14 +43,14 @@ public class ProdCommController {
 
     @GetMapping("/prodCommData")
     @Operation(summary = "返回商品评论数据(好评率 好评数量 中评数 差评数)" , description = "根据商品id获取")
-    public ResponseEntity<ProdCommDataDto> getProdCommData(Long prodId) {
-        return ResponseEntity.ok(prodCommService.getProdCommDataByProdId(prodId));
+    public ServerResponseEntity<ProdCommDataDto> getProdCommData(Long prodId) {
+        return ServerResponseEntity.success(prodCommService.getProdCommDataByProdId(prodId));
     }
 
     @GetMapping("/prodCommPageByUser")
     @Operation(summary = "根据用户返回评论分页数据" , description = "传入页码")
-    public ResponseEntity<IPage<ProdCommDto>> getProdCommPage(PageParam page) {
-        return ResponseEntity.ok(prodCommService.getProdCommDtoPageByUserId(page, SecurityUtils.getUser().getUserId()));
+    public ServerResponseEntity<IPage<ProdCommDto>> getProdCommPage(PageParam page) {
+        return ServerResponseEntity.success(prodCommService.getProdCommDtoPageByUserId(page, SecurityUtils.getUser().getUserId()));
     }
 
     @GetMapping("/prodCommPageByProd")
@@ -59,13 +59,13 @@ public class ProdCommController {
             @Parameter(name = "prodId", description = "商品id" , required = true),
             @Parameter(name = "evaluate", description = "-1或null 全部，0好评 1中评 2差评 3有图" , required = true),
     })
-    public ResponseEntity<IPage<ProdCommDto>> getProdCommPageByProdId(PageParam page, Long prodId, Integer evaluate) {
-        return ResponseEntity.ok(prodCommService.getProdCommDtoPageByProdId(page, prodId, evaluate));
+    public ServerResponseEntity<IPage<ProdCommDto>> getProdCommPageByProdId(PageParam page, Long prodId, Integer evaluate) {
+        return ServerResponseEntity.success(prodCommService.getProdCommDtoPageByProdId(page, prodId, evaluate));
     }
 
     @PostMapping
     @Operation(summary = "添加评论")
-    public ResponseEntity<Void> saveProdCommPage(ProdCommParam prodCommParam) {
+    public ServerResponseEntity<Void> saveProdCommPage(ProdCommParam prodCommParam) {
         ProdComm prodComm = new ProdComm();
         prodComm.setProdId(prodCommParam.getProdId());
         prodComm.setOrderItemId(prodCommParam.getOrderItemId());
@@ -78,13 +78,13 @@ public class ProdCommController {
         prodComm.setStatus(0);
         prodComm.setEvaluate(prodCommParam.getEvaluate());
         prodCommService.save(prodComm);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     @DeleteMapping
     @Operation(summary = "删除评论" , description = "根据id删除")
-    public ResponseEntity<Void> deleteProdComm(Long prodCommId) {
+    public ServerResponseEntity<Void> deleteProdComm(Long prodCommId) {
         prodCommService.removeById(prodCommId);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 }

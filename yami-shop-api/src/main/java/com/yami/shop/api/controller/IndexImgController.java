@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,9 +40,9 @@ public class IndexImgController {
      */
     @GetMapping("/indexImgs")
     @Operation(summary = "首页轮播图" , description = "获取首页轮播图列表信息")
-    public ResponseEntity<List<IndexImgDto>> indexImgs() {
+    public ServerResponseEntity<List<IndexImgDto>> indexImgs() {
         List<IndexImg> indexImgList = indexImgService.listIndexImg();
         List<IndexImgDto> indexImgDtos = mapperFacade.mapAsList(indexImgList, IndexImgDto.class);
-        return ResponseEntity.ok(indexImgDtos);
+        return ServerResponseEntity.success(indexImgDtos);
     }
 }

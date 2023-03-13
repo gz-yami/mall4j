@@ -28,8 +28,7 @@ public class SwaggerConfiguration {
 	public GroupedOpenApi baseRestApi() {
 		return GroupedOpenApi.builder()
 				.group("接口文档")
-				.packagesToScan("com.yami")
-				.build();
+				.packagesToScan("com.yami").build();
 	}
 
 

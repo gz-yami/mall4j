@@ -15,6 +15,7 @@ import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.security.admin.dto.CaptchaAuthenticationDTO;
 import com.yami.shop.security.common.bo.UserInfoInTokenBO;
 import com.yami.shop.security.common.enums.SysTypeEnum;
@@ -27,10 +28,10 @@ import com.yami.shop.sys.model.SysMenu;
 import com.yami.shop.sys.model.SysUser;
 import com.yami.shop.sys.service.SysMenuService;
 import com.yami.shop.sys.service.SysUserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,14 +71,14 @@ public class AdminLoginController {
 
     @PostMapping("/adminLogin")
     @Operation(summary = "账号密码 + 验证码登录(用于后台登录)" , description = "通过账号/手机号/用户名密码登录")
-    public ResponseEntity<?> login(
+    public ServerResponseEntity<?> login(
             @Valid @RequestBody CaptchaAuthenticationDTO captchaAuthenticationDTO) {
         // 登陆后台登录需要再校验一遍验证码
         CaptchaVO captchaVO = new CaptchaVO();
         captchaVO.setCaptchaVerification(captchaAuthenticationDTO.getCaptchaVerification());
         ResponseModel response = captchaService.verification(captchaVO);
         if (!response.isSuccess()) {
-            return ResponseEntity.badRequest().body("验证码有误或已过期");
+            return ServerResponseEntity.showFailMsg("验证码有误或已过期");
         }
 
         SysUser sysUser = sysUserService.getByUserName(captchaAuthenticationDTO.getUserName());
@@ -104,7 +105,7 @@ public class AdminLoginController {
         userInfoInToken.setShopId(sysUser.getShopId());
         // 存储token返回vo
         TokenInfoVO tokenInfoVO = tokenStore.storeAndGetVo(userInfoInToken);
-        return ResponseEntity.ok(tokenInfoVO);
+        return ServerResponseEntity.success(tokenInfoVO);
     }
 
 

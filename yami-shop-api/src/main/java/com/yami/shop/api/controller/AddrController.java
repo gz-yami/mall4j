@@ -15,15 +15,15 @@ import com.yami.shop.bean.app.dto.UserAddrDto;
 import com.yami.shop.bean.app.param.AddrParam;
 import com.yami.shop.bean.model.UserAddr;
 import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.UserAddrService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,19 +49,19 @@ public class AddrController {
      */
     @GetMapping("/list")
     @Operation(summary = "用户地址列表" , description = "获取用户的所有地址信息")
-    public ResponseEntity<List<UserAddrDto>> dvyList() {
+    public ServerResponseEntity<List<UserAddrDto>> dvyList() {
         String userId = SecurityUtils.getUser().getUserId();
         List<UserAddr> userAddrs = userAddrService.list(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId).orderByDesc(UserAddr::getCommonAddr).orderByDesc(UserAddr::getUpdateTime));
-        return ResponseEntity.ok(mapperFacade.mapAsList(userAddrs, UserAddrDto.class));
+        return ServerResponseEntity.success(mapperFacade.mapAsList(userAddrs, UserAddrDto.class));
     }
 
     @PostMapping("/addAddr")
     @Operation(summary = "新增用户地址" , description = "新增用户地址")
-    public ResponseEntity<String> addAddr(@Valid @RequestBody AddrParam addrParam) {
+    public ServerResponseEntity<String> addAddr(@Valid @RequestBody AddrParam addrParam) {
         String userId = SecurityUtils.getUser().getUserId();
 
         if (addrParam.getAddrId() != null && addrParam.getAddrId() != 0) {
-            return ResponseEntity.badRequest().body("该地址已存在");
+            return ServerResponseEntity.showFailMsg("该地址已存在");
         }
         int addrCount = userAddrService.count(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId));
         UserAddr userAddr = mapperFacade.map(addrParam, UserAddr.class);
@@ -80,7 +80,7 @@ public class AddrController {
             // 清除默认地址缓存
             userAddrService.removeUserAddrByUserId(0L, userId);
         }
-        return ResponseEntity.ok("添加地址成功");
+        return ServerResponseEntity.success("添加地址成功");
     }
 
     /**
@@ -88,12 +88,12 @@ public class AddrController {
      */
     @PutMapping("/updateAddr")
     @Operation(summary = "修改订单用户地址" , description = "修改用户地址")
-    public ResponseEntity<String> updateAddr(@Valid @RequestBody AddrParam addrParam) {
+    public ServerResponseEntity<String> updateAddr(@Valid @RequestBody AddrParam addrParam) {
         String userId = SecurityUtils.getUser().getUserId();
 
         UserAddr dbUserAddr = userAddrService.getUserAddrByUserId(addrParam.getAddrId(), userId);
         if (dbUserAddr == null) {
-            return ResponseEntity.badRequest().body("该地址已被删除");
+            return ServerResponseEntity.showFailMsg("该地址已被删除");
         }
 
         UserAddr userAddr = mapperFacade.map(addrParam, UserAddr.class);
@@ -104,7 +104,7 @@ public class AddrController {
         userAddrService.removeUserAddrByUserId(addrParam.getAddrId(), userId);
         // 清除默认地址缓存
         userAddrService.removeUserAddrByUserId(0L, userId);
-        return ResponseEntity.ok("修改地址成功");
+        return ServerResponseEntity.success("修改地址成功");
     }
 
     /**
@@ -113,18 +113,18 @@ public class AddrController {
     @DeleteMapping("/deleteAddr/{addrId}")
     @Operation(summary = "删除订单用户地址" , description = "根据地址id，删除用户地址")
     @Parameter(name = "addrId", description = "地址ID" , required = true)
-    public ResponseEntity<String> deleteDvy(@PathVariable("addrId") Long addrId) {
+    public ServerResponseEntity<String> deleteDvy(@PathVariable("addrId") Long addrId) {
         String userId = SecurityUtils.getUser().getUserId();
         UserAddr userAddr = userAddrService.getUserAddrByUserId(addrId, userId);
         if (userAddr == null) {
-            return ResponseEntity.badRequest().body("该地址已被删除");
+            return ServerResponseEntity.showFailMsg("该地址已被删除");
         }
         if (userAddr.getCommonAddr() == 1) {
-            return ResponseEntity.badRequest().body("默认地址无法删除");
+            return ServerResponseEntity.showFailMsg("默认地址无法删除");
         }
         userAddrService.removeById(addrId);
         userAddrService.removeUserAddrByUserId(addrId, userId);
-        return ResponseEntity.ok("删除地址成功");
+        return ServerResponseEntity.success("删除地址成功");
     }
 
     /**
@@ -132,14 +132,14 @@ public class AddrController {
      */
     @PutMapping("/defaultAddr/{addrId}")
     @Operation(summary = "设置默认地址" , description = "根据地址id，设置默认地址")
-    public ResponseEntity<String> defaultAddr(@PathVariable("addrId") Long addrId) {
+    public ServerResponseEntity<String> defaultAddr(@PathVariable("addrId") Long addrId) {
         String userId = SecurityUtils.getUser().getUserId();
 
         userAddrService.updateDefaultUserAddr(addrId, userId);
 
         userAddrService.removeUserAddrByUserId(0L, userId);
         userAddrService.removeUserAddrByUserId(addrId, userId);
-        return ResponseEntity.ok("修改地址成功");
+        return ServerResponseEntity.success("修改地址成功");
     }
 
     /**
@@ -148,13 +148,13 @@ public class AddrController {
     @GetMapping("/addrInfo/{addrId}")
     @Operation(summary = "获取地址信息" , description = "根据地址id，获取地址信息")
     @Parameter(name = "addrId", description = "地址ID" , required = true)
-    public ResponseEntity<UserAddrDto> addrInfo(@PathVariable("addrId") Long addrId) {
+    public ServerResponseEntity<UserAddrDto> addrInfo(@PathVariable("addrId") Long addrId) {
         String userId = SecurityUtils.getUser().getUserId();
         UserAddr userAddr = userAddrService.getUserAddrByUserId(addrId, userId);
         if (userAddr == null) {
             throw new YamiShopBindException("该地址已被删除");
         }
-        return ResponseEntity.ok(mapperFacade.map(userAddr, UserAddrDto.class));
+        return ServerResponseEntity.success(mapperFacade.map(userAddr, UserAddrDto.class));
     }
 
 }

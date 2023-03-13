@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,10 +42,10 @@ public class ProdTagController {
      */
     @GetMapping("/prodTagList")
     @Operation(summary = "商品分组标签列表" , description = "获取所有的商品分组列表")
-    public ResponseEntity<List<ProdTagDto>> getProdTagList() {
+    public ServerResponseEntity<List<ProdTagDto>> getProdTagList() {
         List<ProdTag> prodTagList = prodTagService.listProdTag();
         List<ProdTagDto> prodTagDtoList = mapperFacade.mapAsList(prodTagList, ProdTagDto.class);
-        return ResponseEntity.ok(prodTagDtoList);
+        return ServerResponseEntity.success(prodTagDtoList);
     }
 
 }

@@ -18,7 +18,7 @@ import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.ProdPropService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,11 +41,11 @@ public class AttributeController {
 	 */
     @GetMapping("/page")
 	@PreAuthorize("@pms.hasPermission('admin:attribute:page')")
-	public ResponseEntity<IPage<ProdProp>> page(ProdProp prodProp,PageParam<ProdProp> page){
+	public ServerResponseEntity<IPage<ProdProp>> page(ProdProp prodProp,PageParam<ProdProp> page){
     	prodProp.setRule(ProdPropRule.ATTRIBUTE.value());
     	prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
 		IPage<ProdProp> prodPropPage = prodPropService.pagePropAndValue(prodProp,page);
-		return ResponseEntity.ok(prodPropPage);
+		return ServerResponseEntity.success(prodPropPage);
 	}
 
     /**
@@ -53,9 +53,9 @@ public class AttributeController {
 	 */
 	@GetMapping("/info/{id}")
 	@PreAuthorize("@pms.hasPermission('admin:attribute:info')")
-	public ResponseEntity<ProdProp> info(@PathVariable("id") Long id){
+	public ServerResponseEntity<ProdProp> info(@PathVariable("id") Long id){
 		ProdProp prodProp = prodPropService.getById(id);
-		return ResponseEntity.ok(prodProp);
+		return ServerResponseEntity.success(prodProp);
 	}
 
 	/**
@@ -63,11 +63,11 @@ public class AttributeController {
 	 */
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('admin:attribute:save')")
-	public ResponseEntity<Void> save(@Valid ProdProp prodProp){
+	public ServerResponseEntity<Void> save(@Valid ProdProp prodProp){
 		prodProp.setRule(ProdPropRule.ATTRIBUTE.value());
 		prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
 		prodPropService.saveProdPropAndValues(prodProp);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class AttributeController {
 	 */
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('admin:attribute:update')")
-	public ResponseEntity<Void> update(@Valid ProdProp prodProp){
+	public ServerResponseEntity<Void> update(@Valid ProdProp prodProp){
 		ProdProp dbProdProp = prodPropService.getById(prodProp.getPropId());
 		if (!Objects.equals(dbProdProp.getShopId(), SecurityUtils.getSysUser().getShopId())) {
 			throw new YamiShopBindException("没有权限获取该商品规格信息");
@@ -83,7 +83,7 @@ public class AttributeController {
 		prodProp.setRule(ProdPropRule.ATTRIBUTE.value());
 		prodProp.setShopId(SecurityUtils.getSysUser().getShopId());
 		prodPropService.updateProdPropAndValues(prodProp);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -91,8 +91,8 @@ public class AttributeController {
 	 */
 	@DeleteMapping("/{id}")
 	@PreAuthorize("@pms.hasPermission('admin:attribute:delete')")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ServerResponseEntity<Void> delete(@PathVariable Long id){
 		prodPropService.deleteProdPropAndValues(id,ProdPropRule.ATTRIBUTE.value(),SecurityUtils.getSysUser().getShopId());
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 }

@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,10 +48,10 @@ public class NoticeController {
     @GetMapping("/topNoticeList")
     @Operation(summary = "置顶公告列表信息" , description = "获取所有置顶公告列表信息")
     @JsonView(NoticeDto.NoContent.class)
-    public ResponseEntity<List<NoticeDto>> getTopNoticeList() {
+    public ServerResponseEntity<List<NoticeDto>> getTopNoticeList() {
         List<Notice> noticeList = noticeService.listNotice();
         List<NoticeDto> noticeDtoList = mapperFacade.mapAsList(noticeList, NoticeDto.class);
-        return ResponseEntity.ok(noticeDtoList);
+        return ServerResponseEntity.success(noticeDtoList);
     }
 
     /**
@@ -60,10 +60,10 @@ public class NoticeController {
     @GetMapping("/info/{id}")
     @Operation(summary = "公告详情" , description = "获取公告id公告详情")
     @JsonView(NoticeDto.WithContent.class)
-    public ResponseEntity<NoticeDto> getNoticeById(@PathVariable("id") Long id) {
+    public ServerResponseEntity<NoticeDto> getNoticeById(@PathVariable("id") Long id) {
         Notice notice = noticeService.getNoticeById(id);
         NoticeDto noticeDto = mapperFacade.map(notice, NoticeDto.class);
-        return ResponseEntity.ok(noticeDto);
+        return ServerResponseEntity.success(noticeDto);
     }
 
     /**
@@ -73,8 +73,8 @@ public class NoticeController {
     @Operation(summary = "公告列表信息" , description = "获取所有公告列表信息")
     @Parameters({
     })
-    public ResponseEntity<IPage<NoticeDto>> pageNotice(PageParam<NoticeDto> page) {
+    public ServerResponseEntity<IPage<NoticeDto>> pageNotice(PageParam<NoticeDto> page) {
 
-        return ResponseEntity.ok(noticeService.pageNotice(page));
+        return ServerResponseEntity.success(noticeService.pageNotice(page));
     }
 }

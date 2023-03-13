@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -46,18 +46,18 @@ public class UserCollectionController {
 
     @GetMapping("/page")
     @Operation(summary = "分页返回收藏数据" , description = "根据用户id获取")
-    public ResponseEntity<IPage<UserCollectionDto>> getUserCollectionDtoPageByUserId(PageParam page) {
-        return ResponseEntity.ok(userCollectionService.getUserCollectionDtoPageByUserId(page, SecurityUtils.getUser().getUserId()));
+    public ServerResponseEntity<IPage<UserCollectionDto>> getUserCollectionDtoPageByUserId(PageParam page) {
+        return ServerResponseEntity.success(userCollectionService.getUserCollectionDtoPageByUserId(page, SecurityUtils.getUser().getUserId()));
     }
 
     @GetMapping("isCollection")
     @Operation(summary = "根据商品id获取该商品是否在收藏夹中" , description = "传入收藏商品id")
-    public ResponseEntity<Boolean> isCollection(Long prodId) {
+    public ServerResponseEntity<Boolean> isCollection(Long prodId) {
         if (productService.count(new LambdaQueryWrapper<Product>()
                 .eq(Product::getProdId, prodId)) < 1) {
             throw new YamiShopBindException("该商品不存在");
         }
-        return ResponseEntity.ok(userCollectionService.count(new LambdaQueryWrapper<UserCollection>()
+        return ServerResponseEntity.success(userCollectionService.count(new LambdaQueryWrapper<UserCollection>()
                 .eq(UserCollection::getProdId, prodId)
                 .eq(UserCollection::getUserId, SecurityUtils.getUser().getUserId())) > 0);
     }
@@ -65,7 +65,7 @@ public class UserCollectionController {
     @PostMapping("/addOrCancel")
     @Operation(summary = "添加/取消收藏" , description = "传入收藏商品id,如果商品未收藏则收藏商品，已收藏则取消收藏")
     @Parameter(name = "prodId", description = "商品id" , required = true)
-    public ResponseEntity<Void> addOrCancel(@RequestBody Long prodId) {
+    public ServerResponseEntity<Void> addOrCancel(@RequestBody Long prodId) {
         if (Objects.isNull(productService.getProductByProdId(prodId))) {
             throw new YamiShopBindException("该商品不存在");
         }
@@ -83,7 +83,7 @@ public class UserCollectionController {
             userCollection.setProdId(prodId);
             userCollectionService.save(userCollection);
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -98,10 +98,10 @@ public class UserCollectionController {
 
     @GetMapping("/prods")
     @Operation(summary = "获取用户收藏商品列表" , description = "获取用户收藏商品列表")
-    public ResponseEntity<IPage<ProductDto>> collectionProds(PageParam page) {
+    public ServerResponseEntity<IPage<ProductDto>> collectionProds(PageParam page) {
         String userId = SecurityUtils.getUser().getUserId();
         IPage<ProductDto> productDtoPage = productService.collectionProds(page, userId);
-        return ResponseEntity.ok(productDtoPage);
+        return ServerResponseEntity.success(productDtoPage);
     }
 
 }

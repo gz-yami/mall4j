@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 /**
  * @author lanhai
@@ -38,22 +38,22 @@ public class UserController {
 	 */
 	@GetMapping("/userInfo")
 	@Operation(summary = "查看用户信息" , description = "根据用户ID（userId）获取用户信息")
-	public ResponseEntity<UserDto> userInfo() {
+	public ServerResponseEntity<UserDto> userInfo() {
 		String userId = SecurityUtils.getUser().getUserId();
 		User user = userService.getById(userId);
 		UserDto userDto = mapperFacade.map(user, UserDto.class);
-		return ResponseEntity.ok(userDto);
+		return ServerResponseEntity.success(userDto);
 	}
 
 	@PutMapping("/setUserInfo")
 	@Operation(summary = "设置用户信息" , description = "设置用户信息")
-	public ResponseEntity<Void> setUserInfo(@RequestBody UserInfoParam userInfoParam) {
+	public ServerResponseEntity<Void> setUserInfo(@RequestBody UserInfoParam userInfoParam) {
 		String userId = SecurityUtils.getUser().getUserId();
 		User user = new User();
 		user.setUserId(userId);
 		user.setPic(userInfoParam.getAvatarUrl());
 		user.setNickName(userInfoParam.getNickName());
 		userService.updateById(user);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 }

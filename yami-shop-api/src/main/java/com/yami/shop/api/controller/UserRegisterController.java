@@ -16,7 +16,7 @@ import com.yami.shop.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +44,7 @@ public class UserRegisterController {
 
     @PostMapping("/register")
     @Operation(summary = "注册" , description = "用户注册或绑定手机号接口")
-    public ResponseEntity<TokenInfoVO> register(@Valid @RequestBody UserRegisterParam userRegisterParam) {
+    public ServerResponseEntity<TokenInfoVO> register(@Valid @RequestBody UserRegisterParam userRegisterParam) {
         if (StrUtil.isBlank(userRegisterParam.getNickName())) {
             userRegisterParam.setNickName(userRegisterParam.getUserName());
         }
@@ -71,13 +71,13 @@ public class UserRegisterController {
         userInfoInTokenBO.setSysType(SysTypeEnum.ORDINARY.value());
         userInfoInTokenBO.setIsAdmin(0);
         userInfoInTokenBO.setEnabled(true);
-        return ResponseEntity.ok(tokenStore.storeAndGetVo(userInfoInTokenBO));
+        return ServerResponseEntity.success(tokenStore.storeAndGetVo(userInfoInTokenBO));
     }
 
 
     @PutMapping("/updatePwd")
     @Operation(summary = "修改密码" , description = "修改密码")
-    public ResponseEntity<Void> updatePwd(@Valid @RequestBody UserRegisterParam userPwdUpdateParam) {
+    public ServerResponseEntity<Void> updatePwd(@Valid @RequestBody UserRegisterParam userPwdUpdateParam) {
         User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getNickName, userPwdUpdateParam.getNickName()));
         if (user == null) {
             // 无法获取用户信息
@@ -96,6 +96,6 @@ public class UserRegisterController {
         user.setModifyTime(new Date());
         user.setLoginPassword(password);
         userService.updateById(user);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 }

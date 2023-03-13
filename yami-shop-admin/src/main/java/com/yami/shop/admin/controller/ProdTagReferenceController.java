@@ -18,7 +18,7 @@ import com.yami.shop.bean.model.ProdTagReference;
 import com.yami.shop.common.annotation.SysLog;
 import com.yami.shop.service.ProdTagReferenceService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,8 +44,8 @@ public class ProdTagReferenceController {
      * @return 分页数据
      */
     @GetMapping("/page" )
-    public ResponseEntity<IPage<ProdTagReference>> getProdTagReferencePage(PageParam page, ProdTagReference prodTagReference) {
-        return ResponseEntity.ok(prodTagReferenceService.page(page, new LambdaQueryWrapper<ProdTagReference>()));
+    public ServerResponseEntity<IPage<ProdTagReference>> getProdTagReferencePage(PageParam page, ProdTagReference prodTagReference) {
+        return ServerResponseEntity.success(prodTagReferenceService.page(page, new LambdaQueryWrapper<ProdTagReference>()));
     }
 
 
@@ -55,8 +55,8 @@ public class ProdTagReferenceController {
      * @return 单个数据
      */
     @GetMapping("/info/{referenceId}" )
-    public ResponseEntity<ProdTagReference> getById(@PathVariable("referenceId" ) Long referenceId) {
-        return ResponseEntity.ok(prodTagReferenceService.getById(referenceId));
+    public ServerResponseEntity<ProdTagReference> getById(@PathVariable("referenceId" ) Long referenceId) {
+        return ServerResponseEntity.success(prodTagReferenceService.getById(referenceId));
     }
 
     /**
@@ -67,8 +67,8 @@ public class ProdTagReferenceController {
     @SysLog("新增分组标签引用" )
     @PostMapping
     @PreAuthorize("@pms.hasPermission('generator:prodTagReference:save')" )
-    public ResponseEntity<Boolean> save(@RequestBody @Valid ProdTagReference prodTagReference) {
-        return ResponseEntity.ok(prodTagReferenceService.save(prodTagReference));
+    public ServerResponseEntity<Boolean> save(@RequestBody @Valid ProdTagReference prodTagReference) {
+        return ServerResponseEntity.success(prodTagReferenceService.save(prodTagReference));
     }
 
     /**
@@ -79,8 +79,8 @@ public class ProdTagReferenceController {
     @SysLog("修改分组标签引用" )
     @PutMapping
     @PreAuthorize("@pms.hasPermission('generator:prodTagReference:update')" )
-    public ResponseEntity<Boolean> updateById(@RequestBody @Valid ProdTagReference prodTagReference) {
-        return ResponseEntity.ok(prodTagReferenceService.updateById(prodTagReference));
+    public ServerResponseEntity<Boolean> updateById(@RequestBody @Valid ProdTagReference prodTagReference) {
+        return ServerResponseEntity.success(prodTagReferenceService.updateById(prodTagReference));
     }
 
     /**
@@ -91,8 +91,8 @@ public class ProdTagReferenceController {
     @SysLog("删除分组标签引用" )
     @DeleteMapping("/{referenceId}" )
     @PreAuthorize("@pms.hasPermission('generator:prodTagReference:delete')" )
-    public ResponseEntity<Boolean> removeById(@PathVariable Long referenceId) {
-        return ResponseEntity.ok(prodTagReferenceService.removeById(referenceId));
+    public ServerResponseEntity<Boolean> removeById(@PathVariable Long referenceId) {
+        return ServerResponseEntity.success(prodTagReferenceService.removeById(referenceId));
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yami.shop.sys.model.SysRole;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,9 +56,9 @@ public class SysRoleController{
 	 */
 	@GetMapping("/page")
 	@PreAuthorize("@pms.hasPermission('sys:role:page')")
-	public ResponseEntity<IPage<SysRole>> page(String roleName,PageParam<SysRole> page){
+	public ServerResponseEntity<IPage<SysRole>> page(String roleName,PageParam<SysRole> page){
 		IPage<SysRole> sysRoles = sysRoleService.page(page,new LambdaQueryWrapper<SysRole>().like(StrUtil.isNotBlank(roleName),SysRole::getRoleName,roleName));
-		return ResponseEntity.ok(sysRoles);
+		return ServerResponseEntity.success(sysRoles);
 	}
 	
 	/**
@@ -66,9 +66,9 @@ public class SysRoleController{
 	 */
 	@GetMapping("/list")
 	@PreAuthorize("@pms.hasPermission('sys:role:list')")
-	public ResponseEntity<List<SysRole>> list(){
+	public ServerResponseEntity<List<SysRole>> list(){
 		List<SysRole> list = sysRoleService.list();
-		return ResponseEntity.ok(list);
+		return ServerResponseEntity.success(list);
 	}
 	
 	/**
@@ -76,14 +76,14 @@ public class SysRoleController{
 	 */
 	@GetMapping("/info/{roleId}")
 	@PreAuthorize("@pms.hasPermission('sys:role:info')")
-	public ResponseEntity<SysRole> info(@PathVariable("roleId") Long roleId){
+	public ServerResponseEntity<SysRole> info(@PathVariable("roleId") Long roleId){
 		SysRole role = sysRoleService.getById(roleId);
 		
 		//查询角色对应的菜单
 		List<Long> menuList = sysMenuService.listMenuIdByRoleId(roleId);
 		role.setMenuIdList(menuList);
 		
-		return ResponseEntity.ok(role);
+		return ServerResponseEntity.success(role);
 	}
 	
 	/**
@@ -92,9 +92,9 @@ public class SysRoleController{
 	@SysLog("保存角色")
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys:role:save')")
-	public ResponseEntity<Void> save(@RequestBody SysRole role){
+	public ServerResponseEntity<Void> save(@RequestBody SysRole role){
 		sysRoleService.saveRoleAndRoleMenu(role);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	
 	/**
@@ -103,9 +103,9 @@ public class SysRoleController{
 	@SysLog("修改角色")
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys:role:update')")
-	public ResponseEntity<Void> update(@RequestBody SysRole role){
+	public ServerResponseEntity<Void> update(@RequestBody SysRole role){
 		sysRoleService.updateRoleAndRoleMenu(role);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	
 	/**
@@ -114,8 +114,8 @@ public class SysRoleController{
 	@SysLog("删除角色")
 	@DeleteMapping
 	@PreAuthorize("@pms.hasPermission('sys:role:delete')")
-	public ResponseEntity<Void> delete(@RequestBody Long[] roleIds){
+	public ServerResponseEntity<Void> delete(@RequestBody Long[] roleIds){
 		sysRoleService.deleteBatch(roleIds);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 }

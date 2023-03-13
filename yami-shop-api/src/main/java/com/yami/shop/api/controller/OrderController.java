@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +67,7 @@ public class OrderController {
      */
     @PostMapping("/confirm")
     @Operation(summary = "结算，生成订单信息" , description = "传入下单所需要的参数进行下单")
-    public ResponseEntity<ShopCartOrderMergerDto> confirm(@Valid @RequestBody OrderParam orderParam) {
+    public ServerResponseEntity<ShopCartOrderMergerDto> confirm(@Valid @RequestBody OrderParam orderParam) {
         String userId = SecurityUtils.getUser().getUserId();
 
         // 订单的地址信息
@@ -135,7 +135,7 @@ public class OrderController {
 
         shopCartOrderMergerDto = orderService.putConfirmOrderCache(userId, shopCartOrderMergerDto);
 
-        return ResponseEntity.ok(shopCartOrderMergerDto);
+        return ServerResponseEntity.success(shopCartOrderMergerDto);
     }
 
     /**
@@ -143,7 +143,7 @@ public class OrderController {
      */
     @PostMapping("/submit")
     @Operation(summary = "提交订单，返回支付流水号" , description = "根据传入的参数判断是否为购物车提交订单，同时对购物车进行删除，用户开始进行支付")
-    public ResponseEntity<OrderNumbersDto> submitOrders(@Valid @RequestBody SubmitOrderParam submitOrderParam) {
+    public ServerResponseEntity<OrderNumbersDto> submitOrders(@Valid @RequestBody SubmitOrderParam submitOrderParam) {
         String userId = SecurityUtils.getUser().getUserId();
         ShopCartOrderMergerDto mergerOrder = orderService.getConfirmOrderCache(userId);
         if (mergerOrder == null) {
@@ -193,7 +193,7 @@ public class OrderController {
             basketService.removeShopCartItemsCacheByUserId(userId);
         }
         orderService.removeConfirmOrderCache(userId);
-        return ResponseEntity.ok(new OrderNumbersDto(orderNumbers.toString()));
+        return ServerResponseEntity.success(new OrderNumbersDto(orderNumbers.toString()));
     }
 
 }

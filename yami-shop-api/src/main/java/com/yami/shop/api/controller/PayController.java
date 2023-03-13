@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,14 +42,14 @@ public class PayController {
      */
     @PostMapping("/pay")
     @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
-    public ResponseEntity<WxPayMpOrderResult> pay(@RequestBody PayParam payParam) {
+    public ServerResponseEntity<WxPayMpOrderResult> pay(@RequestBody PayParam payParam) {
         YamiUser user = SecurityUtils.getUser();
         String userId = user.getUserId();
 
 
         PayInfoDto payInfo = payService.pay(userId, payParam);
         payService.paySuccess(payInfo.getPayNo(), "");
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -57,7 +57,7 @@ public class PayController {
      */
     @PostMapping("/normalPay")
     @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
-    public ResponseEntity<Boolean> normalPay(@RequestBody PayParam payParam) {
+    public ServerResponseEntity<Boolean> normalPay(@RequestBody PayParam payParam) {
 
         YamiUser user = SecurityUtils.getUser();
         String userId = user.getUserId();
@@ -66,6 +66,6 @@ public class PayController {
         // 根据内部订单号更新order settlement
         payService.paySuccess(pay.getPayNo(), "");
 
-        return ResponseEntity.ok(true);
+        return ServerResponseEntity.success(true);
     }
 }

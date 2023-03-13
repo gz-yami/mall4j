@@ -18,7 +18,7 @@ import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,12 +43,12 @@ public class BrandController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:brand:page')")
-    public ResponseEntity<IPage<Brand>> page(Brand brand,PageParam<Brand> page) {
+    public ServerResponseEntity<IPage<Brand>> page(Brand brand,PageParam<Brand> page) {
         page.setAsc("first_char");
         IPage<Brand> brands = brandService.page(page,
                 new LambdaQueryWrapper<Brand>()
                         .like(StrUtil.isNotBlank(brand.getBrandName()), Brand::getBrandName, brand.getBrandName()));
-        return ResponseEntity.ok(brands);
+        return ServerResponseEntity.success(brands);
     }
 
     /**
@@ -56,9 +56,9 @@ public class BrandController {
      */
     @GetMapping("/info/{id}")
     @PreAuthorize("@pms.hasPermission('admin:brand:info')")
-    public ResponseEntity<Brand> info(@PathVariable("id") Long id) {
+    public ServerResponseEntity<Brand> info(@PathVariable("id") Long id) {
         Brand brand = brandService.getById(id);
-        return ResponseEntity.ok(brand);
+        return ServerResponseEntity.success(brand);
     }
 
     /**
@@ -66,13 +66,13 @@ public class BrandController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin:brand:save')")
-    public ResponseEntity<Void> save(@Valid Brand brand) {
+    public ServerResponseEntity<Void> save(@Valid Brand brand) {
         Brand dbBrand = brandService.getByBrandName(brand.getBrandName());
         if (dbBrand != null) {
             throw new YamiShopBindException("该品牌名称已存在");
         }
         brandService.save(brand);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -80,13 +80,13 @@ public class BrandController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:brand:update')")
-    public ResponseEntity<Void> update(@Valid Brand brand) {
+    public ServerResponseEntity<Void> update(@Valid Brand brand) {
         Brand dbBrand = brandService.getByBrandName(brand.getBrandName());
         if (dbBrand != null && !Objects.equals(dbBrand.getBrandId(), brand.getBrandId())) {
             throw new YamiShopBindException("该品牌名称已存在");
         }
         brandService.updateById(brand);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -94,9 +94,9 @@ public class BrandController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('admin:brand:delete')")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ServerResponseEntity<Void> delete(@PathVariable Long id) {
         brandService.deleteByBrand(id);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
 }

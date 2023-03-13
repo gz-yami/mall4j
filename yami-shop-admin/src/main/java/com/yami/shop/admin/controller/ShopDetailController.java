@@ -20,7 +20,7 @@ import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.ShopDetailService;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  *
  * @author lgh on 2018/08/29.
  */
-@Controller
+@RestController
 @RequestMapping("/shop/shopDetail")
 public class ShopDetailController {
 
@@ -51,23 +51,23 @@ public class ShopDetailController {
 	 * 修改分销开关
 	 */
 	@PutMapping("/isDistribution")
-	public ResponseEntity<Void> updateIsDistribution(@RequestParam Integer isDistribution){
+	public ServerResponseEntity<Void> updateIsDistribution(@RequestParam Integer isDistribution){
 		ShopDetail shopDetail=new ShopDetail();
 		shopDetail.setShopId(SecurityUtils.getSysUser().getShopId());
 		shopDetail.setIsDistribution(isDistribution);
 		shopDetailService.updateById(shopDetail);
 		// 更新完成后删除缓存
 		shopDetailService.removeShopDetailCacheByShopId(shopDetail.getShopId());
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	/**
 	 * 获取信息
 	 */
 	@GetMapping("/info")
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:info')")
-	public ResponseEntity<ShopDetail> info(){
+	public ServerResponseEntity<ShopDetail> info(){
 		ShopDetail shopDetail = shopDetailService.getShopDetailByShopId(SecurityUtils.getSysUser().getShopId());
-		return ResponseEntity.ok(shopDetail);
+		return ServerResponseEntity.success(shopDetail);
 	}
 
 
@@ -76,12 +76,12 @@ public class ShopDetailController {
 	 */
     @GetMapping("/page")
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:page')")
-	public ResponseEntity<IPage<ShopDetail>> page(ShopDetail shopDetail,PageParam<ShopDetail> page){
+	public ServerResponseEntity<IPage<ShopDetail>> page(ShopDetail shopDetail,PageParam<ShopDetail> page){
 		IPage<ShopDetail> shopDetails = shopDetailService.page(page,
 				new LambdaQueryWrapper<ShopDetail>()
 						.like(StrUtil.isNotBlank(shopDetail.getShopName()),ShopDetail::getShopName,shopDetail.getShopName())
 						.orderByDesc(ShopDetail::getShopId));
-		return ResponseEntity.ok(shopDetails);
+		return ServerResponseEntity.success(shopDetails);
 	}
     
 	/**
@@ -89,10 +89,10 @@ public class ShopDetailController {
 	 */
 	@GetMapping("/info/{shopId}")
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:info')")
-	public ResponseEntity<ShopDetail> info(@PathVariable("shopId") Long shopId){
+	public ServerResponseEntity<ShopDetail> info(@PathVariable("shopId") Long shopId){
 		ShopDetail shopDetail = shopDetailService.getShopDetailByShopId(shopId);
 		// 店铺图片
-		return ResponseEntity.ok(shopDetail);
+		return ServerResponseEntity.success(shopDetail);
 	}
 
 	/**
@@ -100,12 +100,12 @@ public class ShopDetailController {
 	 */
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:save')")
-	public ResponseEntity<Void> save(@Valid ShopDetailParam shopDetailParam){
+	public ServerResponseEntity<Void> save(@Valid ShopDetailParam shopDetailParam){
 		ShopDetail shopDetail = mapperFacade.map(shopDetailParam, ShopDetail.class);
 		shopDetail.setCreateTime(new Date());
 		shopDetail.setShopStatus(1);
 		shopDetailService.save(shopDetail);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	
 	/**
@@ -113,12 +113,12 @@ public class ShopDetailController {
 	 */
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:update')")
-	public ResponseEntity<Void> update(@Valid ShopDetailParam shopDetailParam){
+	public ServerResponseEntity<Void> update(@Valid ShopDetailParam shopDetailParam){
 		ShopDetail daShopDetail = shopDetailService.getShopDetailByShopId(shopDetailParam.getShopId());
 		ShopDetail shopDetail = mapperFacade.map(shopDetailParam, ShopDetail.class);
 		shopDetail.setUpdateTime(new Date());
 		shopDetailService.updateShopDetail(shopDetail,daShopDetail);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	
 	/**
@@ -126,9 +126,9 @@ public class ShopDetailController {
 	 */
 	@DeleteMapping("/{id}")
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:delete')")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ServerResponseEntity<Void> delete(@PathVariable Long id){
 		shopDetailService.deleteShopDetailByShopId(id);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	
 	/**
@@ -136,14 +136,14 @@ public class ShopDetailController {
 	 */
 	@PutMapping("/shopStatus")
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:shopStatus')")
-	public ResponseEntity<Void> shopStatus(@RequestParam Long shopId,@RequestParam Integer shopStatus){
+	public ServerResponseEntity<Void> shopStatus(@RequestParam Long shopId,@RequestParam Integer shopStatus){
 		ShopDetail shopDetail = new ShopDetail();
 		shopDetail.setShopId(shopId);
 		shopDetail.setShopStatus(shopStatus);
 		shopDetailService.updateById(shopDetail);
 		// 更新完成后删除缓存
 		shopDetailService.removeShopDetailCacheByShopId(shopDetail.getShopId());
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 	
 	
@@ -151,13 +151,13 @@ public class ShopDetailController {
 	 * 获取所有的店铺名称
 	 */
     @GetMapping("/listShopName")
-	public ResponseEntity<List<ShopDetail>> listShopName(){
+	public ServerResponseEntity<List<ShopDetail>> listShopName(){
 		List<ShopDetail> list = shopDetailService.list().stream().map((dbShopDetail) ->{
 			ShopDetail shopDetail = new ShopDetail();
 			shopDetail.setShopId(dbShopDetail.getShopId());
 			shopDetail.setShopName(dbShopDetail.getShopName());
 			return shopDetail;
 		}).collect(Collectors.toList());
-		return ResponseEntity.ok(list);
+		return ServerResponseEntity.success(list);
 	}
 }

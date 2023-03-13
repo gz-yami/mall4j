@@ -18,7 +18,7 @@ import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.TransportService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,13 +41,13 @@ public class TransportController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('shop:transport:page')")
-    public ResponseEntity<IPage<Transport>> page(Transport transport,PageParam<Transport> page) {
+    public ServerResponseEntity<IPage<Transport>> page(Transport transport,PageParam<Transport> page) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         IPage<Transport> transports = transportService.page(page,
                 new LambdaQueryWrapper<Transport>()
                         .eq(Transport::getShopId, shopId)
                         .like(StringUtils.isNotBlank(transport.getTransName()), Transport::getTransName, transport.getTransName()));
-        return ResponseEntity.ok(transports);
+        return ServerResponseEntity.success(transports);
     }
 
     /**
@@ -55,9 +55,9 @@ public class TransportController {
      */
     @GetMapping("/info/{id}")
     @PreAuthorize("@pms.hasPermission('shop:transport:info')")
-    public ResponseEntity<Transport> info(@PathVariable("id") Long id) {
+    public ServerResponseEntity<Transport> info(@PathVariable("id") Long id) {
         Transport transport = transportService.getTransportAndAllItems(id);
-        return ResponseEntity.ok(transport);
+        return ServerResponseEntity.success(transport);
     }
 
     /**
@@ -65,13 +65,13 @@ public class TransportController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('shop:transport:save')")
-    public ResponseEntity<Void> save(@RequestBody Transport transport) {
+    public ServerResponseEntity<Void> save(@RequestBody Transport transport) {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         transport.setShopId(shopId);
         Date createTime = new Date();
         transport.setCreateTime(createTime);
         transportService.insertTransportAndTransfee(transport);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -79,9 +79,9 @@ public class TransportController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('shop:transport:update')")
-    public ResponseEntity<Void> update(@RequestBody Transport transport) {
+    public ServerResponseEntity<Void> update(@RequestBody Transport transport) {
         transportService.updateTransportAndTransfee(transport);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -89,13 +89,13 @@ public class TransportController {
      */
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('shop:transport:delete')")
-    public ResponseEntity<Void> delete(@RequestBody Long[] ids) {
+    public ServerResponseEntity<Void> delete(@RequestBody Long[] ids) {
         transportService.deleteTransportAndTransfeeAndTranscity(ids);
         // 删除运费模板的缓存
         for (Long id : ids) {
             transportService.removeTransportAndAllItemsCache(id);
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
 
@@ -103,10 +103,10 @@ public class TransportController {
      * 获取运费模板列表
      */
     @GetMapping("/list")
-    public ResponseEntity<List<Transport>> list() {
+    public ServerResponseEntity<List<Transport>> list() {
         Long shopId = SecurityUtils.getSysUser().getShopId();
         List<Transport> list = transportService.list(new LambdaQueryWrapper<Transport>().eq(Transport::getShopId, shopId));
-        return ResponseEntity.ok(list);
+        return ServerResponseEntity.success(list);
     }
 
 }

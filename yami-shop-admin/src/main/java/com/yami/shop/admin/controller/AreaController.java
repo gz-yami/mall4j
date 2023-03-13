@@ -18,7 +18,7 @@ import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,9 +41,9 @@ public class AreaController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:area:page')")
-    public ResponseEntity<IPage<Area>> page(Area area,PageParam<Area> page) {
+    public ServerResponseEntity<IPage<Area>> page(Area area,PageParam<Area> page) {
         IPage<Area> sysUserPage = areaService.page(page, new LambdaQueryWrapper<Area>());
-        return ResponseEntity.ok(sysUserPage);
+        return ServerResponseEntity.success(sysUserPage);
     }
 
     /**
@@ -51,19 +51,19 @@ public class AreaController {
      */
     @GetMapping("/list")
     @PreAuthorize("@pms.hasPermission('admin:area:list')")
-    public ResponseEntity<List<Area>> list(Area area) {
+    public ServerResponseEntity<List<Area>> list(Area area) {
         List<Area> areas = areaService.list(new LambdaQueryWrapper<Area>()
                 .like(area.getAreaName() != null, Area::getAreaName, area.getAreaName()));
-        return ResponseEntity.ok(areas);
+        return ServerResponseEntity.success(areas);
     }
 
     /**
      * 通过父级id获取区域列表
      */
     @GetMapping("/listByPid")
-    public ResponseEntity<List<Area>> listByPid(Long pid) {
+    public ServerResponseEntity<List<Area>> listByPid(Long pid) {
         List<Area> list = areaService.listByPid(pid);
-        return ResponseEntity.ok(list);
+        return ServerResponseEntity.success(list);
     }
 
     /**
@@ -71,9 +71,9 @@ public class AreaController {
      */
     @GetMapping("/info/{id}")
     @PreAuthorize("@pms.hasPermission('admin:area:info')")
-    public ResponseEntity<Area> info(@PathVariable("id") Long id) {
+    public ServerResponseEntity<Area> info(@PathVariable("id") Long id) {
         Area area = areaService.getById(id);
-        return ResponseEntity.ok(area);
+        return ServerResponseEntity.success(area);
     }
 
     /**
@@ -81,14 +81,14 @@ public class AreaController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('admin:area:save')")
-    public ResponseEntity<Void> save(@Valid @RequestBody Area area) {
+    public ServerResponseEntity<Void> save(@Valid @RequestBody Area area) {
         if (area.getParentId() != null) {
             Area parentArea = areaService.getById(area.getParentId());
             area.setLevel(parentArea.getLevel() + 1);
             areaService.removeAreaCacheByParentId(area.getParentId());
         }
         areaService.save(area);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -96,7 +96,7 @@ public class AreaController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:area:update')")
-    public ResponseEntity<Void> update(@Valid @RequestBody Area area) {
+    public ServerResponseEntity<Void> update(@Valid @RequestBody Area area) {
         Area areaDb = areaService.getById(area.getAreaId());
         // 判断当前省市区级别，如果是1级、2级则不能修改级别，不能修改成别人的下级
         if(Objects.equals(areaDb.getLevel(), AreaLevelEnum.FIRST_LEVEL.value()) && !Objects.equals(area.getLevel(),AreaLevelEnum.FIRST_LEVEL.value())){
@@ -108,7 +108,7 @@ public class AreaController {
         hasSameName(area);
         areaService.updateById(area);
         areaService.removeAreaCacheByParentId(area.getParentId());
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -116,11 +116,11 @@ public class AreaController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('admin:area:delete')")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ServerResponseEntity<Void> delete(@PathVariable Long id) {
         Area area = areaService.getById(id);
         areaService.removeById(id);
         areaService.removeAreaCacheByParentId(area.getParentId());
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     private void hasSameName(Area area) {

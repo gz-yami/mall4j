@@ -10,11 +10,14 @@
 
 package com.yami.shop.common.exception;
 
-import com.yami.shop.common.enums.YamiHttpStatus;
-import org.springframework.http.HttpStatus;
+import com.yami.shop.common.response.ResponseEnum;
+import com.yami.shop.common.response.ServerResponseEntity;
+import lombok.Getter;
+
 /**
  * @author lanhai
  */
+@Getter
 public class YamiShopBindException extends RuntimeException{
 
 	/**
@@ -25,41 +28,38 @@ public class YamiShopBindException extends RuntimeException{
 	/**
 	 * http状态码
 	 */
-	private Integer httpStatusCode;
+	private String code;
 
 	private Object object;
 
+	private ServerResponseEntity<?> serverResponseEntity;
 
+	public YamiShopBindException(ResponseEnum responseEnum) {
+		super(responseEnum.getMsg());
+		this.code = responseEnum.value();
+	}
 	/**
-	 * @param httpStatus http状态码
+	 * @param responseEnum
 	 */
-	public YamiShopBindException(YamiHttpStatus httpStatus) {
-		super(httpStatus.getMsg());
-		this.httpStatusCode = httpStatus.value();
+	public YamiShopBindException(ResponseEnum responseEnum, String msg) {
+		super(msg);
+		this.code = responseEnum.value();
 	}
 
-	/**
-	 * @param httpStatus http状态码
-	 */
-	public YamiShopBindException(YamiHttpStatus httpStatus, String msg) {
-		super(msg);
-		this.httpStatusCode = httpStatus.value();
+	public YamiShopBindException(ServerResponseEntity<?> serverResponseEntity) {
+		this.serverResponseEntity = serverResponseEntity;
 	}
 
 
 	public YamiShopBindException(String msg) {
 		super(msg);
-		this.httpStatusCode = HttpStatus.BAD_REQUEST.value();
+		this.code = ResponseEnum.SHOW_FAIL.value();
 	}
 
 	public YamiShopBindException(String msg, Object object) {
 		super(msg);
-		this.httpStatusCode = HttpStatus.BAD_REQUEST.value();
+		this.code = ResponseEnum.SHOW_FAIL.value();
 		this.object = object;
-	}
-
-	public Integer getHttpStatusCode() {
-		return httpStatusCode;
 	}
 
 }

@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,13 +42,13 @@ public class SkuController {
     @GetMapping("/getSkuList")
     @Operation(summary = "通过prodId获取商品全部规格列表" , description = "通过prodId获取商品全部规格列表")
     @Parameter(name = "prodId", description = "商品id" )
-    public ResponseEntity<List<SkuDto>> getSkuListByProdId(Long prodId) {
+    public ServerResponseEntity<List<SkuDto>> getSkuListByProdId(Long prodId) {
         List<Sku> skus = skuService.list(new LambdaQueryWrapper<Sku>()
                 .eq(Sku::getStatus, 1)
                 .eq(Sku::getIsDelete, 0)
                 .eq(Sku::getProdId, prodId)
         );
         List<SkuDto> skuDtoList = mapperFacade.mapAsList(skus, SkuDto.class);
-        return ResponseEntity.ok(skuDtoList);
+        return ServerResponseEntity.success(skuDtoList);
     }
 }

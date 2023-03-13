@@ -13,7 +13,7 @@ package com.yami.shop.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,10 +48,10 @@ public class CategoryController {
     @GetMapping("/categoryInfo")
     @Operation(summary = "分类信息列表" , description = "获取所有的产品分类信息，顶级分类的parentId为0,默认为顶级分类")
     @Parameter(name = "parentId", description = "分类ID", required = false)
-    public ResponseEntity<List<CategoryDto>> categoryInfo(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
+    public ServerResponseEntity<List<CategoryDto>> categoryInfo(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
         List<Category> categories = categoryService.listByParentId(parentId);
         List<CategoryDto> categoryDtos = mapperFacade.mapAsList(categories, CategoryDto.class);
-        return ResponseEntity.ok(categoryDtos);
+        return ServerResponseEntity.success(categoryDtos);
     }
 
 

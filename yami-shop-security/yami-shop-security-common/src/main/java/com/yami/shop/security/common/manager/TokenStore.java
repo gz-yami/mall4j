@@ -16,7 +16,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.symmetric.AES;
 import com.yami.shop.common.constants.OauthCacheNames;
-import com.yami.shop.common.enums.YamiHttpStatus;
+import com.yami.shop.common.response.ResponseEnum;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.util.PrincipalUtil;
 import com.yami.shop.security.common.bo.TokenInfoBO;
@@ -158,7 +158,7 @@ public class TokenStore {
      */
     public UserInfoInTokenBO getUserInfoByAccessToken(String accessToken, boolean needDecrypt) {
         if (StrUtil.isBlank(accessToken)) {
-            throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"accessToken is blank");
+            throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"accessToken is blank");
         }
         String realAccessToken;
         if (needDecrypt) {
@@ -171,7 +171,7 @@ public class TokenStore {
                 .get(getAccessKey(realAccessToken));
 
         if (userInfoInTokenBO == null) {
-            throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"accessToken 已过期");
+            throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"accessToken 已过期");
         }
         return userInfoInTokenBO;
     }
@@ -183,13 +183,13 @@ public class TokenStore {
      */
     public TokenInfoBO refreshToken(String refreshToken) {
         if (StrUtil.isBlank(refreshToken)) {
-            throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"refreshToken is blank");
+            throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"refreshToken is blank");
         }
         String realRefreshToken = decryptToken(refreshToken);
         String accessToken = stringRedisTemplate.opsForValue().get(getRefreshToAccessKey(realRefreshToken));
 
         if (StrUtil.isBlank(accessToken)) {
-            throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"refreshToken 已过期");
+            throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"refreshToken 已过期");
         }
         UserInfoInTokenBO userInfoInTokenBO = getUserInfoByAccessToken(accessToken,
                 false);
@@ -256,16 +256,16 @@ public class TokenStore {
             int expiresIn = getExpiresIn(sysType);
             long second = 1000L;
             if (System.currentTimeMillis() - createTokenTime > expiresIn * second) {
-                throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"token error");
+                throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"token error");
             }
         }
         catch (Exception e) {
-            throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"token error");
+            throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"token error");
         }
 
         // 防止解密后的token是脚本，从而对redis进行攻击，uuid只能是数字和小写字母
         if (!PrincipalUtil.isSimpleChar(decryptToken)) {
-            throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED,"token error");
+            throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"token error");
         }
         return decryptToken;
     }

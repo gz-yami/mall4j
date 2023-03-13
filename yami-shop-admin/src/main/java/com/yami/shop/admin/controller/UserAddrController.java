@@ -17,7 +17,7 @@ import com.yami.shop.bean.model.UserAddr;
 import com.yami.shop.common.annotation.SysLog;
 import com.yami.shop.service.UserAddrService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,8 +44,8 @@ public class UserAddrController {
      * @return 分页数据
      */
     @GetMapping("/page")
-    public ResponseEntity<IPage<UserAddr>> getUserAddrPage(PageParam page, UserAddr userAddr) {
-        return ResponseEntity.ok(userAddrService.page(page, new LambdaQueryWrapper<UserAddr>()));
+    public ServerResponseEntity<IPage<UserAddr>> getUserAddrPage(PageParam page, UserAddr userAddr) {
+        return ServerResponseEntity.success(userAddrService.page(page, new LambdaQueryWrapper<UserAddr>()));
     }
 
 
@@ -56,8 +56,8 @@ public class UserAddrController {
      * @return 单个数据
      */
     @GetMapping("/info/{addrId}")
-    public ResponseEntity<UserAddr> getById(@PathVariable("addrId") Long addrId) {
-        return ResponseEntity.ok(userAddrService.getById(addrId));
+    public ServerResponseEntity<UserAddr> getById(@PathVariable("addrId") Long addrId) {
+        return ServerResponseEntity.success(userAddrService.getById(addrId));
     }
 
     /**
@@ -69,8 +69,8 @@ public class UserAddrController {
     @SysLog("新增用户地址管理")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('user:addr:save')")
-    public ResponseEntity<Boolean> save(@RequestBody @Valid UserAddr userAddr) {
-        return ResponseEntity.ok(userAddrService.save(userAddr));
+    public ServerResponseEntity<Boolean> save(@RequestBody @Valid UserAddr userAddr) {
+        return ServerResponseEntity.success(userAddrService.save(userAddr));
     }
 
     /**
@@ -82,8 +82,8 @@ public class UserAddrController {
     @SysLog("修改用户地址管理")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('user:addr:update')")
-    public ResponseEntity<Boolean> updateById(@RequestBody @Valid UserAddr userAddr) {
-        return ResponseEntity.ok(userAddrService.updateById(userAddr));
+    public ServerResponseEntity<Boolean> updateById(@RequestBody @Valid UserAddr userAddr) {
+        return ServerResponseEntity.success(userAddrService.updateById(userAddr));
     }
 
     /**
@@ -95,8 +95,8 @@ public class UserAddrController {
     @SysLog("删除用户地址管理")
     @DeleteMapping("/{addrId}")
     @PreAuthorize("@pms.hasPermission('user:addr:delete')")
-    public ResponseEntity<Boolean> removeById(@PathVariable Long addrId) {
-        return ResponseEntity.ok(userAddrService.removeById(addrId));
+    public ServerResponseEntity<Boolean> removeById(@PathVariable Long addrId) {
+        return ServerResponseEntity.success(userAddrService.removeById(addrId));
     }
 
 }

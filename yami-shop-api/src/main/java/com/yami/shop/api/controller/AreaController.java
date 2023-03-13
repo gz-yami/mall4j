@@ -14,7 +14,7 @@ import java.util.List;
 
 import com.yami.shop.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,9 +43,9 @@ public class AreaController {
     @GetMapping("/listByPid")
     @Operation(summary = "获取省市区信息" , description = "根据省市区的pid获取地址信息")
     @Parameter(name = "pid", description = "省市区的pid(pid为0获取所有省份)" , required = true)
-	public ResponseEntity<List<Area>> listByPid(Long pid){
+	public ServerResponseEntity<List<Area>> listByPid(Long pid){
 		List<Area> list = areaService.listByPid(pid);
-		return ResponseEntity.ok(list);
+		return ServerResponseEntity.success(list);
 	}
     
 }

@@ -17,7 +17,7 @@ import com.yami.shop.bean.model.User;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,14 +40,14 @@ public class UserController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:user:page')")
-    public ResponseEntity<IPage<User>> page(User user,PageParam<User> page) {
+    public ServerResponseEntity<IPage<User>> page(User user,PageParam<User> page) {
         IPage<User> userPage = userService.page(page, new LambdaQueryWrapper<User>()
                 .like(StrUtil.isNotBlank(user.getNickName()), User::getNickName, user.getNickName())
                 .eq(user.getStatus() != null, User::getStatus, user.getStatus()));
         for (User userResult : userPage.getRecords()) {
             userResult.setNickName(userResult.getNickName() == null ? "" : userResult.getNickName());
         }
-        return ResponseEntity.ok(userPage);
+        return ServerResponseEntity.success(userPage);
     }
 
     /**
@@ -55,10 +55,10 @@ public class UserController {
      */
     @GetMapping("/info/{userId}")
     @PreAuthorize("@pms.hasPermission('admin:user:info')")
-    public ResponseEntity<User> info(@PathVariable("userId") String userId) {
+    public ServerResponseEntity<User> info(@PathVariable("userId") String userId) {
         User user = userService.getById(userId);
         user.setNickName(user.getNickName() == null ? "" : user.getNickName());
-        return ResponseEntity.ok(user);
+        return ServerResponseEntity.success(user);
     }
 
     /**
@@ -66,11 +66,11 @@ public class UserController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('admin:user:update')")
-    public ResponseEntity<Void> update(@RequestBody User user) {
+    public ServerResponseEntity<Void> update(@RequestBody User user) {
         user.setModifyTime(new Date());
         user.setNickName(user.getNickName() == null ? "" : user.getNickName());
         userService.updateById(user);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -78,8 +78,8 @@ public class UserController {
      */
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('admin:user:delete')")
-    public ResponseEntity<Void> delete(@RequestBody String[] userIds) {
+    public ServerResponseEntity<Void> delete(@RequestBody String[] userIds) {
         userService.removeByIds(Arrays.asList(userIds));
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 }

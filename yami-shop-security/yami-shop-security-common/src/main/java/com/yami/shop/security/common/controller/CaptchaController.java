@@ -14,7 +14,7 @@ import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,19 +36,19 @@ public class CaptchaController {
     }
 
     @PostMapping({ "/get" })
-    public ResponseEntity<ResponseModel> get(@RequestBody CaptchaVO captchaVO) {
-        return ResponseEntity.ok(captchaService.get(captchaVO));
+    public ServerResponseEntity<ResponseModel> get(@RequestBody CaptchaVO captchaVO) {
+        return ServerResponseEntity.success(captchaService.get(captchaVO));
     }
 
     @PostMapping({ "/check" })
-    public ResponseEntity<ResponseModel> check(@RequestBody CaptchaVO captchaVO) {
+    public ServerResponseEntity<ResponseModel> check(@RequestBody CaptchaVO captchaVO) {
         ResponseModel responseModel;
         try {
             responseModel = captchaService.check(captchaVO);
         }catch (Exception e) {
-            return ResponseEntity.ok(ResponseModel.errorMsg(RepCodeEnum.API_CAPTCHA_COORDINATE_ERROR));
+            return ServerResponseEntity.success(ResponseModel.errorMsg(RepCodeEnum.API_CAPTCHA_COORDINATE_ERROR));
         }
-        return ResponseEntity.ok(responseModel);
+        return ServerResponseEntity.success(responseModel);
     }
 
 }

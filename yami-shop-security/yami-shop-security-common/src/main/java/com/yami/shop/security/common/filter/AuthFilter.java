@@ -13,6 +13,8 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.handler.HttpHandler;
+import com.yami.shop.common.response.ResponseEnum;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.security.common.adapter.AuthConfigAdapter;
 import com.yami.shop.security.common.bo.UserInfoInTokenBO;
 import com.yami.shop.security.common.manager.TokenStore;
@@ -20,7 +22,6 @@ import com.yami.shop.security.common.util.AuthUserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
@@ -85,7 +86,7 @@ public class AuthFilter implements Filter {
             }
             else if (!mayAuth) {
                 // 返回前端401
-                httpHandler.printServerResponseToWeb(HttpStatus.UNAUTHORIZED.getReasonPhrase(), HttpStatus.UNAUTHORIZED.value());
+                httpHandler.printServerResponseToWeb(ServerResponseEntity.fail(ResponseEnum.UNAUTHORIZED));
                 return;
             }
             // 保存上下文
@@ -96,7 +97,7 @@ public class AuthFilter implements Filter {
         }catch (Exception e) {
             // 手动捕获下非controller异常
             if (e instanceof YamiShopBindException) {
-                httpHandler.printServerResponseToWeb(e.getMessage(), ((YamiShopBindException) e).getHttpStatusCode());
+                httpHandler.printServerResponseToWeb((YamiShopBindException) e);
             } else {
                 throw e;
             }

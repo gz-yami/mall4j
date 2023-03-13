@@ -33,7 +33,7 @@ public class PayNoticeController {
 //
 //
 //    @RequestMapping("/order")
-//    public ResponseEntity<Void> submit(@RequestBody String xmlData) throws WxPayException {
+//    public ServerResponseEntity<Void> submit(@RequestBody String xmlData) throws WxPayException {
 //        WxPayOrderNotifyResult parseOrderNotifyResult = wxMiniPayService.parseOrderNotifyResult(xmlData);
 //
 //        String payNo = parseOrderNotifyResult.getOutTradeNo();
@@ -43,6 +43,6 @@ public class PayNoticeController {
 //        payService.paySuccess(payNo, bizPayNo);
 //
 //
-//        return ResponseEntity.ok().build();
+//        return ServerResponseEntity.success();
 //    }
 }

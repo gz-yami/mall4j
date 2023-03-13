@@ -21,7 +21,7 @@ import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.ProdTagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,13 +50,13 @@ public class ProdTagController {
      * @return 分页数据
      */
     @GetMapping("/page")
-    public ResponseEntity<IPage<ProdTag>> getProdTagPage(PageParam<ProdTag> page, ProdTag prodTag) {
+    public ServerResponseEntity<IPage<ProdTag>> getProdTagPage(PageParam<ProdTag> page, ProdTag prodTag) {
         IPage<ProdTag> tagPage = prodTagService.page(
                 page, new LambdaQueryWrapper<ProdTag>()
                         .eq(prodTag.getStatus() != null, ProdTag::getStatus, prodTag.getStatus())
                         .like(prodTag.getTitle() != null, ProdTag::getTitle, prodTag.getTitle())
                         .orderByDesc(ProdTag::getSeq, ProdTag::getCreateTime));
-        return ResponseEntity.ok(tagPage);
+        return ServerResponseEntity.success(tagPage);
 
     }
 
@@ -68,8 +68,8 @@ public class ProdTagController {
      * @return 单个数据
      */
     @GetMapping("/info/{id}")
-    public ResponseEntity<ProdTag> getById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(prodTagService.getById(id));
+    public ServerResponseEntity<ProdTag> getById(@PathVariable("id") Long id) {
+        return ServerResponseEntity.success(prodTagService.getById(id));
     }
 
     /**
@@ -81,7 +81,7 @@ public class ProdTagController {
     @SysLog("新增商品分组标签")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('prod:prodTag:save')")
-    public ResponseEntity<Boolean> save(@RequestBody @Valid ProdTag prodTag) {
+    public ServerResponseEntity<Boolean> save(@RequestBody @Valid ProdTag prodTag) {
         // 查看是否相同的标签
         List<ProdTag> list = prodTagService.list(new LambdaQueryWrapper<ProdTag>().like(ProdTag::getTitle, prodTag.getTitle()));
         if (CollectionUtil.isNotEmpty(list)) {
@@ -93,7 +93,7 @@ public class ProdTagController {
         prodTag.setUpdateTime(new Date());
         prodTag.setShopId(SecurityUtils.getSysUser().getShopId());
         prodTagService.removeProdTag();
-        return ResponseEntity.ok(prodTagService.save(prodTag));
+        return ServerResponseEntity.success(prodTagService.save(prodTag));
     }
 
     /**
@@ -105,10 +105,10 @@ public class ProdTagController {
     @SysLog("修改商品分组标签")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('prod:prodTag:update')")
-    public ResponseEntity<Boolean> updateById(@RequestBody @Valid ProdTag prodTag) {
+    public ServerResponseEntity<Boolean> updateById(@RequestBody @Valid ProdTag prodTag) {
         prodTag.setUpdateTime(new Date());
         prodTagService.removeProdTag();
-        return ResponseEntity.ok(prodTagService.updateById(prodTag));
+        return ServerResponseEntity.success(prodTagService.updateById(prodTag));
     }
 
     /**
@@ -120,18 +120,18 @@ public class ProdTagController {
     @SysLog("删除商品分组标签")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('prod:prodTag:delete')")
-    public ResponseEntity<Boolean> removeById(@PathVariable Long id) {
+    public ServerResponseEntity<Boolean> removeById(@PathVariable Long id) {
         ProdTag prodTag = prodTagService.getById(id);
         if (prodTag.getIsDefault() != 0) {
             throw new YamiShopBindException("默认标签不能删除");
         }
         prodTagService.removeProdTag();
-        return ResponseEntity.ok(prodTagService.removeById(id));
+        return ServerResponseEntity.success(prodTagService.removeById(id));
     }
 
     @GetMapping("/listTagList")
-    public ResponseEntity<List<ProdTag>> listTagList() {
-        return ResponseEntity.ok(prodTagService.listProdTag());
+    public ServerResponseEntity<List<ProdTag>> listTagList() {
+        return ServerResponseEntity.success(prodTagService.listProdTag());
 
     }
 

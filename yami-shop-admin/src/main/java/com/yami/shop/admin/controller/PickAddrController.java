@@ -14,13 +14,13 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yami.shop.bean.model.PickAddr;
-import com.yami.shop.common.enums.YamiHttpStatus;
 import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.response.ResponseEnum;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.PickAddrService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,11 +46,11 @@ public class PickAddrController {
 	 */
     @GetMapping("/page")
 	@PreAuthorize("@pms.hasPermission('shop:pickAddr:page')")
-	public ResponseEntity<IPage<PickAddr>> page(PickAddr pickAddr,PageParam<PickAddr> page){
+	public ServerResponseEntity<IPage<PickAddr>> page(PickAddr pickAddr,PageParam<PickAddr> page){
 		IPage<PickAddr> pickAddrs = pickAddrService.page(page,new LambdaQueryWrapper<PickAddr>()
 													.like(StrUtil.isNotBlank(pickAddr.getAddrName()),PickAddr::getAddrName,pickAddr.getAddrName())
 													.orderByDesc(PickAddr::getAddrId));
-		return ResponseEntity.ok(pickAddrs);
+		return ServerResponseEntity.success(pickAddrs);
 	}
 
     /**
@@ -58,9 +58,9 @@ public class PickAddrController {
 	 */
 	@GetMapping("/info/{id}")
 	@PreAuthorize("@pms.hasPermission('shop:pickAddr:info')")
-	public ResponseEntity<PickAddr> info(@PathVariable("id") Long id){
+	public ServerResponseEntity<PickAddr> info(@PathVariable("id") Long id){
 		PickAddr pickAddr = pickAddrService.getById(id);
-		return ResponseEntity.ok(pickAddr);
+		return ServerResponseEntity.success(pickAddr);
 	}
 
 	/**
@@ -68,10 +68,10 @@ public class PickAddrController {
 	 */
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('shop:pickAddr:save')")
-	public ResponseEntity<Void> save(@Valid @RequestBody PickAddr pickAddr){
+	public ServerResponseEntity<Void> save(@Valid @RequestBody PickAddr pickAddr){
 		pickAddr.setShopId(SecurityUtils.getSysUser().getShopId());
 		pickAddrService.save(pickAddr);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -79,14 +79,14 @@ public class PickAddrController {
 	 */
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('shop:pickAddr:update')")
-	public ResponseEntity<Void> update(@Valid @RequestBody PickAddr pickAddr){
+	public ServerResponseEntity<Void> update(@Valid @RequestBody PickAddr pickAddr){
 		PickAddr dbPickAddr = pickAddrService.getById(pickAddr.getAddrId());
 
 		if (!Objects.equals(dbPickAddr.getShopId(),SecurityUtils.getSysUser().getShopId())) {
-			throw new YamiShopBindException(YamiHttpStatus.UNAUTHORIZED);
+			throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED);
 		}
 		pickAddrService.updateById(pickAddr);
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 
 	/**
@@ -94,8 +94,8 @@ public class PickAddrController {
 	 */
 	@DeleteMapping
 	@PreAuthorize("@pms.hasPermission('shop:pickAddr:delete')")
-	public ResponseEntity<Void> delete(@RequestBody Long[] ids){
+	public ServerResponseEntity<Void> delete(@RequestBody Long[] ids){
 		pickAddrService.removeByIds(Arrays.asList(ids));
-		return ResponseEntity.ok().build();
+		return ServerResponseEntity.success();
 	}
 }

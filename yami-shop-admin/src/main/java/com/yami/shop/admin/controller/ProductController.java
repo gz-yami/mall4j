@@ -18,6 +18,7 @@ import com.yami.shop.bean.model.Product;
 import com.yami.shop.bean.model.Sku;
 import com.yami.shop.bean.param.ProductParam;
 import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
@@ -27,9 +28,7 @@ import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -43,7 +42,7 @@ import java.util.Objects;
  *
  * @author lgh
  */
-@Controller
+@RestController
 @RequestMapping("/prod/prod")
 public class ProductController {
 
@@ -67,14 +66,14 @@ public class ProductController {
      */
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('prod:prod:page')")
-    public ResponseEntity<IPage<Product>> page(ProductParam product, PageParam<Product> page) {
+    public ServerResponseEntity<IPage<Product>> page(ProductParam product, PageParam<Product> page) {
         IPage<Product> products = productService.page(page,
                 new LambdaQueryWrapper<Product>()
                         .like(StrUtil.isNotBlank(product.getProdName()), Product::getProdName, product.getProdName())
                         .eq(Product::getShopId, SecurityUtils.getSysUser().getShopId())
                         .eq(product.getStatus() != null, Product::getStatus, product.getStatus())
                         .orderByDesc(Product::getPutawayTime));
-        return ResponseEntity.ok(products);
+        return ServerResponseEntity.success(products);
     }
 
     /**
@@ -82,7 +81,7 @@ public class ProductController {
      */
     @GetMapping("/info/{prodId}")
     @PreAuthorize("@pms.hasPermission('prod:prod:info')")
-    public ResponseEntity<Product> info(@PathVariable("prodId") Long prodId) {
+    public ServerResponseEntity<Product> info(@PathVariable("prodId") Long prodId) {
         Product prod = productService.getProductByProdId(prodId);
         if (!Objects.equals(prod.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("没有权限获取该商品规格信息");
@@ -93,7 +92,7 @@ public class ProductController {
         //获取分组标签
         List<Long> listTagId = prodTagReferenceService.listTagIdByProdId(prodId);
         prod.setTagList(listTagId);
-        return ResponseEntity.ok(prod);
+        return ServerResponseEntity.success(prod);
     }
 
     /**
@@ -101,7 +100,7 @@ public class ProductController {
      */
     @PostMapping
     @PreAuthorize("@pms.hasPermission('prod:prod:save')")
-    public ResponseEntity<String> save(@Valid @RequestBody ProductParam productParam) {
+    public ServerResponseEntity<String> save(@Valid @RequestBody ProductParam productParam) {
         checkParam(productParam);
 
         Product product = mapperFacade.map(productParam, Product.class);
@@ -113,7 +112,7 @@ public class ProductController {
         }
         product.setCreateTime(new Date());
         productService.saveProduct(product);
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -121,11 +120,11 @@ public class ProductController {
      */
     @PutMapping
     @PreAuthorize("@pms.hasPermission('prod:prod:update')")
-    public ResponseEntity<String> update(@Valid @RequestBody ProductParam productParam) {
+    public ServerResponseEntity<String> update(@Valid @RequestBody ProductParam productParam) {
         checkParam(productParam);
         Product dbProduct = productService.getProductByProdId(productParam.getProdId());
         if (!Objects.equals(dbProduct.getShopId(), SecurityUtils.getSysUser().getShopId())) {
-            return ResponseEntity.badRequest().body("无法修改非本店铺商品信息");
+            return ServerResponseEntity.showFailMsg("无法修改非本店铺商品信息");
         }
 
         List<Sku> dbSkus = skuService.listByProdId(dbProduct.getProdId());
@@ -150,13 +149,13 @@ public class ProductController {
         for (Sku sku : dbSkus) {
             skuService.removeSkuCacheBySkuId(sku.getSkuId(), sku.getProdId());
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
      * 删除
      */
-    public ResponseEntity<Void> delete(Long prodId) {
+    public ServerResponseEntity<Void> delete(Long prodId) {
         Product dbProduct = productService.getProductByProdId(prodId);
         if (!Objects.equals(dbProduct.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("无法获取非本店铺商品信息");
@@ -176,7 +175,7 @@ public class ProductController {
             basketService.removeShopCartItemsCacheByUserId(userId);
         }
 
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -184,11 +183,11 @@ public class ProductController {
      */
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('prod:prod:delete')")
-    public ResponseEntity<Void> batchDelete(@RequestBody Long[] prodIds) {
+    public ServerResponseEntity<Void> batchDelete(@RequestBody Long[] prodIds) {
         for (Long prodId : prodIds) {
             delete(prodId);
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     /**
@@ -196,7 +195,7 @@ public class ProductController {
      */
     @PutMapping("/prodStatus")
     @PreAuthorize("@pms.hasPermission('prod:prod:status')")
-    public ResponseEntity<Void> shopStatus(@RequestParam Long prodId, @RequestParam Integer prodStatus) {
+    public ServerResponseEntity<Void> shopStatus(@RequestParam Long prodId, @RequestParam Integer prodStatus) {
         Product product = new Product();
         product.setProdId(prodId);
         product.setStatus(prodStatus);
@@ -210,7 +209,7 @@ public class ProductController {
         for (String userId : userIds) {
             basketService.removeShopCartItemsCacheByUserId(userId);
         }
-        return ResponseEntity.ok().build();
+        return ServerResponseEntity.success();
     }
 
     private void checkParam(ProductParam productParam) {
