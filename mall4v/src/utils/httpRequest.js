@@ -28,7 +28,57 @@ http.interceptors.request.use(config => {
  * 响应拦截
  */
 http.interceptors.response.use(response => {
-  return response
+  const res = response.data
+  // 00000 请求成功
+  if (res.code === '00000') {
+    return res
+  }
+  // A00001 用于直接显示提示用户的错误,内容由输入决定
+  if (res.code === 'A00001') {
+    Message({
+      message: res.msg || 'Error',
+      type: 'error',
+      duration: 1.5 * 1000
+    })
+    return Promise.reject(res)
+  }
+  // A00002 用于直接显示提示系统的成功,内容由输入决定
+  if (res.code === 'A00002') {
+    Message({
+      message: res.msg,
+      type: 'success',
+      duration: 1.5 * 1000
+    })
+  }
+
+  // A00004 未授权
+  if (res.code === 'A00004') {
+    clearLoginInfo()
+    router.push({ name: 'login' })
+  }
+
+  // A00005 服务器异常
+  if (res.code === 'A00005') {
+    console.error('============== 请求异常 ==============')
+    console.log('接口地址: ', response.config.url.replace(process.env.VUE_APP_BASE_API, ''))
+    console.log('异常信息: ', res)
+    console.error('============== 请求异常 end ==========')
+    Message({
+      message: '服务器出了点小差，请稍后再试',
+      type: 'error',
+      duration: 1.5 * 1000,
+      customClass: 'element-error-message-zindex'
+    })
+    return Promise.reject(res)
+  }
+  if (res.code === 'A00014') {
+    Message({
+      message: res.msg,
+      type: 'error',
+      duration: 1.5 * 1000
+    })
+    return Promise.reject(res)
+  }
 }, error => {
   switch (error.response.status) {
     case 400:

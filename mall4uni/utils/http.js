@@ -37,25 +37,18 @@ function request(params, isGetTonken) {
     dataType: 'json',
     responseType: params.responseType == undefined ? 'text' : params.responseType,
     success: function (res) {
-      if (res.statusCode == 200) {
-        //如果有定义了params.callBack，则调用 params.callBack(res.data)
+			const responseData = res.data
+
+      // 00000 请求成功
+      if (responseData.code === '00000') {
         if (params.callBack) {
-          params.callBack(res.data);
+          params.callBack(responseData.data);
         }
-      } else if (res.statusCode == 500) {
-        uni.showToast({
-          title: "服务器出了点小差",
-          icon: "none"
-        });
-      } else if (res.statusCode == 401) {
-        // 添加到请求队列
-        // globalData.requestQueue.push(params); // 是否正在登陆
+        return
+      }
 
-        // if (!globalData.isLanding) {
-        //   globalData.isLanding = true; //重新获取token,再次请求接口
-
-        //   getToken();
-        // }
+      // A00004 未授权
+      if (responseData.code === 'A00004') {
 				uni.removeStorageSync('loginResult');
 				uni.removeStorageSync('token');
 				// #ifdef H5
@@ -136,24 +129,52 @@ function request(params, isGetTonken) {
 				// 		// #endif
 					}
 				}
-      } else if (res.statusCode == 400 && !params.errCallBack) {
-        uni.hideLoading();
-				uni.showToast({
-          title: res.data,
-          icon: "none"
-        });
-      } else {
-        //如果有定义了params.errCallBack，则调用 params.errCallBack(res.data)
-        if (params.errCallBack) {
-
-          params.errCallBack(res);
-        }
-				uni.hideLoading();
+				return
       }
 
-      // if (!globalData.isLanding) {
-      //   uni.hideLoading();
-      // }
+      // A00005 服务器出了点小差
+      if (responseData.code === 'A00005') {
+        console.error('============== 请求异常 ==============')
+        console.log('接口: ', params.url)
+        console.log('异常信息: ', responseData)
+        console.error('============== 请求异常 ==============')
+        if (params.errCallBack) {
+          params.errCallBack(responseData)
+          return
+        }
+        uni.showToast({
+          title: '服务器出了点小差~',
+          icon: 'none'
+        })
+      }
+
+      // A00001 用于直接显示提示用户的错误，内容由输入内容决定
+      if (responseData.code === 'A00001') {
+        if (params.errCallBack) {
+          params.errCallBack(responseData)
+          return
+        }
+        uni.showToast({
+          title: responseData.msg || 'Error',
+          icon: 'none'
+        })
+        return
+      }
+
+      // 其他异常
+      if (responseData.code !== '00000') {
+        // console.log('params', params)
+        if (params.errCallBack) {
+          params.errCallBack(responseData)
+        } else {
+          console.log(`接口: ${params.url}`)
+          console.log(`返回信息： `, res)
+        }
+      }
+			
+      if (!globalData.isLanding) {
+        wx.hideLoading();
+      }
     },
     fail: function (err) {
       uni.hideLoading();
@@ -168,10 +189,6 @@ function request(params, isGetTonken) {
 					icon: "none"
 				});
 			}, 1);
-      // uni.showToast({
-      //   title: "服务器出了点小差",
-      //   icon: "none"
-      // });
     }
   });
 } //通过code获取token,并保存到缓存
