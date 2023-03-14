@@ -40,6 +40,7 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 ## 演示地址
 
  商业版小程序演示
+
 ![输入图片说明](screenshot/%E5%AE%87%E5%AE%99%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F.png)
 
 ## 技术选型
