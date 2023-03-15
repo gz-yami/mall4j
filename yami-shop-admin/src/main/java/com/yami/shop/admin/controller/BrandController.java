@@ -44,10 +44,9 @@ public class BrandController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('admin:brand:page')")
     public ServerResponseEntity<IPage<Brand>> page(Brand brand,PageParam<Brand> page) {
-        page.setAsc("first_char");
         IPage<Brand> brands = brandService.page(page,
                 new LambdaQueryWrapper<Brand>()
-                        .like(StrUtil.isNotBlank(brand.getBrandName()), Brand::getBrandName, brand.getBrandName()));
+                        .like(StrUtil.isNotBlank(brand.getBrandName()), Brand::getBrandName, brand.getBrandName()).orderByAsc(Brand::getFirstChar));
         return ServerResponseEntity.success(brands);
     }
 

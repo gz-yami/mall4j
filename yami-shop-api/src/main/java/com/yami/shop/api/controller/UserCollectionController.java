@@ -91,9 +91,9 @@ public class UserCollectionController {
      */
     @GetMapping("count")
     @Operation(summary = "查询用户收藏商品数量" , description = "查询用户收藏商品数量")
-    public int findUserCollectionCount() {
+    public ServerResponseEntity<Long> findUserCollectionCount() {
         String userId = SecurityUtils.getUser().getUserId();
-        return userCollectionService.count(new LambdaQueryWrapper<UserCollection>().eq(UserCollection::getUserId, userId));
+        return ServerResponseEntity.success(userCollectionService.count(new LambdaQueryWrapper<UserCollection>().eq(UserCollection::getUserId, userId)));
     }
 
     @GetMapping("/prods")

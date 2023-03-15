@@ -33,7 +33,7 @@
         <orika.version>1.5.4</orika.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
-        <mybatis-plus.version>3.1.0</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <redisson.version>3.12.5</redisson.version>
         <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
         <log4j.version>2.17.2</log4j.version>

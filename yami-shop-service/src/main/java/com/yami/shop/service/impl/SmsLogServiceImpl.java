@@ -87,7 +87,7 @@ public class SmsLogServiceImpl extends ServiceImpl<SmsLogMapper, SmsLog> impleme
 
         SmsLog smsLog = new SmsLog();
         if (smsType.equals(SmsType.VALID)) {
-            int todaySendSmsNumber = smsLogMapper.selectCount(new LambdaQueryWrapper<SmsLog>()
+            long todaySendSmsNumber = smsLogMapper.selectCount(new LambdaQueryWrapper<SmsLog>()
                     .gt(SmsLog::getRecDate, DateUtil.beginOfDay(new Date()))
                     .lt(SmsLog::getRecDate, DateUtil.endOfDay(new Date()))
                     .eq(SmsLog::getUserId, userId)

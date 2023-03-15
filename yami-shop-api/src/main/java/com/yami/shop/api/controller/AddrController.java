@@ -63,7 +63,7 @@ public class AddrController {
         if (addrParam.getAddrId() != null && addrParam.getAddrId() != 0) {
             return ServerResponseEntity.showFailMsg("该地址已存在");
         }
-        int addrCount = userAddrService.count(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId));
+        long addrCount = userAddrService.count(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId));
         UserAddr userAddr = mapperFacade.map(addrParam, UserAddr.class);
 
         if (addrCount == 0) {

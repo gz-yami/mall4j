@@ -124,7 +124,7 @@ public class AreaController {
     }
 
     private void hasSameName(Area area) {
-        int count = areaService.count(new LambdaQueryWrapper<Area>()
+        long count = areaService.count(new LambdaQueryWrapper<Area>()
                 .eq(Area::getParentId, area.getParentId())
                 .eq(Area::getAreaName, area.getAreaName())
                 .ne(Objects.nonNull(area.getAreaId()) && !Objects.equals(area.getAreaId(), 0L), Area::getAreaId, area.getAreaId())

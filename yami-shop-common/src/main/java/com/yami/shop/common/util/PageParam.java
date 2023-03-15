@@ -93,14 +93,6 @@ public class PageParam<T> extends Page<T> {
     }
 
     @Override
-    public boolean isSearchCount() {
-        if (total < 0) {
-            return false;
-        }
-        return isSearchCount;
-    }
-
-    @Override
     public Page<T> setSearchCount(boolean isSearchCount) {
         this.isSearchCount = isSearchCount;
         return this;
@@ -132,24 +124,4 @@ public class PageParam<T> extends Page<T> {
         this.current = current;
         return this;
     }
-
-    /** @deprecated */
-    @Deprecated
-    public String getCountId() {
-        return this.countId;
-    }
-
-    /** @deprecated */
-    @Deprecated
-    public Long getMaxLimit() {
-        return this.maxLimit;
-    }
-
-
-    /** @deprecated */
-    @Deprecated
-    public boolean isOptimizeCountSql() {
-        return this.optimizeCountSql;
-    }
-
 }
