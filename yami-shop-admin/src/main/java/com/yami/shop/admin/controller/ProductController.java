@@ -26,12 +26,12 @@ import com.yami.shop.service.BasketService;
 import com.yami.shop.service.ProdTagReferenceService;
 import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -49,8 +49,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private MapperFacade mapperFacade;
 
     @Autowired
     private SkuService skuService;
@@ -103,7 +101,7 @@ public class ProductController {
     public ServerResponseEntity<String> save(@Valid @RequestBody ProductParam productParam) {
         checkParam(productParam);
 
-        Product product = mapperFacade.map(productParam, Product.class);
+        Product product = BeanUtil.copyProperties(productParam, Product.class);
         product.setDeliveryMode(Json.toJsonString(productParam.getDeliveryModeVo()));
         product.setShopId(SecurityUtils.getSysUser().getShopId());
         product.setUpdateTime(new Date());
@@ -130,7 +128,7 @@ public class ProductController {
         List<Sku> dbSkus = skuService.listByProdId(dbProduct.getProdId());
 
 
-        Product product = mapperFacade.map(productParam, Product.class);
+        Product product = BeanUtil.copyProperties(productParam, Product.class);
         product.setDeliveryMode(Json.toJsonString(productParam.getDeliveryModeVo()));
         product.setUpdateTime(new Date());
 

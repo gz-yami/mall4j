@@ -32,7 +32,7 @@ import org.springframework.context.ApplicationContext;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

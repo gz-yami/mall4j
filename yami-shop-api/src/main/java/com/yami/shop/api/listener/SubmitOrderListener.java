@@ -29,7 +29,7 @@ import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.UserAddrOrderService;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -46,7 +46,7 @@ import java.util.*;
 public class SubmitOrderListener {
 
 
-    private final MapperFacade mapperFacade;
+    
 
     private final UserAddrOrderService userAddrOrderService;
 
@@ -89,7 +89,7 @@ public class SubmitOrderListener {
         Map<Long, Product> prodStocksMap = new HashMap<>(16);
 
         // 把订单地址保存到数据库
-        UserAddrOrder userAddrOrder = mapperFacade.map(mergerOrder.getUserAddr(), UserAddrOrder.class);
+        UserAddrOrder userAddrOrder = BeanUtil.copyProperties(mergerOrder.getUserAddr(), UserAddrOrder.class);
         if (userAddrOrder == null) {
             throw new YamiShopBindException("请填写收货地址");
         }

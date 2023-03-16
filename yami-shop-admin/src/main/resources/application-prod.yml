@@ -13,10 +13,11 @@ spring:
       idle-timeout: 25000
       auto-commit: true
       connection-test-query: SELECT 1
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    database: ${REDIS_DATABASE:0}
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: ${REDIS_DATABASE:0}
 logging:
   config: classpath:logback/logback-prod.xml
 xxl-job:

@@ -15,9 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -28,7 +28,7 @@ import java.io.IOException;
 @Component
 public class XssFilter implements Filter {
     Logger logger = LoggerFactory.getLogger(getClass().getName());
-    
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -39,7 +39,7 @@ public class XssFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        
+
         logger.info("uri:{}",req.getRequestURI());
         // xss 过滤
 		chain.doFilter(new XssWrapper(req), resp);

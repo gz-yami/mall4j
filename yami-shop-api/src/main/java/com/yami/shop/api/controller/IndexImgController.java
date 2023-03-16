@@ -15,7 +15,7 @@ import com.yami.shop.bean.model.IndexImg;
 import com.yami.shop.service.IndexImgService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +29,6 @@ import java.util.List;
 @RestController
 @Tag(name = "首页轮播图接口")
 public class IndexImgController {
-    @Autowired
-    private MapperFacade mapperFacade;
 
     @Autowired
     private IndexImgService indexImgService;
@@ -42,7 +40,7 @@ public class IndexImgController {
     @Operation(summary = "首页轮播图" , description = "获取首页轮播图列表信息")
     public ServerResponseEntity<List<IndexImgDto>> indexImgs() {
         List<IndexImg> indexImgList = indexImgService.listIndexImg();
-        List<IndexImgDto> indexImgDtos = mapperFacade.mapAsList(indexImgList, IndexImgDto.class);
+        List<IndexImgDto> indexImgDtos = BeanUtil.copyToList(indexImgList, IndexImgDto.class);
         return ServerResponseEntity.success(indexImgDtos);
     }
 }

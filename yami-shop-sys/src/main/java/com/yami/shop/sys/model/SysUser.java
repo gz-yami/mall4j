@@ -18,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +34,7 @@ import java.util.List;
 @TableName("tz_sys_user")
 public class SysUser implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 用户ID
 	 *
@@ -72,18 +72,18 @@ public class SysUser implements Serializable {
 	 * 状态  0：禁用   1：正常
 	 */
 	private Integer status;
-	
+
 	/**
 	 * 用户所在店铺id
 	 */
 	private Long shopId;
-	
+
 	/**
 	 * 角色ID列表
 	 */
 	@TableField(exist=false)
 	private List<Long> roleIdList;
-	
+
 	/**
 	 * 创建时间
 	 */

@@ -10,7 +10,7 @@
 
 package com.yami.shop.common.util;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * IP帮助工具

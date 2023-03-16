@@ -45,21 +45,20 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 
 ## 技术选型
 
-| 技术                   | 版本     | 说明                           |
-|----------------------|--------|------------------------------|
-| Spring Boot          | 2.7.0  | MVC核心框架                      |
-| Spring Security web  | 2.7.0  | web应用安全防护                    |
-| MyBatis              | 3.5.0  | ORM框架                        |
-| MyBatisPlus          | 3.1.0  | 基于mybatis，使用lambda表达式的       |
-| spring-doc           | 1.6.9  | 接口文档工具                       |
-| Hibernator-Validator | 6.0.17 | 验证框架                         |
-| redisson             | 3.10.6 | 对redis进行封装、集成分布式锁等           |
-| hikari               | 3.2.0  | 数据库连接池                       |
-| logback              | 1.2.11 | log日志工具                      |
-| orika                | 1.5.4  | 更快的bean复制工具                  |
-| lombok               | 1.18.8 | 简化对象封装工具                     |
-| hutool               | 5.7.22 | 更适合国人的java工具集                |
-| knife4j              | 4.0.0  | 基于swagger，更便于国人使用的swagger ui |
+| 技术                  | 版本      | 说明                           |
+|---------------------|---------|------------------------------|
+| Spring Boot         | 3.0.4   | MVC核心框架                      |
+| Spring Security web | 3.0.4   | web应用安全防护                    |
+| MyBatis             | 3.5.10  | ORM框架                        |
+| MyBatisPlus         | 3.5.3.1 | 基于mybatis，使用lambda表达式的       |
+| spring-doc          | 2.0.0   | 接口文档工具                       |
+| jakarta-validation  | 3.0.2   | 验证框架                         |
+| redisson            | 3.19.3  | 对redis进行封装、集成分布式锁等           |
+| hikari              | 5.0.1   | 数据库连接池                       |
+| logback             | 1.4.5   | log日志工具                      |
+| lombok              | 1.18.26 | 简化对象封装工具                     |
+| hutool              | 5.8.15  | 更适合国人的java工具集                |
+| knife4j             | 4.0.0   | 基于swagger，更便于国人使用的swagger ui |
 
 
 通过阿里的代码规范扫描工具（Alibaba Java Coding Guidelines plugin），扫描无异常：

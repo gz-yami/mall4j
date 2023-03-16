@@ -13,8 +13,8 @@ package com.yami.shop.sys.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 /**
  * @author lanhai
  */
@@ -26,7 +26,7 @@ public class UpdatePasswordDto {
 	@Size(max = 50)
 	@Schema(description = "旧密码" ,required=true)
 	private String password;
-	
+
 	@NotBlank(message="新密码不能为空")
 	@Size(max = 50)
 	@Schema(description = "新密码" ,required=true)

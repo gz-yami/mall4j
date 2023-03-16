@@ -1,6 +1,5 @@
-FROM anapsix/alpine-java:8_server-jre_unlimited
+FROM openjdk:17.0.2
 
-MAINTAINER opgames(opgames.cn@gmail.com)
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 

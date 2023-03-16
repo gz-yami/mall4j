@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +40,7 @@ public class NoticeController {
 
     private NoticeService noticeService;
 
-    private MapperFacade mapperFacade;
+    
 
     /**
      * 置顶公告列表接口
@@ -50,7 +50,7 @@ public class NoticeController {
     @JsonView(NoticeDto.NoContent.class)
     public ServerResponseEntity<List<NoticeDto>> getTopNoticeList() {
         List<Notice> noticeList = noticeService.listNotice();
-        List<NoticeDto> noticeDtoList = mapperFacade.mapAsList(noticeList, NoticeDto.class);
+        List<NoticeDto> noticeDtoList = BeanUtil.copyToList(noticeList, NoticeDto.class);
         return ServerResponseEntity.success(noticeDtoList);
     }
 
@@ -62,7 +62,7 @@ public class NoticeController {
     @JsonView(NoticeDto.WithContent.class)
     public ServerResponseEntity<NoticeDto> getNoticeById(@PathVariable("id") Long id) {
         Notice notice = noticeService.getNoticeById(id);
-        NoticeDto noticeDto = mapperFacade.map(notice, NoticeDto.class);
+        NoticeDto noticeDto = BeanUtil.copyProperties(notice, NoticeDto.class);
         return ServerResponseEntity.success(noticeDto);
     }
 

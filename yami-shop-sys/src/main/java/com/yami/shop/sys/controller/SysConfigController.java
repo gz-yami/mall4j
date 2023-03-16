@@ -11,7 +11,7 @@
 package com.yami.shop.sys.controller;
 
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -47,7 +47,7 @@ import cn.hutool.core.util.StrUtil;
 public class SysConfigController{
 	@Autowired
 	private SysConfigService sysConfigService;
-	
+
 	/**
 	 * 所有配置列表
 	 */
@@ -57,8 +57,8 @@ public class SysConfigController{
 		IPage<SysConfig> sysConfigs = sysConfigService.page(page, new LambdaQueryWrapper<SysConfig>().like(StrUtil.isNotBlank(paramKey),SysConfig::getParamKey,paramKey));
 		return ServerResponseEntity.success(sysConfigs);
 	}
-	
-	
+
+
 	/**
 	 * 配置信息
 	 */
@@ -68,7 +68,7 @@ public class SysConfigController{
 		SysConfig config = sysConfigService.getById(id);
 		return ServerResponseEntity.success(config);
 	}
-	
+
 	/**
 	 * 保存配置
 	 */
@@ -79,7 +79,7 @@ public class SysConfigController{
 		sysConfigService.save(config);
 		return ServerResponseEntity.success();
 	}
-	
+
 	/**
 	 * 修改配置
 	 */
@@ -90,7 +90,7 @@ public class SysConfigController{
 		sysConfigService.updateById(config);
 		return ServerResponseEntity.success();
 	}
-	
+
 	/**
 	 * 删除配置
 	 */

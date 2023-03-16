@@ -22,24 +22,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-        <spring-boot.version>2.7.0</spring-boot.version>
-        <java.version>1.8</java.version>
+        <spring-boot.version>3.0.4</spring-boot.version>
+        <java.version>17</java.version>
         <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.7.22</hutool.version>
+        <hutool.version>5.8.15</hutool.version>
         <jsoup.version>1.15.3</jsoup.version>
         <poi.version>5.2.3</poi.version>
         <qiniu.version>7.2.18</qiniu.version>
-        <weixin.version>3.5.0</weixin.version>
-        <orika.version>1.5.4</orika.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <redisson.version>3.12.5</redisson.version>
+        <redisson.version>3.19.3</redisson.version>
         <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
         <log4j.version>2.17.2</log4j.version>
         <knife4j.version>4.0.0</knife4j.version>
         <xxl-job.version>2.3.1</xxl-job.version>
-        <spring-cloud-commons.version>3.1.1</spring-cloud-commons.version>
+        <spring-cloud-commons.version>4.0.1</spring-cloud-commons.version>
     </properties>
 
     <dependencyManagement>
@@ -57,26 +55,6 @@
                 <version>${knife4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-pay</artifactId>
-                <version>${weixin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-miniapp</artifactId>
-                <version>${weixin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-mp</artifactId>
-                <version>${weixin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ma.glasnost.orika</groupId>
-                <artifactId>orika-core</artifactId>
-                <version>${orika.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>
@@ -169,11 +147,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

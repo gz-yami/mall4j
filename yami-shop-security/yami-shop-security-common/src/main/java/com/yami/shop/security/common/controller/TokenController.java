@@ -15,13 +15,13 @@ import com.yami.shop.security.common.dto.RefreshTokenDTO;
 import com.yami.shop.security.common.manager.TokenStore;
 import com.yami.shop.security.common.vo.TokenInfoVO;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * @author 菠萝凤梨
@@ -34,15 +34,13 @@ public class TokenController {
     @Autowired
     private TokenStore tokenStore;
 
-    @Autowired
-    private MapperFacade mapperFacade;
 
     @PostMapping("/token/refresh")
     public ServerResponseEntity<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {
         TokenInfoBO tokenInfoServerResponseEntity = tokenStore
                 .refreshToken(refreshTokenDTO.getRefreshToken());
         return ServerResponseEntity
-                .success(mapperFacade.map(tokenInfoServerResponseEntity, TokenInfoVO.class));
+                .success(BeanUtil.copyProperties(tokenInfoServerResponseEntity, TokenInfoVO.class));
     }
 
 }

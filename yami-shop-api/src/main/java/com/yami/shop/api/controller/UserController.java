@@ -18,7 +18,7 @@ import com.yami.shop.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 /**
@@ -32,7 +32,7 @@ public class UserController {
 
 	private final UserService userService;
 
-	private final MapperFacade mapperFacade;
+	
 	/**
 	 * 查看用户接口
 	 */
@@ -41,7 +41,7 @@ public class UserController {
 	public ServerResponseEntity<UserDto> userInfo() {
 		String userId = SecurityUtils.getUser().getUserId();
 		User user = userService.getById(userId);
-		UserDto userDto = mapperFacade.map(user, UserDto.class);
+		UserDto userDto = BeanUtil.copyProperties(user, UserDto.class);
 		return ServerResponseEntity.success(userDto);
 	}
 

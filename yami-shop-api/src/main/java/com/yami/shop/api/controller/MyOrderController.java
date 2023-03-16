@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +46,7 @@ public class MyOrderController {
 
     private final OrderService orderService;
 
-    private final MapperFacade mapperFacade;
+    
 
     private final UserAddrOrderService userAddrOrderService;
 
@@ -83,9 +83,9 @@ public class MyOrderController {
 
         ShopDetail shopDetail = shopDetailService.getShopDetailByShopId(order.getShopId());
         UserAddrOrder userAddrOrder = userAddrOrderService.getById(order.getAddrOrderId());
-        UserAddrDto userAddrDto = mapperFacade.map(userAddrOrder, UserAddrDto.class);
+        UserAddrDto userAddrDto = BeanUtil.copyProperties(userAddrOrder, UserAddrDto.class);
         List<OrderItem> orderItems = orderItemService.getOrderItemsByOrderNumber(orderNumber);
-        List<OrderItemDto> orderItemDtos = mapperFacade.mapAsList(orderItems, OrderItemDto.class);
+        List<OrderItemDto> orderItemDtos = BeanUtil.copyToList(orderItems, OrderItemDto.class);
 
         orderShopDto.setShopId(shopDetail.getShopId());
         orderShopDto.setShopName(shopDetail.getShopName());

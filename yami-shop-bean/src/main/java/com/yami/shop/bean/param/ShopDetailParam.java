@@ -10,17 +10,17 @@
 
 package com.yami.shop.bean.param;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 /**
  * @author lanhai
  */
 public class ShopDetailParam {
-	
+
 
 	private Long shopId;
-	
+
     /**
      * 店铺名称(数字、中文，英文(可混合，不可有特殊字符)，可修改)、不唯一
      */
@@ -74,14 +74,14 @@ public class ShopDetailParam {
 	@NotBlank(message="店铺所在区域不能为空")
 	@Size(max = 10,message = "店铺所在省份区域长度应该小于{max}")
     private String area;
-    
+
     /**
      * 店铺省市区代码，用于回显
      */
 	@NotBlank(message="店铺省市区代码不能为空")
 	@Size(max = 20,message = "店铺省市区代码长度应该小于{max}")
     private String pcaCode;
-    
+
     /**
      * 店铺logo(可修改)
      */
@@ -101,7 +101,7 @@ public class ShopDetailParam {
 	@NotBlank(message="每天营业时间段不能为空")
 	@Size(max = 100,message = "每天营业时间段长度应该小于{max}")
     private String openTime;
-	
+
 	/**
      * 店铺状态(-1:未开通 0: 停业中 1:营业中)，可修改
      */

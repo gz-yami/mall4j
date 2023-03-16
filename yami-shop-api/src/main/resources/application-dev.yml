@@ -12,10 +12,11 @@ spring:
       maximum-pool-size: 20
       idle-timeout: 10000
       connection-test-query: select 1
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    database: 0
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
 logging:
   config: classpath:logback/logback-dev.xml
 

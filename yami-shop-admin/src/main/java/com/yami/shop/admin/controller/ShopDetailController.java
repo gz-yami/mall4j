@@ -18,14 +18,14 @@ import com.yami.shop.bean.param.ShopDetailParam;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.ShopDetailService;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,9 +42,6 @@ public class ShopDetailController {
 
     @Autowired
     private ShopDetailService shopDetailService;
-
-    @Autowired
-	private MapperFacade mapperFacade;
 
 
 	/**
@@ -83,7 +80,7 @@ public class ShopDetailController {
 						.orderByDesc(ShopDetail::getShopId));
 		return ServerResponseEntity.success(shopDetails);
 	}
-    
+
 	/**
 	 * 获取信息
 	 */
@@ -101,13 +98,13 @@ public class ShopDetailController {
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:save')")
 	public ServerResponseEntity<Void> save(@Valid ShopDetailParam shopDetailParam){
-		ShopDetail shopDetail = mapperFacade.map(shopDetailParam, ShopDetail.class);
+		ShopDetail shopDetail = BeanUtil.copyProperties(shopDetailParam, ShopDetail.class);
 		shopDetail.setCreateTime(new Date());
 		shopDetail.setShopStatus(1);
 		shopDetailService.save(shopDetail);
 		return ServerResponseEntity.success();
 	}
-	
+
 	/**
 	 * 修改
 	 */
@@ -115,12 +112,12 @@ public class ShopDetailController {
 	@PreAuthorize("@pms.hasPermission('shop:shopDetail:update')")
 	public ServerResponseEntity<Void> update(@Valid ShopDetailParam shopDetailParam){
 		ShopDetail daShopDetail = shopDetailService.getShopDetailByShopId(shopDetailParam.getShopId());
-		ShopDetail shopDetail = mapperFacade.map(shopDetailParam, ShopDetail.class);
+		ShopDetail shopDetail = BeanUtil.copyProperties(shopDetailParam, ShopDetail.class);
 		shopDetail.setUpdateTime(new Date());
 		shopDetailService.updateShopDetail(shopDetail,daShopDetail);
 		return ServerResponseEntity.success();
 	}
-	
+
 	/**
 	 * 删除
 	 */
@@ -130,7 +127,7 @@ public class ShopDetailController {
 		shopDetailService.deleteShopDetailByShopId(id);
 		return ServerResponseEntity.success();
 	}
-	
+
 	/**
 	 * 更新店铺状态
 	 */
@@ -145,8 +142,8 @@ public class ShopDetailController {
 		shopDetailService.removeShopDetailCacheByShopId(shopDetail.getShopId());
 		return ServerResponseEntity.success();
 	}
-	
-	
+
+
 	/**
 	 * 获取所有的店铺名称
 	 */

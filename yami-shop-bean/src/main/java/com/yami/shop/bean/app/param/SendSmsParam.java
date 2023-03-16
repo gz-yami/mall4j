@@ -12,14 +12,14 @@ package com.yami.shop.bean.app.param;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 
 /**
  * @author lanhai
  */
 @Schema(description = "发送验证码参数")
 public class SendSmsParam {
-	
+
 	@Schema(description = "手机号" )
 	@Pattern(regexp="1[0-9]{10}",message = "请输入正确的手机号")
 	private String mobile;
@@ -32,5 +32,5 @@ public class SendSmsParam {
 		this.mobile = mobile;
 	}
 
-	
+
 }

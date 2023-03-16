@@ -22,7 +22,7 @@ import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class HotSearchController {
 		HotSearch hotSearch = hotSearchService.getById(id);
 		return ServerResponseEntity.success(hotSearch);
 	}
-	
+
 	/**
 	 * 保存
 	 */
@@ -75,7 +75,7 @@ public class HotSearchController {
 		hotSearchService.removeHotSearchDtoCacheByShopId(SecurityUtils.getSysUser().getShopId());
 		return ServerResponseEntity.success();
 	}
-	
+
 	/**
 	 * 修改
 	 */

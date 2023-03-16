@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,8 +47,6 @@ public class ProdController {
     @Autowired
     private ProductService prodService;
 
-    @Autowired
-    private MapperFacade mapperFacade;
 
     @Autowired
     private SkuService skuService;
@@ -82,7 +80,7 @@ public class ProdController {
         // 启用的sku列表
         List<Sku> useSkuList = skuList.stream().filter(sku -> sku.getStatus() == 1).collect(Collectors.toList());
         product.setSkuList(useSkuList);
-        ProductDto productDto = mapperFacade.map(product, ProductDto.class);
+        ProductDto productDto = BeanUtil.copyProperties(product, ProductDto.class);
 
 
         // 商品的配送方式

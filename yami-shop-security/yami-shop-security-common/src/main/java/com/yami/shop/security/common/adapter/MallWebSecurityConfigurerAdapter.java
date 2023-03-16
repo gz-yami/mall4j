@@ -23,7 +23,7 @@ public class MallWebSecurityConfigurerAdapter {
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .and()
-                .authorizeRequests().antMatchers(
+                .authorizeRequests().requestMatchers(
                         "/**").permitAll().and().build();
     }
 

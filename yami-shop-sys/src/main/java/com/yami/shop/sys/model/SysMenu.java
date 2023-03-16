@@ -16,8 +16,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -29,7 +29,7 @@ import java.util.List;
 @TableName("tz_sys_menu")
 public class SysMenu implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 菜单ID
 	 */
@@ -41,13 +41,13 @@ public class SysMenu implements Serializable {
 	 */
 	@NotNull(message="上级菜单不能为空")
 	private Long parentId;
-	
+
 	/**
 	 * 父菜单名称
 	 */
 	@TableField(exist=false)
 	private String parentName;
-	
+
 	/**
 	 * 菜单名称
 	 */
@@ -78,7 +78,7 @@ public class SysMenu implements Serializable {
 	 * 排序
 	 */
 	private Integer orderNum;
-	
+
 	@TableField(exist=false)
 	private List<?> list;
 

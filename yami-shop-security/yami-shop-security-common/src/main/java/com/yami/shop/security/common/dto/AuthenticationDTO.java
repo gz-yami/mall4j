@@ -12,7 +12,7 @@ package com.yami.shop.security.common.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 用于登陆传递账号密码

@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
-import javax.servlet.DispatcherType;
+import jakarta.servlet.DispatcherType;
 
 /**
  * 授权配置

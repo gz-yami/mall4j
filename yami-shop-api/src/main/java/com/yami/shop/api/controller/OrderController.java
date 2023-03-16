@@ -24,7 +24,7 @@ import com.yami.shop.security.api.util.SecurityUtils;
 import com.yami.shop.service.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import com.yami.shop.common.response.ServerResponseEntity;
@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,8 +48,6 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private MapperFacade mapperFacade;
     @Autowired
     private SkuService skuService;
     @Autowired
@@ -72,7 +70,7 @@ public class OrderController {
 
         // 订单的地址信息
         UserAddr userAddr = userAddrService.getUserAddrByUserId(orderParam.getAddrId(), userId);
-        UserAddrDto userAddrDto = mapperFacade.map(userAddr, UserAddrDto.class);
+        UserAddrDto userAddrDto = BeanUtil.copyProperties(userAddr, UserAddrDto.class);
 
 
         // 组装获取用户提交的购物车商品项

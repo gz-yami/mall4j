@@ -22,11 +22,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -40,8 +40,6 @@ import java.util.List;
 public class AddrController {
 
     @Autowired
-    private MapperFacade mapperFacade;
-    @Autowired
     private UserAddrService userAddrService;
 
     /**
@@ -52,7 +50,7 @@ public class AddrController {
     public ServerResponseEntity<List<UserAddrDto>> dvyList() {
         String userId = SecurityUtils.getUser().getUserId();
         List<UserAddr> userAddrs = userAddrService.list(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId).orderByDesc(UserAddr::getCommonAddr).orderByDesc(UserAddr::getUpdateTime));
-        return ServerResponseEntity.success(mapperFacade.mapAsList(userAddrs, UserAddrDto.class));
+        return ServerResponseEntity.success(BeanUtil.copyToList(userAddrs, UserAddrDto.class));
     }
 
     @PostMapping("/addAddr")
@@ -64,7 +62,7 @@ public class AddrController {
             return ServerResponseEntity.showFailMsg("该地址已存在");
         }
         long addrCount = userAddrService.count(new LambdaQueryWrapper<UserAddr>().eq(UserAddr::getUserId, userId));
-        UserAddr userAddr = mapperFacade.map(addrParam, UserAddr.class);
+        UserAddr userAddr = BeanUtil.copyProperties(addrParam, UserAddr.class);
 
         if (addrCount == 0) {
             userAddr.setCommonAddr(1);
@@ -96,7 +94,7 @@ public class AddrController {
             return ServerResponseEntity.showFailMsg("该地址已被删除");
         }
 
-        UserAddr userAddr = mapperFacade.map(addrParam, UserAddr.class);
+        UserAddr userAddr = BeanUtil.copyProperties(addrParam, UserAddr.class);
         userAddr.setUserId(userId);
         userAddr.setUpdateTime(new Date());
         userAddrService.updateById(userAddr);
@@ -154,7 +152,7 @@ public class AddrController {
         if (userAddr == null) {
             throw new YamiShopBindException("该地址已被删除");
         }
-        return ServerResponseEntity.success(mapperFacade.map(userAddr, UserAddrDto.class));
+        return ServerResponseEntity.success(BeanUtil.copyProperties(userAddr, UserAddrDto.class));
     }
 
 }

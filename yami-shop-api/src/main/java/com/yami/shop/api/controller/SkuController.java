@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +37,7 @@ public class SkuController {
 
     private final SkuService skuService;
 
-    private final MapperFacade mapperFacade;
+    
 
     @GetMapping("/getSkuList")
     @Operation(summary = "通过prodId获取商品全部规格列表" , description = "通过prodId获取商品全部规格列表")
@@ -48,7 +48,7 @@ public class SkuController {
                 .eq(Sku::getIsDelete, 0)
                 .eq(Sku::getProdId, prodId)
         );
-        List<SkuDto> skuDtoList = mapperFacade.mapAsList(skus, SkuDto.class);
+        List<SkuDto> skuDtoList = BeanUtil.copyToList(skus, SkuDto.class);
         return ServerResponseEntity.success(skuDtoList);
     }
 }

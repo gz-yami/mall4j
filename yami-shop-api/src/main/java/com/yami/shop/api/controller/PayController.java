@@ -10,7 +10,6 @@
 
 package com.yami.shop.api.controller;
 
-import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.yami.shop.bean.app.param.PayParam;
 import com.yami.shop.bean.pay.PayInfoDto;
 import com.yami.shop.security.api.model.YamiUser;
@@ -42,7 +41,7 @@ public class PayController {
      */
     @PostMapping("/pay")
     @Operation(summary = "根据订单号进行支付" , description = "根据订单号进行支付")
-    public ServerResponseEntity<WxPayMpOrderResult> pay(@RequestBody PayParam payParam) {
+    public ServerResponseEntity<Void> pay(@RequestBody PayParam payParam) {
         YamiUser user = SecurityUtils.getUser();
         String userId = user.getUserId();
 

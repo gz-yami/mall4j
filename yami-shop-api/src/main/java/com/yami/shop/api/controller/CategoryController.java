@@ -26,7 +26,7 @@ import com.yami.shop.service.CategoryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
-import ma.glasnost.orika.MapperFacade;
+import cn.hutool.core.bean.BeanUtil;
 
 /**
  * @author lanhai
@@ -39,8 +39,6 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private MapperFacade mapperFacade;
 
     /**
      * 分类信息列表接口
@@ -50,7 +48,7 @@ public class CategoryController {
     @Parameter(name = "parentId", description = "分类ID", required = false)
     public ServerResponseEntity<List<CategoryDto>> categoryInfo(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
         List<Category> categories = categoryService.listByParentId(parentId);
-        List<CategoryDto> categoryDtos = mapperFacade.mapAsList(categories, CategoryDto.class);
+        List<CategoryDto> categoryDtos = BeanUtil.copyToList(categories, CategoryDto.class);
         return ServerResponseEntity.success(categoryDtos);
     }
 

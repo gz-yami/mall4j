@@ -18,7 +18,7 @@ import com.yami.shop.common.util.Json;
 import com.yami.shop.service.ProdCommService;
 import lombok.AllArgsConstructor;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +30,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.yami.shop.common.util.PageParam;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
