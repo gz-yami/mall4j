@@ -12,6 +12,17 @@ import { isURL } from '@/utils/validate'
 import { clearLoginInfo } from '@/utils'
 
 Vue.use(Router)
+// 解决路由重复跳转报错
+const originalPush = Router.prototype.push
+const originalReplace = Router.prototype.replace
+// 修改原型对象中的push函数
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+// 修改原型对象中的replace函数
+Router.prototype.replace = function replace (location) {
+  return originalReplace.call(this, location).catch(err => err)
+}
 
 // 开发环境不使用懒加载, 因为懒加载页面太多的话会造成webpack热更新太慢, 所以只有生产环境使用懒加载
 const _import = require('./import-' + process.env.NODE_ENV)
