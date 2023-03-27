@@ -12,6 +12,7 @@ package com.yami.shop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.shop.bean.model.AttachFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -22,13 +23,12 @@ import java.io.IOException;
 public interface AttachFileService extends IService<AttachFile> {
 
 	/**
-	 * 上传文件
-	 * @param bytes 字节
-	 * @param originalName 文件名称
-	 * @return 文件名称
-	 * @throws IOException 异常
+	 * 上传文件到本地
+	 * @param file
+	 * @throws IOException e
+	 * @return
 	 */
-	String uploadFile(byte[] bytes,String originalName) throws IOException;
+	String uploadFile(MultipartFile file) throws IOException;
 
 	/**
 	 * 删除文件

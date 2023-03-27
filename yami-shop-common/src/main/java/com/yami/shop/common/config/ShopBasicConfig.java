@@ -11,6 +11,7 @@
 package com.yami.shop.common.config;
 
 import com.yami.shop.common.bean.AliDaYu;
+import com.yami.shop.common.bean.ImgUpload;
 import com.yami.shop.common.bean.Qiniu;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -42,5 +43,10 @@ public class ShopBasicConfig {
 	 * 用于加解密token的密钥
 	 */
 	private String tokenAesKey;
+
+	/**
+	 * 本地文件上传配置
+	 */
+	private ImgUpload imgUpload;
 
 }

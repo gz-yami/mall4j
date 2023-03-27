@@ -106,7 +106,7 @@ public class ServerResponseEntity<T> implements Serializable {
 
     public ServerResponseEntity() {
         // 版本号
-        this.version = "mall4j.v230313";
+        this.version = "mall4j.v230327";
     }
 
     public static <T> ServerResponseEntity<T> success(T data) {

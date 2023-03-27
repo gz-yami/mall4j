@@ -12,6 +12,7 @@ package com.yami.shop.common.config;
 
 import cn.hutool.crypto.symmetric.AES;
 import com.yami.shop.common.bean.AliDaYu;
+import com.yami.shop.common.bean.ImgUpload;
 import com.yami.shop.common.bean.Qiniu;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -39,5 +40,10 @@ public class ShopBeanConfig {
     @Bean
     public AliDaYu aLiDaYu () {
     	return shopBasicConfig.getALiDaYu();
+    }
+
+    @Bean
+    public ImgUpload imgUpload() {
+        return shopBasicConfig.getImgUpload();
     }
 }

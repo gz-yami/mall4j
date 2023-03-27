@@ -4420,95 +4420,6 @@ insert  into `tz_prod_tag_reference`(`reference_id`,`shop_id`,`tag_id`,`prod_id`
 (340,NULL,2,18,1,'2019-06-22 18:28:31'),
 (341,NULL,3,18,1,'2019-06-22 18:28:31');
 
-/*Table structure for table `tz_schedule_job` */
-
-DROP TABLE IF EXISTS `tz_schedule_job`;
-
-CREATE TABLE `tz_schedule_job` (
-  `job_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
-  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
-  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
-  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
-  `cron_expression` varchar(100) DEFAULT NULL COMMENT 'cron表达式',
-  `status` tinyint(4) DEFAULT NULL COMMENT '任务状态  0：正常  1：暂停',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='定时任务';
-
-/*Data for the table `tz_schedule_job` */
-
-insert  into `tz_schedule_job`(`job_id`,`bean_name`,`method_name`,`params`,`cron_expression`,`status`,`remark`,`create_time`) values
-(14,'orderTask','cancelOrder','','0 * * * * ?',0,'取消超时未支付订单','2019-06-24 14:51:51'),
-(16,'orderTask','confirmOrder','','0 0/5 * * * ?',0,'系统自动确认收货订单','2019-06-24 14:52:47');
-
-/*Table structure for table `tz_schedule_job_log` */
-
-DROP TABLE IF EXISTS `tz_schedule_job_log`;
-
-CREATE TABLE `tz_schedule_job_log` (
-  `log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务日志id',
-  `job_id` bigint(20) NOT NULL COMMENT '任务id',
-  `bean_name` varchar(200) DEFAULT NULL COMMENT 'spring bean名称',
-  `method_name` varchar(100) DEFAULT NULL COMMENT '方法名',
-  `params` varchar(2000) DEFAULT NULL COMMENT '参数',
-  `status` tinyint(4) NOT NULL COMMENT '任务状态    0：成功    1：失败',
-  `error` varchar(2000) DEFAULT NULL COMMENT '失败信息',
-  `times` int(11) NOT NULL COMMENT '耗时(单位：毫秒)',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`log_id`),
-  KEY `job_id` (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COMMENT='定时任务日志';
-
-/*Data for the table `tz_schedule_job_log` */
-
-insert  into `tz_schedule_job_log`(`log_id`,`job_id`,`bean_name`,`method_name`,`params`,`status`,`error`,`times`,`create_time`) values
-(1,14,'orderTask','cancelOrder','',1,NULL,57,'2019-08-07 17:02:00'),
-(2,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:02:06'),
-(3,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:03:00'),
-(4,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:04:00'),
-(5,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:05:00'),
-(6,16,'orderTask','confirmOrder','',1,NULL,16,'2019-08-07 17:05:00'),
-(7,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:06:00'),
-(8,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:07:00'),
-(9,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:08:00'),
-(10,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:09:00'),
-(11,14,'orderTask','cancelOrder','',1,NULL,9,'2019-08-07 17:10:00'),
-(12,16,'orderTask','confirmOrder','',1,NULL,2,'2019-08-07 17:10:00'),
-(13,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:11:00'),
-(14,14,'orderTask','cancelOrder','',1,NULL,6,'2019-08-07 17:12:00'),
-(15,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:13:00'),
-(16,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:14:00'),
-(17,14,'orderTask','cancelOrder','',1,NULL,19,'2019-08-07 17:15:00'),
-(18,16,'orderTask','confirmOrder','',1,NULL,12,'2019-08-07 17:15:00'),
-(19,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:16:00'),
-(20,14,'orderTask','cancelOrder','',1,NULL,0,'2019-08-07 17:17:00'),
-(21,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:18:00'),
-(22,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:19:00'),
-(23,14,'orderTask','cancelOrder','',1,NULL,27,'2019-08-07 17:20:00'),
-(24,16,'orderTask','confirmOrder','',1,NULL,15,'2019-08-07 17:20:00'),
-(25,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:21:00'),
-(26,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:22:00'),
-(27,14,'orderTask','cancelOrder','',1,NULL,8,'2019-08-07 17:23:00'),
-(28,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:24:00'),
-(29,14,'orderTask','cancelOrder','',1,NULL,7,'2019-08-07 17:25:00'),
-(30,16,'orderTask','confirmOrder','',1,NULL,4,'2019-08-07 17:25:00'),
-(31,14,'orderTask','cancelOrder','',1,NULL,1,'2019-08-07 17:26:00'),
-(32,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:27:00'),
-(33,14,'orderTask','cancelOrder','',1,NULL,4,'2019-08-07 17:28:00'),
-(34,14,'orderTask','cancelOrder','',1,NULL,8,'2019-08-07 17:29:00'),
-(35,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:30:00'),
-(36,16,'orderTask','confirmOrder','',1,NULL,2,'2019-08-07 17:30:00'),
-(37,14,'orderTask','cancelOrder','',1,NULL,3,'2019-08-07 17:31:00'),
-(38,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:32:00'),
-(39,14,'orderTask','cancelOrder','',1,NULL,2,'2019-08-07 17:33:00'),
-(40,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:34:00'),
-(41,14,'orderTask','cancelOrder','',1,NULL,10,'2019-08-07 17:35:00'),
-(42,16,'orderTask','confirmOrder','',1,NULL,3,'2019-08-07 17:35:00'),
-(43,14,'orderTask','cancelOrder','',1,NULL,5,'2019-08-07 17:36:00'),
-(44,14,'orderTask','cancelOrder','',1,NULL,6,'2019-08-07 17:37:00'),
-(45,14,'orderTask','cancelOrder','',1,NULL,6,'2019-08-07 17:38:00');
-
 /*Table structure for table `tz_shop_detail` */
 
 DROP TABLE IF EXISTS `tz_shop_detail`;
@@ -4856,15 +4767,6 @@ insert  into `tz_sys_menu`(`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`ic
 (2,1,'管理员列表','sys/user','',1,'admin',1),
 (3,1,'角色管理','sys/role','',1,'role',2),
 (4,1,'菜单管理','sys/menu','',1,'menu',3),
-(6,1,'定时任务','sys/schedule','',1,'job',5),
-(7,6,'查看',NULL,'sys:schedule:page,sys:schedule:info',2,NULL,0),
-(8,6,'新增',NULL,'sys:schedule:save',2,NULL,0),
-(9,6,'修改',NULL,'sys:schedule:update',2,NULL,0),
-(10,6,'删除',NULL,'sys:schedule:delete',2,NULL,0),
-(11,6,'暂停',NULL,'sys:schedule:pause',2,NULL,0),
-(12,6,'恢复',NULL,'sys:schedule:resume',2,NULL,0),
-(13,6,'立即执行',NULL,'sys:schedule:run',2,NULL,0),
-(14,6,'日志列表',NULL,'sys:schedule:log',2,NULL,0),
 (15,2,'查看',NULL,'sys:user:page,sys:user:info',2,NULL,0),
 (16,2,'新增','','sys:user:save,sys:role:list',2,'',1),
 (17,2,'修改','','sys:user:update,sys:role:list',2,'',2),

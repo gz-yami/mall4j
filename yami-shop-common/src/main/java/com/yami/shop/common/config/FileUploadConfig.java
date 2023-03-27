@@ -10,6 +10,7 @@
 
 package com.yami.shop.common.config;
 
+import com.yami.shop.common.bean.ImgUpload;
 import com.yami.shop.common.enums.QiniuZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
