@@ -49,7 +49,10 @@
       // 图片上传
       handleUploadSuccess (response, file, fileList) {
         let pics = fileList.map(file => {
-          return file.response
+          if (typeof file.response === 'string') {
+            return file.response
+          }
+          return file.response.data
         }).join(',')
         this.$emit('input', pics)
       },
@@ -67,7 +70,10 @@
       },
       handleRemove (file, fileList) {
         let pics = fileList.map(file => {
-          return file.response
+          if (typeof file.response === 'string') {
+            return file.response
+          }
+          return file.response.data
         }).join(',')
         this.$emit('input', pics)
       },
