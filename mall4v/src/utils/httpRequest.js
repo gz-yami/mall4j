@@ -28,6 +28,10 @@ http.interceptors.request.use(config => {
  * 响应拦截
  */
 http.interceptors.response.use(response => {
+   // blob 格式处理
+  if (response.request.responseType === 'blob') {
+    return response
+  }
   const res = response.data
   // 00000 请求成功
   if (res.code === '00000') {
