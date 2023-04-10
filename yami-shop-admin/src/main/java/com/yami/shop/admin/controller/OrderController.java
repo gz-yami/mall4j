@@ -25,20 +25,19 @@ import com.yami.shop.bean.model.UserAddrOrder;
 import com.yami.shop.bean.param.DeliveryOrderParam;
 import com.yami.shop.bean.param.OrderParam;
 import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.common.util.PageParam;
 import com.yami.shop.security.admin.util.SecurityUtils;
 import com.yami.shop.service.*;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
@@ -148,7 +147,7 @@ public class OrderController {
         List<Order> orders = orderService.listOrdersDetailByOrder(order, startTime, endTime);
 
         //通过工具类创建writer
-        ExcelWriter writer = ExcelUtil.getWriter();
+        ExcelWriter writer = ExcelUtil.getBigWriter();
         Sheet sheet = writer.getSheet();
         sheet.setColumnWidth(0, 20 * 256);
         sheet.setColumnWidth(1, 20 * 256);
@@ -202,7 +201,7 @@ public class OrderController {
         List<Order> orders = orderService.listOrdersDetailByOrder(order, startTime, endTime);
 
         //通过工具类创建writer
-        ExcelWriter writer = ExcelUtil.getWriter();
+        ExcelWriter writer = ExcelUtil.getBigWriter();
         // 待发货
         String[] hearder = {"订单编号", "下单时间", "收件人", "手机", "收货地址", "商品名称", "数量", "订单应付", "订单运费", "订单实付"};
         Sheet sheet = writer.getSheet();
@@ -270,7 +269,7 @@ public class OrderController {
 
     private void writeExcel(HttpServletResponse response, ExcelWriter writer) {
         //response为HttpServletResponse对象
-        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         //test.xls是弹出下载对话框的文件名，不能为中文，中文请自行编码
         response.setHeader("Content-Disposition", "attachment;filename=1.xls");
 
