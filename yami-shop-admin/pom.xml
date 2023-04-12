@@ -15,6 +15,60 @@
             <groupId>com.yami.shop</groupId>
             <artifactId>yami-shop-service</artifactId>
             <version>${yami.shop.version}</version>
+	    <exclusions>
+		<exclusion>
+		    <artifactId>aliyun-java-sdk-core</artifactId>
+		    <groupId>com.aliyun</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>jboss-marshalling</artifactId>
+		    <groupId>org.jboss.marshalling</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>activation</artifactId>
+		    <groupId>javax.activation</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>jsoup</artifactId>
+		    <groupId>org.jsoup</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>jaxb-api</artifactId>
+		    <groupId>javax.xml.bind</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>error_prone_annotations</artifactId>
+		    <groupId>com.google.errorprone</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>checker-qual</artifactId>
+		    <groupId>org.checkerframework</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+		    <groupId>com.aliyun</groupId>
+		</exclusion>
+		<exclusion>
+		  <artifactId>stax-api</artifactId>
+		  <groupId>javax.xml.stream</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>annotations</artifactId>
+		    <groupId>org.jetbrains</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>jboss-marshalling-river</artifactId>
+		    <groupId>org.jboss.marshalling</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>mysql-connector-j</artifactId>
+		    <groupId>com.mysql</groupId>
+		</exclusion>
+		<exclusion>
+		    <artifactId>ini4j</artifactId>
+		    <groupId>org.ini4j</groupId>
+		</exclusion>
+      	    </exclusions>
         </dependency>
         <dependency>
             <groupId>com.yami.shop</groupId>
@@ -25,6 +79,12 @@
 	       <groupId>org.apache.poi</groupId>
 	       <artifactId>poi-ooxml</artifactId>
 	       <version>${poi.version}</version>
+	       <exclusions>
+	           <exclusion>
+	               <artifactId>curvesapi</artifactId>
+		       <groupId>com.github.virtuald</groupId>
+		   </exclusion>
+	       </exclusions>
        </dependency>
         <dependency>
             <groupId>com.yami.shop</groupId>
@@ -39,6 +99,34 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
         </dependency>
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	 </dependency>
+	 <dependency>
+	     <groupId>org.apache.httpcomponents</groupId>
+	     <artifactId>httpcore</artifactId>
+	 </dependency>
+	 <dependency>
+	     <groupId>org.jacoco</groupId>
+	     <artifactId>org.jacoco.agent</artifactId>
+	     <version>0.8.3</version>
+	     <classifier>runtime</classifier>
+	     <scope>compile</scope>
+	</dependency>
+	<dependency>
+	     <groupId>commons-logging</groupId>
+	     <artifactId>commons-logging</artifactId>
+	     <version>1.2</version>
+	     <scope>compile</scope>
+	</dependency>
+	<dependency>
+	     <groupId>org.springframework.boot</groupId>
+	     <artifactId>spring-boot-configuration-processor</artifactId>
+	     <version>3.0.4</version>
+	     <scope>provided</scope>
+	     <optional>true</optional>
+	</dependency>
     </dependencies>
 
 
