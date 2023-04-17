@@ -34,10 +34,14 @@
                       clearable></el-input>
           </el-col>
           <el-col :span="4">
-            <el-button type="primary"
-            class="add-input"
-                       icon="el-icon-circle-plus"
-                       @click="addInput()"></el-button>
+            <el-button
+              v-show="scope.row.prodPropValues[scope.row.prodPropValues.length-1].propValue"
+              type="primary"
+              class="add-input"
+              icon="el-icon-circle-plus"
+              @click="addInput()"
+            >
+            </el-button>
           </el-col>
         </template>
       </el-table-column>
