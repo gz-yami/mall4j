@@ -30,4 +30,9 @@ public interface OauthCacheNames {
      * 根据uid获取保存的token key缓存使用的key
      */
     String UID_TO_ACCESS = OAUTH_TOKEN_PREFIX + "uid_to_access:";
+
+    /**
+     * 保存token的用户信息使用的key
+     */
+    String USER_INFO = OAUTH_TOKEN_PREFIX + "user_info:";
 }

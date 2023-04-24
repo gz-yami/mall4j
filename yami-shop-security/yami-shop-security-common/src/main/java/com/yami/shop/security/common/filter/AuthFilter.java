@@ -9,6 +9,7 @@
  */
 package com.yami.shop.security.common.filter;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.yami.shop.common.exception.YamiShopBindException;
@@ -22,6 +23,7 @@ import com.yami.shop.security.common.util.AuthUserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
@@ -51,6 +53,9 @@ public class AuthFilter implements Filter {
     @Autowired
     private TokenStore tokenStore;
 
+    @Value("${sa-token.token-name}")
+    private String tokenName;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -72,7 +77,7 @@ public class AuthFilter implements Filter {
             }
         }
 
-        String accessToken = req.getHeader("Authorization");
+        String accessToken = req.getHeader(tokenName);
         // 也许需要登录，不登陆也能用的uri
         boolean mayAuth = pathMatcher.match(AuthConfigAdapter.MAYBE_AUTH_URI, requestUri);
 
@@ -82,6 +87,13 @@ public class AuthFilter implements Filter {
         try {
             // 如果有token，就要获取token
             if (StrUtil.isNotBlank(accessToken)) {
+                // 校验登录，并从缓存中取出用户信息
+                try {
+                    StpUtil.checkLogin();
+                } catch (Exception e) {
+                    httpHandler.printServerResponseToWeb(ServerResponseEntity.fail(ResponseEnum.UNAUTHORIZED));
+                    return;
+                }
                 userInfoInToken = tokenStore.getUserInfoByAccessToken(accessToken, true);
             }
             else if (!mayAuth) {

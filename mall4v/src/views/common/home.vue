@@ -24,13 +24,8 @@
         <tbody>
           <tr>
             <td>Spring Boot</td>
-            <td>2.1.6.RELEASE</td>
+            <td>3.0.4</td>
             <td>MVC核心框架</td>
-          </tr>
-          <tr>
-            <td>Spring Security oauth2</td>
-            <td>2.1.5.RELEASE</td>
-            <td>认证和授权框架</td>
           </tr>
           <tr>
             <td>MyBatis</td>
@@ -39,22 +34,17 @@
           </tr>
           <tr>
             <td>MyBatisPlus</td>
-            <td>3.1.0</td>
+            <td>3.5.3.1</td>
             <td>基于mybatis，使用lambda表达式的</td>
           </tr>
           <tr>
             <td>Swagger-UI</td>
-            <td>2.9.2</td>
+            <td>4.0.0</td>
             <td>文档生产工具</td>
           </tr>
           <tr>
-            <td>Hibernator-Validator</td>
-            <td>6.0.17.Final</td>
-            <td>验证框架</td>
-          </tr>
-          <tr>
             <td>redisson</td>
-            <td>3.10.6</td>
+            <td>3.19.3</td>
             <td>对redis进行封装、集成分布式锁等</td>
           </tr>
           <tr>
@@ -64,18 +54,8 @@
           </tr>
           <tr>
             <td>log4j2</td>
-            <td>2.11.2</td>
+            <td>2.17.2</td>
             <td>更快的log日志工具</td>
-          </tr>
-          <tr>
-            <td>fst</td>
-            <td>2.57</td>
-            <td>更快的序列化和反序列化工具</td>
-          </tr>
-          <tr>
-            <td>orika</td>
-            <td>1.5.4</td>
-            <td>更快的bean复制工具</td>
           </tr>
           <tr>
             <td>lombok</td>
@@ -84,13 +64,13 @@
           </tr>
           <tr>
             <td>hutool</td>
-            <td>4.5.0</td>
+            <td>5.8.15</td>
             <td>更适合国人的java工具集</td>
           </tr>
           <tr>
-            <td>swagger-bootstrap</td>
-            <td>1.9.3</td>
-            <td>基于swagger，更便于国人使用的swagger ui</td>
+            <td>xxl-job</td>
+            <td>2.3.1</td>
+            <td>定时任务</td>
           </tr>
         </tbody>
       </table>
@@ -112,7 +92,7 @@
         <tbody>
           <tr>
             <td>jdk</td>
-            <td>1.8+</td>
+            <td>17</td>
           </tr>
           <tr>
             <td>mysql</td>
