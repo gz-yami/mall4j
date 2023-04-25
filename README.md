@@ -49,6 +49,7 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 |---------------------|---------|------------------------------|
 | Spring Boot         | 3.0.4   | MVC核心框架                      |
 | Spring Security web | 3.0.4   | web应用安全防护                    |
+| satoken             | 1.34.0  | 一个轻量级 Java 权限认证框架，取代spring oauth2 |
 | MyBatis             | 3.5.10  | ORM框架                        |
 | MyBatisPlus         | 3.5.3.1 | 基于mybatis，使用lambda表达式的       |
 | spring-doc          | 2.0.0   | 接口文档工具                       |
@@ -107,7 +108,10 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 ## 特别鸣谢
 
-- wxjava:https://github.com/Wechat-Group/WxJava
+- wxjava: https://github.com/Wechat-Group/WxJava
+- sa-token: https://gitee.com/dromara/sa-token
+
+
 
 ## mall4cloud微服务版本已上线
 https://gitee.com/gz-yami/mall4cloud
