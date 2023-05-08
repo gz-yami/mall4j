@@ -57,6 +57,7 @@
       <el-form-item label="手机号"
                     prop="mobile">
         <el-input v-model="dataForm.mobile"
+                  maxlength="11"
                   placeholder="手机号"></el-input>
       </el-form-item>
     </el-form>
