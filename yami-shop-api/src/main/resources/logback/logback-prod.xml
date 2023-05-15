@@ -1,5 +1,5 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-    <property name="PROJECT_PATH" value="/opt/projects/yami-b2b2c"/>
+    <property name="PROJECT_PATH" value="/opt/projects/yami-shops"/>
     <property name="LOG_FILE_MAX_HISTORY" value="30"/>
     <property name="LOG_FILE_MAX_SIZE" value="50MB"/>
 
