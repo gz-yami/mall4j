@@ -3961,22 +3961,6 @@ insert  into `tz_index_img`(`img_id`,`shop_id`,`img_url`,`des`,`title`,`link`,`s
 (4,1,'2019/04/52b0082c60c04fc99dd03288548f2841.dpg','',NULL,NULL,1,120,'2019-04-17 17:12:37',76,0),
 (5,1,'2019/04/c2d830afc56d469f96825e91e464d155.jpg','',NULL,NULL,1,10,'2019-04-22 09:57:34',76,0);
 
-/*Table structure for table `tz_login_hist` */
-
-DROP TABLE IF EXISTS `tz_login_hist`;
-
-CREATE TABLE `tz_login_hist` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `area` varchar(100) DEFAULT NULL COMMENT '地区',
-  `country` varchar(100) DEFAULT NULL COMMENT '国家',
-  `user_id` varchar(100) DEFAULT NULL COMMENT '用户id',
-  `ip` varchar(64) NOT NULL DEFAULT '' COMMENT 'IP',
-  `login_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='登录历史表';
-
-/*Data for the table `tz_login_hist` */
-
 /*Table structure for table `tz_message` */
 
 DROP TABLE IF EXISTS `tz_message`;
