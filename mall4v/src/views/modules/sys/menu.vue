@@ -51,6 +51,7 @@
                        width="150"
                        :show-overflow-tooltip="true"
                        label="菜单URL">
+        <template slot-scope="scope">{{scope.row.url || '-'}}</template>
       </el-table-column>
       <el-table-column prop="perms"
                        header-align="center"
@@ -58,6 +59,7 @@
                        width="150"
                        :show-overflow-tooltip="true"
                        label="授权标识">
+        <template slot-scope="scope">{{scope.row.perms || '-'}}</template>
       </el-table-column>
       <el-table-column fixed="right"
                        header-align="center"

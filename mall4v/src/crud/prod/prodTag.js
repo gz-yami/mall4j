@@ -14,7 +14,8 @@ export const tableOption = {
     {
       label: '标签名称',
       prop: 'title',
-      search: true
+      search: true,
+      slot: true
     },
     {
       label: '状态',

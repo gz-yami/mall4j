@@ -28,6 +28,7 @@ export const tableOption = {
     },
     {
       label: '回复时间',
+      slot: true,
       prop: 'replyTime',
       width: '200',
       dicData: [

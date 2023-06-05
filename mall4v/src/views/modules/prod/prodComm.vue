@@ -14,7 +14,10 @@
                 slot="nickName">
         {{scope.row.user.nickName}}
       </template>
-
+      <template slot-scope="scope"
+                slot="replyTime">
+        {{scope.row.replyTime ? scope.row.replyTime : '-'}}
+      </template>
       <template slot-scope="scope"
                 slot="menu">
         <el-button type="primary"

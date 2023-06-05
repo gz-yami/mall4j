@@ -15,7 +15,10 @@
                    icon="el-icon-plus"
                    @click="addOrUpdateHandle()">新增</el-button>
       </template>
-
+      <template slot-scope="scope"
+                slot="title">
+        {{ scope.row.title || '-' }}
+      </template>
       <template slot-scope="scope"
                 slot="status">
         <el-tag v-if="scope.row.status === 0"
