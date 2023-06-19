@@ -28,7 +28,8 @@ export const tableOption = {
     prop: 'pic',
     type: 'upload',
     imgWidth: 150,
-    listType: 'picture-img'
+    listType: 'picture-img',
+    slot: true
   }, {
     label: '状态',
     prop: 'status',
