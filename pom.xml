@@ -28,7 +28,7 @@
         <hutool.version>5.8.15</hutool.version>
         <jsoup.version>1.15.3</jsoup.version>
         <poi.version>5.2.3</poi.version>
-        <qiniu.version>7.2.18</qiniu.version>
+        <qiniu.version>7.12.1</qiniu.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
