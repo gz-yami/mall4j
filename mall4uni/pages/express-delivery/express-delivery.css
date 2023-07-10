@@ -1,5 +1,9 @@
 /* pages/express-delivery/express-delivery.wxss */
 
+page {
+	background: #f7f8fa;
+}
+
 .container {
   height: 100%;
 }
@@ -181,4 +185,12 @@
   font-size: 28rpx;
   line-height: 80rpx;
   margin-bottom: 20rpx;
+}
+.empty-space {
+  margin-top: 20rpx;
+  background: #fff;
+  font-size: 28rpx;
+  color: #333;
+  padding: 20rpx 0;
+  text-align: center;
 }
