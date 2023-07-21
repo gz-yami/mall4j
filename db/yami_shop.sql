@@ -3977,13 +3977,6 @@ CREATE TABLE `tz_message` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
-/*Data for the table `tz_message` */
-
-insert  into `tz_message`(`id`,`create_time`,`user_name`,`email`,`contact`,`content`,`reply`,`status`) values
-(1,'2018-10-16 00:11:02','djr','123456','nihao','<p>aaaaaaqqqqffff</p>','<p>??</p>',0),
-(9,'2018-11-30 08:00:00','111','111','111','<p>11111dddd</p>','<p>111</p>',1),
-(10,'2019-03-15 18:48:05','yami','643254332@qq.com','15534243444','<p>hello</p>','<p>hi</p>',0);
-
 /*Table structure for table `tz_notice` */
 
 DROP TABLE IF EXISTS `tz_notice`;
@@ -4180,11 +4173,6 @@ CREATE TABLE `tz_pick_addr` (
   `shop_id` bigint(20) DEFAULT NULL COMMENT '店铺id',
   PRIMARY KEY (`addr_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户配送地址';
-
-/*Data for the table `tz_pick_addr` */
-
-insert  into `tz_pick_addr`(`addr_id`,`addr_name`,`addr`,`mobile`,`province_id`,`province`,`city_id`,`city`,`area_id`,`area`,`shop_id`) values
-(1,'测试','大学城附近','18888888888',440000000000,'广东省',440100000000,'广州市',440113000000,'番禺区',1);
 
 /*Table structure for table `tz_prod` */
 
@@ -4444,9 +4432,7 @@ CREATE TABLE `tz_shop_detail` (
 /*Data for the table `tz_shop_detail` */
 
 insert  into `tz_shop_detail`(`shop_id`,`shop_name`,`user_id`,`shop_type`,`intro`,`shop_notice`,`shop_industry`,`shop_owner`,`mobile`,`tel`,`shop_lat`,`shop_lng`,`shop_address`,`province`,`city`,`area`,`pca_code`,`shop_logo`,`shop_photos`,`open_time`,`shop_status`,`transport_type`,`fixed_freight`,`full_free_shipping`,`create_time`,`update_time`,`is_distribution`) values
-(1,'mall4j小店1',NULL,NULL,'mall4j小店 爱你哟',NULL,NULL,NULL,NULL,'020-123456',NULL,NULL,'大学城北','广东省','广州市','番禺区','44/4401/440113','2018/08/78a6a63cf02d4965912bc5047f49afa0.jpg','2018/08/c7a50f443a85462d8129d83cf0f7eb91.jpg,2018/08/79791fc749444ef1ab4d2ca56fe9363f.jpg','00:00:00 - 00:20:00',1,NULL,NULL,NULL,'2018-08-30 11:10:05',NULL,1),
-(2,'mall4j大店2',NULL,NULL,'mall4j大店 店大大',NULL,NULL,NULL,NULL,'010-123456',NULL,NULL,'天安门哟','北京市','市辖区','东城区','11/1101/110101','2018/08/0907446e05c44431be5d27ec7c277ee6.jpg','2018/08/5f97fc62c18d4d2292f8101fa0291e85.jpg','06:00:00 - 00:00:00',1,NULL,NULL,NULL,'2018-08-31 10:16:06',NULL,NULL),
-(3,'mall4j3',NULL,NULL,'mall4j 店铺描述',NULL,NULL,NULL,NULL,'010-211111111',NULL,NULL,'大学城北','天津市','市辖区','和平区','12/1201/120101','2018/09/4bb8b326f85a4c6aad251c561a17f0c4.png','2018/09/63c3d47beb5544f9b30103721002ca2e.jpg,2018/09/899e1ebf3c6c467d8d8630a3c18720db.jpg','00:02:00 - 00:00:00',1,NULL,NULL,NULL,'2018-09-06 18:50:00','2018-09-29 09:50:05',NULL);
+(1,'mall4j小店1',NULL,NULL,'mall4j小店 爱你哟',NULL,NULL,NULL,NULL,'020-123456',NULL,NULL,'大学城北','广东省','广州市','番禺区','44/4401/440113','2018/08/78a6a63cf02d4965912bc5047f49afa0.jpg','2018/08/c7a50f443a85462d8129d83cf0f7eb91.jpg,2018/08/79791fc749444ef1ab4d2ca56fe9363f.jpg','00:00:00 - 00:20:00',1,NULL,NULL,NULL,'2018-08-30 11:10:05',NULL,1);
 
 /*Table structure for table `tz_sku` */
 
@@ -4675,11 +4661,6 @@ CREATE TABLE `tz_sms_log` (
   `status` int(1) NOT NULL DEFAULT '0' COMMENT '状态  1:有效  0：失效',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='短信记录表';
-
-/*Data for the table `tz_sms_log` */
-
-insert  into `tz_sms_log`(`id`,`user_id`,`user_phone`,`content`,`mobile_code`,`type`,`rec_date`,`response_code`,`status`) values
-(15,'25477c53-6f67-4309-9e10-a26876ebfddb','13726236870','感谢您对xxx的支持。您的验证码是129619，请勿把验证码泄漏给第三方。','129619',0,'2019-04-24 11:20:29',NULL,0);
 
 /*Table structure for table `tz_sys_config` */
 
@@ -5002,7 +4983,7 @@ CREATE TABLE `tz_sys_user` (
 /*Data for the table `tz_sys_user` */
 
 insert  into `tz_sys_user`(`user_id`,`username`,`password`,`email`,`mobile`,`status`,`create_user_id`,`create_time`,`shop_id`) values
-(1,'admin','{bcrypt}$2a$10$AV9Xz.3ck4RsXiad5ArcBO5.ZKwlpcnJzs740BHY..fsSp0PnM/Zu','root@123.com','13612345678',1,1,'2016-11-11 11:11:11',1);
+(1,'admin','{bcrypt}$2a$10$AV9Xz.3ck4RsXiad5ArcBO5.ZKwlpcnJzs740BHY..fsSp0PnM/Zu','root@123.com','11111111111',1,1,'2016-11-11 11:11:11',1);
 
 /*Table structure for table `tz_sys_user_role` */
 
