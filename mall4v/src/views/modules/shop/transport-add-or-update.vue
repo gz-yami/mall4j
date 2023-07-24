@@ -91,6 +91,7 @@
                           :rules="[{ required: true, message: `${tableTitle[1]}不能为空`}]">
               <el-input type="number"
                         v-model="scope.row.firstFee"
+                        :min="0"
                         :disabled="!scope.row.status && scope.$index === 0"></el-input>
             </el-form-item>
           </template>
@@ -117,6 +118,7 @@
                           label-width="0px"
                           :rules="[{ required: true, message: `${tableTitle[3]}不能为空`}]">
               <el-input type="number"
+                        :min="0"
                         v-model="scope.row.continuousFee"
                         :disabled="!scope.row.status && scope.$index === 0"></el-input>
             </el-form-item>
