@@ -20,7 +20,6 @@ import com.yami.shop.service.ProductService;
 import com.yami.shop.service.SkuService;
 import com.yami.shop.service.TransportManagerService;
 import com.yami.shop.service.TransportService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -130,7 +129,6 @@ public class TransportManagerServiceImpl implements TransportManagerService {
         return fee;
     }
 
-    @NotNull
     private Double getPiece(ProductItemDto productItem, Transport transport, Sku sku) {
         Double piece = 0.0;
 
