@@ -227,6 +227,30 @@ page {
   font-family: arial;
 }
 
+.th-cate-con{
+  display: flex;
+  flex-wrap: wrap;
+}
+.sub-category{
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  box-sizing: border-box;
+  align-items: center;
+}
+.sub-category-item > .more-pic{
+  width: 120rpx;
+  height: 120rpx;
+  padding-bottom:10rpx;
+}
+.sub-category-item text{
+  font-size: 25rpx;
+  word-break: break-word;
+}
+
+
+
 /* 空 */
 .cont-item.empty {
   display: block;

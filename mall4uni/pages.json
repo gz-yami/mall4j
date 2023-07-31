@@ -41,6 +41,9 @@
 			}
 		},
 		{
+			"path": "pages/sub-category/sub-category"
+		},
+		{
 			"path": "pages/search-page/search-page",
 			"style": {
 				"backgroundTextStyle": "light",
