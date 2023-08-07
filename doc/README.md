@@ -32,11 +32,11 @@
 
 | 工具      | 版本    |
 |---------|-------|
-| jdk     | 17   |
+| jdk     | 17    |
 | mysql   | 5.7+  |
 | redis   | 4.0+  |
 | nodejs  | 14-16 |
-| xxl-job | 2.3.1 |
+| xxl-job | 2.4.0 |
 
 
 ### 1.2 安装jdk + mysql + redis + maven
