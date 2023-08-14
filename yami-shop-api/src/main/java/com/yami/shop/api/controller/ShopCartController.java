@@ -48,13 +48,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ShopCartController {
 
-    private BasketService basketService;
+    private final BasketService basketService;
 
-    private ProductService productService;
+    private final ProductService productService;
 
-    private SkuService skuService;
+    private final SkuService skuService;
 
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
     /**
      * 获取用户购物车信息

@@ -10,24 +10,22 @@
 
 package com.yami.shop.admin.task;
 
-import java.util.Date;
-import java.util.List;
-
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateUtil;
 import com.xxl.job.core.handler.annotation.XxlJob;
-import com.yami.shop.service.*;
+import com.yami.shop.bean.enums.OrderStatus;
+import com.yami.shop.bean.model.Order;
+import com.yami.shop.bean.model.OrderItem;
+import com.yami.shop.service.OrderService;
+import com.yami.shop.service.ProductService;
+import com.yami.shop.service.SkuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yami.shop.bean.enums.OrderStatus;
-import com.yami.shop.bean.model.Order;
-import com.yami.shop.bean.model.OrderItem;
-import com.yami.shop.bean.model.User;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -39,7 +37,7 @@ import cn.hutool.core.util.StrUtil;
 public class OrderTask {
 
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger logger = LoggerFactory.getLogger(OrderTask.class);
 
     @Autowired
     private OrderService orderService;
