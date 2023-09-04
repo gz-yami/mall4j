@@ -55,11 +55,11 @@
 
 - 推荐使用idea，安装lombok插件后，使用idea导入maven项目
 - 将yami_shop.sql导入到mysql中，修改`application-dev.yml`更改 datasource.url、user、password
-- 通过修改`shop.properties` 修改七牛云、阿里大于等信息
+- 通过修改`shop.properties` 修改七牛云、阿里大鱼等信息
 - 修改`api.properties` 修改当前接口所在域名，用于支付回调
 - 启动redis，端口6379
 - 通过`WebApplication`启动项目后台接口，`ApiApplication` 启动项目前端接口
-- xxl-job定时任务，通过github或者gitee下载xxl-job的已经打包好的源码，把
+- xxl-job定时任务，通过github或者gitee下载xxl-job的已经打包好的源码，把`XxlJobConfig.class`这个文件的代码注释打开，配置yml文件中相关xxl-job配置即可使用
 
 
 
@@ -98,7 +98,7 @@ cnpm i
 
 ```json
     // api接口请求地址
-    VUE_APP_BASE_API = 'http://192.168.1.120:8086'
+    VUE_APP_BASE_API = 'http://192.168.1.120:8085'
     // 静态资源文件url
     VUE_APP_RESOURCES_URL = 'https://img.mall4j.com/'
 ```
@@ -108,6 +108,8 @@ cnpm i
 
 注意！！如果启动uni项目或者小程序，默认后台api服务端口号为8086，
 如果启动后台项目，默认后台admin服务端口号为8085，请对照仔细填写后再启动，如遇401状态码，仔细检查端口号是否配置正确！
+如果后台启动后，图形验证码显示“接口验证失败数过多，请稍后再试”，请F12打开network确定连接的admin服务端口号是否正确，ip或域名是否正确，
+如果有配置nginx，还要确认下项目访问路径是否正确，可以通过地址+/doc.html来访问接口文档确定是否正确访问到admin服务
 
 
 
