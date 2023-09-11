@@ -111,3 +111,8 @@ page {
   bottom: 7rpx;
   padding: 8rpx;
 }
+.empty-wrap {
+	color: #aaa;
+	text-align: center;
+	margin-top: 400rpx;
+}
