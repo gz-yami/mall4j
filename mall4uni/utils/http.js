@@ -105,7 +105,7 @@ function request(params, isGetTonken) {
 
 									// #ifdef MP-WEIXIN
 									uni.navigateTo({
-										url: '/pages/login/login'
+										url: '/pages/accountLogin/accountLogin'
 									})
 									// #endif
 								} else {
