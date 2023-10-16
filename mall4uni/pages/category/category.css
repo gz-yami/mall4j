@@ -255,7 +255,6 @@ page {
 .cont-item.empty {
   display: block;
   font-size: 24rpx;
-  padding-top: 400rpx;
   color: #aaa;
   text-align: center;
 }
