@@ -4,7 +4,7 @@
 
 ## 前言
 
-`Mall4j`商城系统致力于为中小企业打造一个完整、易于维护的开源的电商系统，采用现阶段流行技术实现。后台管理系统包含商品管理、订单管理、运费模板、规格管理、会员管理、运营管理、内容管理、统计报表、权限管理、设置等模块。
+`Mall4j`商城系统致力于为中小企业打造一个完整、易于维护的开源的电商商城系统，采用现阶段流行技术实现。后台管理系统包含商品管理、订单管理、运费模板、规格管理、会员管理、运营管理、内容管理、统计报表、权限管理、设置等模块。开源版本商城属于B2C单商户商城系统，不含营销活动，如需更多模式的商城请查看[Mall4j商城官网](https://www.mall4j.com)。
 
 ## 文档
 
@@ -20,11 +20,11 @@ gitee：https://gitee.com/gz-yami/mall4j/tree/master/doc
 
 ## 授权
 
-除了开源版本，我们商业版有B2C和B2B2C商城，多端呈现：小程序 + PC + H5 + APP，更多详情请查看官网 
+除了开源版本，我们商业版有B2C商城、B2B2C商城、O2O商城、S2B2C商城、SAAS商城，多端呈现：小程序 + PC + H5 + APP，更多详情请查看官网 
 
-Mall4j官网 https://www.mall4j.com
+Mall4j商城官网 https://www.mall4j.com
 
-Mall4j 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
+Mall4j商城开源版 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
 
 ## 项目链接
 
@@ -39,7 +39,7 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 
 ## 演示地址
 
- 商业版小程序演示
+ 商业版商城小程序演示
 
 ![输入图片说明](screenshot/%E5%AE%87%E5%AE%99%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F.png)
 
@@ -85,24 +85,24 @@ https://gitee.com/gz-yami/mall4j/wikis
  
 
 ### 1. 后台截图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/143738_88a8a1e6_5094767.gif "后台.gif")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/143738_88a8a1e6_5094767.gif "商城.gif")
 
 
 
 
 ### 2. 移动端截图
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/145209_2ec1ad04_5094767.png "开源移动端截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/145209_2ec1ad04_5094767.png "商城.png")
 
 
 
 ## 提交反馈
-- Mall4j官网 https://www.mall4j.com
+- Mall4j商城官网 https://www.mall4j.com
 
 
-- Mall4j官方技术QQ 1群：722835385（3000人群已满）
-- Mall4j官方技术QQ 2群：729888395
-- 如需购买商业版源码，请联系商务微信
+- Mall4j商城官方技术QQ 1群：722835385（3000人群已满）
+- Mall4j商城官方技术QQ 2群：729888395
+- 如需购买商城商业版源码，请联系商务微信
 
   ![输入图片说明](https://19838323.s21i.faiusr.com/4/4/ABUIABAEGAAgksmNlAYojomK2gIwrAI4rAI!160x160.png)
 
@@ -113,7 +113,7 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 
 
-## mall4cloud微服务版本已上线
+## mall4cloud微服务商城版本已上线
 https://gitee.com/gz-yami/mall4cloud
 
-## 更多信息请查看官网 <https://www.mall4j.com>
+## 更多信息请查看Mall4j商城官网 <https://www.mall4j.com>
