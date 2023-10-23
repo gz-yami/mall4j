@@ -35,7 +35,7 @@ public class ShopBasicConfig {
 	private Qiniu qiniu;
 
 	/**
-	 * 阿里大于短信平台
+	 * 阿里大鱼短信平台
 	 */
 	private AliDaYu aLiDaYu;
 

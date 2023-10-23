@@ -29,7 +29,7 @@ import com.yami.shop.dao.OrderMapper;
 import com.yami.shop.dao.ProductMapper;
 import com.yami.shop.dao.SkuMapper;
 import com.yami.shop.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -44,23 +44,18 @@ import java.util.stream.Collectors;
  * @author lgh on 2018/09/15.
  */
 @Service
+@AllArgsConstructor
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
-    @Autowired
-    private OrderMapper orderMapper;
+    private final OrderMapper orderMapper;
 
-    @Autowired
-    private SkuMapper skuMapper;
+    private final SkuMapper skuMapper;
 
-    @Autowired
-    private OrderItemMapper orderItemMapper;
+    private final OrderItemMapper orderItemMapper;
 
-    @Autowired
-    private ProductMapper productMapper;
+    private final ProductMapper productMapper;
 
-
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     public Order getOrderByOrderNumber(String orderNumber) {
@@ -92,12 +87,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         eventPublisher.publishEvent(new SubmitOrderEvent(mergerOrder, orderList));
 
         // 插入订单
-        orderList.forEach(order -> orderMapper.insert(order));
+        saveBatch(orderList);
         List<OrderItem> orderItems = orderList.stream().flatMap(order -> order.getOrderItems().stream()).collect(Collectors.toList());
         // 插入订单项，返回主键
         orderItemMapper.insertBatch(orderItems);
-
-
         return orderList;
     }
 
@@ -106,14 +99,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Transactional(rollbackFor = Exception.class)
     public void delivery(Order order) {
         orderMapper.updateById(order);
-        // 发送用户发货通知
-        Map<String, String> params = new HashMap<>(16);
-        params.put("orderNumber", order.getOrderNumber());
-//		Delivery delivery = deliveryMapper.selectById(order.getDvyId());
-//		params.put("dvyName", delivery.getDvyName());
-//		params.put("dvyFlowId", order.getDvyFlowId());
-//		smsLogService.sendSms(SmsType.NOTIFY_DVY, order.getUserId(), order.getMobile(), params);
-
     }
 
     @Override
@@ -136,13 +121,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             return;
         }
         Map<Long, Integer> prodCollect = new HashMap<>(16);
+        Map<Long, Integer> skuCollect = new HashMap<>(16);
+
         allOrderItems.stream().collect(Collectors.groupingBy(OrderItem::getProdId)).forEach((prodId, orderItems) -> {
             int prodTotalNum = orderItems.stream().mapToInt(OrderItem::getProdCount).sum();
             prodCollect.put(prodId, prodTotalNum);
         });
         productMapper.returnStock(prodCollect);
 
-        Map<Long, Integer> skuCollect = new HashMap<>(16);
         allOrderItems.stream().collect(Collectors.groupingBy(OrderItem::getSkuId)).forEach((skuId, orderItems) -> {
             int prodTotalNum = orderItems.stream().mapToInt(OrderItem::getProdCount).sum();
             skuCollect.put(skuId, prodTotalNum);
@@ -157,7 +143,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         for (Order order : orders) {
             eventPublisher.publishEvent(new ReceiptOrderEvent(order));
         }
-
     }
 
     @Override
