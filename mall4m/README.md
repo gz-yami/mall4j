@@ -25,16 +25,9 @@ vue中后台：https://gitee.com/gz-yami/mall4v
 
 
 ## 演示地址
+商业版小程序演示
 
- **由于我们并不希望小程序的数据被弄混乱，我们弄了两个数据库。因此，您修改了后台的商品信息，小程序并不能看到！** 
-
-后台：<http://mall4j-admin.mall4j.com>  账号：admin/123456
-
-小程序：1. 扫描二维码
-
-![小程序](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
-
-​		2. 搜索小程序 **mall4j商城** 
+![输入图片说明](../screenshot/%E5%AE%87%E5%AE%99%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F.png)
 
 
 

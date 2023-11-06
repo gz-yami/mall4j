@@ -26,13 +26,9 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 
 ## 演示地址
 
-后台：<http://mall4j-admin.mall4j.com>  账号：admin/123456
+商业版小程序演示
 
-小程序：1. 扫描二维码
-
-![小程序](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/miniQrcode.jpg)
-
-​		2. 搜索小程序 **mall4j商城** 
+![输入图片说明](../screenshot/%E5%AE%87%E5%AE%99%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F.png)
 
 
 
