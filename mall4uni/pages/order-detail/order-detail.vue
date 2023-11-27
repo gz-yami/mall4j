@@ -98,7 +98,7 @@
           <text class="item-tit">配送方式：</text>
           <text class="item-txt">普通配送</text>
         </view>
-        <view class="item">
+        <view class="item" v-if="!!remarks">
           <text class="item-tit">订单备注：</text>
           <text class="item-txt remarks">{{remarks}}</text>
         </view>
