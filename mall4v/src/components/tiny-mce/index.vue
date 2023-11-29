@@ -243,10 +243,7 @@ export default {
       return isLt2M && isJPG
     },
     imageSuccessCBK (response, file, fileList) {
-      const _this = this
-      fileList.forEach(v => {
-        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${this.resourcesUrl + v.response.data}" >`)
-      })
+      window.tinymce.get(this.tinymceId).insertContent(`<img class="wscnph" src="${this.resourcesUrl + file.response.data}" >`)
     }
   }
 }
