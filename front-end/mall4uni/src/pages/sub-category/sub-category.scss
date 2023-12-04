@@ -1,0 +1,109 @@
+.container {
+  background: #f4f4f4;
+}
+.category-tit {
+  width: 100%;
+  white-space: nowrap;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  background-color: #fff;
+  border-bottom: 2rpx solid #f4f4f4;
+  font-size: 30rpx;
+  .category-item {
+    display: inline-block;
+    padding: 20rpx 10rpx;
+    margin: 0 20rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+  }
+}
+.prod-item {
+  height: calc(100vh - 100rpx);
+}
+.on {
+  border-bottom: 4rpx solid #e43130;
+  color: #e43130;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.empty {
+  margin-top: 200rpx;
+}
+.prod-items {
+  width: 345rpx;
+  display: inline-block;
+  background: #fff;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  box-shadow: 0rpx 6rpx 8rpx rgba(58,134,185,0.2);
+  &:nth-child(2n-1) {
+    margin: 20rpx 10rpx 10rpx 20rpx;
+  }
+  &:nth-child(2n) {
+    margin: 20rpx 20rpx 10rpx 10rpx;
+  }
+  .hot-imagecont {
+    .hotsaleimg {
+      width: 341rpx;
+      height: 341rpx;
+    }
+    font-size: 0;
+    text-align: center;
+  }
+  .hot-text {
+    .hotprod-text {
+      font-size: 28rpx;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    margin-top: 20rpx;
+    padding: 0 10rpx;
+    .prod-info {
+      font-size: 22rpx;
+      color: #999;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .prod-text-info {
+      position: relative;
+      height: 70rpx;
+      line-height: 70rpx;
+      font-family: Arial;
+      .hotprod-price {
+        display: inline;
+        font-size: 26rpx;
+        color: #eb2444;
+      }
+      .basket-img {
+        width: 50rpx;
+        height: 50rpx;
+        position: absolute;
+        right: 0;
+        bottom: 7rpx;
+        padding: 8rpx;
+      }
+    }
+  }
+}
+.more-prod {
+  .prod-text-right {
+    .prod-info {
+      font-size: 22rpx;
+      color: #999;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.empty-wrap {
+  color: #aaa;
+  text-align: center;
+  padding-top: 400rpx;
+}

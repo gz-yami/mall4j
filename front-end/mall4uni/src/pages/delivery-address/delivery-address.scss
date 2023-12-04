@@ -1,0 +1,93 @@
+.container {
+  background-color: #f4f4f4;
+  border-top: 2rpx solid #e9eaec;
+  min-height: 100vh;
+}
+.main {
+  margin-top: 20rpx;
+  padding-bottom: 150rpx;
+}
+.address {
+  margin-bottom: 15rpx;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 2rpx solid #e9eaec;
+  .personal {
+    position: relative;
+    padding: 20rpx 30rpx;
+    border-bottom: 3rpx dashed #e9eaec;
+    .info-tit {
+      .name {
+        margin-right: 30rpx;
+        font-size: 32rpx;
+        display: inline-block;
+      }
+      .tel {
+        font-size: 30rpx;
+      }
+      image {
+        position: absolute;
+        right: 30rpx;
+        top: 46rpx;
+        width: 40rpx;
+        height: 40rpx;
+        margin-left: 50rpx;
+        vertical-align: middle;
+      }
+    }
+  }
+  .select-btn {
+    padding: 15rpx 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .box {
+      font-size: 26rpx;
+    }
+  }
+}
+.personal {
+  .addr {
+    font-size: 26rpx;
+    margin: 10rpx 0;
+    margin-top: 20rpx;
+    .addr-get {
+      display: inline-block;
+      color: #999;
+      width: 100%;
+      word-break: break-word;
+    }
+  }
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 -1rpx 8rpx rgba(0, 0, 0, 0.05);
+  text {
+    font-size: 32rpx;
+    color: #eb2444;
+  }
+}
+.empty {
+  .img {
+    text-align: center;
+    margin-top: 130rpx;
+    image {
+      width: 100rpx;
+      height: 100rpx;
+      display: block;
+      margin: auto;
+    }
+  }
+  .txt {
+    margin-top: 30rpx;
+    font-size: 24rpx;
+    text-align: center;
+    color: #999;
+  }
+}

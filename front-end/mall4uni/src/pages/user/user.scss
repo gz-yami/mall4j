@@ -1,0 +1,222 @@
+.container {
+  background-color: #f7f7f7;
+  padding-bottom: 60rpx;
+}
+.userinfo {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  text-align: center;
+  padding: 30rpx 0;
+  .userinfo-con {
+    width: 240rpx;
+    margin: auto;
+    .userinfo-avatar {
+      overflow: hidden;
+      display: block;
+      width: 160rpx;
+      height: 160rpx;
+      border-radius: 50%;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+      margin: auto;
+      image {
+        width: 160rpx;
+        height: 160rpx;
+      }
+    }
+    .userinfo-name {
+      font-size: 30rpx;
+      font-weight: bold;
+      margin-top: 20rpx;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      word-break: break-all;
+    }
+  }
+}
+.userinfo-none {
+  display: flex;
+  padding: 30rpx;
+  background: #fff;
+  align-items: center;
+  .default-pic {
+    padding-right: 30rpx;
+    image {
+      width: 160rpx;
+      height: 160rpx;
+    }
+  }
+}
+.none-login {
+  button {
+    background: #fff;
+    &::after {
+      border: 0;
+    }
+  }
+  .unlogin {
+    font-size: 30rpx;
+    text-align: left;
+    padding: 0;
+  }
+  .click-login {
+    font-size: 26rpx;
+    color: #777;
+    text-align: left;
+    padding: 0;
+  }
+}
+.binding-phone {
+  position: relative;
+  background: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  border-top: 2rpx solid #f7f7f7;
+  border-bottom: 2rpx solid #f7f7f7;
+  .show-tip {
+    font-size: 26rpx;
+  }
+  .gotobinding {
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #e24b4b;
+    font-weight: bold;
+  }
+}
+.list-cont {
+  width: 100%;
+  background: #f7f7f7;
+  margin-top: 20rpx;
+  .total-order {
+    background: #fff;
+    .order-tit {
+      display: flex;
+      justify-content: space-between;
+      height: 80rpx;
+      line-height: 80rpx;
+      font-size: 30rpx;
+      border-bottom: 1px solid #f7f7f7;
+      padding: 0 30rpx;
+      .checkmore {
+        font-size: 22rpx;
+        color: #80848f;
+        display: flex;
+        align-items: center;
+      }
+    }
+    .procedure {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 25rpx;
+      height: 160rpx;
+      .items {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        image {
+          width: 70rpx;
+          height: 70rpx;
+          margin-bottom: 20rpx;
+        }
+        .num-badge {
+          position: absolute;
+          top: -15rpx;
+          right: -12rpx;
+          color: #eb2444;
+          border: 3rpx solid #eb2444;
+          border-radius: 50rpx;
+          background: #fff;
+          min-width: 30rpx;
+          height: 30rpx;
+          line-height: 30rpx;
+          text-align: center;
+          padding: 2rpx;
+          display: block;
+        }
+      }
+    }
+  }
+  .my-menu {
+    background-color: #fff;
+    margin-top: 20rpx;
+    .memu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100rpx;
+      border-bottom: 2rpx solid #f7f7f7;
+      padding: 0 30rpx;
+      &:nth-child(1) {
+        border-top: 2rpx solid #f7f7f7;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      text {
+        font-size: 28rpx;
+      }
+      image {
+        width: 50rpx;
+        height: 50rpx;
+        margin-right: 20rpx;
+      }
+      .i-name {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+.arrowhead {
+  width: 15rpx;
+  height: 15rpx;
+  border-top: 2rpx solid #999;
+  border-right: 2rpx solid #999;
+  transform: rotate(45deg);
+  margin-left: 10rpx;
+}
+.prod-col {
+  margin-top: 20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 30rpx 0 10rpx 0;
+  font-size: 12px;
+  .col-item {
+    text-align: center;
+    .num {
+      font-size: 16px;
+      font-weight: 700;
+      color: #3a86b9;
+    }
+    .tit {
+      line-height: 34px;
+    }
+  }
+}
+.log-out {
+  padding: 20rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.log-out-n {
+  font-size: 30rpx;
+  margin: auto;
+  width: 200rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  background: #e43130;
+  color: #ffffff;
+}
+button.memu-btn.memu-item {
+  background-color: #fff;
+  &:after {
+    border: 0;
+  }
+}

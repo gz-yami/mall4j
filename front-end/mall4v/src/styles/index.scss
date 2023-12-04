@@ -1,0 +1,8 @@
+@import "_normalize";       // api: https://github.com/necolas/normalize.css/
+@import "_variables";
+@import "_base";
+@import "@/styles/element-variables.scss";
+
+.element-error-message-zindex {
+  z-index:3000 !important;
+}
