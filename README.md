@@ -1,6 +1,7 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0711/174845_6db7724e_5094767.png "商城.png")
-Mall4j开源商城，一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的完全开源商城
+Mall4j开源商城，一个基于spring boot、spring oauth2.0、mybatis、redis的轻量级、前后端分离、防范xss攻击、拥有分布式锁，为生产环境多实例完全准备，数据库为b2b2c设计，拥有完整sku和下单流程的开源商城
 
+## Spring以及VUE官方宣布，Springboot2与Vue2将在2023年底停止维护。新项目建议使用springboot3+vue3的组合，本商城已完成升级!!!
 
 ## 前言
 
