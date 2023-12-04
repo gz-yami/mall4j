@@ -42,6 +42,7 @@
 ### 1.2 安装jdk + mysql + redis + maven
 
 如果不了解怎么安装jdk的，可以参考 [菜鸟教程的java相关](https://www.runoob.com/java/java-environment-setup.html)
+- 教程展示的是oracle，需要自行搜索openjdk的下载链接，下载jdk17版本
 
 如果不了解怎么安装mysql的，可以参考  [菜鸟教程的mysql相关](https://www.runoob.com/mysql/mysql-install.html) 
 
