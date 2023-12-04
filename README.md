@@ -82,11 +82,10 @@ https://gitee.com/gz-yami/mall4j/wikis
 ## 相关截图
 
 
- 
+
 
 ### 1. 后台截图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1110/143738_88a8a1e6_5094767.gif "商城.gif")
-
+![商城后台](https://gitee.com/gz-yami/mall4j/raw/master/screenshot/mall4jV.gif)
 
 
 

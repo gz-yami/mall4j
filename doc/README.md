@@ -63,49 +63,50 @@
 - xxl-job定时任务，通过github或者gitee下载xxl-job的已经打包好的源码，把`XxlJobConfig.class`这个文件的代码注释打开，配置yml文件中相关xxl-job配置即可使用
 
 
-
-
-
 ## 3.vue开发环境安装
 
 这是一套正常的vue启动流程。如果你无法理解，可能要先学习一下vue...
 
-#### 3.1 安装nodejs + 淘宝npm镜像
+#### 3.1 安装nodejs
+
+[NodeJS](https://nodejs.org)  项目要求最低 18.12.0，推荐 20.9.0
 
 如果不了解怎么安装nodejs的，可以参考   [菜鸟教程的nodejs相关](https://www.runoob.com/nodejs/nodejs-install-setup.html)
 
 
 
-安装cnpm淘宝镜像，使用命令行输入，回车：
-
-```bash
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-```
-
-
-
 #### 3.2 安装依赖启动项目
 
-使用vs code打开vue项目，进入到该项目的根目录（根目录有`package.json` 的文件）
+项目要求使用 [pnpm](https://www.pnpm.cn/)  包管理工具
 
-使用cnpm安装依赖（请勿直接使用npm安装依赖，除非你能确定你的网络能够畅快访问外网），使用命令行输入，回车：
+使用编辑器打开项目，在根目录执行以下命令安装依赖
 
 ```bash
-cnpm i
+pnpm i
 ```
 
-平台端修改文件`.env.production`（生产环境）/ `.env.development`（开发环境）
-里面的`VUE_APP_BASE_API`为api接口请求地址， `VUE_APP_RESOURCES_URL`为静态资源文件url 
+如果不想使用 pnpm，请删除 `package.json` 文件中  `preinstall`  脚本后再进行安装
 
 ```json
-    // api接口请求地址
-    VUE_APP_BASE_API = 'http://192.168.1.120:8085'
-    // 静态资源文件url
-    VUE_APP_RESOURCES_URL = 'https://img.mall4j.com/'
+{
+    "scripts" : {
+        "preinstall": "npx only-allow pnpm"  // 使用其他包管理工具（npm、yarn、cnpm等）请删除此命令
+    }
+}
 ```
 
-移动端修改文件`utils\config.js`
-里面的`domain`为api接口请求地址
+
+平台端修改文件`.env.production`（生产环境）/ `.env.development`（开发环境）
+里面的`VITE_APP_BASE_API`为api接口请求地址， `VITE_APP_RESOURCES_URL`为静态资源文件url 
+
+```json
+// api接口请求地址
+VITE_APP_BASE_API = 'http://127.0.0.1:8085'
+
+// 静态资源文件url
+VITE_APP_RESOURCES_URL = 'https://img.mall4j.com/'
+
+```
 
 注意！！如果启动uni项目或者小程序，默认后台api服务端口号为8086，
 如果启动后台项目，默认后台admin服务端口号为8085，请对照仔细填写后再启动，如遇401状态码，仔细检查端口号是否配置正确！
