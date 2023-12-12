@@ -14,7 +14,6 @@
     "build:mp-weixin": "uni build -p mp-weixin",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --fix --ext .js --ext .jsx --ext .vue src",
-    "prepare": "husky install",
     "lint:staged": "lint-staged"
   },
   "engines": {
@@ -59,7 +58,6 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
     "eslint-plugin-vue-scoped-css": "^2.4.0",
-    "husky": "8.0.3",
     "lint-staged": "13.2.2",
     "sass": "^1.61.0",
     "unplugin-auto-import": "^0.15.2",
