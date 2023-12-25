@@ -122,7 +122,6 @@ const login = () => {
     errorTips.value = 2
   } else {
     errorTips.value = 0
-    // #ifdef H5 || APP-PLUS
     http.request({
       url: '/login',
       method: 'post',
@@ -146,7 +145,6 @@ const login = () => {
           })
         })
       })
-    // #endif
   }
 }
 
