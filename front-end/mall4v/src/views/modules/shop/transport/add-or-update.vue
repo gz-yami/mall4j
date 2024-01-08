@@ -430,15 +430,11 @@ const addOrUpdateRef = ref(null)
 /**
  * 可配送区域和运费编辑
  */
-const onAddOrUpdate = (rowIndex) => {
-  addOrUpdateVisible.value = true
-  let allSelectCityList = []
-  for (let i = 1; i < dataForm.value.transfees.length; i++) {
-    const cityList = dataForm.value.transfees[i].cityList
-    allSelectCityList = allSelectCityList.concat(cityList)
-  }
-  nextTick(() => {
-    addOrUpdateRef.value?.init(rowIndex, dataForm.value.transfees[rowIndex].cityList || [], allSelectCityList, 0)
+const onAddOrUpdate = () => {
+  ElMessage({
+    message: '该功能未开源',
+    type: 'warning',
+    duration: 1500
   })
 }
 
