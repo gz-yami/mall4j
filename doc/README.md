@@ -96,7 +96,7 @@ pnpm i
 ```
 
 
-平台端修改文件`.env.production`（生产环境）/ `.env.development`（开发环境）
+H5端和平台端修改文件`.env.production`（生产环境）/ `.env.development`（开发环境）
 里面的`VITE_APP_BASE_API`为api接口请求地址， `VITE_APP_RESOURCES_URL`为静态资源文件url 
 
 ```json
@@ -107,6 +107,8 @@ VITE_APP_BASE_API = 'http://127.0.0.1:8085'
 VITE_APP_RESOURCES_URL = 'https://img.mall4j.com/'
 
 ```
+
+mall4m小程序端修改文件`utils\config.js`，里面的`domain`为api接口请求地址
 
 注意！！如果启动uni项目或者小程序，默认后台api服务端口号为8086，
 如果启动后台项目，默认后台admin服务端口号为8085，请对照仔细填写后再启动，如遇401状态码，仔细检查端口号是否配置正确！
