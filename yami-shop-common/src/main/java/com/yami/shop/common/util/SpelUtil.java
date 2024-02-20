@@ -13,7 +13,7 @@ package com.yami.shop.common.util;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.context.expression.MethodBasedEvaluationContext;
-import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
+import org.springframework.core.StandardReflectionParameterNameDiscoverer;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
@@ -39,16 +39,15 @@ public class SpelUtil {
             return StrUtil.EMPTY;
         }
         //获取被拦截方法参数名列表(使用Spring支持类库)
-        LocalVariableTableParameterNameDiscoverer u =
-                new LocalVariableTableParameterNameDiscoverer();
-        String[] paraNameArr = u.getParameterNames(method);
+        StandardReflectionParameterNameDiscoverer standardReflectionParameterNameDiscoverer = new StandardReflectionParameterNameDiscoverer();
+        String[] paraNameArr = standardReflectionParameterNameDiscoverer.getParameterNames(method);
         if (ArrayUtil.isEmpty(paraNameArr)) {
             return spel;
         }
         //使用SPEL进行key的解析
         ExpressionParser parser = new SpelExpressionParser();
         //SPEL上下文
-        StandardEvaluationContext context = new MethodBasedEvaluationContext(rootObject,method,args,u);
+        StandardEvaluationContext context = new MethodBasedEvaluationContext(rootObject,method,args,standardReflectionParameterNameDiscoverer);
         //把方法参数放入SPEL上下文中
         for (int i = 0; i < paraNameArr.length; i++) {
             context.setVariable(paraNameArr[i], args[i]);

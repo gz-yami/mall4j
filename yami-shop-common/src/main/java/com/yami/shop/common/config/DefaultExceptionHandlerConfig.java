@@ -22,6 +22,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,9 @@ public class DefaultExceptionHandlerConfig {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ServerResponseEntity<Object>> exceptionHandler(Exception e){
+        if (e instanceof NoResourceFoundException) {
+            return ResponseEntity.status(HttpStatus.OK).body(ServerResponseEntity.showFailMsg(e.getMessage()));
+        }
         log.error("exceptionHandler", e);
         return ResponseEntity.status(HttpStatus.OK).body(ServerResponseEntity.fail(ResponseEnum.EXCEPTION));
     }
