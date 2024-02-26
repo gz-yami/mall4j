@@ -171,7 +171,7 @@ const loadBasketData = () => {
     data: {}
   })
     .then(({ data }) => {
-      if (data.length > 0) {
+      if (data && data.length > 0) {
       // 默认不选中
         const shopCartItemDiscountsParam = data[0].shopCartItemDiscounts
         shopCartItemDiscountsParam.forEach(shopCartItemDiscount => {
@@ -294,6 +294,7 @@ const calTotalPrice = () => {
     data: shopCartIds
   })
     .then(({ data }) => {
+      if (!data) return
       finalMoney.value = data.finalMoney
       totalMoney.value = data.totalMoney
       subtractMoney.value = data.subtractMoney
