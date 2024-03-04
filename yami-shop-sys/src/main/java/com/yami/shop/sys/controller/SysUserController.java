@@ -160,7 +160,7 @@ public class SysUserController {
 		if (StrUtil.isBlank(password)) {
 			user.setPassword(null);
 		}else {
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setPassword(passwordEncoder.encode(password));
 		}
 		// 开源版代码，禁止用户修改admin 的账号密码密码
 		// 正式使用时，删除此部分代码即可
