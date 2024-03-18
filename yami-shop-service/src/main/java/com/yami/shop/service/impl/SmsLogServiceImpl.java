@@ -67,16 +67,6 @@ public class SmsLogServiceImpl extends ServiceImpl<SmsLogMapper, SmsLog> impleme
     private static final int TODAY_MAX_SEND_VALID_SMS_NUMBER = 10;
 
     /**
-     * 一段时间内短信验证码的最大验证次数
-     */
-    private static final int TIMES_CHECK_VALID_CODE_NUM = 10;
-
-    /**
-     * 短信验证码的前缀
-     */
-    private static final String CHECK_VALID_CODE_NUM_PREFIX = "checkValidCodeNum_";
-
-    /**
      * 短信发送成功的标志
      */
     private static final String SEND_SMS_SUCCESS_FLAG = "OK";
@@ -87,6 +77,7 @@ public class SmsLogServiceImpl extends ServiceImpl<SmsLogMapper, SmsLog> impleme
 
         SmsLog smsLog = new SmsLog();
         if (smsType.equals(SmsType.VALID)) {
+            // 阿里云短信规定：使用同一个签名，默认情况下对同一个手机号码发送验证码，最多支持1条/分钟，5条/小时，10条/天。
             long todaySendSmsNumber = smsLogMapper.selectCount(new LambdaQueryWrapper<SmsLog>()
                     .gt(SmsLog::getRecDate, DateUtil.beginOfDay(new Date()))
                     .lt(SmsLog::getRecDate, DateUtil.endOfDay(new Date()))
