@@ -84,11 +84,11 @@ public class TokenStore {
     private int getExpiresIn(int sysType) {
         // 3600秒
         int expiresIn = 3600;
-        // 普通用户token过期时间 1小时
+        // 普通用户token过期时间
         if (Objects.equals(sysType, SysTypeEnum.ORDINARY.value())) {
             expiresIn = expiresIn * 24 * 30;
         }
-        // 系统管理员的token过期时间 2小时
+        // 系统管理员的token过期时间
         if (Objects.equals(sysType, SysTypeEnum.ADMIN.value())) {
             expiresIn = expiresIn * 24 * 30;
         }
