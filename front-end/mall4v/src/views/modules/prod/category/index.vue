@@ -37,7 +37,7 @@
         <template #default="scope">
           <img
             alt=""
-            :src="resourcesUrl + scope.row.pic "
+            :src="checkFileUrl(scope.row.pic)"
           >
         </template>
       </el-table-column>
@@ -99,10 +99,9 @@
 </template>
 
 <script setup>
-import { isAuth, treeDataTranslate } from '@/utils'
+import { checkFileUrl, isAuth, treeDataTranslate } from '@/utils'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import AddOrUpdate from './add-or-update.vue'
-const resourcesUrl = import.meta.env.VITE_APP_RESOURCES_URL
 const dataForm = ref({})
 
 onMounted(() => {

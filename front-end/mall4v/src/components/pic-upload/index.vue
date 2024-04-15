@@ -12,7 +12,7 @@
       <img
         v-if="modelValue"
         alt=""
-        :src="resourcesUrl + modelValue"
+        :src="checkFileUrl(modelValue)"
         class="pic"
       >
       <el-icon
@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+import { checkFileUrl } from '@/utils'
 import $cookie from 'vue-cookies'
 import { ElMessage } from 'element-plus'
 const uploadHeaders = { Authorization: $cookie.get('Authorization') }
@@ -39,7 +40,6 @@ const props = defineProps({
     type: String
   }
 })
-const resourcesUrl = import.meta.env.VITE_APP_RESOURCES_URL
 /**
  * 图片上传
  */

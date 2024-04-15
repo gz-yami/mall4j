@@ -87,3 +87,23 @@ export function idList (data, val, id = 'id', children = 'children') {
   idListFromTree(data, val, res, id)
   return res
 }
+
+/**
+ * 文件地址校验
+ * @param fileUrl 获取到的文件路径
+ */
+export function checkFileUrl (fileUrl) {
+  if (fileUrl === '') return ''
+  const baseUrl = import.meta.env.VITE_APP_RESOURCES_URL
+  // 适配el-image 图片组件预览功能
+  if (fileUrl && typeof fileUrl === 'object') {
+    // eslint-disable-next-line no-return-assign
+    return fileUrl.map(el => el = checkFileUrl(el))
+  } else {
+    if (fileUrl && fileUrl.indexOf('http') === -1) {
+      return baseUrl + fileUrl
+    } else {
+      return fileUrl
+    }
+  }
+}

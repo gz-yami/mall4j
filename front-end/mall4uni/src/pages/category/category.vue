@@ -52,7 +52,7 @@
         <view class="adver-map">
           <view class="item-a">
             <image
-              :src="categoryImg"
+              :src="util.checkFileUrl(categoryImg)"
               mode="widthFix"
             />
           </view>
@@ -74,7 +74,7 @@
                 @tap="toCatePage"
               >
                 <image
-                  :src="thCateItem.pic"
+                  :src="util.checkFileUrl(thCateItem.pic)"
                   class="more-pic"
                   mode="widthFix"
                 />
@@ -96,6 +96,7 @@
 </template>
 
 <script setup>
+import util from '@/utils/util.js'
 const categoryList = ref([])
 const subCategoryList = ref([])
 const categoryImg = ref('')
