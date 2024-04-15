@@ -327,6 +327,7 @@ const stepsStatus = computed(() => {
   if (dataForm.value.orderTime) {
     return 1
   }
+  return ''
 })
 
 const visible = ref(false)

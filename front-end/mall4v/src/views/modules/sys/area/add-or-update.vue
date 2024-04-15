@@ -97,7 +97,6 @@ const init = (areaId) => {
         .then(({ data }) => {
           dataForm.value = data
           selectedOptions.value = dataForm.value.parentId
-          selectedOptions.level = dataForm.value.level
           categoryTreeProps.areaId = dataForm.value.areaId
           categoryTreeProps.areaName = dataForm.value.areaName
         })
