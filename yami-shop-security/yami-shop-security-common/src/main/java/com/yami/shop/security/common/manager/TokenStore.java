@@ -155,7 +155,7 @@ public class TokenStore {
     public TokenInfoVO storeAndGetVo(UserInfoInTokenBO userInfoInToken) {
         if (!userInfoInToken.getEnabled()){
             // 用户已禁用，请联系客服
-            throw new YamiShopBindException("yami.user.disabled");
+            throw new YamiShopBindException("用户已禁用，请联系客服");
         }
         TokenInfoBO tokenInfoBO = storeAccessSaToken(userInfoInToken);
         // 数据封装返回

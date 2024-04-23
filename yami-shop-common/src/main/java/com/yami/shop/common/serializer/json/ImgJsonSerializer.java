@@ -21,6 +21,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author lanhai
@@ -42,13 +44,21 @@ public class ImgJsonSerializer extends JsonSerializer<String> {
         String[] imgs = value.split(StrUtil.COMMA);
         StringBuilder sb = new StringBuilder();
         String resourceUrl = "";
+        String rule="^((http[s]{0,1})://)";
+        Pattern pattern= Pattern.compile(rule);
         if (Objects.equals(imgUploadUtil.getUploadType(), 2)) {
             resourceUrl = qiniu.getResourcesUrl();
         } else if (Objects.equals(imgUploadUtil.getUploadType(), 1)) {
             resourceUrl = imgUploadUtil.getResourceUrl();
         }
         for (String img : imgs) {
-            sb.append(resourceUrl).append(img).append(StrUtil.COMMA);
+            Matcher matcher = pattern.matcher(img);
+            //若图片以http或https开头，直接返回
+            if (matcher.find()){
+                sb.append(img).append(StrUtil.COMMA);
+            }else {
+                sb.append(resourceUrl).append(img).append(StrUtil.COMMA);
+            }
         }
         sb.deleteCharAt(sb.length()-1);
         gen.writeString(sb.toString());
