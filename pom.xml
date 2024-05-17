@@ -36,7 +36,7 @@
         <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
         <log4j.version>2.19.0</log4j.version>
         <knife4j.version>4.3.0</knife4j.version>
-        <xxl-job.version>2.4.0</xxl-job.version>
+        <xxl-job.version>2.4.1</xxl-job.version>
         <spring-cloud-commons.version>4.1.0</spring-cloud-commons.version>
         <satoken.version>1.37.0</satoken.version>
         <fastjson.version>1.2.83</fastjson.version>
