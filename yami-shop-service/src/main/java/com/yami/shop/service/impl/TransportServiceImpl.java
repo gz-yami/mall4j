@@ -68,7 +68,7 @@ public class TransportServiceImpl extends ServiceImpl<TransportMapper, Transport
 		// 删除所有的指定包邮条件项
 		transfeeMapper.deleteTransfeeFreesByTransportId(transport.getTransportId());
 
-		List<Long> transfeeIds = dbTransport.getTransfees().stream().map(Transfee::getTransfeeId).collect(Collectors.toList());
+		List<Long> transfeeIds = dbTransport.getTransfees().stream().map(Transfee::getTransfeeId).toList();
 		List<Long> transfeeFreeIds = dbTransport.getTransfeeFrees().stream().map(TransfeeFree::getTransfeeFreeId).collect(Collectors.toList());
 
 

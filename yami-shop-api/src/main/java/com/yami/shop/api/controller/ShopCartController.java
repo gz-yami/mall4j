@@ -210,7 +210,7 @@ public class ShopCartController {
                                                             }
                                                             return false;
                                                         })
-                                                        .collect(Collectors.toList());
+                                                        .toList();
 
         // 根据店铺ID划分item
         Map<Long, List<ShopCartItemDto>> shopCartMap = chooseShopCartItems.stream().collect(Collectors.groupingBy(ShopCartItemDto::getShopId));

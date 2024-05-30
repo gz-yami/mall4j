@@ -78,7 +78,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public void updateProduct(Product product, Product dbProduct) {
 
         productMapper.updateById(product);
-        List<Long> dbSkuIds = dbProduct.getSkuList().stream().map(Sku::getSkuId).collect(Collectors.toList());
+        List<Long> dbSkuIds = dbProduct.getSkuList().stream().map(Sku::getSkuId).toList();
         // 将所有该商品的sku标记为已删除状态
         skuMapper.deleteByProdId(product.getProdId());
 
