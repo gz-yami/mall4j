@@ -16,7 +16,10 @@
         label="分类图片"
         prop="pic"
       >
-        <pic-upload v-model="dataForm.pic" />
+        <pic-upload
+          v-model="dataForm.pic"
+          @update:model-value="checkPic"
+        />
       </el-form-item>
       <el-form-item
         v-if="dataForm.type !== 2"
@@ -206,4 +209,10 @@ const onSubmit = Debounce(() => {
   })
 })
 
+/**
+ * 重新校验表单pic字段
+ */
+const checkPic = () => {
+  dataFormRef.value?.validateField('pic')
+}
 </script>
