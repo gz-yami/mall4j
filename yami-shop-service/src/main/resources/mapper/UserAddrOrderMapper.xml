@@ -9,7 +9,6 @@
     <result column="addr_id" jdbcType="BIGINT" property="addrId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
-    <result column="area_str" jdbcType="VARCHAR" property="areaStr" />
     <result column="addr" jdbcType="VARCHAR" property="addr" />
     <result column="post_code" jdbcType="VARCHAR" property="postCode" />
     <result column="area_id" jdbcType="BIGINT" property="areaId" />
