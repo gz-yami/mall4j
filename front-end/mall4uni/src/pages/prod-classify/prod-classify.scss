@@ -1,6 +1,6 @@
 .container {
-  background: #fff;
-  margin: 7px;
+  background: #f4f4f4;
+  padding: 7px;
 }
 .line-fix {
   width: 100%;
@@ -18,6 +18,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+:deep(.prod-items) {
+  display: inline-block;
+  width: 345rpx !important;
+  &:nth-child(2n) {
+    margin-left: 30rpx;
+  }
 }
 /* 空 */
 .empty {
