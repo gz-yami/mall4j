@@ -23,12 +23,6 @@
     <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
-
-  <select id="getUserByUserMail" resultType="com.yami.shop.bean.model.User">
-    select *
-    from tz_user u
-    where u.user_mail = #{userMail}
-  </select>
   <select id="selectOneByUserName" resultType="com.yami.shop.bean.model.User">
     select * from `tz_user` where binary nick_name = #{userName} limit 1
   </select>

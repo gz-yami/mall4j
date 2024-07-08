@@ -18,12 +18,6 @@ import org.apache.ibatis.annotations.Param;
  * @author lanhai
  */
 public interface UserMapper extends BaseMapper<User> {
-	/**
-	 * 根据用户邮箱获取用户信息
-	 * @param userMail
-	 * @return
-	 */
-	User getUserByUserMail(@Param("userMail") String userMail);
 
 	/**
 	 * 根据用户名称获取一个用户信息

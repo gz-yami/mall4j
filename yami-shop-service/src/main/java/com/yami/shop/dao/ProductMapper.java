@@ -35,14 +35,6 @@ public interface ProductMapper extends BaseMapper<Product> {
     int updateStocks(@Param("prod") Product product);
 
     /**
-     * 根据商品名称和店铺id获取商品信息
-     * @param prodName
-     * @param shopId
-     * @return
-     */
-    Product getProductByProdNameAndShopId(@Param("prodName") String prodName, @Param("shopId") Long shopId);
-
-    /**
      * 返回库存
      * @param prodCollect
      */
@@ -89,35 +81,11 @@ public interface ProductMapper extends BaseMapper<Product> {
     IPage<SearchProdDto> getSearchProdDtoPageByProdName(Page page, @Param("prodName") String prodName, @Param("sort") Integer sort, @Param("orderBy") Integer orderBy);
 
     /**
-     * 根据标签id获取商品
-     * @param tagId
-     * @return
-     */
-    TagProductDto tagProdList(@Param("tagId") Long tagId);
-
-    /**
      * 获取分组商品列表
      * @return
      */
     List<TagProductDto> tagProdList();
 
-    /**
-     * 查看店铺的所有活动商品
-     * @param shopId
-     * @param page
-     * @return
-     */
-    IPage<ProductDto> listByShopId(@Param("page") PageParam<ProductDto> page, @Param("shopId") Long shopId);
-
-    /**
-     * 通过优惠券适用商品类型、优惠券id、店铺id获取商品列表
-     * @param shopId
-     * @param page
-     * @param couponId
-     * @param suitableProdType
-     * @return
-     */
-    IPage<ProductDto> listBySuitableProdTypeAndCouponIdAndShopId(@Param("page") PageParam<ProductDto> page, @Param("shopId") Long shopId, @Param("suitableProdType") Integer suitableProdType, @Param("couponId") Long couponId);
 
     /**
      * 获取用户的收藏商品列表

@@ -80,9 +80,6 @@
         </if>
     </select>
 
-    <select id="getProductByProdNameAndShopId" resultType="com.yami.shop.bean.model.Product">
-	   select * from tz_prod where prod_name = #{prodName} and shop_id = #{shopId}
-	</select>
 
     <update id="returnStock">
         <foreach collection="prodCollect" item="changeStocks" index="prodId" separator=";">
@@ -180,38 +177,6 @@
 
     </select>
 
-    <select id="listByShopId" resultType="com.yami.shop.bean.app.dto.ProductDto">
-        SELECT
-        <include refid="prodAndShopNameWithNoContent_SQL"/>
-        FROM tz_prod p
-        LEFT JOIN tz_shop_detail sd
-        ON p.shop_id = sd.shop_id
-        WHERE p.`status` = 1 AND p.`shop_id` = #{shopId}
-        ORDER BY p.`sold_num` DESC, p.`update_time` DESC
-    </select>
-    <select id="listBySuitableProdTypeAndCouponIdAndShopId" resultType="com.yami.shop.bean.app.dto.ProductDto">
-        SELECT
-        <include refid="prodAndShopNameWithNoContent_SQL"/>
-        FROM
-        tz_prod p
-        LEFT JOIN tz_shop_detail sd
-        ON p.shop_id = sd.shop_id
-        WHERE p.`status` = 1
-        AND p.shop_id = #{shopId}
-        AND p.`prod_id`
-        <if test="suitableProdType == 1">
-            IN
-        </if>
-        <if test="suitableProdType == 2">
-            NOT IN
-        </if>
-        (SELECT
-        cp.`prod_id`
-        FROM
-        tz_coupon_prod cp
-        WHERE cp.`coupon_id` = #{couponId})
-        ORDER BY p.`sold_num` DESC,p.`update_time` DESC
-    </select>
 
     <select id="collectionProds" resultType="com.yami.shop.bean.app.dto.ProductDto">
         SELECT
