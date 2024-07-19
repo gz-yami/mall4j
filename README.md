@@ -104,7 +104,7 @@ https://gitee.com/gz-yami/mall4j/wikis
 - Mall4j商城官方技术QQ 2群：729888395
 - 如需购买商城商业版源码，请联系商务微信
 
-  ![输入图片说明](screenshot/%E5%95%86%E5%8A%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
+![输入图片说明](screenshot/%E5%95%86%E5%8A%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
 
 ## 特别鸣谢
 
