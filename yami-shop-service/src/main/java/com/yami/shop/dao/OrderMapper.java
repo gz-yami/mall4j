@@ -87,22 +87,6 @@ public interface OrderMapper extends BaseMapper<Order> {
     Long countOrderDetail(@Param("orderParam") OrderParam orderParam);
 
     /**
-     * 根据店铺id和用户id获取购买过的商品id列表
-     * @param shopId
-     * @param userId
-     * @return
-     */
-    List<Long> listBoughtProdByUserIdAndShopId(@Param("shopId") Long shopId, @Param("userId") String userId);
-
-    /**
-     * 根据参数计算用户消费信息
-     * @param shopId
-     * @param userId
-     * @return
-     */
-    UserShoppingDataDto calculateUserInShopData(@Param("shopId") Long shopId, @Param("userId") String userId);
-
-    /**
      * 根据用户id和订单状态获取订单列表
      * @param adapter
      * @param userId

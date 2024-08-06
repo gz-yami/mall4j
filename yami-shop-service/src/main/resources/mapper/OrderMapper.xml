@@ -288,25 +288,6 @@
         </where>
     </select>
 
-
-
-    <select id="listBoughtProdByUserIdAndShopId" resultType="long">
-        select
-            oi.prod_id
-        from tz_order_item oi
-                 join tz_order o on o.order_number = oi.order_number
-        where o.user_id=#{userId} and o.shop_id = #{shopId} and (o.status = 4 or o.status = 5)
-    </select>
-
-
-    <select id="calculateUserInShopData" resultType="com.yami.shop.bean.distribution.UserShoppingDataDto">
-        select
-            count(o.order_number) as expense_number,
-            ifnull(SUM(o.actual_total),0) as expense_amount
-        from tz_order o
-        where o.user_id=#{userId} and o.shop_id = #{shopId} and (o.status = 4 or o.status = 5)
-    </select>
-
     <select id="listMyOrderByUserIdAndStatus" resultMap="MyOrderMap">
         SELECT o.actual_total,oi.pic,oi.price,oi.prod_name,oi.sku_name,oi.prod_count,o.status,o.order_number
         FROM (
