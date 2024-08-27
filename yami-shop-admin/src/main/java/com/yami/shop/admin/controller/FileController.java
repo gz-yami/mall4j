@@ -10,6 +10,7 @@
 
 package com.yami.shop.admin.controller;
 
+import com.yami.shop.bean.enums.UploadType;
 import com.yami.shop.common.bean.Qiniu;
 import com.yami.shop.common.response.ServerResponseEntity;
 import com.yami.shop.common.util.ImgUploadUtil;
@@ -32,14 +33,14 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/admin/file")
 public class FileController {
-	
+
 	@Autowired
 	private AttachFileService attachFileService;
 	@Autowired
 	private Qiniu qiniu;
 	@Autowired
 	private ImgUploadUtil imgUploadUtil;
-	
+
 	@PostMapping("/upload/element")
 	public ServerResponseEntity<String> uploadElementFile(@RequestParam("file") MultipartFile file) throws IOException{
 		if(file.isEmpty()){
@@ -48,17 +49,17 @@ public class FileController {
 		String fileName = attachFileService.uploadFile(file);
         return ServerResponseEntity.success(fileName);
 	}
-	
+
 	@PostMapping("/upload/tinymceEditor")
 	public ServerResponseEntity<String> uploadTinymceEditorImages(@RequestParam("editorFile") MultipartFile editorFile) throws IOException{
 		String fileName =  attachFileService.uploadFile(editorFile);
 		String data = "";
-		if (Objects.equals(imgUploadUtil.getUploadType(), 1)) {
+		if (Objects.equals(imgUploadUtil.getUploadType(), UploadType.LOCAL.value())) {
 			data = imgUploadUtil.getUploadPath() + fileName;
-		} else if (Objects.equals(imgUploadUtil.getUploadType(), 2)) {
+		} else if (Objects.equals(imgUploadUtil.getUploadType(), UploadType.QINIU.value())) {
 			data = qiniu.getResourcesUrl() + fileName;
 		}
         return ServerResponseEntity.success(data);
 	}
-	
+
 }

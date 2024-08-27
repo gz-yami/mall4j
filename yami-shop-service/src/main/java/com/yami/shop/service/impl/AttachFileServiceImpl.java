@@ -21,6 +21,7 @@ import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import com.yami.shop.bean.enums.UploadType;
 import com.yami.shop.bean.model.AttachFile;
 import com.yami.shop.common.bean.Qiniu;
 import com.yami.shop.common.util.ImgUploadUtil;
@@ -83,9 +84,9 @@ public class AttachFileServiceImpl extends ServiceImpl<AttachFileMapper, AttachF
 	public void deleteFile(String fileName){
 		attachFileMapper.delete(new LambdaQueryWrapper<AttachFile>().eq(AttachFile::getFilePath,fileName));
 		try {
-			if (Objects.equals(imgUploadUtil.getUploadType(), 1)) {
+			if (Objects.equals(imgUploadUtil.getUploadType(), UploadType.LOCAL.value())) {
 				imgUploadUtil.delete(fileName);
-			} else if (Objects.equals(imgUploadUtil.getUploadType(), 2)) {
+			} else if (Objects.equals(imgUploadUtil.getUploadType(), UploadType.QINIU.value())) {
 				bucketManager.delete(qiniu.getBucket(), fileName);
 			}
 		} catch (QiniuException e) {
