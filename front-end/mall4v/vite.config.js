@@ -11,7 +11,7 @@ import viteCompression from 'vite-plugin-compression'
 import eslintPlugin from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
-export default defineConfig(()=> {
+export default defineConfig(({ command })=> {
   return {
     plugins: [
       vue(),
@@ -30,9 +30,7 @@ export default defineConfig(()=> {
           'src/stores/**',
           'src/utils/**'
         ],
-        resolvers: [
-          ElementPlusResolver()
-        ],
+        resolvers: command === 'build' ? [ElementPlusResolver()] : [],
         dts: 'src/auto-import/imports.d.ts',
         eslintrc: {
           enabled: false
@@ -43,9 +41,7 @@ export default defineConfig(()=> {
         dirs: [
           'src/components'
         ],
-        resolvers: [
-          ElementPlusResolver()
-        ],
+        resolvers: command === 'build' ? [ElementPlusResolver()] : [],
         dts: 'src/auto-import/components.d.ts'
       }),
       // eslint
