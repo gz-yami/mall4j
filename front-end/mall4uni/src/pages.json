@@ -43,8 +43,7 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "搜索",
-        "navigationBarTextStyle": "black",
-        "navigationStyle": "custom"
+        "navigationBarTextStyle": "black"
       }
     },
     {
