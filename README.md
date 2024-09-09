@@ -11,7 +11,7 @@ Mall4j开源商城，一个基于spring boot、spring oauth2.0、mybatis、redis
 
 这代码有没有文档呀？ 当然有啦，你已经下载了，在doc这个文件夹上，实在不知道，我就给链接出来咯：
 
-gitee：[输入链接说明](https://gitee.com/gz-yami/mall4j/tree/master/doc)
+gitee：[https://gitee.com/gz-yami/mall4j/tree/master/doc](https://gitee.com/gz-yami/mall4j/tree/master/doc)
 
 看云：https://www.kancloud.cn/yami/mall4j
 
