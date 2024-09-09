@@ -13,9 +13,9 @@ Mall4j开源商城，一个基于spring boot、spring oauth2.0、mybatis、redis
 
 gitee：[https://gitee.com/gz-yami/mall4j/tree/master/doc](https://gitee.com/gz-yami/mall4j/tree/master/doc)
 
-看云：https://www.kancloud.cn/yami/mall4j
+看云：[https://www.kancloud.cn/yami/mall4j](https://www.kancloud.cn/yami/mall4j)
 
-**开发环境搭建视频（推荐先看下文档再看视频）：https://www.bilibili.com/video/BV1eW4y1V7c1** 
+**开发环境搭建视频（推荐先看下文档再看视频）：[https://www.bilibili.com/video/BV1eW4y1V7c1](https://www.bilibili.com/video/BV1eW4y1V7c1)** 
 
 有声音了。如果视频对你有用，记得点赞投币噢。
 
@@ -29,13 +29,13 @@ Mall4j商城开源版 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，
 
 ## 项目链接
 
-java后台：https://gitee.com/gz-yami/mall4j
+java后台：[https://gitee.com/gz-yami/mall4j](https://gitee.com/gz-yami/mall4j)
 
-vue后台前端：https://gitee.com/gz-yami/mall4v
+vue后台前端：[https://gitee.com/gz-yami/mall4v](https://gitee.com/gz-yami/mall4v)
 
-小程序：https://gitee.com/gz-yami/mall4m
+小程序：[https://gitee.com/gz-yami/mall4m](https://gitee.com/gz-yami/mall4m)
 
-uni-app：https://gitee.com/gz-yami/mall4uni
+uni-app：[https://gitee.com/gz-yami/mall4uni](https://gitee.com/gz-yami/mall4uni)
 
 
 ## 商城演示地址
@@ -72,9 +72,9 @@ uni-app：https://gitee.com/gz-yami/mall4uni
 ps: 如果你不清楚如何启动我们的商城，请仔细阅wiki当中的文档
 
 
-https://gitee.com/gz-yami/mall4j/wikis
+[https://gitee.com/gz-yami/mall4j/wikis](https://gitee.com/gz-yami/mall4j/wikis)
 
-**开发环境搭建视频（推荐先看下文档再看视频）：https://www.bilibili.com/video/BV1eW4y1V7c1** 
+**开发环境搭建视频（推荐先看下文档再看视频）：[https://www.bilibili.com/video/BV1eW4y1V7c1](https://www.bilibili.com/video/BV1eW4y1V7c1)** 
 
 有声音了。如果视频对你有用，记得点赞投币噢。
 
@@ -108,12 +108,12 @@ https://gitee.com/gz-yami/mall4j/wikis
 
 ## 特别鸣谢
 
-- wxjava: https://github.com/Wechat-Group/WxJava
-- sa-token: https://gitee.com/dromara/sa-token
+- wxjava: [https://github.com/Wechat-Group/WxJava](https://github.com/Wechat-Group/WxJava)
+- sa-token: [https://gitee.com/dromara/sa-token](https://gitee.com/dromara/sa-token)
 
 
 
 ## mall4cloud微服务商城版本已上线
-https://gitee.com/gz-yami/mall4cloud
+[https://gitee.com/gz-yami/mall4cloud](https://gitee.com/gz-yami/mall4cloud)
 
 ## 更多信息请查看Mall4j商城官网 <https://www.mall4j.com>
