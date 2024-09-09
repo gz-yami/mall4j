@@ -23,9 +23,9 @@ gitee：[https://gitee.com/gz-yami/mall4j/tree/master/doc](https://gitee.com/gz-
 
 除了开源版本，我们商业版有B2C商城、B2B2C商城、O2O商城、S2B2C商城、SAAS商城，多端呈现：小程序 + PC + H5 + APP，更多详情请查看官网 
 
-Mall4j商城官网 https://www.mall4j.com
+Mall4j商城官网 [https://www.mall4j.com](https://www.mall4j.com)
 
-Mall4j商城开源版 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权(https://www.mall4j.com)
+Mall4j商城开源版 使用 AGPLv3 开源，请遵守 AGPLv3 的相关条款，或者联系作者获取商业授权([https://www.mall4j.com](https://www.mall4j.com))
 
 ## 项目链接
 
@@ -97,7 +97,7 @@ ps: 如果你不清楚如何启动我们的商城，请仔细阅wiki当中的文
 
 
 ## 提交反馈
-- Mall4j商城官网 https://www.mall4j.com
+- Mall4j商城官网 [https://www.mall4j.com](https://www.mall4j.com)
 
 
 - Mall4j商城官方技术QQ 1群：722835385（3000人群已满）
@@ -116,4 +116,4 @@ ps: 如果你不清楚如何启动我们的商城，请仔细阅wiki当中的文
 ## mall4cloud微服务商城版本已上线
 [https://gitee.com/gz-yami/mall4cloud](https://gitee.com/gz-yami/mall4cloud)
 
-## 更多信息请查看Mall4j商城官网 <https://www.mall4j.com>
+## 更多信息请查看Mall4j商城官网 <[https://www.mall4j.com](https://www.mall4j.com)>
