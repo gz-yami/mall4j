@@ -45,7 +45,7 @@ public class UserController {
                 .like(StrUtil.isNotBlank(user.getNickName()), User::getNickName, user.getNickName())
                 .eq(user.getStatus() != null, User::getStatus, user.getStatus()));
         for (User userResult : userPage.getRecords()) {
-            userResult.setNickName(userResult.getNickName() == null ? "" : userResult.getNickName());
+            userResult.setNickName(StrUtil.isBlank(userResult.getNickName()) ? "" : userResult.getNickName());
         }
         return ServerResponseEntity.success(userPage);
     }
@@ -57,7 +57,7 @@ public class UserController {
     @PreAuthorize("@pms.hasPermission('admin:user:info')")
     public ServerResponseEntity<User> info(@PathVariable("userId") String userId) {
         User user = userService.getById(userId);
-        user.setNickName(user.getNickName() == null ? "" : user.getNickName());
+        user.setNickName(StrUtil.isBlank(user.getNickName()) ? "" : user.getNickName());
         return ServerResponseEntity.success(user);
     }
 
@@ -68,7 +68,7 @@ public class UserController {
     @PreAuthorize("@pms.hasPermission('admin:user:update')")
     public ServerResponseEntity<Void> update(@RequestBody User user) {
         user.setModifyTime(new Date());
-        user.setNickName(user.getNickName() == null ? "" : user.getNickName());
+        user.setNickName(StrUtil.isBlank(user.getNickName()) ? "" : user.getNickName());
         userService.updateById(user);
         return ServerResponseEntity.success();
     }

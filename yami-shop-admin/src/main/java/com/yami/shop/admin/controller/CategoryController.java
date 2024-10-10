@@ -72,7 +72,7 @@ public class CategoryController {
 		category.setRecTime(new Date());
 		Category categoryName = categoryService.getOne(new LambdaQueryWrapper<Category>().eq(Category::getCategoryName,category.getCategoryName())
 				.eq(Category::getShopId,category.getShopId()));
-		if(categoryName != null){
+		if(Objects.nonNull(categoryName)){
 			throw new YamiShopBindException("类目名称已存在！");
 		}
 		categoryService.saveCategory(category);
