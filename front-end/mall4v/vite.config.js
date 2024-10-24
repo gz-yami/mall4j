@@ -44,15 +44,14 @@ export default defineConfig(({ command })=> {
         resolvers: command === 'build' ? [ElementPlusResolver()] : [],
         dts: 'src/auto-import/components.d.ts'
       }),
-      // eslint
-      eslintPlugin({
-        include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']
-      }),
       // 对大于 1k 的文件进行压缩
       viteCompression({
         threshold: 1000,
       })
-    ],
+    ].concat(
+      // eslint
+      command !== 'build' ? [eslintPlugin({ include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'] })] : []
+    ),
     server: {
       host: true,
       port: 9527,
