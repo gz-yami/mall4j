@@ -92,7 +92,7 @@ const dataForm = ref({
   status: 1,
   isDefault: null,
   prodCount: null,
-  seq: null,
+  seq: 0,
   style: 0
 })
 
@@ -120,6 +120,9 @@ const dataFormRef = ref(null)
  * 表单提交
  */
 const onSubmit = Debounce(() => {
+  if (!dataForm.value.seq) {
+    dataForm.value.seq = 0
+  }
   dataFormRef.value?.validate((valid) => {
     if (valid) {
       http({
