@@ -4,10 +4,9 @@
       class="tinymce-container"
       :class="{ 'tox-fullscreen': toxFullscreen }"
     >
-      <Editor
-        :id="props.id"
-        :init="init"
-        api-key="i6mv006qcwsfu1t7ebisntg5w261vpowkwirnx9cnse3ho5o"
+      <textarea
+        :id="id"
+        class="tinymce-textarea"
       />
       <!-- 增加图片区域 -->
       <div
@@ -35,8 +34,10 @@
 </template>
 
 <script setup>
-import Editor from '@tinymce/tinymce-vue'
 import $cookie from 'vue-cookies'
+import plugins from './plugins'
+import toolbarPar from './toolbar'
+import load from './dynamicLoadScript'
 
 const uploadHeaders = { Authorization: $cookie.get('Authorization') }
 const uploadAction = http.adornUrl('/admin/file/upload/element')
@@ -45,6 +46,17 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: ''
+  },
+  toolbar: {
+    type: Array,
+    required: false,
+    default () {
+      return []
+    }
+  },
+  menubar: {
+    type: String,
+    default: 'file edit insert view format table'
   },
   id: {
     type: String,
@@ -65,88 +77,107 @@ const props = defineProps({
 })
 
 const toxFullscreen = ref(false)
-const hasChange = ref(false)
-const hasInit = ref(false)
-watch(
-  () => props.modelValue,
-  val => {
-    if (!hasChange.value && hasInit.value) {
-      nextTick(() => window.tinymce.get(props.id).setContent(val || ''))
-    }
+let hasInit = false
+let hasChange = false
+watch(() => props.modelValue, (val) => {
+  if (!hasChange && hasInit) {
+    setContent(val)
   }
-)
+})
 
 const language = computed(() => {
   return localStorage.getItem('b2cLang') || 'zh_CN'
 })
-watch(language, () => {
+watch(() => language.value, () => {
+  destroyTinymce()
+  nextTick(() => initTinymce())
+})
+
+onMounted(() => {
+  init()
+})
+
+onActivated(() => {
+  if (window.tinymce) {
+    initTinymce()
+  }
+})
+
+onDeactivated(() => {
+  destroyTinymce()
+})
+
+onUnmounted(() => {
   destroyTinymce()
 })
 const emit = defineEmits(['update:modelValue'])
-const isLoaded = ref(false)
-const init = reactive({
-  plugins: 'preview anchor autolink  codesample emoticons image link lists media searchreplace table visualblocks  pagebreak insertdatetime fullscreen', // 插件 preview anchor autolink  codesample emoticons image link lists media searchreplace table visualblocks wordcount  pagebreak insertdatetime fullscreen
-  content_css: 'default', // 主题tinymce-5-dark || tinymce-5 || default || writer || document || dark
-  custom_undo_redo_levels: 50, // 回退数量
-  end_container_on_empty_block: true, // 块级文本是否换行
-  keep_styles: false, // 回车是否保存原有样式，例如code块回车插件初始化失败: tinycomments是否截断
-  menubar: true, // 是否开启顶部菜单 > false 关闭菜单 |  'edit insert view format table tools help' 菜单按照这里排序 | 参考:https://www.tiny.cloud/docs/tinymce/6/menus-configuration-options/
-  toolbar_mode: 'wrap', // 功能栏是否换行 > | wrap 换行  | scrolling 滚动 | sliding 省略
-  toolbar: ' searchreplace bold italic underline strikethrough alignleft aligncenter alignright outdent indent  blockquote undo redo removeformat subscript superscript code codesample hr numlist link image  preview anchor pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen',
-  powerpaste_word_import: 'clean',
-  toolbar_location: 'top', // 菜单栏位置 > bottom 底部 | top 顶部
-  style_formats_merge: true, // 是否开启默认功能
-  elementpath: false, // 是否展示编辑层级  > p span
-  advlist_bullet_styles: 'square',
-  resize: true, // 调整宽高 > true 调整高 | false 不可调整宽高 | both 宽高可调
-  language, // 中文
-  init_instance_callback: editor => {
-    isLoaded.value = true
-    if (props.modelValue) {
-      editor.setContent(props.modelValue)
+const resourceCdn1 = new URL('/static/js/tinymce/js/tinymce/tinymce.min.js', import.meta.url).href
+const init = () => {
+  // dynamic load tinymce from cdn
+  load(resourceCdn1, (err) => {
+    if (!err) {
+      initTinymce()
     }
-    hasInit.value = true
-    editor.on('NodeChange Change KeyUp SetContent', () => {
-      hasChange.value = true
-      emit('update:modelValue', editor.getContent())
-    })
-  },
-  setup (editor) {
-    const addOrupload = document.querySelectorAll('.components-tiny-mce .tinymce-container .add-or-upload')
-    addOrupload.forEach(v => {
-      v.style.zIndex = 10
-    })
-    editor.on('FullscreenStateChanged', e => {
-      toxFullscreen.value = e.state
-      handleFullScreenStateChange(e.state)
-    })
-  }
-})
-const handleFullScreenStateChange = (isFullscreen) => {
-  const addOrupload = document.querySelectorAll('.components-tiny-mce .tinymce-container .add-or-upload')
-  if (isFullscreen) {
-    // 进入全屏模式时执行的代码
-    addOrupload.forEach(v => {
-      v.style.zIndex = 0
-    })
-  } else {
-    // 退出全屏模式时执行的代码
-    addOrupload.forEach(v => {
-      v.style.zIndex = 10
-    })
-  }
-}
-const destroyTinymce = () => {
-  const tinymce = window.tinymce?.get(props.id)
-  if (toxFullscreen.value) {
-    tinymce.execCommand('mceFullScreen')
-  }
-  onUnmounted(() => {
-    destroyTinymce()
   })
+}
 
-  if (tinymce) {
-    tinymce.destroy()
+const tinymceId = ref(props.id)
+const fullscreen = ref(false)
+const initTinymce = () => {
+  window.tinymce.init({
+    language: language.value,
+    selector: `#${tinymceId.value}`,
+    height: props.height,
+    body_class: 'panel-body ',
+    object_resizing: false,
+    toolbar: props.toolbar.length > 0 ? props.toolbar : toolbarPar,
+    menubar: props.menubar,
+    plugins,
+    end_container_on_empty_block: true,
+    powerpaste_word_import: 'clean',
+    paste_enable_default_filters: false, // 从word复制的内容保持原格式到富文本
+    code_dialog_height: 450,
+    code_dialog_width: 1000,
+    content_style: 'body {-webkit-user-modify: read-write;overflow-wrap: break-word;-webkit-line-break: after-white-space;}img {max-width: 100%;vertical-align:initial}',
+    advlist_bullet_styles: 'square',
+    advlist_number_styles: 'default',
+    imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+    default_link_target: '_blank',
+    link_title: false,
+    nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
+    init_instance_callback: (editor) => {
+      if (props.modelValue) {
+        editor.setContent(props.modelValue)
+      }
+      hasInit = true
+      editor.on('NodeChange Change KeyUp SetContent', () => {
+        hasChange = true
+        emit('update:modelValue', editor.getContent())
+      })
+    },
+    setup: (editor) => {
+      editor.on('FullscreenStateChanged', (e) => {
+        fullscreen.value = e.state
+      })
+    },
+    convert_urls: false
+  })
+}
+
+const destroyTinymce = () => {
+  try {
+    const tinymce = window.tinymce.get(tinymceId.value)
+    if (fullscreen.value) {
+      tinymce.execCommand('mceFullScreen')
+    }
+    if (tinymce) {
+      tinymce.destroy()
+    }
+  } catch (e) { }
+}
+const setContent = (value) => {
+  if (window.tinymce) {
+    window.tinymce.get(tinymceId.value).setContent(value || '')
   }
 }
 const resourcesUrl = import.meta.env.VITE_APP_RESOURCES_URL
@@ -183,6 +214,7 @@ const beforeAvatarUpload = (file) => {
   .tinymce-container {
     position: relative;
     .add-or-upload {
+      z-index: 999;
       position: absolute;
       top: 10px;
       right: 10px;
