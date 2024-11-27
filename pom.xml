@@ -32,7 +32,7 @@
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
-        <redisson.version>3.25.2</redisson.version>
+        <redisson.version>3.39.0</redisson.version>
         <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
         <log4j.version>2.19.0</log4j.version>
         <knife4j.version>4.3.0</knife4j.version>
