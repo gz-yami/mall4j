@@ -25,7 +25,7 @@
         <spring-boot.version>3.2.1</spring-boot.version>
         <java.version>17</java.version>
         <guava.version>33.0.0-jre</guava.version>
-        <hutool.version>5.8.24</hutool.version>
+        <hutool.version>5.8.27</hutool.version>
         <jsoup.version>1.15.3</jsoup.version>
         <poi.version>5.2.5</poi.version>
         <qiniu.version>7.12.1</qiniu.version>
