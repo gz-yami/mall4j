@@ -93,7 +93,7 @@ public class IndexImgController {
     @PreAuthorize("@pms.hasPermission('admin:indexImg:update')")
     public ServerResponseEntity<Void> update(@RequestBody @Valid IndexImg indexImg) {
         checkProdStatus(indexImg);
-        indexImgService.saveOrUpdate(indexImg);
+        indexImgService.updateById(indexImg);
         indexImgService.removeIndexImgCache();
         return ServerResponseEntity.success();
     }

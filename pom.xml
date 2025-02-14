@@ -22,23 +22,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.plugin.version>3.12.0</maven.compiler.plugin.version>
-        <spring-boot.version>3.2.1</spring-boot.version>
+        <spring-boot.version>3.4.2</spring-boot.version>
         <java.version>17</java.version>
-        <guava.version>33.0.0-jre</guava.version>
-        <hutool.version>5.8.27</hutool.version>
+        <guava.version>33.4.0-jre</guava.version>
+        <hutool.version>5.8.35</hutool.version>
         <jsoup.version>1.15.3</jsoup.version>
-        <poi.version>5.2.5</poi.version>
+        <poi.version>5.4.0</poi.version>
         <qiniu.version>7.12.1</qiniu.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
         <aliyun-dysmsapi.version>1.1.0</aliyun-dysmsapi.version>
-        <mybatis-plus.version>3.5.5</mybatis-plus.version>
-        <redisson.version>3.39.0</redisson.version>
-        <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
+        <mybatis-plus.version>3.5.10.1</mybatis-plus.version>
+        <redisson.version>3.44.0</redisson.version>
+        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
         <log4j.version>2.19.0</log4j.version>
-        <knife4j.version>4.3.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <xxl-job.version>2.4.2</xxl-job.version>
-        <spring-cloud-commons.version>4.1.0</spring-cloud-commons.version>
-        <satoken.version>1.37.0</satoken.version>
+        <spring-cloud-commons.version>4.2.0</spring-cloud-commons.version>
+        <satoken.version>1.40.0</satoken.version>
         <fastjson.version>1.2.83</fastjson.version>
         <mybatis-spring.version>3.0.3</mybatis-spring.version>
     </properties>
@@ -81,8 +81,10 @@
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <artifactId>mybatis-plus-bom</artifactId>
                 <version>${mybatis-plus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>com.qiniu</groupId>
