@@ -474,6 +474,9 @@ const isCollection = ref(false)
  * 获取是否关注信息
  */
 const getCollection = () => {
+  if (!uni.getStorageSync('Token')) {
+    return
+  }
   uni.showLoading()
   http.request({
     url: '/p/user/collection/isCollection',
