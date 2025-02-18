@@ -41,6 +41,8 @@
         <satoken.version>1.40.0</satoken.version>
         <fastjson.version>1.2.83</fastjson.version>
         <mybatis-spring.version>3.0.3</mybatis-spring.version>
+        <!--这个是为了兼容springboot 3.4,knife4j更新这个大于2.7的版本就可以考虑删除掉-->
+        <springdoc.version>2.8.4</springdoc.version>
     </properties>
 
     <dependencyManagement>
@@ -49,13 +51,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-dependencies</artifactId>
-                <version>${knife4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -158,6 +153,12 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
     </dependencies>
 
