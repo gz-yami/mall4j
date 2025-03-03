@@ -1,6 +1,6 @@
 {
-    "name" : "",
-    "appid" : "__UNI__2CF44C6",
+    "name" : "mall4j",
+    "appid" : "__UNI__B751008",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -82,14 +82,6 @@
         "devServer" : {
             "disableHostCheck" : true,
             "port" : 80
-        },
-        "sdkConfigs" : {
-            "maps" : {
-                "qqmap" : {
-                    // 用于h5端ip定位
-                    "key" : ""
-                }
-            }
         }
     },
     "uniStatistics" : {
