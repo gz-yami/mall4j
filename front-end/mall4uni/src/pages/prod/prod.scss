@@ -1,7 +1,6 @@
 .container {
   background: #f4f4f4;
-  height: 100%;
-  padding-bottom: 150rpx;
+  height: calc(100vh - 88rpx);
 }
 swiper {
   height: 750rpx;
@@ -602,7 +601,6 @@ rich-text {
   left: 0;
   width: 100%;
   display: flex;
-  flex-direction: row nowrap;
   height: 98rpx;
   z-index: 999;
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);

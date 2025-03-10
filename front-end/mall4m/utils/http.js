@@ -149,6 +149,10 @@ function updateUserInfo() {
 
 //获取购物车商品数量
 function getCartCount() {
+  if (!wx.getStorageSync('token')) {
+    wx.removeTabBarBadge()
+    return
+  }
   var params = {
     url: "/p/shopCart/prodCount",
     method: "GET",

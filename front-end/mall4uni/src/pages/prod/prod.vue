@@ -79,80 +79,6 @@
         ...
       </view>
     </view>
-    <!-- 评价 -->
-    <view class="cmt-wrap">
-      <view
-        class="cmt-tit"
-        @tap="showComment"
-      >
-        <view class="cmt-t">
-          评价
-          <text class="cmt-good">
-            好评{{ prodCommData.positiveRating }}%
-          </text>
-        </view>
-        <view class="cmt-count">
-          共{{ prodCommData.number }}条
-          <text class="cmt-more" />
-        </view>
-      </view>
-      <view class="cmt-cont">
-        <view
-          class="cmt-tag"
-          @tap="showComment"
-        >
-          <text>全部({{ prodCommData.number }})</text>
-          <text>好评({{ prodCommData.praiseNumber }})</text>
-          <text>中评({{ prodCommData.secondaryNumber }})</text>
-          <text>差评({{ prodCommData.negativeNumber }})</text>
-          <text>有图({{ prodCommData.picNumber }})</text>
-        </view>
-        <view class="cmt-items">
-          <view
-            v-for="(item, index) in littleCommPage"
-            :key="index"
-            class="cmt-item"
-          >
-            <view class="cmt-user">
-              <text class="date">
-                {{ item.recTime }}
-              </text>
-              <view class="cmt-user-info">
-                <image
-                  class="user-img"
-                  :src="item.pic"
-                />
-                <view class="nickname">
-                  {{ item.nickName }}
-                </view>
-              </view>
-            </view>
-            <view class="cmt-cnt">
-              {{ item.content }}
-            </view>
-            <scroll-view
-              v-if="item.pics.length"
-              class="cmt-attr"
-              scroll-x="true"
-            >
-              <image
-                v-for="(commPic, index2) in item.pics"
-                :key="index2"
-                :src="commPic"
-              />
-            </scroll-view>
-          </view>
-        </view>
-        <view
-          v-if="prodCommPage.records.length > 2"
-          class="cmt-more-v"
-        >
-          <text @tap="showComment">
-            查看全部评价
-          </text>
-        </view>
-      </view>
-    </view>
     <!-- 商品详情 -->
     <view class="prod-detail">
       <view>
@@ -306,125 +232,6 @@
         </view>
       </view>
     </view>
-
-    <!-- 评价弹窗 -->
-    <view
-      v-if="commentShow"
-      class="cmt-popup"
-    >
-      <view class="cmt-tit">
-        <view class="cmt-t">
-          商品评价
-          <text class="cmt-good">
-            好评度{{ prodCommData.positiveRating }}%
-          </text>
-        </view>
-        <text
-          class="close"
-          @tap="closePopup"
-        />
-      </view>
-      <view class="cmt-cont">
-        <view class="cmt-tag">
-          <text
-            data-evaluate="-1"
-            :class="evaluate==-1?'selected':''"
-            @tap="getProdCommPage"
-          >
-            全部({{ prodCommData.number }})
-          </text>
-          <text
-            data-evaluate="0"
-            :class="evaluate==0?'selected':''"
-            @tap="getProdCommPage"
-          >
-            好评({{ prodCommData.praiseNumber }})
-          </text>
-          <text
-            data-evaluate="1"
-            :class="evaluate==1?'selected':''"
-            @tap="getProdCommPage"
-          >
-            中评({{ prodCommData.secondaryNumber }})
-          </text>
-          <text
-            data-evaluate="2"
-            :class="evaluate==2?'selected':''"
-            @tap="getProdCommPage"
-          >
-            差评({{ prodCommData.negativeNumber }})
-          </text>
-          <text
-            data-evaluate="3"
-            :class="evaluate==3?'selected':''"
-            @tap="getProdCommPage"
-          >
-            有图({{ prodCommData.picNumber }})
-          </text>
-        </view>
-        <view class="cmt-items">
-          <block v-if="prodCommPage.records.length">
-            <view
-              v-for="(item, index) in prodCommPage.records"
-              :key="index"
-              class="cmt-item"
-            >
-              <view class="cmt-user">
-                <text class="date">
-                  {{ item.recTime }}
-                </text>
-                <view class="cmt-user-info">
-                  <image
-                    class="user-img"
-                    :src="item.pic"
-                  />
-                  <view class="nickname">
-                    {{ item.nickName }}
-                  </view>
-                </view>
-              </view>
-              <view class="cmt-cnt">
-                {{ item.content }}
-              </view>
-              <scroll-view
-                v-if="item.pics.length"
-                class="cmt-attr"
-                scroll-x="true"
-              >
-                <image
-                  v-for="(commPic, index2) in item.pics"
-                  :key="index2"
-                  :src="commPic"
-                />
-              </scroll-view>
-              <view
-                v-if="item.replyContent"
-                class="cmt-reply"
-              >
-                <text class="reply-tit">
-                  店铺回复：
-                </text>
-                {{ item.replyContent }}
-              </view>
-            </view>
-          </block>
-          <view
-            v-if="!prodCommPage.records.length"
-            class="empty"
-          >
-            暂无评价
-          </view>
-        </view>
-        <view
-          v-if="prodCommPage.pages > prodCommPage.current"
-          class="load-more"
-        >
-          <text @tap="getMoreCommPage">
-            点击加载更多
-          </text>
-        </view>
-      </view>
-    </view>
   </view>
 </template>
 
@@ -443,10 +250,10 @@ let prodId = 0
  * 生命周期函数--监听页面加载
  */
 onLoad((options) => {
-  prodId = options.prodid// 加载商品信息
-  getProdInfo() // 加载商品数据
-  getProdCommData() // 加载评论项
-  getLittleProdComm() // 查看用户是否关注
+  prodId = options.prodid
+  // 加载商品数据
+  getProdInfo()
+  // 查看用户是否关注
   getCollection()
 })
 
@@ -549,86 +356,6 @@ const getProdInfo = () => {
     })
 }
 
-const prodCommData = ref({})
-const getProdCommData = () => {
-  http.request({
-    url: '/prodComm/prodCommData',
-    method: 'GET',
-    data: {
-      prodId
-    }
-  })
-    .then(({ data }) => {
-      prodCommData.value = data
-    })
-}
-
-const prodCommPage = ref({
-  current: 0,
-  pages: 0,
-  records: []
-})
-/**
- * 获取部分评论
- */
-const getLittleProdComm = () => {
-  if (prodCommPage.value.records.length) {
-    return
-  }
-  getProdCommPage()
-}
-
-const getMoreCommPage = () => {
-  getProdCommPage()
-}
-
-const littleCommPage = ref([])
-const evaluate = ref(-1)
-/**
- * 获取分页获取评论
- */
-const getProdCommPage = (e) => {
-  if (e) {
-    if (e.currentTarget.dataset.evaluate === evaluate.value) {
-      return
-    }
-    prodCommPage.value = {
-      current: 0,
-      pages: 0,
-      records: []
-    }
-    evaluate.value = e.currentTarget.dataset.evaluate
-  }
-
-  http.request({
-    url: '/prodComm/prodCommPageByProd',
-    method: 'GET',
-    data: {
-      prodId,
-      size: 10,
-      current: prodCommPage.value.current + 1,
-      evaluate: evaluate.value
-    }
-  })
-    .then(({ data }) => {
-      data.records.forEach(item => {
-        if (item.pics) {
-          item.pics = item.pics.split(',')
-        }
-      })
-      let records = prodCommPage.value.records
-      records = records.concat(data.records)
-      // 如果商品详情中没有评论的数据，截取两条到商品详情页商品详情
-      prodCommPage.value = {
-        current: data.current,
-        pages: data.pages,
-        records
-      }
-      if (!littleCommPage.value.length) {
-        littleCommPage.value = records.slice(0, 2)
-      }
-    })
-}
 let selectedPropObjList = null
 const skuGroup = ref({})
 const defaultSku = ref(null)
