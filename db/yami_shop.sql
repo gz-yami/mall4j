@@ -4981,7 +4981,7 @@ CREATE TABLE `tz_sys_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统用户';
 
 /*Data for the table `tz_sys_user` */
-
+/* 初始账号密码为 admin/123456*/
 insert  into `tz_sys_user`(`user_id`,`username`,`password`,`email`,`mobile`,`status`,`create_user_id`,`create_time`,`shop_id`) values
 (1,'admin','{bcrypt}$2a$10$AV9Xz.3ck4RsXiad5ArcBO5.ZKwlpcnJzs740BHY..fsSp0PnM/Zu','root@123.com','11111111111',1,1,'2016-11-11 11:11:11',1);
 
