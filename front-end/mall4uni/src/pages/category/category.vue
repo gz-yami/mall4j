@@ -36,7 +36,7 @@
           </view>
         </block>
         <view
-          v-if="!categoryList || !categoryList.length"
+          v-if="!categoryList.length"
           class="ca-empty"
         >
           {{ categoryList && categoryList.length ? '该分类下暂无商品' : '暂无商品' }}
