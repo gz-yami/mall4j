@@ -65,6 +65,7 @@ public class ProductController {
     @GetMapping("/page")
     @PreAuthorize("@pms.hasPermission('prod:prod:page')")
     public ServerResponseEntity<IPage<Product>> page(ProductParam product, PageParam<Product> page) {
+        product.setProdName(StrUtil.isNotBlank(product.getProdName()) ? product.getProdName().trim() : product.getProdName());
         IPage<Product> products = productService.page(page,
                 new LambdaQueryWrapper<Product>()
                         .like(StrUtil.isNotBlank(product.getProdName()), Product::getProdName, product.getProdName())
