@@ -38,7 +38,7 @@
         <knife4j.version>4.5.0</knife4j.version>
         <xxl-job.version>2.4.2</xxl-job.version>
         <spring-cloud-commons.version>4.2.0</spring-cloud-commons.version>
-        <satoken.version>1.40.0</satoken.version>
+        <satoken.version>1.44.0</satoken.version>
         <fastjson.version>1.2.83</fastjson.version>
         <mybatis-spring.version>3.0.3</mybatis-spring.version>
         <!--这个是为了兼容springboot 3.4,knife4j更新这个大于2.7的版本就可以考虑删除掉-->
