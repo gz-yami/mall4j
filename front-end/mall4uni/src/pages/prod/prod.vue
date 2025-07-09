@@ -590,9 +590,6 @@ const showSku = () => {
 }
 
 const commentShow = ref(false)
-const showComment = () => {
-  commentShow.value = true
-}
 
 const closePopup = () => {
   skuShow.value = false
