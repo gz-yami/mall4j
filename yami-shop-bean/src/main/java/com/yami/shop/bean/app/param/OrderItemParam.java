@@ -24,20 +24,20 @@ import jakarta.validation.constraints.NotNull;
 public class OrderItemParam {
 
 	@NotNull(message = "产品ID不能为空")
-	@Schema(description = "产品ID" ,required=true)
+	@Schema(description = "产品ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long prodId;
 
 	@NotNull(message = "skuId不能为空")
-	@Schema(description = "skuId" ,required=true)
+	@Schema(description = "skuId" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long skuId;
 
 	@NotNull(message = "产品数量不能为空")
 	@Min(value = 1,message = "产品数量不能为空")
-	@Schema(description = "产品数量" ,required=true)
+	@Schema(description = "产品数量" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Integer prodCount;
 
 	@NotNull(message = "店铺id不能为空")
-	@Schema(description = "店铺id" ,required=true)
+	@Schema(description = "店铺id" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long shopId;
 
 	@Schema(description = "推广员使用的推销卡号" )

@@ -18,11 +18,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "登陆参数")
 public class LoginParam {
 
-	@Schema(description = "小程序登陆时返回的code(使用code登陆必填)" ,required=true)
+	@Schema(description = "小程序登陆时返回的code(使用code登陆必填)" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String code;
-	@Schema(description = "登陆时的用户名(账号密码登陆必填)" ,required=true)
+	@Schema(description = "登陆时的用户名(账号密码登陆必填)" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String mobile;
-	@Schema(description = "登陆时的密码(账号密码登陆必填)" ,required=true)
+	@Schema(description = "登陆时的密码(账号密码登陆必填)" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String password;
 
 	public String getCode() {

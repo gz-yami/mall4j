@@ -29,39 +29,39 @@ public class TransfeeFree implements Serializable {
      * 指定条件包邮项id
      */
     @TableId
-    @Schema(description = "指定条件包邮项id" ,required=true)
+    @Schema(description = "指定条件包邮项id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long transfeeFreeId;
 
     /**
      * 运费模板id
      */
 
-    @Schema(description = "运费模板id" ,required=true)
+    @Schema(description = "运费模板id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long transportId;
 
     /**
      * 包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）
      */
 
-    @Schema(description = "包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）" ,required=true)
+    @Schema(description = "包邮方式 （0 满x件/重量/体积包邮 1满金额包邮 2满x件/重量/体积且满金额包邮）" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer freeType;
 
     /**
      * 需满金额
      */
-    @Schema(description = "需满金额" ,required=true)
+    @Schema(description = "需满金额" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double amount;
 
     /**
      * 包邮x件/重量/体积
      */
-    @Schema(description = "包邮x件/重量/体积" ,required=true)
+    @Schema(description = "包邮x件/重量/体积" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double piece;
 
     /**
      * 指定条件包邮城市项
      */
     @TableField(exist=false)
-    @Schema(description = "指定条件包邮城市项" ,required=true)
+    @Schema(description = "指定条件包邮城市项" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<Area> freeCityList;
 }

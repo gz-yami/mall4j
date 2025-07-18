@@ -19,7 +19,7 @@ import lombok.Data;
 @Data
 public class OrderNumbersDto {
 
-	@Schema(description = "多个订单号拼接的字符串" ,required=true)
+	@Schema(description = "多个订单号拼接的字符串" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String orderNumbers;
 
 	public OrderNumbersDto(String orderNumbers) {

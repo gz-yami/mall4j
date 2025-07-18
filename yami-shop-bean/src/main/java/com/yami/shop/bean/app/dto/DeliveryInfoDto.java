@@ -19,15 +19,15 @@ import lombok.Data;
 @Data
 public class DeliveryInfoDto {
 	
-	@Schema(description = "详细信息" ,required=true)
+	@Schema(description = "详细信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String context;
 	
 	private String ftime;
 	
-	@Schema(description = "快递所在区域" ,required=true)
+	@Schema(description = "快递所在区域" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String location;
 	
-	@Schema(description = "物流更新时间" ,required=true)
+	@Schema(description = "物流更新时间" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String time;
 	
 }

@@ -35,11 +35,11 @@ public class ProdCommParam {
     /**
      * 评价，0-5分
      */
-    @Schema(description = "评价，0-5分" ,required=true)
+    @Schema(description = "评价，0-5分" ,requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull(message = "评价不能为空")
     private Integer score;
 
-    @Schema(description = "评论内容" ,required=true)
+    @Schema(description = "评论内容" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String content;
 
     @Schema(description = "评论图片, 用逗号分隔" )

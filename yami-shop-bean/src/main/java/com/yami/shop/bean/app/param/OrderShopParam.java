@@ -18,13 +18,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class OrderShopParam {
 
 	/** 店铺ID **/
-	@Schema(description = "店铺id" ,required=true)
+	@Schema(description = "店铺id" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long shopId;
 	
 	/**
 	 * 订单备注信息
 	 */
-	@Schema(description = "订单备注信息" ,required=true)
+	@Schema(description = "订单备注信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String remarks;
 
 	public Long getShopId() {

@@ -27,16 +27,16 @@ import java.util.List;
 public class Area implements Serializable {
     private static final long serialVersionUID = -6013320537436191451L;
     @TableId
-    @Schema(description = "地区id" ,required=true)
+    @Schema(description = "地区id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long areaId;
 
-    @Schema(description = "地区名称" ,required=true)
+    @Schema(description = "地区名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String areaName;
 
-    @Schema(description = "地区上级id" ,required=true)
+    @Schema(description = "地区上级id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long parentId;
 
-    @Schema(description = "地区层级" ,required=true)
+    @Schema(description = "地区层级" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer level;
 
     @TableField(exist=false)

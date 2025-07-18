@@ -21,16 +21,16 @@ import lombok.Data;
 @Data
 public class CategoryDto {
 
-	@Schema(description = "分类id" ,required=true)
+	@Schema(description = "分类id" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long categoryId;
 
-	@Schema(description = "分类父id" ,required=true)
+	@Schema(description = "分类父id" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long parentId;
 
-	@Schema(description = "分类名称" ,required=true)
+	@Schema(description = "分类名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String categoryName;
 
-	@Schema(description = "分类图片" ,required=true)
+	@Schema(description = "分类图片" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonSerialize(using = ImgJsonSerializer.class)
 	private String pic;
 

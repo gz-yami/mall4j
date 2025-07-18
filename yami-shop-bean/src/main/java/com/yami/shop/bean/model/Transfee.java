@@ -29,46 +29,46 @@ public class Transfee implements Serializable {
      * 运费项id
      */
     @TableId
-    @Schema(description = "运费项id" ,required=true)
+    @Schema(description = "运费项id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long transfeeId;
 
     /**
      * 运费模板id
      */
 
-    @Schema(description = "运费模板id" ,required=true)
+    @Schema(description = "运费模板id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long transportId;
 
     /**
      * 续件数量
      */
 
-    @Schema(description = "续件数量" ,required=true)
+    @Schema(description = "续件数量" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double continuousPiece;
 
     /**
      * 首件数量
      */
 
-    @Schema(description = "首件数量" ,required=true)
+    @Schema(description = "首件数量" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double firstPiece;
 
     /**
      * 续件费用
      */
 
-    @Schema(description = "续件费用" ,required=true)
+    @Schema(description = "续件费用" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double continuousFee;
 
     /**
      * 首件费用
      */
 
-    @Schema(description = "首件费用" ,required=true)
+    @Schema(description = "首件费用" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double firstFee;
 
     @TableField(exist=false)
-    @Schema(description = "指定条件运费城市项" ,required=true)
+    @Schema(description = "指定条件运费城市项" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<Area> cityList;
 
 }

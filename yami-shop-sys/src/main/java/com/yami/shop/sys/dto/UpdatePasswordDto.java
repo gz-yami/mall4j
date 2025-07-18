@@ -24,11 +24,11 @@ public class UpdatePasswordDto {
 
 	@NotBlank(message="旧密码不能为空")
 	@Size(max = 50)
-	@Schema(description = "旧密码" ,required=true)
+	@Schema(description = "旧密码" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String password;
 
 	@NotBlank(message="新密码不能为空")
 	@Size(max = 50)
-	@Schema(description = "新密码" ,required=true)
+	@Schema(description = "新密码" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String newPassword;
 }

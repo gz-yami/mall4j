@@ -21,16 +21,16 @@ import java.util.List;
 @Data
 public class DeliveryDto {
 
-	@Schema(description = "物流公司名称" ,required=true)
+	@Schema(description = "物流公司名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String companyName;
 	
-	@Schema(description = "物流公司官网" ,required=true)
+	@Schema(description = "物流公司官网" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String companyHomeUrl;
 	
-	@Schema(description = "物流订单号" ,required=true)
+	@Schema(description = "物流订单号" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String dvyFlowId;
 	
-	@Schema(description = "查询出的物流信息" ,required=true)
+	@Schema(description = "查询出的物流信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<DeliveryInfoDto> data;
 
 }

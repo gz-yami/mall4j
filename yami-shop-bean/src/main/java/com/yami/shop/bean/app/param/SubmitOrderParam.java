@@ -21,6 +21,6 @@ import java.util.List;
 @Data
 @Schema(description = "提交订单参数")
 public class SubmitOrderParam {
-	@Schema(description = "每个店铺提交的订单信息" ,required=true)
+	@Schema(description = "每个店铺提交的订单信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<OrderShopParam> orderShopParam;
 }

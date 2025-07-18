@@ -20,46 +20,46 @@ import jakarta.validation.constraints.NotNull;
 @Schema(description = "地址参数")
 public class AddrParam {
 
-	@Schema(description = "地址ID" ,required=true)
+	@Schema(description = "地址ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long addrId;
 
 	@NotNull(message = "收货人不能为空")
-	@Schema(description = "收货人" ,required=true)
+	@Schema(description = "收货人" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String receiver;
 
 	@NotNull(message = "地址不能为空")
-	@Schema(description = "地址" ,required=true)
+	@Schema(description = "地址" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String addr;
 
 	@Schema(description = "邮编" ,required=false)
 	private String postCode;
 
 	@NotNull(message = "手机不能为空")
-	@Schema(description = "手机" ,required=true)
+	@Schema(description = "手机" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String mobile;
 
 	@NotNull(message = "省ID不能为空")
-	@Schema(description = "省ID" ,required=true)
+	@Schema(description = "省ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long provinceId;
 
 	@NotNull(message = "城市ID不能为空")
-	@Schema(description = "城市ID" ,required=true)
+	@Schema(description = "城市ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long cityId;
 
 	@NotNull(message = "区ID不能为空")
-	@Schema(description = "区ID" ,required=true)
+	@Schema(description = "区ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long areaId;
 
 	@NotNull(message = "省不能为空")
-	@Schema(description = "省" ,required=true)
+	@Schema(description = "省" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String province;
 
 	@NotNull(message = "城市不能为空")
-	@Schema(description = "城市" ,required=true)
+	@Schema(description = "城市" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String city;
 
 	@NotNull(message = "区不能为空")
-	@Schema(description = "区" ,required=true)
+	@Schema(description = "区" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String area;
 
 

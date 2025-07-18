@@ -17,9 +17,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class UserDto {
 
 
-	@Schema(description = "用户状态：0禁用 1正常" ,required=true)
+	@Schema(description = "用户状态：0禁用 1正常" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Integer status;
-	@Schema(description = "token" ,required=true)
+	@Schema(description = "token" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String token;
 	
 	public Integer getStatus() {

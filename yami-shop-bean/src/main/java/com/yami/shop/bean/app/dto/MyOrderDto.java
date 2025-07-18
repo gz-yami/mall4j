@@ -22,16 +22,16 @@ import java.util.List;
 @Schema(description = "我的订单")
 public class MyOrderDto {
 	
-	@Schema(description = "订单项" ,required=true)
+	@Schema(description = "订单项" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<MyOrderItemDto> orderItemDtos;
 	
-	@Schema(description = "订单号" ,required=true)
+	@Schema(description = "订单号" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String orderNumber;
 	
-	@Schema(description = "总价" ,required=true)
+	@Schema(description = "总价" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Double actualTotal;
 	
-	@Schema(description = "订单状态" ,required=true)
+	@Schema(description = "订单状态" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Integer status;
 	
 }

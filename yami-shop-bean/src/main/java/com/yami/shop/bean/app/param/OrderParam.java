@@ -30,7 +30,7 @@ public class OrderParam {
 	@Schema(description = "立即购买时提交的商品项" )
 	private OrderItemParam orderItem;
 
-	@Schema(description = "地址ID，0为默认地址" ,required=true)
+	@Schema(description = "地址ID，0为默认地址" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	@NotNull(message = "地址不能为空")
 	private Long addrId;
 

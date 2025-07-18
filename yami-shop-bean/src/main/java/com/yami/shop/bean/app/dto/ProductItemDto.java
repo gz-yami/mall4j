@@ -26,32 +26,32 @@ import java.util.List;
 @Data
 public class ProductItemDto implements Serializable {
 
-	@Schema(description = "产品名称" ,required=true)
+	@Schema(description = "产品名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String prodName;
 
-	@Schema(description = "产品个数" ,required=true)
+	@Schema(description = "产品个数" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Integer prodCount;
 
-	@Schema(description = "产品图片路径" ,required=true)
+	@Schema(description = "产品图片路径" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	@JsonSerialize(using = ImgJsonSerializer.class)
 	private String pic;
 
-	@Schema(description = "产品价格" ,required=true)
+	@Schema(description = "产品价格" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Double price;
 
-	@Schema(description = "商品总金额" ,required=true)
+	@Schema(description = "商品总金额" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Double productTotalAmount;
 
-	@Schema(description = "产品ID" ,required=true)
+	@Schema(description = "产品ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long prodId;
 
-    @Schema(description = "skuId" ,required=true)
+    @Schema(description = "skuId" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long skuId;
 
 	@Schema(description = "规格名称" , required = true)
 	private String skuName;
 
-	@Schema(description = "basketId" ,required=true)
+	@Schema(description = "basketId" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long basketId;
 
 	@Schema(description = "商品实际金额 = 商品总金额 - 分摊的优惠金额" )
