@@ -48,7 +48,7 @@ public class ProductItemDto implements Serializable {
     @Schema(description = "skuId" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long skuId;
 
-	@Schema(description = "规格名称" , required = true)
+	@Schema(description = "规格名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String skuName;
 
 	@Schema(description = "basketId" ,requiredMode = Schema.RequiredMode.REQUIRED)

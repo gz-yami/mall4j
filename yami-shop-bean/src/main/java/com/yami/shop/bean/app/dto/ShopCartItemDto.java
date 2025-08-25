@@ -29,19 +29,19 @@ import java.util.List;
 public class ShopCartItemDto extends ProductItemDto implements Serializable {
     private static final long serialVersionUID = -8284981156242930909L;
 
-    @Schema(description = "购物车ID" , required = true)
+    @Schema(description = "购物车ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long basketId;
 
-    @Schema(description = "店铺ID" , required = true)
+    @Schema(description = "店铺ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long shopId;
 
-    @Schema(description = "规格名称" , required = true)
+    @Schema(description = "规格名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String skuName;
 
-    @Schema(description = "店铺名称" , required = true)
+    @Schema(description = "店铺名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String shopName;
 
-    @Schema(description = "商品原价" , required = true)
+    @Schema(description = "商品原价" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double oriPrice;
 
     @Schema(description = "推广员使用的推销卡号" )

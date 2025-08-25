@@ -12,6 +12,6 @@ import lombok.Data;
 @Data
 public class CaptchaAuthenticationDTO extends AuthenticationDTO {
 
-    @Schema(description = "验证码" , required = true)
+    @Schema(description = "验证码" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String captchaVerification;
 }

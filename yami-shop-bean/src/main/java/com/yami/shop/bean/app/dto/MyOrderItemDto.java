@@ -22,20 +22,20 @@ import lombok.Data;
 @Data
 public class MyOrderItemDto {
 
-    @Schema(description = "商品图片" , required = true)
+    @Schema(description = "商品图片" ,requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonSerialize(using = ImgJsonSerializer.class)
     private String pic;
 
-    @Schema(description = "商品名称" , required = true)
+    @Schema(description = "商品名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String prodName;
 
-    @Schema(description = "商品数量" , required = true)
+    @Schema(description = "商品数量" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer prodCount;
 
-    @Schema(description = "商品价格" , required = true)
+    @Schema(description = "商品价格" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double price;
 
-    @Schema(description = "skuName" , required = true)
+    @Schema(description = "skuName" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String skuName;
 
 }

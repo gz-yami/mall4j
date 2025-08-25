@@ -22,13 +22,13 @@ import java.util.List;
 @Data
 public class ShopCartDto implements Serializable {
 
-	@Schema(description = "店铺ID" , required = true)
+	@Schema(description = "店铺ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long shopId;
 
-	@Schema(description = "店铺名称" , required = true)
+	@Schema(description = "店铺名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String shopName;
 
-	@Schema(description = "购物车商品" , required = true)
+	@Schema(description = "购物车商品" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private List<ShopCartItemDiscountDto> shopCartItemDiscounts;
 
 

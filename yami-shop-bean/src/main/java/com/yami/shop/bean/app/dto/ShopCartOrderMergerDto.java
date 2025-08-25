@@ -24,24 +24,24 @@ import java.util.List;
 @Data
 public class ShopCartOrderMergerDto implements Serializable{
 
-    @Schema(description = "实际总值" , required = true)
+    @Schema(description = "实际总值" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double actualTotal;
 
-    @Schema(description = "商品总值" , required = true)
+    @Schema(description = "商品总值" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double total;
 
-    @Schema(description = "商品总数" , required = true)
+    @Schema(description = "商品总数" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer totalCount;
 
-    @Schema(description = "订单优惠金额(所有店铺优惠金额相加)" , required = true)
+    @Schema(description = "订单优惠金额(所有店铺优惠金额相加)" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double orderReduce;
 
-    @Schema(description = "地址Dto" , required = true)
+    @Schema(description = "地址Dto" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private UserAddrDto userAddr;
 
-    @Schema(description = "每个店铺的购物车信息" , required = true)
+    @Schema(description = "每个店铺的购物车信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<ShopCartOrderDto> shopCartOrders;
 
-    @Schema(description = "整个订单可以使用的优惠券列表" , required = true)
+    @Schema(description = "整个订单可以使用的优惠券列表" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<CouponOrderDto> coupons;
 }

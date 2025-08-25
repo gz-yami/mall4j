@@ -25,10 +25,10 @@ import java.util.List;
 @Data
 public class BasketItemDto implements Serializable {
 
-    @Schema(description = "购物车ID" , required = true)
+    @Schema(description = "购物车ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long basketId;
 
-    @Schema(description = "店铺ID" , required = true)
+    @Schema(description = "店铺ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long shopId;
 
     /**
@@ -37,32 +37,32 @@ public class BasketItemDto implements Serializable {
     @JsonIgnore
     private String shopName;
 
-    @Schema(description = "产品ID" , required = true)
+    @Schema(description = "产品ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long prodId;
 
-    @Schema(description = "skuID" , required = true)
+    @Schema(description = "skuID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long skuId;
 
-    @Schema(description = "产品个数" , required = true)
+    @Schema(description = "产品个数" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer prodCount;
 
-    @Schema(description = "产品名称" , required = true)
+    @Schema(description = "产品名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String prodName;
 
-    @Schema(description = "产品主图" , required = true)
+    @Schema(description = "产品主图" ,requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonSerialize(using = ImgJsonSerializer.class)
     private String pic;
 
-    @Schema(description = "产品现价" , required = true)
+    @Schema(description = "产品现价" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double price;
 
-    @Schema(description = "产品原价" , required = true)
+    @Schema(description = "产品原价" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double oriPrice;
 
-    @Schema(description = "产品简介" , required = true)
+    @Schema(description = "产品简介" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String brief;
 
-    @Schema(description = "产品sku信息" , required = true)
+    @Schema(description = "产品sku信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String skuName;
 
     @Schema(description = "参与满减活动列表" )

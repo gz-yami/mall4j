@@ -11,15 +11,15 @@ import jakarta.validation.constraints.NotEmpty;
 @Data
 public class OrderRefundExpressParam {
 
-    @Schema(description = "退款编号名称" , required = true)
+    @Schema(description = "退款编号名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "退款编号不能为空")
     private String refundSn;
 
-    @Schema(description = "物流公司名称" , required = true)
+    @Schema(description = "物流公司名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "物流公司名称不能为空")
     private String expressName;
 
-    @Schema(description = "物流单号" , required = true)
+    @Schema(description = "物流单号" ,requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "物流单号不能为空")
     private String expressNo;
 

@@ -23,42 +23,42 @@ import java.util.List;
 @Data
 public class ShopCartOrderDto implements Serializable{
 
-    @Schema(description = "店铺id" , required = true)
+    @Schema(description = "店铺id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long shopId;
 
-    @Schema(description = "店铺名称" , required = true)
+    @Schema(description = "店铺名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String shopName;
 
-    @Schema(description = "实际总值" , required = true)
+    @Schema(description = "实际总值" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double actualTotal;
 
-    @Schema(description = "商品总值" , required = true)
+    @Schema(description = "商品总值" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double total;
 
-    @Schema(description = "商品总数" , required = true)
+    @Schema(description = "商品总数" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer totalCount;
 
-    @Schema(description = "运费" , required = true)
+    @Schema(description = "运费" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double transfee;
 
-    @Schema(description = "促销活动优惠金额" , required = true)
+    @Schema(description = "促销活动优惠金额" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double discountReduce;
 
-    @Schema(description = "优惠券优惠金额" , required = true)
+    @Schema(description = "优惠券优惠金额" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double couponReduce;
 
-    @Schema(description = "店铺优惠金额(促销活动 + 优惠券 + 其他)" , required = true)
+    @Schema(description = "店铺优惠金额(促销活动 + 优惠券 + 其他)" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Double shopReduce = 0.0;
 
-    @Schema(description = "订单备注信息" , required = true)
+    @Schema(description = "订单备注信息" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String remarks;
 
-    @Schema(description = "购物车商品" , required = true)
+    @Schema(description = "购物车商品" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<ShopCartItemDiscountDto> shopCartItemDiscounts;
 
-    @Schema(description = "整个店铺可以使用的优惠券列表" , required = true)
+    @Schema(description = "整个店铺可以使用的优惠券列表" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<CouponOrderDto> coupons;
 
-    @Schema(description = "订单编号" , required = true)
+    @Schema(description = "订单编号" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String orderNumber;
 }

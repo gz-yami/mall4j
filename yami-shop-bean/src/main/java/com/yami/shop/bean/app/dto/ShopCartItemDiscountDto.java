@@ -23,7 +23,7 @@ import java.util.List;
 public class ShopCartItemDiscountDto implements Serializable {
 
 
-    @Schema(description = "已选满减项" , required = true)
+    @Schema(description = "已选满减项" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private ChooseDiscountItemDto chooseDiscountItemDto;
 
     @Schema(description = "商品列表" )

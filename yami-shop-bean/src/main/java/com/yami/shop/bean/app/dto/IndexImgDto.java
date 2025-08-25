@@ -28,31 +28,31 @@ public class IndexImgDto {
      * 图片
      */
     @JsonSerialize(using = ImgJsonSerializer.class)
-    @Schema(description = "图片Url" , required = true)
+    @Schema(description = "图片Url" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String imgUrl;
 
     /**
      * 顺序
      */
-    @Schema(description = "图片顺序" , required = true)
+    @Schema(description = "图片顺序" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer seq;
 
     /**
      * 上传时间
      */
-    @Schema(description = "上传时间" , required = true)
+    @Schema(description = "上传时间" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Date uploadTime;
 
     /**
      * 类型
      */
-    @Schema(description = "类型" , required = true)
+    @Schema(description = "类型" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private int type;
 
     /**
      * 关联id
      */
-    @Schema(description = "关联id" , required = true)
+    @Schema(description = "关联id" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long relation;
 
 

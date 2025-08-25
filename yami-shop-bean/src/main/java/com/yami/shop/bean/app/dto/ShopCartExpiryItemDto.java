@@ -21,13 +21,13 @@ import java.util.List;
 @Data
 @Schema(description = "购物车失效商品对象")
 public class ShopCartExpiryItemDto {
-    @Schema(description = "店铺ID" , required = true)
+    @Schema(description = "店铺ID" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private Long shopId;
 
-    @Schema(description = "店铺名称" , required = true)
+    @Schema(description = "店铺名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private String shopName;
 
-    @Schema(description = "商品项" , required = true)
+    @Schema(description = "商品项" ,requiredMode = Schema.RequiredMode.REQUIRED)
     private List<ShopCartItemDto> shopCartItemDtoList;
 
 }

@@ -27,14 +27,14 @@ public class AuthenticationDTO {
      * 用户名
      */
     @NotBlank(message = "userName不能为空")
-    @Schema(description = "用户名/邮箱/手机号" , required = true)
+    @Schema(description = "用户名/邮箱/手机号" ,requiredMode = Schema.RequiredMode.REQUIRED)
     protected String userName;
 
     /**
      * 密码
      */
     @NotBlank(message = "passWord不能为空")
-    @Schema(description = "一般用作密码" , required = true)
+    @Schema(description = "一般用作密码" ,requiredMode = Schema.RequiredMode.REQUIRED)
     protected String passWord;
 
 }
