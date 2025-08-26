@@ -7,13 +7,10 @@ export const Debounce = (fn, t) => {
     if (timer) {
       clearTimeout(timer)
     }
-
     const callNow = !timer
-
     timer = setTimeout(() => {
       timer = null
     }, delay)
-
     if (callNow) fn.apply(this, args)
   }
 }
