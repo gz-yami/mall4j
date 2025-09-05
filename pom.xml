@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.plugin.version>3.12.0</maven.compiler.plugin.version>
-        <spring-boot.version>3.4.5</spring-boot.version>
+        <spring-boot.version>3.4.7</spring-boot.version>
         <java.version>17</java.version>
         <guava.version>33.4.0-jre</guava.version>
         <hutool.version>5.8.35</hutool.version>
