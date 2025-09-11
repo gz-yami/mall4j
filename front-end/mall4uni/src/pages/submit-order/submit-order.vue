@@ -4,12 +4,12 @@
       <view class="submit-order">
         <!-- 收货地址 -->
         <view
-          class="delivery-addr "
+          class="delivery-addr"
           @tap="toAddrListPage"
         >
           <view
             v-if="!userAddr"
-            class="addr-bg "
+            class="addr-bg"
           >
             <view class="add-addr">
               <view class="plus-sign-img">
