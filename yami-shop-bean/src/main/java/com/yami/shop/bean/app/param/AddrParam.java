@@ -31,7 +31,7 @@ public class AddrParam {
 	@Schema(description = "地址" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String addr;
 
-	@Schema(description = "邮编" ,required=false)
+	@Schema(description = "邮编" ,requiredMode = Schema.RequiredMode.REQUIRED)
 	private String postCode;
 
 	@NotNull(message = "手机不能为空")

@@ -12,6 +12,7 @@ package com.yami.shop.admin.controller;
 
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yami.shop.bean.model.ProdTag;
@@ -26,6 +27,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+
+import java.sql.Struct;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +57,7 @@ public class ProdTagController {
         IPage<ProdTag> tagPage = prodTagService.page(
                 page, new LambdaQueryWrapper<ProdTag>()
                         .eq(prodTag.getStatus() != null, ProdTag::getStatus, prodTag.getStatus())
-                        .like(prodTag.getTitle() != null, ProdTag::getTitle, prodTag.getTitle())
+                        .like(StrUtil.isNotBlank(prodTag.getTitle()), ProdTag::getTitle, prodTag.getTitle())
                         .orderByDesc(ProdTag::getSeq, ProdTag::getCreateTime));
         return ServerResponseEntity.success(tagPage);
 
@@ -87,10 +90,11 @@ public class ProdTagController {
         if (CollectionUtil.isNotEmpty(list)) {
             throw new YamiShopBindException("标签名称已存在，不能添加相同的标签");
         }
+        Date date = new Date();
         prodTag.setIsDefault(0);
         prodTag.setProdCount(0L);
-        prodTag.setCreateTime(new Date());
-        prodTag.setUpdateTime(new Date());
+        prodTag.setCreateTime(date);
+        prodTag.setUpdateTime(date);
         prodTag.setShopId(SecurityUtils.getSysUser().getShopId());
         prodTagService.removeProdTag();
         return ServerResponseEntity.success(prodTagService.save(prodTag));
