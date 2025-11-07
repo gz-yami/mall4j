@@ -82,6 +82,9 @@ public class ProductController {
     @PreAuthorize("@pms.hasPermission('prod:prod:info')")
     public ServerResponseEntity<Product> info(@PathVariable("prodId") Long prodId) {
         Product prod = productService.getProductByProdId(prodId);
+        if(Objects.isNull(prod)){
+            throw new YamiShopBindException("商品不存在");
+        }
         if (!Objects.equals(prod.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("没有权限获取该商品规格信息");
         }
@@ -122,6 +125,9 @@ public class ProductController {
     public ServerResponseEntity<String> update(@Valid @RequestBody ProductParam productParam) {
         checkParam(productParam);
         Product dbProduct = productService.getProductByProdId(productParam.getProdId());
+        if(Objects.isNull(dbProduct)){
+            throw new YamiShopBindException("商品不存在");
+        }
         if (!Objects.equals(dbProduct.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             return ServerResponseEntity.showFailMsg("无法修改非本店铺商品信息");
         }
@@ -156,6 +162,9 @@ public class ProductController {
      */
     public ServerResponseEntity<Void> delete(Long prodId) {
         Product dbProduct = productService.getProductByProdId(prodId);
+        if(Objects.isNull(dbProduct)){
+            throw new YamiShopBindException("商品不存在");
+        }
         if (!Objects.equals(dbProduct.getShopId(), SecurityUtils.getSysUser().getShopId())) {
             throw new YamiShopBindException("无法获取非本店铺商品信息");
         }
