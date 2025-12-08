@@ -18,8 +18,6 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:vue-scoped-css/vue3-recommended'
   ],
-  overrides: [
-  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
