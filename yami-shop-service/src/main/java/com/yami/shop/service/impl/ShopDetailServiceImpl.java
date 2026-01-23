@@ -46,23 +46,6 @@ public class ShopDetailServiceImpl extends ServiceImpl<ShopDetailMapper, ShopDet
     public void updateShopDetail(ShopDetail shopDetail,ShopDetail dbShopDetail) {
     	// 更新除数据库中的信息，再删除图片
     	shopDetailMapper.updateById(shopDetail);
-//    	if (!Objects.equals(dbShopDetail.getShopLogo(), shopDetail.getShopLogo())) {
-//    		// 删除logo
-//    		attachFileService.deleteFile(shopDetail.getShopLogo());
-//    	}
-//    	// 店铺图片
-//    	String shopPhotos = shopDetail.getShopPhotos();
-//    	String[] shopPhotoArray =StrUtil.isBlank(shopPhotos)?new String[]{}: shopPhotos.split(",");
-//
-//    	// 数据库中的店铺图片
-//    	String dbShopPhotos = dbShopDetail.getShopPhotos();
-//    	String[] dbShopPhotoArray =StrUtil.isBlank(dbShopPhotos)?new String[]{}: dbShopPhotos.split(",");
-//    	for (String dbShopPhoto : dbShopPhotoArray) {
-//    		// 如果新插入的图片中没有旧数据中的图片，则删除旧数据中的图片
-//			if (!ArrayUtil.contains(shopPhotoArray, dbShopPhoto)) {
-//				attachFileService.deleteFile(dbShopPhoto);
-//			}
-//		}
     }
     
 	@Override

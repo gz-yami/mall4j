@@ -77,10 +77,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 		// 先删除后增加
 		deleteBrandsAndAttributes(category.getCategoryId());
 		insertBrandsAndAttributes(category);
-		// 如果以前有图片，并且图片与现在不同，则删除以前的图片
-//		if (StrUtil.isNotBlank(dbCategory.getPic()) && !dbCategory.getPic().equals(category.getPic())) {
-//			attachFileService.deleteFile(dbCategory.getPic());
-//		}
 	}
 
 	@Override
@@ -90,9 +86,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 		categoryMapper.deleteById(categoryId);
 
 		deleteBrandsAndAttributes(categoryId);
-//		if (StrUtil.isNotBlank(category.getPic())) {
-//			attachFileService.deleteFile(category.getPic());
-//		}
 	}
 
 
