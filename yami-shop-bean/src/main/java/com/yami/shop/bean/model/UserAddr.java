@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -30,6 +31,7 @@ import java.util.Date;
 @TableName("tz_user_addr")
 @EqualsAndHashCode(callSuper = false)
 public class UserAddr implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

@@ -10,8 +10,8 @@
 
 package com.yami.shop.admin.controller;
 
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JavaType;
+import tools.jackson.databind.ObjectMapper;
 import com.yami.shop.bean.model.ProdComm;
 import com.yami.shop.common.annotation.SysLog;
 import com.yami.shop.common.util.Json;

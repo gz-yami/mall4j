@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.List;
 @Data
 @TableName("tz_order")
 public class Order implements Serializable {
+    @Serial
     private static final long serialVersionUID = 6222259729062826852L;
     /**
      * 订单ID

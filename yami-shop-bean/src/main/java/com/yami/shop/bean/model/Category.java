@@ -13,7 +13,7 @@ package com.yami.shop.bean.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import lombok.Data;
 

@@ -40,11 +40,11 @@ public class DefaultExceptionHandlerConfig {
     public ResponseEntity<ServerResponseEntity<List<String>>> methodArgumentNotValidExceptionHandler(Exception e) {
         log.error("methodArgumentNotValidExceptionHandler", e);
         List<FieldError> fieldErrors = null;
-        if (e instanceof MethodArgumentNotValidException) {
-            fieldErrors = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
+        if (e instanceof MethodArgumentNotValidException exception) {
+            fieldErrors = exception.getBindingResult().getFieldErrors();
         }
-        if (e instanceof BindException) {
-            fieldErrors = ((BindException) e).getBindingResult().getFieldErrors();
+        if (e instanceof BindException exception) {
+            fieldErrors = exception.getBindingResult().getFieldErrors();
         }
         if (fieldErrors == null) {
             return ResponseEntity.status(HttpStatus.OK)

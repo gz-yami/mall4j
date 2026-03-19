@@ -15,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +26,7 @@ import java.util.Date;
 @TableName("tz_order_item")
 public class OrderItem implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 7307405761190788407L;
     /**
      * 订单项ID

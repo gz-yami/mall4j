@@ -18,6 +18,8 @@ import lombok.Data;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -28,7 +30,8 @@ import java.util.List;
 @Data
 @TableName("tz_sys_menu")
 public class SysMenu implements Serializable {
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 	/**
 	 * 菜单ID

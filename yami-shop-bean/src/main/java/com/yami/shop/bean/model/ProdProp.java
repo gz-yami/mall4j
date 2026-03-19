@@ -17,6 +17,8 @@ import lombok.Data;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import java.util.List;
 @Data
 @TableName("tz_prod_prop")
 public class ProdProp implements Serializable {
+    @Serial
     private static final long serialVersionUID = -8761177918672000191L;
 
     /**

@@ -11,14 +11,15 @@
 package com.yami.shop.common.util;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.json.JsonWriteFeature;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import tools.jackson.core.json.JsonWriteFeature;
+import tools.jackson.databind.*;
+import tools.jackson.core.JacksonException;
+
 import lombok.extern.slf4j.Slf4j;
+import tools.jackson.databind.cfg.EnumFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,21 +31,30 @@ import java.util.List;
 @Slf4j
 public class Json {
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+	public static JsonMapper.Builder newBaseBuilder() {
+		return JsonMapper.builder()
+				.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
+				.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+				// 兼容 Jackson 2 的宽松行为，允许 null 映射到基础类型并使用其默认值。
+				.disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+				.disable(SerializationFeature.FAIL_ON_SELF_REFERENCES)
+				.enable(SerializationFeature.WRITE_SELF_REFERENCES_AS_NULL)
+				.disable(EnumFeature.FAIL_ON_NUMBERS_FOR_ENUMS)
+				.changeDefaultVisibility(vc -> vc
+						.withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+						.withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+						.withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
+						.withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+						.withCreatorVisibility(JsonAutoDetect.Visibility.NONE));
+		// 如果你想尽量贴近 Jackson 2 默认行为，可再补：
+		// .disable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+	}
 
-    static {
-        // 如果为空则不输出
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-        // 对于空的对象转json的时候不抛出错误
-        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        // 禁用序列化日期为timestamps
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        // 禁用遇到未知属性抛出异常
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        // 取消对非ASCII字符的转码
-        objectMapper.configure(JsonWriteFeature.ESCAPE_NON_ASCII.mappedFeature(), false);
-        
-    }
+	/**
+	 * 普通用途：深拷贝、parseObject、mapAsList
+	 */
+	private static final ObjectMapper objectMapper =
+			newBaseBuilder().build();
 
 	/**
 	 * 对象转json
@@ -54,7 +64,7 @@ public class Json {
 	public static String toJsonString(Object object) {
 		try {
 			return objectMapper.writeValueAsString(object);
-		} catch (JsonProcessingException e) {
+		} catch (JacksonException e) {
 			log.error("对象转json错误：", e);
 		}
 		return null;

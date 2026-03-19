@@ -65,8 +65,8 @@ public class XssWrapper extends HttpServletRequestWrapper {
     @Override
     public Object getAttribute(String name) {
         Object value = super.getAttribute(name);
-        if (value instanceof String && StrUtil.isNotBlank((String) value)) {
-            return cleanXss((String) value);
+        if (value instanceof String string && StrUtil.isNotBlank(string)) {
+            return cleanXss(string);
         }
         return value;
     }

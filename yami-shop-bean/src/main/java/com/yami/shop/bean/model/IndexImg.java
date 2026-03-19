@@ -13,10 +13,11 @@ package com.yami.shop.bean.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,6 +27,7 @@ import java.util.Date;
 @Data
 @TableName("tz_index_img")
 public class IndexImg implements Serializable {
+    @Serial
     private static final long serialVersionUID = -3468251351681518798L;
     /**
      * 主键

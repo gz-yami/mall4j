@@ -10,6 +10,7 @@
 
 package com.yami.shop.bean.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.*;
@@ -21,6 +22,7 @@ import lombok.Data;
 @Data
 @TableName("tz_shop_detail")
 public class ShopDetail implements Serializable{
+    @Serial
     private static final long serialVersionUID = 3300529542917772262L;
     /**
      * 店铺id

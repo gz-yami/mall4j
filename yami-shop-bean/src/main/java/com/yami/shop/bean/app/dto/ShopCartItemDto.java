@@ -10,12 +10,13 @@
 
 package com.yami.shop.bean.app.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +28,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ShopCartItemDto extends ProductItemDto implements Serializable {
+    @Serial
     private static final long serialVersionUID = -8284981156242930909L;
 
     @Schema(description = "购物车ID" ,requiredMode = Schema.RequiredMode.REQUIRED)

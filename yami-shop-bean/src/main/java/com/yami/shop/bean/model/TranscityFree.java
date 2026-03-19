@@ -13,6 +13,7 @@ package com.yami.shop.bean.model;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -21,6 +22,7 @@ import java.io.Serializable;
 @Data
 @TableName("tz_transcity_free")
 public class TranscityFree implements Serializable {
+    @Serial
     private static final long serialVersionUID = 2579465286635831076L;
     /**
      * 指定条件包邮城市项id

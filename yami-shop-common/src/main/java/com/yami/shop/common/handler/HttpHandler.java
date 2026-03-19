@@ -1,11 +1,13 @@
 package com.yami.shop.common.handler;
 
 import cn.hutool.core.util.CharsetUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tools.jackson.core.JacksonException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -54,7 +56,7 @@ public class HttpHandler {
             printWriter = response.getWriter();
             printWriter.write(objectMapper.writeValueAsString(serverResponseEntity));
         }
-        catch (IOException e) {
+        catch (JacksonException | IOException e) {
             throw new YamiShopBindException("io 异常", e);
         }
     }

@@ -14,16 +14,19 @@ import com.yami.shop.common.response.ResponseEnum;
 import com.yami.shop.common.response.ServerResponseEntity;
 import lombok.Getter;
 
+import java.io.Serial;
+
 /**
  * @author lanhai
  */
 @Getter
 public class YamiShopBindException extends RuntimeException{
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -4137688758944857209L;
+    /**
+     *
+     */
+    @Serial
+    private static final long serialVersionUID = -4137688758944857209L;
 
 	/**
 	 * http状态码

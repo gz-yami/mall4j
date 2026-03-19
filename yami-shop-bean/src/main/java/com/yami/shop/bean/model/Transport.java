@@ -10,6 +10,7 @@
 
 package com.yami.shop.bean.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -22,12 +23,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * @author lanhai
  */
 @Data
 @TableName("tz_transport")
 public class Transport implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1876655654053364580L;
     /**
      * 运费模板id

@@ -9,12 +9,12 @@
  */
 package com.yami.shop.admin.config;
 
+import cn.hutool.core.util.StrUtil;
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
+import com.yami.shop.common.util.IpHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -43,8 +43,8 @@ public class XxlJobConfig {
     @Value("${server.port}")
     private int port;
 
-    @Autowired
-    private InetUtils inetUtils;
+    @Value("${xxl-job.local.ip:}")
+    private String localIp;
 
 //    @Bean
 //    public XxlJobSpringExecutor xxlJobExecutor() {
@@ -52,13 +52,16 @@ public class XxlJobConfig {
 //        logger.info(">>>>>>>>>>> xxl-job config init.");
 //        XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
 //        xxlJobSpringExecutor.setAdminAddresses(adminAddresses);
-//        xxlJobSpringExecutor.setAppname("mall4j");
-//        // 针对多网卡、容器内部署等情况，可借助 "spring-cloud-commons" 提供的 "InetUtils" 组件灵活定制注册IP
-//        xxlJobSpringExecutor.setIp(inetUtils.findFirstNonLoopbackAddress().getHostAddress());
+//        xxlJobSpringExecutor.setAppname("mall4j-bbc");
+//        if (StrUtil.isNotBlank(localIp)) {
+//            xxlJobSpringExecutor.setIp(localIp);
+//        } else {
+//            xxlJobSpringExecutor.setIp(IpHelper.getLocalIp());
+//        }
 //        xxlJobSpringExecutor.setPort(port + 1000);
 //        xxlJobSpringExecutor.setAccessToken(accessToken);
 //        xxlJobSpringExecutor.setLogPath(logPath);
-//        xxlJobSpringExecutor.setLogRetentionDays(3);
+//        xxlJobSpringExecutor.setLogRetentionDays(7);
 //        return xxlJobSpringExecutor;
 //    }
 

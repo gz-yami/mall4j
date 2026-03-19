@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,6 +29,7 @@ import java.util.Date;
 @Data
 @TableName("tz_notice")
 public class Notice implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

@@ -11,11 +11,12 @@
 package com.yami.shop.common.serializer.json;
 
 import cn.hutool.core.util.StrUtil;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import tools.jackson.core.JsonGenerator;
 import com.yami.shop.common.bean.Qiniu;
 import com.yami.shop.common.util.ImgUploadUtil;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +29,7 @@ import java.util.regex.Pattern;
  * @author lanhai
  */
 @Component
-public class ImgJsonSerializer extends JsonSerializer<String> {
+public class ImgJsonSerializer extends ValueSerializer<String> {
 
     @Autowired
     private Qiniu qiniu;
@@ -36,7 +37,7 @@ public class ImgJsonSerializer extends JsonSerializer<String> {
     private ImgUploadUtil imgUploadUtil;
 
     @Override
-    public void serialize(String value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(String value, JsonGenerator gen, SerializationContext serializers) {
         if (StrUtil.isBlank(value)) {
             gen.writeString(StrUtil.EMPTY);
             return;

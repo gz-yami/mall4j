@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,6 +26,7 @@ import java.util.List;
 @Data
 @TableName("tz_area")
 public class Area implements Serializable {
+    @Serial
     private static final long serialVersionUID = -6013320537436191451L;
     @TableId
     @Schema(description = "地区id" ,requiredMode = Schema.RequiredMode.REQUIRED)

@@ -10,11 +10,12 @@
 
 package com.yami.shop.bean.app.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -23,6 +24,7 @@ import java.io.Serializable;
 @Data
 public class SkuDto implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 6457261945829470666L;
 
     @Schema(description = "skuId" ,requiredMode = Schema.RequiredMode.REQUIRED)

@@ -11,10 +11,10 @@ package com.yami.shop.security.common.manager;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSON;
 import com.yami.shop.common.constants.OauthCacheNames;
 import com.yami.shop.common.exception.YamiShopBindException;
 import com.yami.shop.common.response.ResponseEnum;
+import com.yami.shop.common.util.Json;
 import com.yami.shop.security.common.bo.TokenInfoBO;
 import com.yami.shop.security.common.bo.UserInfoInTokenBO;
 import com.yami.shop.security.common.enums.SysTypeEnum;
@@ -63,7 +63,7 @@ public class TokenStore {
         redisTemplate.delete(keyName);
         redisTemplate.opsForValue().set(
                 keyName,
-                JSON.toJSONString(userInfoInToken),
+                Json.toJsonString(userInfoInToken),
                 timeoutSecond,
                 TimeUnit.SECONDS
         );
@@ -110,7 +110,7 @@ public class TokenStore {
         if (redisCache == null) {
             throw new YamiShopBindException(ResponseEnum.UNAUTHORIZED,"登录过期，请重新登录");
         }
-        return JSON.parseObject(redisCache.toString(), UserInfoInTokenBO.class);
+        return Json.parseObject(redisCache.toString(), UserInfoInTokenBO.class);
     }
 
     /**

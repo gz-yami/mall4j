@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -23,9 +24,10 @@ import java.io.Serializable;
 @TableName("tz_prod_prop_value")
 public class ProdPropValue implements Serializable{
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 6604406039354172708L;
+     * 
+     */
+    @Serial
+    private static final long serialVersionUID = 6604406039354172708L;
 
 	/**
      * 属性值ID

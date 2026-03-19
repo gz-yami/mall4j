@@ -11,10 +11,11 @@
 package com.yami.shop.bean.model;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import com.yami.shop.common.serializer.json.ImgJsonSerializer;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.List;
 @TableName("tz_prod")
 public class Product implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -4644407386444894349L;
     /**
      * 商品ID

@@ -15,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,6 +29,7 @@ import java.util.Date;
 @TableName("tz_prod_tag")
 public class ProdTag implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1991508792679311621L;
     /**
      * 分组标签id

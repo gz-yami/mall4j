@@ -18,6 +18,8 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.NotBlank;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +31,8 @@ import java.util.List;
 @Data
 @TableName("tz_sys_role")
 public class SysRole implements Serializable {
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 	/**
 	 * 角色ID

@@ -16,14 +16,17 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+
 /**
  * @author lanhai
  */
 @Data
 @TableName("tz_user")
 public class User implements Serializable {
+    @Serial
     private static final long serialVersionUID = 2090714647038636896L;
     /**
      * ID

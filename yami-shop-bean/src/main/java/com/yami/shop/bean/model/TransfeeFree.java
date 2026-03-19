@@ -16,14 +16,17 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+
 /**
  * @author lanhai
  */
 @Data
 @TableName("tz_transfee_free")
 public class TransfeeFree implements Serializable {
+    @Serial
     private static final long serialVersionUID = -2811714952219888223L;
     /**
      * 指定条件包邮项id

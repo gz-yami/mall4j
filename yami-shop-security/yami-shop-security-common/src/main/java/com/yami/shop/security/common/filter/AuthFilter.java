@@ -108,8 +108,8 @@ public class AuthFilter implements Filter {
 
         }catch (Exception e) {
             // 手动捕获下非controller异常
-            if (e instanceof YamiShopBindException) {
-                httpHandler.printServerResponseToWeb((YamiShopBindException) e);
+            if (e instanceof YamiShopBindException exception) {
+                httpHandler.printServerResponseToWeb(exception);
             } else {
                 throw e;
             }
