@@ -10,6 +10,6 @@
 3. 安装`open-jdk17`（参考《centos jdk安装》）
 4. 安装`maven`（参考《通过yum安装maven》）
 5. 使用 `mvn clean package -DskipTests` 命令进行打包
-6. 使用 `docker-compose up` 启动项目
+6. 使用 `docker compose up` 启动项目
 7. 使用nginx将请求指向特定的端口。
 

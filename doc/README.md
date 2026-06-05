@@ -35,7 +35,7 @@
 | jdk     | 17    |
 | mysql   | 5.7+  |
 | redis   | 4.0+  |
-| nodejs  | 14-16 |
+| nodejs  | 18+   |
 | xxl-job | 2.4.0 |
 
 
