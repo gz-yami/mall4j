@@ -130,17 +130,18 @@ const getRecentSearch = () => {
  * 搜索提交
  */
 const toSearchProdPage = () => {
-  if (prodName.value.trim()) {
+  const keyword = prodName.value.trim()
+  if (keyword) {
     // 记录最近搜索
     let recentSearchStorage = uni.getStorageSync('recentSearch') || []
-    recentSearchStorage = recentSearchStorage.filter(item => item !== prodName.value)
-    recentSearchStorage.unshift(prodName.value)
+    recentSearchStorage = recentSearchStorage.filter(item => item !== keyword)
+    recentSearchStorage.unshift(keyword)
     if (recentSearchStorage.length > 10) {
       recentSearchStorage.pop()
     }
     uni.setStorageSync('recentSearch', recentSearchStorage) // 跳转到商品列表页
     uni.navigateTo({
-      url: '/pages/search-prod-show/search-prod-show?prodName=' + prodName.value
+      url: '/pages/search-prod-show/search-prod-show?prodName=' + keyword
     })
   }
 }
