@@ -141,7 +141,7 @@ const toSearchProdPage = () => {
     }
     uni.setStorageSync('recentSearch', recentSearchStorage) // 跳转到商品列表页
     uni.navigateTo({
-      url: '/pages/search-prod-show/search-prod-show?prodName=' + keyword
+      url: '/pages/search-prod-show/search-prod-show?prodName=' + encodeURIComponent(keyword)
     })
   }
 }
