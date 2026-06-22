@@ -149,10 +149,16 @@
       }
     },
     {
-      "path": "pages/accountLogin/accountLogin"
+      "path": "pages/accountLogin/accountLogin",
+      "style": {
+        "navigationBarTitleText": "用户登录"
+      }
     },
     {
-      "path": "pages/register/register"
+      "path": "pages/register/register",
+      "style": {
+        "navigationBarTitleText": "用户注册"
+      }
     }
   ],
   "tabBar": {

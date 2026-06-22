@@ -80,16 +80,6 @@
 <script setup>
 import { encrypt } from '@/utils/crypto.js'
 
-/**
- * 生命周期函数--监听页面显示
- */
-onShow(() => {
-  // 头部导航标题
-  uni.setNavigationBarTitle({
-    title: '用户登录'
-  })
-})
-
 const principal = ref('') // 账号
 const errorTips = ref(0) // 错误提示
 watch(
