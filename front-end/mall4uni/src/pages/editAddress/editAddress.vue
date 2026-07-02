@@ -320,11 +320,11 @@ const getAreaArray = (cityId, areaId) => {
  * 保存地址
  */
 const onSaveAddr = () => {
-  const receiverParam = receiver.value
-  const mobileParam = mobile.value
-  const addrParam = addr.value
+  const receiverParam = receiver.value.trim()
+  const mobileParam = mobile.value.trim()
+  const addrParam = addr.value.trim()
 
-  if (!receiverParam.trim()) {
+  if (!receiverParam) {
     receiver.value = ''
     uni.showToast({
       title: '请输入收货人姓名',
@@ -349,8 +349,8 @@ const onSaveAddr = () => {
     return
   }
 
-  if (!addrParam.trim()) {
-    receiver.value = ''
+  if (!addrParam) {
+    addr.value = ''
     uni.showToast({
       title: '请输入详细地址',
       icon: 'none'
@@ -371,9 +371,9 @@ const onSaveAddr = () => {
     url,
     method,
     data: {
-      receiver: receiver.value,
-      mobile: mobile.value,
-      addr: addr.value,
+      receiver: receiverParam,
+      mobile: mobileParam,
+      addr: addrParam,
       province: province.value,
       provinceId: provinceId.value,
       city: city.value,
