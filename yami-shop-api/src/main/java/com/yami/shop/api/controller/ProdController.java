@@ -69,7 +69,7 @@ public class ProdController {
     @GetMapping("/prodInfo")
     @Operation(summary = "商品详情信息" , description = "根据商品ID（prodId）获取商品信息")
     @Parameter(name = "prodId", description = "商品ID" , required = true)
-    public ServerResponseEntity<ProductDto> prodInfo(Long prodId) {
+    public ServerResponseEntity<ProductDto> prodInfo(@RequestParam(value = "prodId") Long prodId) {
 
         Product product = prodService.getProductByProdId(prodId);
         if (product == null) {

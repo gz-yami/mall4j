@@ -35,13 +35,13 @@ public class IpHelper {
             return null;
         }
         String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
+        if (isUnknown(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
+        if (isUnknown(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
+        if (isUnknown(ip)) {
             ip = request.getRemoteAddr();
         }
         String[] ips = ip.split(",");
@@ -60,8 +60,9 @@ public class IpHelper {
                 Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
                 while (inetAddresses.hasMoreElements()) {
                     InetAddress inetAddress = inetAddresses.nextElement();
-                    if (inetAddress.isSiteLocalAddress() && !inetAddress.isLoopbackAddress() && inetAddress.getHostAddress().indexOf(":") == -1) {
-                        return inetAddress.getHostAddress();
+                    String hostAddress = inetAddress.getHostAddress();
+                    if (inetAddress.isSiteLocalAddress() && !inetAddress.isLoopbackAddress() && !hostAddress.contains(":")) {
+                        return hostAddress;
                     }
                 }
             }
@@ -69,5 +70,9 @@ public class IpHelper {
             e.printStackTrace();
         }
         return "127.0.0.1";
+    }
+
+    private static boolean isUnknown(String ip) {
+        return ip == null || ip.isEmpty() || UNKNOWN.equalsIgnoreCase(ip);
     }
 }
