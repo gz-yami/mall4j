@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yami.shop.bean.app.dto.DeliveryDto;
@@ -47,7 +48,7 @@ public class DeliveryController {
     @GetMapping("/check")
     @Operation(summary = "查看物流" , description = "根据订单号查看物流")
     @Parameter(name = "orderNumber", description = "订单号" , required = true)
-    public ServerResponseEntity<DeliveryDto> checkDelivery(String orderNumber) {
+    public ServerResponseEntity<DeliveryDto> checkDelivery(@RequestParam("orderNumber") String orderNumber) {
 
     	Order order = orderService.getOrderByOrderNumber(orderNumber);
     	Delivery delivery = deliveryService.getById(order.getDvyId());
