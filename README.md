@@ -40,6 +40,7 @@ Mall4j 主线已升级到 Spring Boot 4 和 Vue3，适合新项目评估和长�
 - Gitee 文档：[https://gitee.com/gz-yami/mall4j/tree/master/doc](https://gitee.com/gz-yami/mall4j/tree/master/doc)
 - 看云文档：[https://www.kancloud.cn/yami/mall4j](https://www.kancloud.cn/yami/mall4j)
 - 开发环境搭建视频：[https://www.bilibili.com/video/BV1eW4y1V7c1](https://www.bilibili.com/video/BV1eW4y1V7c1)
+- Agent Skill：权威副本 `.agents/skills/mall4j/`（Cursor / Codex）；Claude Code 使用 `.claude/skills/mall4j/`（同一份内容）。按现有功能点辅助启动、使用和二次开发
 
 建议先阅读文档，再结合视频搭建本地开发环境。
 

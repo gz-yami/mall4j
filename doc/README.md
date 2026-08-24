@@ -1,5 +1,7 @@
 ﻿# Mall4j 技术文档
 
+用 Cursor、Codex 或 Claude Code 打开本仓库时，可使用内置 Skill：`.agents/skills/mall4j/`（Claude Code 为 `.claude/skills/mall4j/`，内容相同）。它按开源版**现有功能点**辅助启动、使用和二次开发，详细说明仍以本 `doc/` 目录为准。
+
 本文档面向项目维护者和二次开发者，目标是让新接手的人：
 
 - 30 分钟跑起后端接口、管理后台、MySQL、Redis。
