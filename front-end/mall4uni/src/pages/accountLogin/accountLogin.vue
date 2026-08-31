@@ -127,7 +127,7 @@ const login = () => {
             icon: 'none',
             complete: () => {
               setTimeout(() => {
-                wx.switchTab({
+                uni.switchTab({
                   url: '/pages/index/index'
                 })
               }, 1000)
@@ -151,7 +151,7 @@ const toRegitser = () => {
  * 回到首页
  */
 const toIndex = () => {
-  wx.switchTab({
+  uni.switchTab({
     url: '/pages/index/index'
   })
 }
