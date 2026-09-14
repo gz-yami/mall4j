@@ -3,7 +3,15 @@
 Nginx 常用于两个场景：
 
 - 托管管理后台静态文件。
-- 反向代理后端接口。
+- 需要时再反向代理后端接口。
+
+**先对齐三件事，再抄配置：**
+
+1. `front-end/mall4v/.env.production` 里的 `VITE_APP_BASE_API` 写成什么。
+2. `yami-shop-admin` 实际监听哪个端口。
+3. Nginx 的 `location` 和 `proxy_pass` 必须和上面两项一致。
+
+不要把本文两套示例拼在一起。
 
 ## 管理后台
 
@@ -20,21 +28,39 @@ pnpm run build
 /usr/share/nginx/admin
 ```
 
-## 反向代理
+## 端口对照
 
-管理后台接口代理到：
+| 场景 | 管理端 admin | 用户端 api |
+| --- | --- | --- |
+| 本地 `dev`、Docker | `8085` | `8086` |
+| jar 启用 `prod`（`application-prod.yml`） | `8111` | `8112` |
+
+`proxy_pass` 必须指向 **当前进程真实端口**，不要看见文档里的 `8085` 就照抄到生产。
+
+## 方案 A（推荐，和仓库默认一致）
+
+当前管理后台 `front-end/mall4v/.env.production` 默认是完整地址：
 
 ```text
-yami-shop-admin:8085
+VITE_APP_BASE_API = 'http://127.0.0.1:8085'
 ```
 
-用户端接口代理到：
+当前 uni-app `front-end/mall4uni/.env.production` 默认是完整地址：
 
 ```text
-yami-shop-api:8086
+VITE_APP_BASE_API = 'http://127.0.0.1:8086'
 ```
 
-示例结构：
+原生小程序 `front-end/mall4m` 不走 `VITE_APP_BASE_API`，接口在 `utils/config.js` 的 `domain`，默认也是 `http://127.0.0.1:8086`。
+
+这是本地开发口径。若后端用 `prod` 启动：
+
+- `mall4v` 改成 `http://<服务器IP>:8111`
+- `mall4uni` / `mall4m` 改成 `http://<服务器IP>:8112`
+
+两个前端不要写成同一个端口。
+
+此时 Nginx **只托管管理后台静态文件即可**，不必配 `/api/` 或 `/apis`：
 
 ```nginx
 server {
