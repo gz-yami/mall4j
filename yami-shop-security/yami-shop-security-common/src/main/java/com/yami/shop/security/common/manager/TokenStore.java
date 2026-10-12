@@ -143,8 +143,8 @@ public class TokenStore {
             }
             redisTemplate.delete(keyNames);
         }
-        // 移除token
-        StpUtil.logout(userId);
+        // 登录 id 是 sysType:userId，不能只用 userId，否则会话仍有效
+        StpUtil.logout(uid);
     }
 
     /**
