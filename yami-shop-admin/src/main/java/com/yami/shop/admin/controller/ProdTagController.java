@@ -30,6 +30,7 @@ import jakarta.validation.Valid;
 
 import java.sql.Struct;
 import java.util.Date;
+import java.util.Objects;
 import java.util.List;
 
 /**
@@ -54,8 +55,10 @@ public class ProdTagController {
      */
     @GetMapping("/page")
     public ServerResponseEntity<IPage<ProdTag>> getProdTagPage(PageParam<ProdTag> page, ProdTag prodTag) {
+        Long shopId = SecurityUtils.getSysUser().getShopId();
         IPage<ProdTag> tagPage = prodTagService.page(
                 page, new LambdaQueryWrapper<ProdTag>()
+                        .eq(ProdTag::getShopId, shopId)
                         .eq(prodTag.getStatus() != null, ProdTag::getStatus, prodTag.getStatus())
                         .like(StrUtil.isNotBlank(prodTag.getTitle()), ProdTag::getTitle, prodTag.getTitle())
                         .orderByDesc(ProdTag::getSeq, ProdTag::getCreateTime));
@@ -72,7 +75,11 @@ public class ProdTagController {
      */
     @GetMapping("/info/{id}")
     public ServerResponseEntity<ProdTag> getById(@PathVariable("id") Long id) {
-        return ServerResponseEntity.success(prodTagService.getById(id));
+        ProdTag prodTag = prodTagService.getById(id);
+        if (prodTag == null || !Objects.equals(prodTag.getShopId(), SecurityUtils.getSysUser().getShopId())) {
+            throw new YamiShopBindException("没有权限获取该商品分组标签信息");
+        }
+        return ServerResponseEntity.success(prodTag);
     }
 
     /**
@@ -86,7 +93,10 @@ public class ProdTagController {
     @PreAuthorize("@pms.hasPermission('prod:prodTag:save')")
     public ServerResponseEntity<Boolean> save(@RequestBody @Valid ProdTag prodTag) {
         // 查看是否相同的标签
-        List<ProdTag> list = prodTagService.list(new LambdaQueryWrapper<ProdTag>().like(ProdTag::getTitle, prodTag.getTitle()));
+        Long shopId = SecurityUtils.getSysUser().getShopId();
+        List<ProdTag> list = prodTagService.list(new LambdaQueryWrapper<ProdTag>()
+                .eq(ProdTag::getShopId, shopId)
+                .like(ProdTag::getTitle, prodTag.getTitle()));
         if (CollectionUtil.isNotEmpty(list)) {
             throw new YamiShopBindException("标签名称已存在，不能添加相同的标签");
         }
@@ -95,7 +105,7 @@ public class ProdTagController {
         prodTag.setProdCount(0L);
         prodTag.setCreateTime(date);
         prodTag.setUpdateTime(date);
-        prodTag.setShopId(SecurityUtils.getSysUser().getShopId());
+        prodTag.setShopId(shopId);
         prodTagService.removeProdTag();
         return ServerResponseEntity.success(prodTagService.save(prodTag));
     }
@@ -110,6 +120,12 @@ public class ProdTagController {
     @PutMapping
     @PreAuthorize("@pms.hasPermission('prod:prodTag:update')")
     public ServerResponseEntity<Boolean> updateById(@RequestBody @Valid ProdTag prodTag) {
+        Long shopId = SecurityUtils.getSysUser().getShopId();
+        ProdTag dbTag = prodTagService.getById(prodTag.getId());
+        if (dbTag == null || !Objects.equals(dbTag.getShopId(), shopId)) {
+            throw new YamiShopBindException("没有权限修改该商品分组标签");
+        }
+        prodTag.setShopId(shopId);
         prodTag.setUpdateTime(new Date());
         prodTagService.removeProdTag();
         return ServerResponseEntity.success(prodTagService.updateById(prodTag));
@@ -126,6 +142,9 @@ public class ProdTagController {
     @PreAuthorize("@pms.hasPermission('prod:prodTag:delete')")
     public ServerResponseEntity<Boolean> removeById(@PathVariable Long id) {
         ProdTag prodTag = prodTagService.getById(id);
+        if (prodTag == null || !Objects.equals(prodTag.getShopId(), SecurityUtils.getSysUser().getShopId())) {
+            throw new YamiShopBindException("没有权限删除该商品分组标签");
+        }
         if (prodTag.getIsDefault() != 0) {
             throw new YamiShopBindException("默认标签不能删除");
         }
