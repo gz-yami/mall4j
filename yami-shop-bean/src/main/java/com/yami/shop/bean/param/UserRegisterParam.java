@@ -23,6 +23,9 @@ public class UserRegisterParam {
 	@Schema(description = "密码" )
 	private String passWord;
 
+	@Schema(description = "原密码（修改密码时必填）" )
+	private String oldPassWord;
+
 	@Schema(description = "邮箱" )
 	private String userMail;
 

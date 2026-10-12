@@ -75,27 +75,5 @@ public class UserRegisterController {
     }
 
 
-    @PutMapping("/updatePwd")
-    @Operation(summary = "修改密码" , description = "修改密码")
-    public ServerResponseEntity<Void> updatePwd(@Valid @RequestBody UserRegisterParam userPwdUpdateParam) {
-        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getNickName, userPwdUpdateParam.getNickName()));
-        if (user == null) {
-            // 无法获取用户信息
-            throw new YamiShopBindException("无法获取用户信息");
-        }
-        String decryptPassword = passwordManager.decryptPassword(userPwdUpdateParam.getPassWord());
-        if (StrUtil.isBlank(decryptPassword)) {
-            // 新密码不能为空
-            throw new YamiShopBindException("新密码不能为空");
-        }
-        String password = passwordEncoder.encode(decryptPassword);
-        if (StrUtil.equals(password, user.getLoginPassword())) {
-            // 新密码不能与原密码相同
-            throw new YamiShopBindException("新密码不能与原密码相同");
-        }
-        user.setModifyTime(new Date());
-        user.setLoginPassword(password);
-        userService.updateById(user);
-        return ServerResponseEntity.success();
-    }
+
 }

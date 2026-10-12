@@ -21,6 +21,15 @@ import lombok.AllArgsConstructor;
 import cn.hutool.core.bean.BeanUtil;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import cn.hutool.core.util.StrUtil;
+import com.yami.shop.bean.param.UserRegisterParam;
+import com.yami.shop.common.exception.YamiShopBindException;
+import com.yami.shop.security.common.enums.SysTypeEnum;
+import com.yami.shop.security.common.manager.PasswordManager;
+import com.yami.shop.security.common.manager.TokenStore;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import jakarta.validation.Valid;
+import java.util.Date;
 /**
  * @author lanhai
  */
@@ -54,6 +63,32 @@ public class UserController {
 		user.setPic(userInfoParam.getAvatarUrl());
 		user.setNickName(userInfoParam.getNickName());
 		userService.updateById(user);
+		return ServerResponseEntity.success();
+	}
+
+	@PutMapping("/updatePwd")
+	@Operation(summary = "修改密码" , description = "登录用户修改自己的密码，需提供原密码")
+	public ServerResponseEntity<Void> updatePwd(@Valid @RequestBody UserRegisterParam userPwdUpdateParam) {
+		String userId = SecurityUtils.getUser().getUserId();
+		User user = userService.getById(userId);
+		if (user == null) {
+			throw new YamiShopBindException("无法获取用户信息");
+		}
+		String oldPassword = passwordManager.decryptPassword(userPwdUpdateParam.getOldPassWord());
+		if (StrUtil.isBlank(oldPassword) || !passwordEncoder.matches(oldPassword, user.getLoginPassword())) {
+			throw new YamiShopBindException("原密码不正确");
+		}
+		String decryptPassword = passwordManager.decryptPassword(userPwdUpdateParam.getPassWord());
+		if (StrUtil.isBlank(decryptPassword)) {
+			throw new YamiShopBindException("新密码不能为空");
+		}
+		if (passwordEncoder.matches(decryptPassword, user.getLoginPassword())) {
+			throw new YamiShopBindException("新密码不能与原密码相同");
+		}
+		user.setModifyTime(new Date());
+		user.setLoginPassword(passwordEncoder.encode(decryptPassword));
+		userService.updateById(user);
+		tokenStore.deleteAllToken(String.valueOf(SysTypeEnum.ORDINARY.value()), userId);
 		return ServerResponseEntity.success();
 	}
 }
