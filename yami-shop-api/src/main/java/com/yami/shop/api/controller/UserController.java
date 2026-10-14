@@ -40,6 +40,9 @@ import java.util.Date;
 public class UserController {
 
 	private final UserService userService;
+	private final PasswordManager passwordManager;
+	private final PasswordEncoder passwordEncoder;
+	private final TokenStore tokenStore;
 
 	
 	/**
