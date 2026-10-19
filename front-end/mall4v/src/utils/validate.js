@@ -1,9 +1,9 @@
 /**
- * 邮箱
+ * 邮箱，域名分隔符必须为英文句点
  * @param {*} s
  */
 export function isEmail (s) {
-  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
+  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
 }
 
 /**
