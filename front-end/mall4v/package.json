@@ -44,7 +44,7 @@
     "sortablejs": "1.15.6",
     "unplugin-auto-import": "19.0.0",
     "unplugin-vue-components": "28.0.0",
-    "vite": "8.0.1",
+    "vite": "8.1.6",
     "vite-plugin-compression2": "2.5.3",
     "vite-plugin-svg-icons": "2.0.1"
   },
