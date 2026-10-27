@@ -13,7 +13,6 @@ package com.yami.shop.service.impl;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.yami.shop.bean.enums.PayType;
 import com.yami.shop.bean.event.PaySuccessOrderEvent;
 import com.yami.shop.bean.model.Order;
 import com.yami.shop.bean.model.OrderSettlement;
@@ -76,20 +75,26 @@ public class PayServiceImpl implements PayService {
             orderSettlementMapper.updateByOrderNumberAndUserId(orderSettlement);
 
             Order order = orderMapper.getOrderByOrderNumber(orderNumber);
+            if (order == null || !Objects.equals(userId, order.getUserId())) {
+                throw new YamiShopBindException("订单不存在");
+            }
             prodName.append(order.getProdName()).append(StrUtil.COMMA);
         }
         // 除了ordernumber不一样，其他都一样
         List<OrderSettlement> settlements = orderSettlementMapper.getSettlementsByPayNo(payNo);
+        if (settlements.isEmpty()) {
+            throw new YamiShopBindException("订单不存在");
+        }
         // 应支付的总金额
         double payAmount = 0.0;
         for (OrderSettlement orderSettlement : settlements) {
             payAmount = Arith.add(payAmount, orderSettlement.getPayAmount());
         }
 
-        prodName.substring(0, Math.min(100, prodName.length() - 1));
+        String body = prodName.substring(0, Math.min(100, prodName.length() - 1));
 
         PayInfoDto payInfoDto = new PayInfoDto();
-        payInfoDto.setBody(prodName.toString());
+        payInfoDto.setBody(body);
         payInfoDto.setPayAmount(payAmount);
         payInfoDto.setPayNo(payNo);
         return payInfoDto;
@@ -116,7 +121,7 @@ public class PayServiceImpl implements PayService {
         List<String> orderNumbers = orderSettlements.stream().map(OrderSettlement::getOrderNumber).collect(Collectors.toList());
 
         // 将订单改为已支付状态
-        orderMapper.updateByToPaySuccess(orderNumbers, PayType.WECHATPAY.value());
+        orderMapper.updateByToPaySuccess(orderNumbers, settlement.getPayType());
 
         List<Order> orders = orderNumbers.stream().map(orderNumber -> orderMapper.getOrderByOrderNumber(orderNumber)).collect(Collectors.toList());
         eventPublisher.publishEvent(new PaySuccessOrderEvent(orders));
