@@ -26,7 +26,7 @@
         <java.version>17</java.version>
         <guava.version>33.4.0-jre</guava.version>
         <hutool.version>5.8.35</hutool.version>
-        <jsoup.version>1.15.3</jsoup.version>
+        <jsoup.version>1.23.2</jsoup.version>
         <poi.version>5.4.0</poi.version>
         <qiniu.version>7.12.1</qiniu.version>
         <aliyun-core.version>4.3.9</aliyun-core.version>
