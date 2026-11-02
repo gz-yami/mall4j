@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yami.shop.bean.app.dto.ProdCommDataDto;
 import com.yami.shop.bean.app.dto.ProdCommDto;
+import com.yami.shop.bean.app.param.ProdCommParam;
 import com.yami.shop.bean.model.ProdComm;
 
 
@@ -57,5 +58,12 @@ public interface ProdCommService extends IService<ProdComm> {
      * @return
      */
     IPage<ProdComm> getProdCommPage(Page page,ProdComm prodComm);
+
+    /**
+     * 保存用户对已完成订单项的评价
+     * @param userId 当前用户
+     * @param prodCommParam 评价参数
+     */
+    void saveProdComm(String userId, ProdCommParam prodCommParam);
 
 }

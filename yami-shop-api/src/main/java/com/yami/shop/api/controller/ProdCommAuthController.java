@@ -25,7 +25,6 @@ import lombok.AllArgsConstructor;
 import com.yami.shop.common.response.ServerResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -49,18 +48,7 @@ public class ProdCommAuthController {
     @PostMapping
     @Operation(summary = "添加评论")
     public ServerResponseEntity<Void> saveProdCommPage(ProdCommParam prodCommParam) {
-        ProdComm prodComm = new ProdComm();
-        prodComm.setProdId(prodCommParam.getProdId());
-        prodComm.setOrderItemId(prodCommParam.getOrderItemId());
-        prodComm.setUserId(SecurityUtils.getUser().getUserId());
-        prodComm.setScore(prodCommParam.getScore());
-        prodComm.setContent(prodCommParam.getContent());
-        prodComm.setPics(prodCommParam.getPics());
-        prodComm.setIsAnonymous(prodCommParam.getIsAnonymous());
-        prodComm.setRecTime(new Date());
-        prodComm.setStatus(0);
-        prodComm.setEvaluate(prodCommParam.getEvaluate());
-        prodCommService.save(prodComm);
+        prodCommService.saveProdComm(SecurityUtils.getUser().getUserId(), prodCommParam);
         return ServerResponseEntity.success();
     }
 
