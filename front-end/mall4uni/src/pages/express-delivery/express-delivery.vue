@@ -73,7 +73,7 @@ const dvyData = ref([])
 onLoad((options) => {
   uni.showLoading()
   http.request({
-    url: '/delivery/check',
+    url: '/p/delivery/check',
     method: 'GET',
     data: {
       orderNumber: options.orderNum

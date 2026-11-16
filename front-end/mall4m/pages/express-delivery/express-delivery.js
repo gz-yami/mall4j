@@ -19,7 +19,7 @@ Page({
     var ths = this;
     wx.showLoading();
     var params = {
-      url: "/delivery/check",
+      url: "/p/delivery/check",
       method: "GET",
       data: {
         orderNumber: options.orderNum
